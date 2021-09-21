@@ -2,12 +2,11 @@
 # include <cstdlib>
 # include <iostream>
 # include <iomanip>
-# include <ctime>
+# include <sys/time.h>
 
 using namespace std;
 
 int main ( );
-double cpu_time ( );
 void daxpy ( int n, double da, double dx[], int incx, double dy[], int incy );
 double ddot ( int n, double dx[], int incx, double dy[], int incy );
 int dgefa ( double a[], int lda, int n, int ipvt[] );
@@ -62,8 +61,7 @@ int main ( )
   double resid_max;
   double residn;
   double *rhs;
-  double t1;
-  double t2;
+  struct timeval  start, end;
   double time[6];
   double total;
   double *x;
@@ -112,7 +110,8 @@ int main ( )
       b[i] = b[i] + a[i+j*LDA] * x[j];
     }
   }
-  t1 = cpu_time ( );
+
+  gettimeofday(&start, NULL);
 
   info = dgefa ( a, LDA, N, ipvt );
 
@@ -125,16 +124,18 @@ int main ( )
     return 1;
   }
 
-  t2 = cpu_time ( );
-  time[0] = t2 - t1;
+  gettimeofday(&end, NULL);
+  time[0] = ((double) ((double) (end.tv_usec - start.tv_usec) / 1000000 +
+                            (double) (end.tv_sec - start.tv_sec)));;  // in secs
 
-  t1 = cpu_time ( );
+  gettimeofday(&start, NULL);
 
   job = 0;
   dgesl ( a, LDA, N, ipvt, b, job );
 
-  t2 = cpu_time ( );
-  time[1] = t2 - t1;
+  gettimeofday(&end, NULL);
+  time[1] = ((double) ((double) (end.tv_usec - start.tv_usec) / 1000000 +
+                            (double) (end.tv_sec - start.tv_sec)));;  // in secs
 
   total = time[0] + time[1];
 
@@ -204,7 +205,7 @@ int main ( )
        << setw(14) << b[0] << "  "
        << setw(14) << b[N-1] << "\n";
   cout << "\n";
-  cout << "      Factor     Solve      Total     MFLOPS       Unit      Cray-Ratio\n";
+  cout << "      Factor     Solve      Total time     MFLOPS       Unit      Cray-Ratio\n";
   cout << "\n";
   cout << setw(9) << time[0] << "  "
        << setw(9) << time[1] << "  "
@@ -233,46 +234,6 @@ int main ( )
   return 0;
 # undef LDA
 # undef N
-}
-//****************************************************************************80
-
-double cpu_time ( )
-
-//****************************************************************************80
-//
-//  Purpose:
-// 
-//    CPU_TIME reports the elapsed CPU time.
-//
-//  Discussion:
-//
-//    The data available to this routine through "CLOCK" is not very reliable,
-//    and hence the values of CPU_TIME returned should not be taken too 
-//    seriously, especially when short intervals are being timed.
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    23 September 2008
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    Output, double CPU_TIME, the current total elapsed CPU time in second.
-//
-{
-  double value;
-
-  value = ( double ) clock ( ) 
-        / ( double ) CLOCKS_PER_SEC;
-
-  return value;
 }
 //****************************************************************************80
 

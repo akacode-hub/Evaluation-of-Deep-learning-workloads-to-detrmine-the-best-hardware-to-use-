@@ -4,7 +4,7 @@
 mkdir include
 mkdir bincpp
 
-g++ -c -Wall -I $PWD/include sparse_test.cpp
+g++ -c -Wall -O3 -I $PWD/include sparse_test.cpp
 if [ $? -ne 0 ]; then
   echo "Compile error."
   exit

@@ -1,51 +1,39 @@
 # include <cstdlib>
 # include <iostream>
 # include <cmath>
-# include <ctime>
+# include <sys/time.h>
 # include <cassert>
 
 using namespace std;
 
 int main (int argc, char *argv[]);
+void multiply_matrix(int matrix_dim, float frac_sparse);
 double ** sparse_matrix(int n, float frac_sparse);
-float cpu_time( );
 
 int main (int argc, char *argv[])
 {
   
-  assert(("Two arguments (matrix dimension and frac sparsity) must be provided !!", argc == 3));
+  assert(("Two arguments (min matrix dimension, max matrix dimension, step and frac sparsity) must be provided !!", argc == 5));
   
-  int matrix_dim = atoi(argv[1]);
-  float frac_sparse = stof(argv[2]);
-
+  int min_matrix_dim = atoi(argv[1]);
+  int max_matrix_dim = atoi(argv[2]);
+  int step = atoi(argv[3]);
+  float frac_sparse = stof(argv[4]);
+  
   assert(("sparsity fraction should be less than/equal to 1", frac_sparse <= 1));
+  assert(("number of steps should be greater than 1", step >= 1));
 
-  double** a;
-  double** b;
-  double c[matrix_dim][matrix_dim];
-  int i, j, k;
-  float time_elapsed, cpu_time_start, cpu_time_end;
+  cout << "Min Matrix dimension: "<<min_matrix_dim<<" * "<<min_matrix_dim<<"\n";
+  cout << "Max Matrix dimension: "<<max_matrix_dim<<" * "<<max_matrix_dim<<"\n";
+  cout << "Increment Step: "<<step<<"\n";
+  cout << "Sparsity fraction: "<<frac_sparse<<"\n";
 
-  a = sparse_matrix(matrix_dim, frac_sparse);
-  b = sparse_matrix(matrix_dim, frac_sparse);
-
-  cpu_time_start = cpu_time( );
-
-  for ( i = 0; i < matrix_dim; i++ )
+  int matrix_dim;
+  for (matrix_dim=min_matrix_dim; matrix_dim<=max_matrix_dim; matrix_dim+=step)
   {
-    for ( j = 0; j < matrix_dim; j++ )
-    {
-      c[i][j] = 0.0;
-      for ( k = 0; k < matrix_dim; k++ )
-      {
-        c[i][j] = c[i][j] + a[i][k] * b[k][j];
-      }
-    }
+    multiply_matrix(matrix_dim, frac_sparse);
   }
   
-  cpu_time_end = cpu_time( );
-  time_elapsed = cpu_time_end - cpu_time_start;
-  cout << "Time elapsed for matrix dim "<<matrix_dim<<" with sparsity fraction "<<frac_sparse<<" = "<<time_elapsed<<"\n";
   return 0;
 
 }
@@ -75,11 +63,41 @@ double ** sparse_matrix(int n, float frac_sparse)
     return arr;
 }
 
-float cpu_time( )
-{
-  float value;
+void multiply_matrix(int matrix_dim, float frac_sparse)
+{ 
 
-  value = ( float ) clock ( ) / ( float ) CLOCKS_PER_SEC;
+  double** a;
+  double** b;
+  double c[matrix_dim][matrix_dim];
 
-  return value;
+  int i, j, k;
+  struct timeval  start, end;
+  double time_elapsed;
+
+  a = sparse_matrix(matrix_dim, frac_sparse);
+  b = sparse_matrix(matrix_dim, frac_sparse);
+
+  gettimeofday(&start, NULL);
+  for ( i = 0; i < matrix_dim; i++ )
+  {
+    for ( j = 0; j < matrix_dim; j++ )
+    {
+      c[i][j] = 0.0;
+      for ( k = 0; k < matrix_dim; k++ )
+      {
+        c[i][j] = c[i][j] + a[i][k] * b[k][j];
+      }
+    }
+  }
+  gettimeofday(&end, NULL);
+  time_elapsed = ((double) ((double) (end.tv_usec - start.tv_usec) / 1000000 +
+                    (double) (end.tv_sec - start.tv_sec)));
+  cout<<" Matrix dim: "<<matrix_dim<<" Time elapsed: "<<time_elapsed<<"\n";
+
+  delete [] a;
+  delete [] b;
+
+  return;
+
 }
+    
