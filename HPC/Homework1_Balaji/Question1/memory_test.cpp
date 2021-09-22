@@ -323,7 +323,7 @@ void i4mat_memory_test ( int n_log )
   cout << "  " << setw(12) << n1
        << "  " << setw(12) << n2
        << "  " << setw(4) << setprecision(2) << average
-       << "  " << setw(10) << setprecision(2) << time_spent << "\n";
+       << "  " << setw(10) << setprecision(5) << time_spent << "\n";
 
   delete [] i4mat;
 
@@ -396,7 +396,7 @@ void i4vec_memory_test ( int n_log )
   //printf("Time taken for execution: %f seconds\n", time_spent);
 
   cout << "  " << setw(4) << setprecision(2) << average
-       << "  " << setw(10) << setprecision(2) << time_spent << "\n";
+       << "  " << setw(10) << setprecision(5) << time_spent << "\n";
 
   delete [] i4vec;
 
@@ -487,7 +487,7 @@ void r4mat_memory_test ( int n_log )
   cout << "  " << setw(12) << n1
        << "  " << setw(12) << n2
        << "  " << setw(4) << setprecision(2) << average
-       << "  " << setw(10) << setprecision(2) << time_spent << "\n";
+       << "  " << setw(10) << setprecision(5) << time_spent << "\n";
 
   delete [] r4mat;
 
@@ -559,7 +559,7 @@ void r4vec_memory_test ( int n_log )
   //printf("Time taken for execution: %f seconds\n", time_spent);
 
   cout << "  " << setw(4) << setprecision(2) << average
-       << "  " << setw(10) << setprecision(2) << time_spent << "\n";
+       << "  " << setw(10) << setprecision(5) << time_spent << "\n";
 
   delete [] r4vec;
 
@@ -650,7 +650,7 @@ time_spent = ((double) ((double) (end.tv_usec - start.tv_usec) / 1000000 +
   cout << "  " << setw(12) << n1
        << "  " << setw(12) << n2
        << "  " << setw(4) << setprecision(2) << average
-       << "  " << setw(10) << setprecision(2) << time_spent << "\n";
+       << "  " << setw(10) << setprecision(5) << time_spent << "\n";
 
   delete [] r8mat;
 
@@ -723,7 +723,7 @@ void r8vec_memory_test ( int n_log )
   //printf("Time taken for execution: %f seconds\n", time_spent);
 
   cout << "  " << setw(4) << setprecision(2) << average
-       << "  " << setw(10) << setprecision(2) << time_spent << "\n";
+       << "  " << setw(10) << setprecision(5) << time_spent << "\n";
 
   delete [] r8vec;
 

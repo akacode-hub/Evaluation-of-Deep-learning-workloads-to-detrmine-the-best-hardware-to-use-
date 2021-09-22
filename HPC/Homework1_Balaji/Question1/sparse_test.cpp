@@ -3,6 +3,7 @@
 # include <cmath>
 # include <sys/time.h>
 # include <cassert>
+# include <string>
 
 using namespace std;
 
