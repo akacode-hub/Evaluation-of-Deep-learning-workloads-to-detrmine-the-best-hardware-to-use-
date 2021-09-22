@@ -4,7 +4,7 @@
 mkdir include
 mkdir bincpp
 
-g++ -c -Wall -Og -std=c++11 -I $PWD/include sparse_test.cpp
+g++ -c -Wall -Ofast -std=c++11 -I $PWD/include sparse_test.cpp
 if [ $? -ne 0 ]; then
   echo "Compile error."
   exit
@@ -19,6 +19,6 @@ fi
 rm sparse_test.o
 #
 chmod ugo+x a.out
-mv a.out $PWD/bincpp/sparse_test_g
+mv a.out $PWD/bincpp/sparse_test_fast
 #
 echo "Normal end of execution."
