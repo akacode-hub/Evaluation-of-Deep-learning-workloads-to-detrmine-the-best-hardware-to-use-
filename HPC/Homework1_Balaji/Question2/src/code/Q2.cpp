@@ -101,7 +101,7 @@ void *thread_merge_sort(void* arg)
     if (thread_id == NUM_THREADS - 1) {
         right += OFFSET;
     }
-    std::cout<<thread_id<<" "<<NUM_THREADS<<" "<<NUMBERS_PER_THREAD<<" "<<OFFSET<<"\n";
+    
     int middle = left + (right - left) / 2;
     if (left < right) {
         merge_sort(arr, left, right);
