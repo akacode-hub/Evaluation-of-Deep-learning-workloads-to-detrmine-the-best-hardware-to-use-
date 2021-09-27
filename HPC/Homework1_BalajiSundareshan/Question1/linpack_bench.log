@@ -1,0 +1,23 @@
+27 September 2021 02:04:49 PM
+
+LINPACK_BENCH
+C++ version
+
+The LINPACK benchmark.
+Language: C++
+Datatype: Double precision
+Matrix order N               = 1000
+Leading matrix dimension LDA = 1001
+
+Norm. Resid      Resid           MACHEP         X[1]          X[N]
+
+6.49151     7.20701e-13     2.22045e-16               1               1
+
+Factor     Solve     MFLOPS       Unit      Cray-Ratio
+
+ 0.483287    0.00132    1379.81  0.00144947     8.6537
+
+Time taken(sec): 0.484607
+
+Normal end of execution.
+

@@ -1,0 +1,9 @@
+Min Matrix dimension: 100 * 100
+Max Matrix dimension: 500 * 500
+Increment Step: 100
+Sparsity fraction: 0.5
+ Matrix dim: 100 Time elapsed: 0.00301
+ Matrix dim: 200 Time elapsed: 0.014311
+ Matrix dim: 300 Time elapsed: 0.049563
+ Matrix dim: 400 Time elapsed: 0.108136
+ Matrix dim: 500 Time elapsed: 0.316005
