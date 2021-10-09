@@ -5,20 +5,21 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <assert.h>
-#include <limits.h>
 
-int primes[INT_MAX/2];
+int *primes = NULL;
 int largest_number;
 int num_threads;
+int total_num_primes;
+pthread_mutex_t sum_mutex;
+
+void *find_primes(void *arg);
+void print_primes();
 
 void *find_primes(void *arg){
 
     int local_len = largest_number/num_threads;
     int threadid = (long)arg;
 
-    primes[0] = 0;
-    primes[1] = 0;
-    primes[2] = 1;
     int start = threadid * local_len;
     int end = start + local_len;
 
@@ -42,6 +43,7 @@ void *find_primes(void *arg){
         }
     }
 
+    double local_sum = 0;
     for(i=start; i<end; i++){
         if (primes[i]==1){
             for(int x=3; x*x<=i; x++){
@@ -51,7 +53,13 @@ void *find_primes(void *arg){
                 }
             }
         }
+        if (primes[i]==1)
+            local_sum += 1;
     }
+
+    pthread_mutex_lock (&sum_mutex);
+    total_num_primes += local_sum;
+    pthread_mutex_unlock (&sum_mutex);
 
     pthread_exit((void*) 0);
 
@@ -59,21 +67,18 @@ void *find_primes(void *arg){
 
 void print_primes(){
 
-    int total_primes = 0;
     printf("List of prime numbers:\n");
     for(int i=0; i<=largest_number; i++){
         if (primes[i]==1){ 
             printf("%d, ",i);
-            total_primes += 1;
         }
     }
-    printf("\nTotal number of primes: %d\n", total_primes);
 }
 
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
-    assert(("executable largest_number num_threads", argc == 3));
+    assert(("./soe_pthreads <largest_number> <num_threads>", argc == 3));
 
     largest_number = atoi(argv[1]);
     num_threads = atoi(argv[2]);
@@ -86,7 +91,13 @@ int main(int argc, char *argv[])
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 
+    primes = calloc(largest_number + 1, sizeof(int));
     pthread_t threads[num_threads];
+
+    primes[0] = 0;
+    primes[1] = 0;
+    primes[2] = 1;
+
     for(i=0; i<num_threads; i++){
         pthread_create(&threads[i], NULL, find_primes, (void *)i);
     }
@@ -96,13 +107,18 @@ int main(int argc, char *argv[])
         pthread_join(threads[i], NULL);
 	}
 
+    
     clock_gettime(CLOCK_MONOTONIC, &end);
     double time_taken = (end.tv_sec - start.tv_sec);
     time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
 
     // print prime numbers
     print_primes();
+    printf("\nTotal number of primes: %d\n", total_num_primes);
     printf("Total time elapsed: %f seconds \n", time_taken);
+
+    // free primes
+    free(primes); 
 
     return 0;
 }
