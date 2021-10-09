@@ -9,6 +9,7 @@
 
 # define END_TIME 500 //milliseconds
 pthread_mutex_t print_mutex;
+int thread_priority_val = 99;
 
 typedef struct {
 
@@ -29,7 +30,8 @@ typedef struct {
 } philosopher_t;
 
 void create_forks(sem_t *forks, int num_philosophers);
-void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int min_dur, int max_dur);
+void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, \
+                    int min_dur, int max_dur, int prio_phil_id);
 void print_philosopher_stats(philosopher_t * philosopher);
 void *start_activity_philosopher(void *arg);
 
@@ -44,20 +46,25 @@ float get_random_number(int min, int max);
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
-    assert(("./dining_philosopher <num_philosopher> <min_dur_microsec> <max_dur_microsec>", argc == 4));
+    assert(("./dining_philosopher <num_philosopher> <min_dur_microsec> <max_dur_microsec> <priority_philosopher_id>", argc == 5));
 
     int num_philosophers = atoi(argv[1]);
     int min_dur = atoi(argv[2]);
     int max_dur = atoi(argv[3]);
+    int prio_phil_id = atoi(argv[4]); // -1 to disable
 
+    printf("...................................\n");
     printf("Number of Philosophers: %d\n", num_philosophers);
     printf("Expected Running Time: %d secs \n", END_TIME/1000);
-
+    printf("Minimum Duration to Think/Eat: %d msecs \n", min_dur);
+    printf("Maximum Duration to Think/Eat: %d msecs \n", max_dur);
+    printf("...................................\n\n");
+    
     sem_t forks[num_philosophers];
     pthread_t threads[num_philosophers];
 
     create_forks(forks, num_philosophers);
-    start_threads(threads, forks, num_philosophers, min_dur, max_dur); 
+    start_threads(threads, forks, num_philosophers, min_dur, max_dur, prio_phil_id); 
     
     pthread_exit(NULL);
     printf("End of Execution\n");
@@ -71,7 +78,7 @@ void create_forks(sem_t *forks, int num_philosophers)
   }
 }
 
-void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int min_dur, int max_dur)
+void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int min_dur, int max_dur, int prio_phil_id)
 {
   int i;
   for(i = 0; i < num_philosophers; i++) {
@@ -90,7 +97,24 @@ void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int m
     philosopher->left_fork = &forks[i];
     philosopher->right_fork = &forks[(i + 1) % num_philosophers];
     
-    pthread_create(&threads[i], NULL, start_activity_philosopher, (void *)philosopher);
+    pthread_attr_t attr;
+    struct sched_param param;
+    pthread_attr_init(&attr);
+    pthread_attr_getschedparam(&attr, &param);
+    pthread_attr_setschedpolicy(&attr, SCHED_RR);
+    pthread_attr_getschedparam(&attr, &param);
+
+    // if(i==prio_phil_id){
+    //   param.sched_priority = thread_priority_val;
+    //   pthread_attr_setschedparam (&attr, &param);
+    // }else{
+    //   param.sched_priority = 1;
+    //   pthread_attr_setschedparam (&attr, &param);
+    // }
+
+    
+    printf("sched_priority %d = %d\n", i, param.sched_priority);
+    pthread_create(&threads[i], &attr, start_activity_philosopher, (void *)philosopher);
   }
 }
 
@@ -109,6 +133,7 @@ void *start_activity_philosopher(void *arg)
     time(&end_t);
     
     if(difftime(end_t, start_t)*1000>END_TIME){
+        sleep(1);
         print_philosopher_stats(philosopher);
         break;
     }
@@ -117,14 +142,16 @@ void *start_activity_philosopher(void *arg)
 
 void print_philosopher_stats(philosopher_t * philosopher){
 
+  pthread_mutex_lock (&print_mutex);
   printf("--------------------------------------------\n");
   printf("Philosopher %d stats\n",philosopher->position);
-  printf("Philosopher number of times thought: %d \n",philosopher->num_times_think);
-  printf("Philosopher number of plates eaten: %d \n",philosopher->num_times_eat);
-  printf("Philosopher total eat duration: %d ms\n",philosopher->total_eat_duration);
-  printf("Philosopher total think duration: %d ms\n",philosopher->total_think_duration);
-  printf("Philosopher total wait duration: %f ms\n",philosopher->total_wait_duration);
+  printf("Philosopher %d number of times thought: %d \n", philosopher->position, philosopher->num_times_think);
+  printf("Philosopher %d number of plates eaten: %d \n", philosopher->position, philosopher->num_times_eat);
+  printf("Philosopher %d total eat duration: %d ms\n", philosopher->position, philosopher->total_eat_duration);
+  printf("Philosopher %d total think duration: %d ms\n", philosopher->position, philosopher->total_think_duration);
+  printf("Philosopher %d total wait duration: %f ms\n", philosopher->position, philosopher->total_wait_duration);
   printf("--------------------------------------------\n");
+  pthread_mutex_unlock (&print_mutex);
 
 }
 
