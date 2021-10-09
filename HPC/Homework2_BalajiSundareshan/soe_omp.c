@@ -12,7 +12,8 @@ void print_primes(int *primes, int largest_number);
 void print_primes(int *primes, int largest_number){
 
     printf("List of prime numbers:\n");
-    for(int i=0; i<=largest_number; i++){
+    int i;
+    for(i=0; i<=largest_number; i++){
         if (primes[i]==1){ 
             printf("%d, ",i);
         }
@@ -54,7 +55,8 @@ int main(int argc, char *argv[])
     #pragma omp parallel for schedule(dynamic, 100)
     for(i=3; i<largest_number + 1; i++){
         if(primes[i] == 1){
-            for(int x=3; x*x<=i; x++){
+            int x;
+            for(x=3; x*x<=i; x++){
                 if(x % 2 != 0 && i % x == 0){
                     primes[i] = 0;
                     break;

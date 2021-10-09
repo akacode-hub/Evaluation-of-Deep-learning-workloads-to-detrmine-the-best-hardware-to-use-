@@ -46,7 +46,8 @@ void *find_primes(void *arg){
     double local_sum = 0;
     for(i=start; i<end; i++){
         if (primes[i]==1){
-            for(int x=3; x*x<=i; x++){
+            int x;
+            for(x=3; x*x<=i; x++){
                 if (x % 2 != 0 && i % x == 0){
                     primes[i] = 0;
                     break;
@@ -68,7 +69,8 @@ void *find_primes(void *arg){
 void print_primes(){
 
     printf("List of prime numbers:\n");
-    for(int i=0; i<=largest_number; i++){
+    int i;
+    for(i=0; i<=largest_number; i++){
         if (primes[i]==1){ 
             printf("%d, ",i);
         }
