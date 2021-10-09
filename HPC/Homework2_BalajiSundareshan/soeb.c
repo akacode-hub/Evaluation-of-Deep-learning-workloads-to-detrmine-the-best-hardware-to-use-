@@ -28,10 +28,10 @@ void *find_primes(void *arg){
 
     int i;
 
-    printf("threadid: %d\n", threadid);
-    printf("local_len: %d\n", local_len);
-    printf("start: %d\n", start);
-    printf("end: %d\n", end);
+    printf("Initialized thread ID: %d\n", threadid);
+    // printf("local_len: %d\n", local_len);
+    // printf("start: %d\n", start);
+    // printf("end: %d\n", end);
 
     for(i=start; i<=end; i++){
         if(i<3)continue;
@@ -83,8 +83,9 @@ int main(int argc, char *argv[])
 
     int i;
 
-    time_t start_t, end_t;    
-    time(&start_t);
+    struct timespec start, end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
     pthread_t threads[num_threads];
     for(i=0; i<num_threads; i++){
         pthread_create(&threads[i], NULL, find_primes, (void *)i);
@@ -95,12 +96,13 @@ int main(int argc, char *argv[])
         pthread_join(threads[i], NULL);
 	}
 
-    time(&end_t);
-    float time_elapsed = difftime(end_t, start_t);
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    double time_taken = (end.tv_sec - start.tv_sec);
+    time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
 
     // print prime numbers
     print_primes();
-    printf("Total time elapsed: %f\n", time_elapsed);
-    
+    printf("Total time elapsed: %f seconds \n", time_taken);
+
     return 0;
 }
