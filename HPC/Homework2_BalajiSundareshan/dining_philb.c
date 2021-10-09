@@ -7,15 +7,15 @@
 #include <unistd.h>
 #include <assert.h>
 
-# define END_TIME 10000 //milliseconds
+# define END_TIME 5000 //milliseconds
 
 typedef struct {
 
     int position;
     int count;
     int fixed;
-    int current_think_duration;
-    int current_eat_duration;
+    int num_times_think;
+    int num_times_eat;
     float current_wait_duration;
     int total_think_duration;
     int total_eat_duration;
@@ -27,7 +27,7 @@ typedef struct {
 
 void create_forks(sem_t *forks, int num_philosophers);
 void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int fixed);
-
+void print_philosopher_stats(philosopher_t * philosopher);
 void *start_activity_philosopher(void *arg);
 
 void think(philosopher_t *philosopher, float max_think_time);
@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
     int fixed = atoi(argv[2]);
 
     printf("Number of Philosophers: %d\n", num_philosophers);
+    printf("Expected Running Time: %d secs \n", END_TIME/1000);
 
     sem_t forks[num_philosophers];
     pthread_t threads[num_philosophers];
@@ -73,8 +74,8 @@ void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int f
     philosopher->position = i;
     philosopher->count = num_philosophers;
     philosopher->fixed = fixed;
-    philosopher->current_think_duration = 0;
-    philosopher->current_eat_duration = 0;
+    philosopher->num_times_think = 0;
+    philosopher->num_times_eat = 0;
     philosopher->current_wait_duration = 0.0;
     philosopher->total_think_duration = 0;
     philosopher->total_eat_duration = 0;
@@ -98,29 +99,46 @@ void *start_activity_philosopher(void *arg)
     eat(philosopher, 500);
     place_forks(philosopher);
     time(&end_t);
+    
     if(difftime(end_t, start_t)*1000>END_TIME){
+        print_philosopher_stats(philosopher);
         break;
     }
   }
 }
 
+void print_philosopher_stats(philosopher_t * philosopher){
+
+  printf("--------------------------------------------\n");
+  printf("Philosopher %d stats\n",philosopher->position);
+  printf("Philosopher number of times thought: %d \n",philosopher->num_times_think);
+  printf("Philosopher number of plates eaten: %d \n",philosopher->num_times_eat);
+  printf("Philosopher total eat duration: %d ms\n",philosopher->total_eat_duration);
+  printf("Philosopher total think duration: %d ms\n",philosopher->total_think_duration);
+  printf("Philosopher total wait duration: %f ms\n",philosopher->total_wait_duration);
+  printf("--------------------------------------------\n");
+
+}
 
 void think(philosopher_t *philosopher, float max_think_time)
 {
 
+    int think_duration; 
     if (philosopher->fixed==1){
-      philosopher->current_think_duration = 500;
+      think_duration = 500;
     }else{
-      philosopher->current_think_duration = get_random_number(100, max_think_time);
+      think_duration = get_random_number(100, max_think_time);
     }
     
-    philosopher->total_think_duration += philosopher->current_think_duration;
+    philosopher->total_think_duration += think_duration;
 
-    printf("Philosopher %d started thinking for %d ms\n", philosopher->position, philosopher->current_think_duration);
+    printf("Philosopher %d started thinking for %d ms\n", philosopher->position, think_duration);
 
     // sleep
-    float microsec = get_microseconds(philosopher->current_think_duration);
+    float microsec = get_microseconds(think_duration);
     usleep(microsec);
+
+    philosopher->num_times_think += 1;
 
     printf("Philosopher %d stopped thinking\n", philosopher->position);
 
@@ -133,18 +151,20 @@ int get_microseconds(int milliseconds){
 
 void eat(philosopher_t *philosopher, float max_eat_time)
 {
-
+    int eat_time;
     if (philosopher->fixed==1){
-      philosopher->current_eat_duration = 500;
+      eat_time = 500;
     } else{
-      philosopher->current_eat_duration = get_random_number(100, max_eat_time);
+      eat_time = get_random_number(100, max_eat_time);
     }
-    philosopher->total_eat_duration += philosopher->current_eat_duration;
+    philosopher->total_eat_duration += eat_time;
 
-    printf("Philosopher %d started eating for %d ms\n", philosopher->position, philosopher->current_eat_duration);
+    printf("Philosopher %d started eating for %d ms\n", philosopher->position, eat_time);
     // sleep
-    float microsec = get_microseconds(philosopher->current_eat_duration);
+    float microsec = get_microseconds(eat_time);
     usleep(microsec);
+
+    philosopher->num_times_eat += 1;
 
     printf("Philosopher %d stopped eating\n", philosopher->position);
 
