@@ -7,13 +7,16 @@
 #include <unistd.h>
 #include <assert.h>
 
-# define END_TIME 5000 //milliseconds
+# define END_TIME 500 //milliseconds
+pthread_mutex_t print_mutex;
 
 typedef struct {
 
     int position;
     int count;
     int fixed;
+    int min_dur;
+    int max_dur;
     int num_times_think;
     int num_times_eat;
     float current_wait_duration;
@@ -26,12 +29,12 @@ typedef struct {
 } philosopher_t;
 
 void create_forks(sem_t *forks, int num_philosophers);
-void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int fixed);
+void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int min_dur, int max_dur);
 void print_philosopher_stats(philosopher_t * philosopher);
 void *start_activity_philosopher(void *arg);
 
-void think(philosopher_t *philosopher, float max_think_time);
-void eat(philosopher_t *philosopher, float max_eat_time);
+void think(philosopher_t *philosopher);
+void eat(philosopher_t *philosopher);
 void take_forks(philosopher_t *philosopher);
 void place_forks(philosopher_t *philosopher);
 int get_microseconds(int milliseconds);
@@ -41,10 +44,11 @@ float get_random_number(int min, int max);
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
-    assert(("executable num_philosopher fixed_time_eat_flag", argc == 3));
+    assert(("./dining_philosopher <num_philosopher> <min_dur_microsec> <max_dur_microsec>", argc == 4));
 
     int num_philosophers = atoi(argv[1]);
-    int fixed = atoi(argv[2]);
+    int min_dur = atoi(argv[2]);
+    int max_dur = atoi(argv[3]);
 
     printf("Number of Philosophers: %d\n", num_philosophers);
     printf("Expected Running Time: %d secs \n", END_TIME/1000);
@@ -53,33 +57,36 @@ int main(int argc, char *argv[])
     pthread_t threads[num_philosophers];
 
     create_forks(forks, num_philosophers);
-    start_threads(threads, forks, num_philosophers, fixed); 
+    start_threads(threads, forks, num_philosophers, min_dur, max_dur); 
     
     pthread_exit(NULL);
     printf("End of Execution\n");
 }
 
 void create_forks(sem_t *forks, int num_philosophers)
-{
-  for(int i = 0; i < num_philosophers; i++) {
+{ 
+  int i;
+  for(i = 0; i < num_philosophers; i++) {
     sem_init(&forks[i], 0, 1);
   }
 }
 
-void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int fixed)
+void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int min_dur, int max_dur)
 {
-  for(int i = 0; i < num_philosophers; i++) {
+  int i;
+  for(i = 0; i < num_philosophers; i++) {
     philosopher_t *philosopher = malloc(sizeof(philosopher_t));
     
     philosopher->position = i;
     philosopher->count = num_philosophers;
-    philosopher->fixed = fixed;
     philosopher->num_times_think = 0;
     philosopher->num_times_eat = 0;
     philosopher->current_wait_duration = 0.0;
     philosopher->total_think_duration = 0;
     philosopher->total_eat_duration = 0;
     philosopher->total_wait_duration = 0.0;
+    philosopher->min_dur = min_dur;
+    philosopher->max_dur = max_dur;
     philosopher->left_fork = &forks[i];
     philosopher->right_fork = &forks[(i + 1) % num_philosophers];
     
@@ -92,11 +99,12 @@ void *start_activity_philosopher(void *arg)
   philosopher_t *philosopher = (philosopher_t *)arg;
   time_t start_t, end_t;
   time(&start_t);
+
   while(1)
   {
-    think(philosopher, 500);
+    think(philosopher);
     take_forks(philosopher);
-    eat(philosopher, 500);
+    eat(philosopher);
     place_forks(philosopher);
     time(&end_t);
     
@@ -120,18 +128,12 @@ void print_philosopher_stats(philosopher_t * philosopher){
 
 }
 
-void think(philosopher_t *philosopher, float max_think_time)
+void think(philosopher_t *philosopher)
 {
 
     int think_duration; 
-    if (philosopher->fixed==1){
-      think_duration = 500;
-    }else{
-      think_duration = get_random_number(100, max_think_time);
-    }
-    
+    think_duration = get_random_number(philosopher->min_dur, philosopher->max_dur);
     philosopher->total_think_duration += think_duration;
-
     printf("Philosopher %d started thinking for %d ms\n", philosopher->position, think_duration);
 
     // sleep
@@ -149,14 +151,10 @@ int get_microseconds(int milliseconds){
     return milliseconds*1000;
 }
 
-void eat(philosopher_t *philosopher, float max_eat_time)
+void eat(philosopher_t *philosopher)
 {
     int eat_time;
-    if (philosopher->fixed==1){
-      eat_time = 500;
-    } else{
-      eat_time = get_random_number(100, max_eat_time);
-    }
+    eat_time = get_random_number(philosopher->min_dur, philosopher->max_dur);
     philosopher->total_eat_duration += eat_time;
 
     printf("Philosopher %d started eating for %d ms\n", philosopher->position, eat_time);
@@ -203,6 +201,10 @@ int is_last_philosopher(philosopher_t *philosopher)
 
 float get_random_number(int min, int max)
 {
+
+    if (min==max){
+      return min;
+    }
 
     float result = (rand() % (max + 1));
     if (result < min) result = min;
