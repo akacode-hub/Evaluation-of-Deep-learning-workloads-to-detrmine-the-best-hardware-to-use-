@@ -30,7 +30,7 @@ typedef struct {
 } philosopher_t;
 
 void create_forks(sem_t *forks, int num_philosophers);
-void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, \
+void start_threads(sem_t *forks, int num_philosophers, \
                     int min_dur, int max_dur, int prio_phil_id);
 void print_philosopher_stats(philosopher_t * philosopher);
 void *start_activity_philosopher(void *arg);
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     pthread_t threads[num_philosophers];
 
     create_forks(forks, num_philosophers);
-    start_threads(threads, forks, num_philosophers, min_dur, max_dur, prio_phil_id); 
+    start_threads(forks, num_philosophers, min_dur, max_dur, prio_phil_id); 
     
     pthread_exit(NULL);
     printf("End of Execution\n");
@@ -78,9 +78,10 @@ void create_forks(sem_t *forks, int num_philosophers)
   }
 }
 
-void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int min_dur, int max_dur, int prio_phil_id)
+void start_threads(sem_t *forks, int num_philosophers, int min_dur, int max_dur, int prio_phil_id)
 {
   int i;
+  pthread_t threads[num_philosophers];
   for(i = 0; i < num_philosophers; i++) {
     philosopher_t *philosopher = malloc(sizeof(philosopher_t));
     
@@ -97,22 +98,44 @@ void start_threads(pthread_t *threads, sem_t *forks, int num_philosophers, int m
     philosopher->left_fork = &forks[i];
     philosopher->right_fork = &forks[(i + 1) % num_philosophers];
     
-    pthread_attr_t attr;
+    pthread_attr_t  attr;
     struct sched_param param;
+
     pthread_attr_init(&attr);
-    pthread_attr_getschedparam(&attr, &param);
-    pthread_attr_setschedpolicy(&attr, SCHED_RR);
-    pthread_attr_getschedparam(&attr, &param);
+    int policy;
 
-    // if(i==prio_phil_id){
-    //   param.sched_priority = thread_priority_val;
-    //   pthread_attr_setschedparam (&attr, &param);
-    // }else{
-    //   param.sched_priority = 1;
-    //   pthread_attr_setschedparam (&attr, &param);
-    // }
+    if(pthread_attr_getschedpolicy(&attr, &policy) != 0)
+        fprintf(stderr, "Unable to get policy.\n");
+    else{
+        if(policy == SCHED_OTHER)
+            printf("SCHED_OTHER\n");
+        else if(policy == SCHED_RR)
+            printf("SCHED_RR\n");
+        else if(policy == SCHED_FIFO)
+            printf("SCHED_FIFO\n");
+    }
 
+    if(pthread_attr_setschedpolicy(&attr, SCHED_RR) != 0)
+      fprintf(stderr, "Unable to set policy.\n");
+
+    printf("Set scheduling parameters, prio=%d\n",
+         param.sched_priority);
+
+    pthread_attr_getschedpolicy(&attr, &policy);
+    int priority_max = sched_get_priority_max(policy);
+    int priority_min = sched_get_priority_min(policy);
+    printf("priority_max: %d\n", priority_max);
+    printf("priority_min: %d\n", priority_min);
     
+    if(i==prio_phil_id){
+      param.sched_priority = 99;
+      pthread_attr_setschedparam (&attr, &param);
+    }else{
+      param.sched_priority = 1;
+      pthread_attr_setschedparam (&attr, &param);
+    }
+
+    pthread_attr_getschedparam(&attr, &param);
     printf("sched_priority %d = %d\n", i, param.sched_priority);
     pthread_create(&threads[i], &attr, start_activity_philosopher, (void *)philosopher);
   }
