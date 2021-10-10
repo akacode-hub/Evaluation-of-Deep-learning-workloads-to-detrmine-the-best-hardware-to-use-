@@ -183,7 +183,7 @@ void think(philosopher_t *philosopher)
     int think_duration; 
     think_duration = get_random_number(philosopher->min_dur, philosopher->max_dur);
     philosopher->total_think_duration += think_duration;
-    //printf("Philosopher %d started thinking for %d ms\n", philosopher->position, think_duration);
+    printf("Philosopher %d started thinking for %d ms\n", philosopher->position, think_duration);
 
     // sleep
     float microsec = get_microseconds(think_duration);
@@ -191,7 +191,7 @@ void think(philosopher_t *philosopher)
 
     philosopher->num_times_think += 1;
 
-    //printf("Philosopher %d stopped thinking\n", philosopher->position);
+    printf("Philosopher %d stopped thinking\n", philosopher->position);
 
 }
 
@@ -206,14 +206,14 @@ void eat(philosopher_t *philosopher)
     eat_time = get_random_number(philosopher->min_dur, philosopher->max_dur);
     philosopher->total_eat_duration += eat_time;
 
-    //printf("Philosopher %d started eating for %d ms\n", philosopher->position, eat_time);
+    printf("Philosopher %d started eating for %d ms\n", philosopher->position, eat_time);
     // sleep
     float microsec = get_microseconds(eat_time);
     usleep(microsec);
 
     philosopher->num_times_eat += 1;
 
-    //printf("Philosopher %d stopped eating\n", philosopher->position);
+    printf("Philosopher %d stopped eating\n", philosopher->position);
 
 }
 
@@ -229,14 +229,12 @@ void pick_quick_fork(philosopher_t *philosopher, sem_t *right_fork, int last){
         {philosopher->fork_status[0] = 1;}
       else
         {philosopher->fork_status[2] = 1;}
-      printf("%d right status locked: %d\n", philosopher->position, right_status);
       break;
     }
 
     center_status = sem_trywait(philosopher->center_fork);
     if(center_status==0){
       philosopher->fork_status[1] = 1;
-      printf("%d center status locked: %d\n", philosopher->position, center_status);
       break;
     }
   }
@@ -245,17 +243,6 @@ void pick_quick_fork(philosopher_t *philosopher, sem_t *right_fork, int last){
 void take_forks(philosopher_t *philosopher)
 { 
   if (is_last_philosopher(philosopher))
-  {
-      sem_wait(philosopher->left_fork);
-      philosopher->fork_status[0] = 1;
-      if (philosopher->center_fork == NULL){
-        sem_wait(philosopher->right_fork);
-        philosopher->fork_status[2] = 1;
-      }else{
-        pick_quick_fork(philosopher, philosopher->right_fork, 0);
-      }
-  }
-  else
   {
       sem_wait(philosopher->right_fork);
       philosopher->fork_status[2] = 1;
@@ -266,6 +253,17 @@ void take_forks(philosopher_t *philosopher)
         pick_quick_fork(philosopher, philosopher->left_fork, 1);
       }
   }
+  else
+  {
+      sem_wait(philosopher->left_fork);
+      philosopher->fork_status[0] = 1;
+      if (philosopher->center_fork == NULL){
+        sem_wait(philosopher->right_fork);
+        philosopher->fork_status[2] = 1;
+      }else{
+        pick_quick_fork(philosopher, philosopher->right_fork, 0);
+      }
+  }
 }
 
 void place_forks(philosopher_t *philosopher)
@@ -273,25 +271,17 @@ void place_forks(philosopher_t *philosopher)
     if(philosopher->fork_status[2]==1){
       sem_post(philosopher->right_fork);
       philosopher->fork_status[2]==0;
-      printf("right fork status\n");
     }
     
     if(philosopher->fork_status[0]==1){
       sem_post(philosopher->left_fork);
       philosopher->fork_status[0]==0;
-      printf("left fork status\n");
     }
 
     if(philosopher->fork_status[1]==1){
       sem_post(philosopher->center_fork);
       philosopher->fork_status[1]==0;
-      printf("center fork status\n");
     }
-
-    printf("%d left fork status: %d\n", philosopher->position, philosopher->fork_status[0]);
-    printf("%d center fork status: %d\n", philosopher->position, philosopher->fork_status[1]);
-    printf("%d right fork status: %d\n", philosopher->position, philosopher->fork_status[2]);
-
 }
 
 int is_last_philosopher(philosopher_t *philosopher)
