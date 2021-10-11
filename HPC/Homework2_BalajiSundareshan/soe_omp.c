@@ -44,7 +44,6 @@ int main(int argc, char *argv[])
 
     #pragma omp parallel for
     for(i=3; i<largest_number + 1; i++){
-        int tid = omp_get_thread_num();
         if(i%2==0){
             primes[i] = 0;
         }else{
@@ -52,7 +51,7 @@ int main(int argc, char *argv[])
         }
     }
     
-    #pragma omp parallel for schedule(dynamic, 100)
+    #pragma omp parallel for schedule(static)
     for(i=3; i<largest_number + 1; i++){
         if(primes[i] == 1){
             int x;

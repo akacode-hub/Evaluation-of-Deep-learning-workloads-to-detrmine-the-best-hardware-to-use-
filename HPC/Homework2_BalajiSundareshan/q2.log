@@ -1,0 +1,565 @@
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.128147 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.106977 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.108114 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.104361 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.103450 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.127826 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.115329 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.104964 seconds 
+-bash-4.2$ ./soe_pthreads 500000 1
+Largest Number: 500000
+Number of Threads: 1
+
+Total number of primes: 41538
+Total time elapsed: 0.107213 seconds 
+-bash-4.2$ ./soe_pthreads 500000 2
+Largest Number: 500000
+Number of Threads: 2
+
+Total number of primes: 41538
+Total time elapsed: 0.083465 seconds 
+-bash-4.2$ ./soe_pthreads 500000 2
+Largest Number: 500000
+Number of Threads: 2
+
+Total number of primes: 41538
+Total time elapsed: 0.082782 seconds 
+-bash-4.2$ ./soe_pthreads 500000 2
+Largest Number: 500000
+Number of Threads: 2
+
+Total number of primes: 41538
+Total time elapsed: 0.067144 seconds 
+-bash-4.2$ ./soe_pthreads 500000 2
+Largest Number: 500000
+Number of Threads: 2
+
+Total number of primes: 41538
+Total time elapsed: 0.064642 seconds 
+-bash-4.2$ ./soe_pthreads 500000 2
+Largest Number: 500000
+Number of Threads: 2
+
+Total number of primes: 41538
+Total time elapsed: 0.064577 seconds 
+-bash-4.2$ ./soe_pthreads 500000 4
+Largest Number: 500000
+Number of Threads: 4
+
+Total number of primes: 41538
+Total time elapsed: 0.043092 seconds 
+-bash-4.2$ ./soe_pthreads 500000 4
+Largest Number: 500000
+Number of Threads: 4
+
+Total number of primes: 41538
+Total time elapsed: 0.037780 seconds 
+-bash-4.2$ ./soe_pthreads 500000 4
+Largest Number: 500000
+Number of Threads: 4
+
+Total number of primes: 41538
+Total time elapsed: 0.036102 seconds 
+-bash-4.2$ ./soe_pthreads 500000 4
+Largest Number: 500000
+Number of Threads: 4
+
+Total number of primes: 41538
+Total time elapsed: 0.035323 seconds 
+-bash-4.2$ ./soe_pthreads 500000 4
+Largest Number: 500000
+Number of Threads: 4
+
+Total number of primes: 41538
+Total time elapsed: 0.035529 seconds 
+-bash-4.2$ ./soe_pthreads 500000 4
+Largest Number: 500000
+Number of Threads: 4
+
+Total number of primes: 41538
+Total time elapsed: 0.036027 seconds 
+-bash-4.2$ ./soe_pthreads 500000 8
+Largest Number: 500000
+Number of Threads: 8
+
+Total number of primes: 41538
+Total time elapsed: 0.022261 seconds 
+-bash-4.2$ ./soe_pthreads 500000 8
+Largest Number: 500000
+Number of Threads: 8
+
+Total number of primes: 41538
+Total time elapsed: 0.020989 seconds 
+-bash-4.2$ ./soe_pthreads 500000 8
+Largest Number: 500000
+Number of Threads: 8
+
+Total number of primes: 41538
+Total time elapsed: 0.020460 seconds 
+-bash-4.2$ ./soe_pthreads 500000 8
+Largest Number: 500000
+Number of Threads: 8
+
+Total number of primes: 41538
+Total time elapsed: 0.022737 seconds 
+-bash-4.2$ ./soe_pthreads 500000 8
+Largest Number: 500000
+Number of Threads: 8
+
+Total number of primes: 41538
+Total time elapsed: 0.021007 seconds 
+-bash-4.2$ ./soe_pthreads 500000 16
+Largest Number: 500000
+Number of Threads: 16
+
+Total number of primes: 41538
+Total time elapsed: 0.018577 seconds 
+-bash-4.2$ ./soe_pthreads 500000 16
+Largest Number: 500000
+Number of Threads: 16
+
+Total number of primes: 41538
+Total time elapsed: 0.018001 seconds 
+-bash-4.2$ ./soe_pthreads 500000 16
+Largest Number: 500000
+Number of Threads: 16
+
+Total number of primes: 41538
+Total time elapsed: 0.017132 seconds 
+-bash-4.2$ ./soe_pthreads 500000 16
+Largest Number: 500000
+Number of Threads: 16
+
+Total number of primes: 41538
+Total time elapsed: 0.017241 seconds 
+-bash-4.2$ ./soe_pthreads 500000 16
+Largest Number: 500000
+Number of Threads: 16
+
+Total number of primes: 41538
+Total time elapsed: 0.016860 seconds 
+-bash-4.2$ ./soe_pthreads 500000 16
+Largest Number: 500000
+Number of Threads: 16
+
+Total number of primes: 41538
+Total time elapsed: 0.015568 seconds 
+-bash-4.2$ ./soe_pthreads 500000 16
+Largest Number: 500000
+Number of Threads: 16
+
+Total number of primes: 41538
+Total time elapsed: 0.016360 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.015915 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.016346 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.016088 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.015964 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.017820 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.015341 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.014948 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.015507 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.015570 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.015955 seconds 
+-bash-4.2$ ./soe_pthreads 500000 32
+Largest Number: 500000
+Number of Threads: 32
+
+Total number of primes: 41538
+Total time elapsed: 0.014904 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.015231 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.015607 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.014535 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.015713 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.015665 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.014652 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.016254 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.015917 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.017651 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.016253 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.015499 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.015483 seconds 
+-bash-4.2$ ./soe_pthreads 500000 64
+Largest Number: 500000
+Number of Threads: 64
+
+Total number of primes: 41538
+Total time elapsed: 0.016444 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.016848 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.016499 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.015330 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.015794 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.015193 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.017880 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.016136 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.016138 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019236 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.020250 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018772 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018826 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018567 seconds 
+-bash-4.2$ ./soe_pthreads 500000 128
+Largest Number: 500000
+Number of Threads: 128
+
+Total number of primes: 41538
+Total time elapsed: 0.017371 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018483 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018389 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019084 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019528 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.017920 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019676 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018571 seconds 
+-bash-4.2$ ./soe_pthreads 500000 512
+Largest Number: 500000
+Number of Threads: 512
+
+Total number of primes: 41538
+Total time elapsed: 0.023269 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.020055 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019842 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019450 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019204 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.017687 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.017803 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.017649 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018330 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018844 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018198 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.019432 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018937 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018754 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.017605 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.018632 seconds 
+-bash-4.2$ ./soe_pthreads 500000 256
+Largest Number: 500000
+Number of Threads: 256
+
+Total number of primes: 41538
+Total time elapsed: 0.017973 seconds 
+-bash-4.2$ gcc soe_omp.c -o soe_omp -fopenmp
