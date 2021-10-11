@@ -1,32 +1,40 @@
 ## Question1
 
-This repository contains 3 single-threaded benchmark programs. More information about the benchmark is present in the write-up.
+This repository contains C program for the dining philosopher problem. The modifications mentioned in the part a, b, c are integrated in this code.
 
 ## Compile instructions
-* For compiling each benchmark, run 
+* For compiling this C program,
 
-`./linpack_bench.sh`
-
-`./memory_test.sh`
-
-`./sparse_test.sh`
+`gcc dining_philosopher.c -o dining_philosopher -lpthread`
 
 ## Run instructions
-* To run linpack benchmark, run 
 
-    `./bincpp/linpack_bench`
+* To run the general case, 
 
-* To run memory benchmark, run 
+    `./dining_philosopher <num_philosophers> <min_dur_microsec> <max_dur_microsec> <priority_philosopher_id> <extra_fork>`
 
-    `./bincpp/memory_test <log_n_min> <log_n_max>`
-    
-    runs the program for sizes N = 2^log_n_min to 2^log_n_max
+    where 
+    min_dur_microsec-max_dur_microsec: is the duration range in microseconds used for both thinking and eating.
+    priority_philosopher_id: The philosopher id to whom we want to give priority
+    extra_fork: Enable whether we need extra fork.
 
-* To run sparse matrix multiplication benchmark, run 
+    Eg.
+    `/dining_philosopher 5 50 100 -1 0` (extra fork disabled, priority disabled)
 
-    `./bincpp/sparse_test <matrix_minimum_dimension> <matrix_maximum_dimension> <step increment> <fraction of sparsity>`
+* To run for part a,  
 
-    Eg. `./bincpp/sparse_test 100 500 100 0.5` runs benchmark for matrix dimensions from 100 * 100 to 500 * 500 in steps of 100 with 50% sparsity.
+    `/dining_philosopher 5 50 100 -1 1` (extra fork enabled, priority disabled)
+
+* To run for part b,  
+
+    `/dining_philosopher 5 100 100 2 -1` (extra fork disabled, priority enabled)
+
+* To run for part c,  
+
+    `/dining_philosopher 5 100 100 -1 0` (extra fork disabled, priority disabled)
 
 ## Log
-* Sample log is present in this repository for each benchmark.
+* Q1.log - sample log for general case
+* Q1_a.log - sample log for part a.
+* Q1_b.log - sample log for part b.
+* Q1_c.log - sample log for part c.

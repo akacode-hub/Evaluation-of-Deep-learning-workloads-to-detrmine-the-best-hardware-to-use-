@@ -7,9 +7,9 @@
 #include <unistd.h>
 #include <assert.h>
 
-# define END_TIME 2000 //milliseconds
+# define END_TIME 10000 //milliseconds
 pthread_mutex_t print_mutex;
-int thread_priority_val = 50;
+int thread_priority_val = 40;
 
 typedef struct {
 

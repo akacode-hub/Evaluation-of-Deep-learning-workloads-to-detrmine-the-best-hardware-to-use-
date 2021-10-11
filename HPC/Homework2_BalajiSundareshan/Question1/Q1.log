@@ -1,0 +1,1340 @@
+...................................
+Number of Philosophers: 5
+Number of Forks: 5
+Expected Running Time: 10 secs 
+Minimum Duration to Think/Eat: 50 msecs 
+Maximum Duration to Think/Eat: 100 msecs 
+...................................
+
+Thread 0 Schedule Priority = 1
+Thread 1 Schedule Priority = 1
+Thread 2 Schedule Priority = 1
+Thread 3 Schedule Priority = 1
+Thread 4 Schedule Priority = 1
+Philosopher 0 started thinking for 88 ms
+Philosopher 1 started thinking for 94 ms
+Philosopher 3 started thinking for 66 ms
+Philosopher 2 started thinking for 50 ms
+Philosopher 4 started thinking for 99 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 0 started eating for 77 ms
+Philosopher 1 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 74 ms
+Philosopher 2 started eating for 83 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 87 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 started eating for 57 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 65 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 84 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 79 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 100 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 76 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 68 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 65 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 started eating for 58 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 83 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 4 started eating for 67 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 96 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 1 started eating for 56 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 80 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 2 started eating for 63 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 63 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 84 ms
+Philosopher 3 started eating for 97 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 54 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 75 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 68 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 89 ms
+Philosopher 1 started eating for 51 ms
+Philosopher 3 started eating for 99 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 97 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 91 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 59 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 90 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 82 ms
+Philosopher 0 started eating for 83 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 84 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 1 started eating for 51 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 99 ms
+Philosopher 4 started eating for 51 ms
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 100 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 64 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 92 ms
+Philosopher 4 stopped thinking
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 76 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 51 ms
+Philosopher 3 started eating for 94 ms
+Philosopher 2 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 72 ms
+Philosopher 0 started eating for 53 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 77 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 78 ms
+Philosopher 4 started eating for 77 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 62 ms
+Philosopher 3 started eating for 59 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 80 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 91 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 56 ms
+Philosopher 1 started eating for 79 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 54 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 59 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 77 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 88 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 53 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 91 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 72 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 68 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 53 ms
+Philosopher 4 started eating for 72 ms
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 62 ms
+Philosopher 2 started eating for 64 ms
+Philosopher 3 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 82 ms
+Philosopher 0 started eating for 69 ms
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 60 ms
+Philosopher 2 started eating for 66 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 71 ms
+Philosopher 4 stopped thinking
+Philosopher 4 started eating for 67 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 86 ms
+Philosopher 1 started eating for 100 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 90 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 81 ms
+Philosopher 2 started eating for 94 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 86 ms
+Philosopher 4 started eating for 100 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 91 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 85 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 61 ms
+Philosopher 1 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 4 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 80 ms
+Philosopher 1 started eating for 89 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 61 ms
+Philosopher 4 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 57 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 60 ms
+Philosopher 2 started eating for 53 ms
+Philosopher 0 started eating for 83 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 92 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 1 started eating for 77 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 89 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 81 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 2 stopped eating
+Philosopher 0 started thinking for 74 ms
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 94 ms
+Philosopher 3 started eating for 87 ms
+Philosopher 4 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 4 started eating for 84 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 71 ms
+Philosopher 2 started eating for 52 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 74 ms
+Philosopher 1 stopped thinking
+Philosopher 1 started eating for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 59 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 57 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 89 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 65 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 1 started eating for 84 ms
+Philosopher 3 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 100 ms
+Philosopher 2 started eating for 62 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 87 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 75 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 96 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 83 ms
+Philosopher 4 started eating for 72 ms
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 56 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 76 ms
+Philosopher 3 started eating for 72 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 56 ms
+Philosopher 0 started eating for 99 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 77 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 55 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 92 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 0 started eating for 94 ms
+Philosopher 3 started eating for 64 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 93 ms
+Philosopher 2 started eating for 59 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 72 ms
+Philosopher 1 started eating for 67 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 95 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 81 ms
+Philosopher 0 started eating for 69 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 82 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 59 ms
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 95 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 93 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 58 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 started eating for 64 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 65 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 1 started thinking for 50 ms
+Philosopher 2 started eating for 87 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 86 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 57 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 77 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 92 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 73 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 69 ms
+Philosopher 1 started eating for 58 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 52 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 67 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 51 ms
+Philosopher 0 started eating for 77 ms
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 91 ms
+Philosopher 3 started eating for 97 ms
+Philosopher 4 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 1 started eating for 55 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 98 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 4 started eating for 78 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 0 started eating for 88 ms
+Philosopher 3 started eating for 86 ms
+Philosopher 1 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 71 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 52 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 3 started eating for 59 ms
+Philosopher 4 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 82 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 89 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 53 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 86 ms
+Philosopher 3 started eating for 55 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 100 ms
+Philosopher 0 started eating for 76 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 52 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 97 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 1 started eating for 74 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 95 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 100 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 66 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 51 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 72 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 53 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 92 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 started eating for 58 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 97 ms
+Philosopher 1 started eating for 81 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 96 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 71 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 53 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 78 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 59 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 55 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 77 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 1 started eating for 84 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 55 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 74 ms
+Philosopher 2 started eating for 74 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 91 ms
+Philosopher 4 started eating for 66 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 62 ms
+Philosopher 3 started eating for 78 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 97 ms
+Philosopher 0 stopped thinking
+Philosopher 0 started eating for 79 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 68 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 87 ms
+Philosopher 2 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 66 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 64 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 83 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 92 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 57 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 3 started eating for 85 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 57 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 81 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 72 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 3 started eating for 63 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 98 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 79 ms
+Philosopher 4 started eating for 79 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 88 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 61 ms
+Philosopher 3 started eating for 59 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 0 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 0 started thinking for 85 ms
+Philosopher 1 started eating for 93 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 64 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 71 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 75 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 90 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 80 ms
+Philosopher 1 started eating for 58 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 74 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 52 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 84 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 94 ms
+Philosopher 4 started eating for 56 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 52 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 99 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 52 ms
+Philosopher 0 stopped thinking
+Philosopher 0 started eating for 60 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 86 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 89 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 started eating for 87 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 63 ms
+Philosopher 1 started eating for 51 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 75 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 61 ms
+Philosopher 2 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 100 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 96 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 61 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 78 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 60 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 2 started eating for 100 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 63 ms
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 70 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 67 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 96 ms
+Philosopher 2 started eating for 94 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 85 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 3 started eating for 89 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 54 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 99 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 59 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 51 ms
+Philosopher 3 started eating for 89 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 55 ms
+Philosopher 0 stopped thinking
+Philosopher 0 started eating for 65 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 58 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 64 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 51 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 69 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 87 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 68 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 89 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 78 ms
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 1 started eating for 84 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 91 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 65 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 53 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 55 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 100 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 55 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 90 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 2 started eating for 70 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 95 ms
+Philosopher 1 stopped thinking
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 92 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 73 ms
+Philosopher 2 stopped thinking
+Philosopher 2 started eating for 69 ms
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 93 ms
+Philosopher 4 stopped thinking
+Philosopher 4 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 60 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 64 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 94 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 1 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 94 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 68 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 81 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 65 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 81 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 0 started eating for 60 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 50 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 1 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 74 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 4 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 2 started eating for 99 ms
+Philosopher 0 started eating for 62 ms
+Philosopher 3 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 50 ms
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 76 ms
+Philosopher 1 started eating for 50 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 50 ms
+Philosopher 3 started eating for 90 ms
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 87 ms
+Philosopher 4 stopped thinking
+Philosopher 2 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 94 ms
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 57 ms
+Philosopher 4 started eating for 95 ms
+Philosopher 3 stopped thinking
+Philosopher 0 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 50 ms
+Philosopher 1 started eating for 69 ms
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 59 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 1 stopped eating
+Philosopher 1 started thinking for 50 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 2 started eating for 53 ms
+Philosopher 4 stopped thinking
+Philosopher 1 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 0 started thinking for 50 ms
+Philosopher 4 started eating for 53 ms
+Philosopher 3 stopped thinking
+Philosopher 2 stopped eating
+Philosopher 2 started thinking for 59 ms
+Philosopher 1 started eating for 94 ms
+Philosopher 0 stopped thinking
+Philosopher 4 stopped eating
+Philosopher 4 started thinking for 93 ms
+Philosopher 3 started eating for 50 ms
+Philosopher 2 stopped thinking
+Philosopher 3 stopped eating
+Philosopher 3 started thinking for 50 ms
+Philosopher 1 stopped eating
+Philosopher 2 started eating for 95 ms
+Philosopher 0 started eating for 50 ms
+Philosopher 4 stopped thinking
+Philosopher 3 stopped thinking
+Philosopher 0 stopped eating
+Philosopher 4 started eating for 93 ms
+Philosopher 2 stopped eating
+Philosopher 4 stopped eating
+Philosopher 3 started eating for 56 ms
+Philosopher 3 stopped eating
+--------------------------------------------
+Philosopher 1 stats
+Philosopher 1 number of times thought: 63 
+Philosopher 1 number of plates eaten: 63 
+Philosopher 1 total eat duration: 4039 ms
+Philosopher 1 total think duration: 3789 ms
+--------------------------------------------
+--------------------------------------------
+Philosopher 0 stats
+Philosopher 0 number of times thought: 63 
+Philosopher 0 number of plates eaten: 63 
+Philosopher 0 total eat duration: 3955 ms
+Philosopher 0 total think duration: 3977 ms
+--------------------------------------------
+--------------------------------------------
+Philosopher 2 stats
+Philosopher 2 number of times thought: 67 
+Philosopher 2 number of plates eaten: 67 
+Philosopher 2 total eat duration: 4417 ms
+Philosopher 2 total think duration: 4015 ms
+--------------------------------------------
+--------------------------------------------
+Philosopher 4 stats
+Philosopher 4 number of times thought: 63 
+Philosopher 4 number of plates eaten: 63 
+Philosopher 4 total eat duration: 3792 ms
+Philosopher 4 total think duration: 3831 ms
+--------------------------------------------
+--------------------------------------------
+Philosopher 3 stats
+Philosopher 3 number of times thought: 67 
+Philosopher 3 number of plates eaten: 67 
+Philosopher 3 total eat duration: 4223 ms
+Philosopher 3 total think duration: 4131 ms
+--------------------------------------------
