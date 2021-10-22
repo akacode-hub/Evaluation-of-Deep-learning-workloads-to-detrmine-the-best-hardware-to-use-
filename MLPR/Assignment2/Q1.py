@@ -8,24 +8,106 @@ def calc_pxl(data, mean, cov):
 
     return scipy.stats.multivariate_normal.pdf(data, mean=mean, cov=cov)
 
-def erm(data, means, covs, num_samples):
+def calc_prob_threshs(sample_type, log_score, log_thresh_range):
 
+    tps, tns, fps, fns, fs = [], [], [], [], []
+
+    num_samples = sample_type[0]
+    N0, N1 = sample_type[1]
+    data_wt_labels = sample_type[2]
+    labels = data_wt_labels[2,:]
+
+    for log_thresh in log_thresh_range:
+
+        tp, tn, fp, fn, f = calc_prob_thresh(log_score, log_thresh, labels, N0, N1)
+        tps.append(tp); fps.append(fp)
+        tns.append(tn); fns.append(fn)
+        fs.append(f)
+
+    tps = np.array(tps); tns = np.array(tns)
+    fps = np.array(fps); fns = np.array(fns)
+    fs = np.array(fs)
+    
+    sample_type[3] = [tps, tns, fps, fns, fs]
+
+    return sample_type
+
+def calc_prob_thresh(log_score, log_thresh, labels, N0, N1):
+
+    decisions = (log_score>log_thresh).astype('int')
+    #print('decisions ',decisions)
+
+    tp = np.sum(np.multiply(labels == 1, decisions==1).astype('int'))/N1
+    fp = np.sum(np.multiply(labels == 0, decisions==1).astype('int'))/N0
+    tn = np.sum(np.multiply(labels == 0, decisions==0).astype('int'))/N0
+    fn = np.sum(np.multiply(labels == 1, decisions==0).astype('int'))/N1
+    f = (fp*N0 + fn*N1)/(N0 + N1)
+
+    return tp, tn, fp, fn, f
+
+def erm(samples_type, means, covs):
+
+    #data_wt_labels (3, N)
     print('***** erm *****')
     m0, m1 = means
     C0, C1 = covs
 
-    pts = data[:2,:].T
+    sample_type = samples_type['D100']
+    data_wt_labels = sample_type[2]
+    pts = data_wt_labels[:2,:].T ##(N, 2)
+    labels = data_wt_labels[2,:]
 
     px0_0 = scipy.stats.multivariate_normal.pdf(pts, mean=m0[0,:], cov=C0[0,:,:])
     px0_1 = scipy.stats.multivariate_normal.pdf(pts, mean=m0[1,:], cov=C0[1,:,:])
 
-    px0 = w1*px0_0 + w2*px0_1
-    px1 = scipy.stats.multivariate_normal.pdf(pts, mean=m1, cov=C1)
+    px0 = w1*px0_0 + w2*px0_1 ##(N, 1)
+    px1 = scipy.stats.multivariate_normal.pdf(pts, mean=m1, cov=C1) ##(N, 1)
 
     score = np.divide(px1, px0)
     log_score = np.log(score)
+    sort_log_score = np.sort(log_score)  ##(N, 1)
     
-def plot_data(data):
+    eps = 1e-3
+    log_thresh_range = np.append(sort_log_score[0] - eps, sort_log_score + eps)
+    sample_type = calc_prob_threshs(sample_type, log_score, log_thresh_range)
+
+    # theoretical
+    log_thresh = np.log(pL[0]/pL[1])
+    N0, N1 = sample_type[1]
+    tp_t, tn_t, fp_t, fn_t, f_t = calc_prob_thresh(log_score, log_thresh, labels, N0, N1)
+
+    # min PE thresh from data
+    tps, tns, fps, fns, fs = sample_type[3]
+    min_poe = np.min(fs)
+    min_poe_ids = np.where(fs==min_poe)
+    print(min_poe_ids)
+
+    #ROC curve
+    plot_roc_poe(sample_type, log_thresh_range)
+
+def plot_roc_poe(sample_type, log_thresh_range):
+
+    tps, tns, fps, fns, fs = sample_type[3]
+
+    ##ROC
+    plt.plot(fps, tps, label='ROC Curve')
+    plt.title('ERM ROC Curve')
+    plt.xlabel('False positives')
+    plt.ylabel('True positives')
+    plt.legend()
+    plt.show()
+
+    ##ROC
+    plt.plot(log_thresh_range, fs, label='Probability of Error')
+    plt.title('Probability of Error vs log_thresh')
+    plt.xlabel('log_thresh')
+    plt.ylabel('Probability of Error')
+    plt.legend()
+    plt.show()
+
+def plot_dist(data, label_names):
+
+    tname, xname, yname = label_names
 
     print('***** plot *****')
     l0_ids = np.where(data[2,:]==0)[0]
@@ -37,9 +119,9 @@ def plot_data(data):
     plt.scatter(data0[0, :], data0[1, :], s=5, color = 'red', label = 'class 0',marker='*')
     plt.scatter(data1[0, :], data1[1, :], s=5, color = 'blue', label = 'class 1', marker='*')
 
-    plt.title("True Label distribution")
-    plt.xlabel("x1")
-    plt.ylabel("x2")
+    plt.title(tname)
+    plt.xlabel(xname)
+    plt.ylabel(yname)
     plt.legend()
     plt.show()
 
@@ -74,7 +156,24 @@ def generate_data_pxgl(prior, means, covs, num_samples):
     pxgl = np.concatenate((pxgl0, pxgl1), axis=1)
     data = np.concatenate((pxgl, labels), axis=0)
     
-    return data
+    return data, N0, N1
+
+def generate_data_pxgl_samples(samples_type):
+
+    for i, key in enumerate(samples_type.keys()):
+
+        sample_type = samples_type[key]
+        num_samples = int(sample_type[0][0])
+
+        data_wt_labels, N0, N1 = generate_data_pxgl(pL, [m0, m1], [C0, C1], num_samples)
+
+        sample_type[1] = [N0, N1]
+        sample_type[2] = data_wt_labels
+
+        label_names = ["True Label distribution", "x1", "x2"]
+        plot_dist(data_wt_labels, label_names)
+
+    return samples_type
 
 if __name__ == "__main__":
 
@@ -97,27 +196,20 @@ if __name__ == "__main__":
     w1 = 0.5; w2 = 0.5
 
     # data
+    ## num_samples, [N0, N1], data_wt_labels, [tps, tns, fps, fns, fs]
     samples_type = {
-        'D100': [1e+2],  ## num_samples, data_wt_labels
-        'D1k': [1e+3],
-        'D10k': [1e+4],
-        'D20k': [2e+4],
+        'D100': [[100], [], [], []],  
+        # 'D1k': [[1000], [], [], []],
+        # 'D10k': [[10000], [], [], []],
+        # 'D20k': [[20000], [], [], []],
     }    
 
-    for i, key in enumerate(samples_type.keys()):
+    ## generate data for all samples
+    samples_type = generate_data_pxgl_samples(samples_type)
 
-        sample_type = samples_type[key]
-        num_samples = int(sample_type[0])
-        num_samples = 10000
+    ## erm
+    erm(samples_type, [m0, m1], [C0, C1])
 
-        data_wt_labels = generate_data_pxgl(pL, [m0, m1], [C0, C1], num_samples)
-        print(data_wt_labels)
-        sample_type.append(data_wt_labels)  
-        plot_data(data_wt_labels)
-
-        erm(data_wt_labels, [m0, m1], [C0, C1], num_samples)
-
-        if i==0:break
     
 
 
