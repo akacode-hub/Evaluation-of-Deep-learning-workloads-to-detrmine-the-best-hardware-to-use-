@@ -2,6 +2,8 @@ import numpy as np
 import scipy.stats
 import random
 import matplotlib.pyplot as plt
+import sys
+from sklearn.mixture import GaussianMixture
 np.set_printoptions(suppress=True)
 
 def calc_pxl(data, mean, cov):
@@ -45,14 +47,13 @@ def calc_prob_thresh(log_score, log_thresh, labels, N0, N1):
 
     return tp, tn, fp, fn, f
 
-def erm(samples_type, means, covs):
+def erm(sample_type, means, covs):
 
     #data_wt_labels (3, N)
     print('***** erm *****')
     m0, m1 = means
     C0, C1 = covs
 
-    sample_type = samples_type['D100']
     data_wt_labels = sample_type[2]
     pts = data_wt_labels[:2,:].T ##(N, 2)
     labels = data_wt_labels[2,:]
@@ -72,33 +73,150 @@ def erm(samples_type, means, covs):
     sample_type = calc_prob_threshs(sample_type, log_score, log_thresh_range)
 
     # theoretical
-    log_thresh = np.log(pL[0]/pL[1])
+    log_thresh_t = np.log(pL[0]/pL[1])
     N0, N1 = sample_type[1]
-    tp_t, tn_t, fp_t, fn_t, f_t = calc_prob_thresh(log_score, log_thresh, labels, N0, N1)
+    tp_t, tn_t, fp_t, fn_t, f_t = calc_prob_thresh(log_score, log_thresh_t, labels, N0, N1)
 
     # min PE thresh from data
     tps, tns, fps, fns, fs = sample_type[3]
     min_poe = np.min(fs)
-    min_poe_ids = np.where(fs==min_poe)
-    print(min_poe_ids)
+    min_poe_ids = np.where(fs==min_poe)[0]
+    
+    # get closest thresh to theoretical
+    min_dist, min_id = sys.maxsize, 0
+    for id in min_poe_ids:
+        dist = log_thresh_range[id] - log_thresh_t
+        if dist<min_dist:
+            min_dist = dist
+            min_id = id
+
+    print('min_poe_thresh ',log_thresh_range[min_id])
+    print('thresh_t ',log_thresh_t)
 
     #ROC curve
-    plot_roc_poe(sample_type, log_thresh_range)
-
-def plot_roc_poe(sample_type, log_thresh_range):
-
-    tps, tns, fps, fns, fs = sample_type[3]
-
-    ##ROC
     plt.plot(fps, tps, label='ROC Curve')
+    plt.plot(fp_t, tp_t, 'g+', label='Theoretical Minimum Error')
+    plt.plot(fps[min_id], tps[min_id], 'ro', label='Experimental Minimum Error')
     plt.title('ERM ROC Curve')
     plt.xlabel('False positives')
     plt.ylabel('True positives')
     plt.legend()
     plt.show()
 
-    ##ROC
+    # Probability of Error
     plt.plot(log_thresh_range, fs, label='Probability of Error')
+    plt.plot(log_thresh_t, f_t, 'g+', label='Theoretical Threshold')
+    plt.plot(log_thresh_range[min_id], fs[min_id], 'ro', label='Experimental Minimum Error threshold')
+    plt.title('Probability of Error vs log_thresh')
+    plt.xlabel('log_thresh')
+    plt.ylabel('Probability of Error')
+    plt.legend()
+    plt.show()
+    
+def split_data(data_wt_labels):
+
+    l0_ids = np.where(data_wt_labels[2,:]==0)[0]
+    l1_ids = np.where(data_wt_labels[2,:]==1)[0]
+
+    data0 = data_wt_labels[:,l0_ids]
+    data1 = data_wt_labels[:,l1_ids]
+
+    return data0, data1
+
+def print_gmm_params(gmm_l0, gmm_l1):
+
+    print('GMM params L0 ',gmm_l0.get_params())
+    print('GMM params L1 ',gmm_l1.get_params())
+
+    if gmm_l0.converged_:print('Label 0 converged')
+    else:print('Label 0 not converged')
+
+    if gmm_l1.converged_:print('Label 1 converged')
+    else:print('Label 1 not converged')
+
+    print('Label 0 means ',gmm_l0.means_.shape)
+    print('Label 0 covariances ',gmm_l0.covariances_.shape)
+
+    print('Label 1 means ',gmm_l1.means_.shape)
+    print('Label 1 covariances ',gmm_l1.covariances_.shape)
+
+def mle_gmm(sample_type):
+
+    data_wt_labels = sample_type[2]
+    data0, data1 = split_data(data_wt_labels)
+    data0, data1 = data0[:2, :].T, data1[:2, :].T
+
+    gmm_l0 = GaussianMixture(2, covariance_type='full', 
+                     random_state=0).fit(data0)
+
+    gmm_l1 = GaussianMixture(1, covariance_type='full', 
+                     random_state=0).fit(data1)
+
+    print_gmm_params(gmm_l0, gmm_l1)
+
+    m01 = gmm_l0.means_[0,:]
+    m02 = gmm_l0.means_[1,:]
+    C01 = gmm_l0.covariances_[0,:]
+    C02 = gmm_l0.covariances_[1,:]
+
+    m1 = gmm_l1.means_[0,:]
+    C1 = gmm_l1.covariances_[0,:]
+    
+    w1 = 0.5; w2 = 0.5
+
+    data_wt_labels = sample_type[2]
+    pts = data_wt_labels[:2,:].T ##(N, 2)
+    labels = data_wt_labels[2,:]
+
+    px0_0 = scipy.stats.multivariate_normal.pdf(pts, mean=m01, cov=C01)
+    px0_1 = scipy.stats.multivariate_normal.pdf(pts, mean=m02, cov=C02)
+
+    px0 = w1*px0_0 + w2*px0_1 ##(N, 1)
+    px1 = scipy.stats.multivariate_normal.pdf(pts, mean=m1, cov=C1) ##(N, 1)
+
+    score = np.divide(px1, px0)
+    log_score = np.log(score)
+    sort_log_score = np.sort(log_score)  ##(N, 1)
+    
+    eps = 1e-3
+    log_thresh_range = np.append(sort_log_score[0] - eps, sort_log_score + eps)
+    sample_type = calc_prob_threshs(sample_type, log_score, log_thresh_range)
+
+    # theoretical
+    log_thresh_t = np.log(pL[0]/pL[1])
+    N0, N1 = sample_type[1]
+    tp_t, tn_t, fp_t, fn_t, f_t = calc_prob_thresh(log_score, log_thresh_t, labels, N0, N1)
+
+    # min PE thresh from data
+    tps, tns, fps, fns, fs = sample_type[3]
+    min_poe = np.min(fs)
+    min_poe_ids = np.where(fs==min_poe)[0]
+    
+    # get closest thresh to theoretical
+    min_dist, min_id = sys.maxsize, 0
+    for id in min_poe_ids:
+        dist = log_thresh_range[id] - log_thresh_t
+        if dist<min_dist:
+            min_dist = dist
+            min_id = id
+
+    print('min_poe_thresh ',log_thresh_range[min_id])
+    print('thresh_t ',log_thresh_t)
+
+    #ROC curve
+    plt.plot(fps, tps, label='ROC Curve')
+    plt.plot(fp_t, tp_t, 'g+', label='Theoretical Minimum Error')
+    plt.plot(fps[min_id], tps[min_id], 'ro', label='Experimental Minimum Error')
+    plt.title('MLE GMM ROC Curve')
+    plt.xlabel('False positives')
+    plt.ylabel('True positives')
+    plt.legend()
+    plt.show()
+
+    # Probability of Error
+    plt.plot(log_thresh_range, fs, label='Probability of Error')
+    plt.plot(log_thresh_t, f_t, 'g+', label='Theoretical Threshold')
+    plt.plot(log_thresh_range[min_id], fs[min_id], 'ro', label='Experimental Minimum Error threshold')
     plt.title('Probability of Error vs log_thresh')
     plt.xlabel('log_thresh')
     plt.ylabel('Probability of Error')
@@ -110,11 +228,7 @@ def plot_dist(data, label_names):
     tname, xname, yname = label_names
 
     print('***** plot *****')
-    l0_ids = np.where(data[2,:]==0)[0]
-    l1_ids = np.where(data[2,:]==1)[0]
-
-    data0 = data[:,l0_ids]
-    data1 = data[:,l1_ids]
+    data0, data1 = split_data(data)
 
     plt.scatter(data0[0, :], data0[1, :], s=5, color = 'red', label = 'class 0',marker='*')
     plt.scatter(data1[0, :], data1[1, :], s=5, color = 'blue', label = 'class 1', marker='*')
@@ -198,9 +312,9 @@ if __name__ == "__main__":
     # data
     ## num_samples, [N0, N1], data_wt_labels, [tps, tns, fps, fns, fs]
     samples_type = {
-        'D100': [[100], [], [], []],  
+        # 'D100': [[100], [], [], []],  
         # 'D1k': [[1000], [], [], []],
-        # 'D10k': [[10000], [], [], []],
+         'D10k': [[10000], [], [], []],
         # 'D20k': [[20000], [], [], []],
     }    
 
@@ -208,9 +322,10 @@ if __name__ == "__main__":
     samples_type = generate_data_pxgl_samples(samples_type)
 
     ## erm
-    erm(samples_type, [m0, m1], [C0, C1])
+    #erm(samples_type['D20k'], [m0, m1], [C0, C1])
 
-    
+    ## mle_gmm
+    mle_gmm(samples_type['D10k'])
 
 
 ###
