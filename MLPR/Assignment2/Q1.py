@@ -90,6 +90,8 @@ def erm(sample_type, means, covs):
             min_dist = dist
             min_id = id
 
+    print('f_t ',f_t)
+    print('fs ',fs[min_id])
     print('min_poe_thresh ',log_thresh_range[min_id])
     print('thresh_t ',log_thresh_t)
 
@@ -134,15 +136,22 @@ def print_gmm_params(gmm_l0, gmm_l1):
     if gmm_l1.converged_:print('Label 1 converged')
     else:print('Label 1 not converged')
 
+    print('Label 0 weights ',gmm_l0.weights_, gmm_l0.weights_.shape)
+    print('Label 1 weights ',gmm_l1.weights_, gmm_l1.weights_.shape)
+
     print('Label 0 means ',gmm_l0.means_.shape)
     print('Label 0 covariances ',gmm_l0.covariances_.shape)
 
     print('Label 1 means ',gmm_l1.means_.shape)
     print('Label 1 covariances ',gmm_l1.covariances_.shape)
 
-def mle_gmm(sample_type):
+def eval_gmm():
 
-    data_wt_labels = sample_type[2]
+    pass
+
+def mle_gmm(train_sample_type, val_sample_type):
+
+    data_wt_labels = train_sample_type[2]
     data0, data1 = split_data(data_wt_labels)
     data0, data1 = data0[:2, :].T, data1[:2, :].T
 
@@ -152,19 +161,32 @@ def mle_gmm(sample_type):
     gmm_l1 = GaussianMixture(1, covariance_type='full', 
                      random_state=0).fit(data1)
 
-    print_gmm_params(gmm_l0, gmm_l1)
+    #print_gmm_params(gmm_l0, gmm_l1)
 
     m01 = gmm_l0.means_[0,:]
     m02 = gmm_l0.means_[1,:]
     C01 = gmm_l0.covariances_[0,:]
     C02 = gmm_l0.covariances_[1,:]
-
+    gmm_weights0 = gmm_l0.weights_
+    
     m1 = gmm_l1.means_[0,:]
     C1 = gmm_l1.covariances_[0,:]
-    
+    gmm_weights1 = gmm_l1.weights_
+
+    print('C01: ', C01)
+    print('C02: ', C02)
+    print('C1: ', C1)
+
+    print('m01: ', m01)
+    print('m02: ', m02)
+    print('m1: ', m1)
+
+    print('gmm_weights0 ',gmm_weights0)
+    print('gmm_weights1 ',gmm_weights1)
+
     w1 = 0.5; w2 = 0.5
 
-    data_wt_labels = sample_type[2]
+    data_wt_labels = val_sample_type[2]
     pts = data_wt_labels[:2,:].T ##(N, 2)
     labels = data_wt_labels[2,:]
 
@@ -180,15 +202,15 @@ def mle_gmm(sample_type):
     
     eps = 1e-3
     log_thresh_range = np.append(sort_log_score[0] - eps, sort_log_score + eps)
-    sample_type = calc_prob_threshs(sample_type, log_score, log_thresh_range)
+    val_sample_type = calc_prob_threshs(val_sample_type, log_score, log_thresh_range)
 
     # theoretical
     log_thresh_t = np.log(pL[0]/pL[1])
-    N0, N1 = sample_type[1]
+    N0, N1 = val_sample_type[1]
     tp_t, tn_t, fp_t, fn_t, f_t = calc_prob_thresh(log_score, log_thresh_t, labels, N0, N1)
 
     # min PE thresh from data
-    tps, tns, fps, fns, fs = sample_type[3]
+    tps, tns, fps, fns, fs = val_sample_type[3]
     min_poe = np.min(fs)
     min_poe_ids = np.where(fs==min_poe)[0]
     
@@ -200,6 +222,8 @@ def mle_gmm(sample_type):
             min_dist = dist
             min_id = id
 
+    print('f_t ',f_t)
+    print('fs ',fs[min_id])
     print('min_poe_thresh ',log_thresh_range[min_id])
     print('thresh_t ',log_thresh_t)
 
@@ -312,10 +336,10 @@ if __name__ == "__main__":
     # data
     ## num_samples, [N0, N1], data_wt_labels, [tps, tns, fps, fns, fs]
     samples_type = {
-        # 'D100': [[100], [], [], []],  
-        # 'D1k': [[1000], [], [], []],
-         'D10k': [[10000], [], [], []],
-        # 'D20k': [[20000], [], [], []],
+        'D100': [[100], [], [], []],  
+        'D1k': [[1000], [], [], []],
+        'D10k': [[10000], [], [], []],
+        'D20k': [[20000], [], [], []],
     }    
 
     ## generate data for all samples
@@ -325,8 +349,14 @@ if __name__ == "__main__":
     #erm(samples_type['D20k'], [m0, m1], [C0, C1])
 
     ## mle_gmm
-    mle_gmm(samples_type['D10k'])
+    for i, key in enumerate(list(samples_type.keys())[:-1]):
 
+        print('**********************************')
+        print('train: ',key,' val: D20k')
+        mle_gmm(samples_type[key], samples_type['D20k'])
+        print('**********************************')
+
+        # if i==0:break
 
 ###
 # labels = [0]*N0 + [1]*N1
