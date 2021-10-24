@@ -392,7 +392,7 @@ def plot_boundary(data, labels, decisions):
     plt.legend(["class 1 correctly classified",'class 1 wrongly classified','class 0 correctly classified','class 0 wrongly classified'])
     plt.title('Prediction overlapped with decision boundary')
     plt.xlabel("Feature x1")
-    plt.xlabel("Feature x2")
+    plt.ylabel("Feature x2")
 
 def get_mesh_grid(data, num_grid=100):
 
@@ -501,8 +501,8 @@ if __name__ == "__main__":
     samples_type = generate_data_pxgl_samples(samples_type)
 
     erm_ = 0
-    gmm_ = 0
-    opt_ = 1
+    gmm_ = 1
+    opt_ = 0
 
     ## erm
     if erm_:
