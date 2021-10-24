@@ -4,6 +4,7 @@ import random
 import matplotlib.pyplot as plt
 import sys
 from sklearn.mixture import GaussianMixture
+from scipy.optimize import minimize
 np.set_printoptions(suppress=True)
 
 def calc_pxl(data, mean, cov):
@@ -145,9 +146,6 @@ def print_gmm_params(gmm_l0, gmm_l1):
     print('Label 1 means ',gmm_l1.means_.shape)
     print('Label 1 covariances ',gmm_l1.covariances_.shape)
 
-def eval_gmm():
-
-    pass
 
 def mle_gmm(train_sample_type, val_sample_type):
 
@@ -247,6 +245,113 @@ def mle_gmm(train_sample_type, val_sample_type):
     plt.legend()
     plt.show()
 
+def calc_cost(x, data, labels):
+
+    w = x
+
+    h = 1 / (1+ np.exp(-(np.dot(w.T,data)))) ##(N, )
+    loss = labels * np.log(h) + (1 - labels) * np.log(1 - h)  ##(N, )
+
+    sum = np.sum(loss)
+    scale = -(1.0 / data.shape[1]) 
+    cost = scale * sum
+    
+    return cost
+
+def predict(w, data, thresh=0.5):
+
+    h = 1 / (1+ np.exp(-(np.dot(w.T,data))))
+
+    h[h>=thresh] = 1
+    h[h<thresh] = 0
+
+    return h
+
+def mle_opt_log(train_sample_type, test_sample_type):
+
+    train_data_wt_labels = train_sample_type[2]
+    train_data = train_data_wt_labels[:2, :]
+    train_labels = train_data_wt_labels[2,:]
+    train_ones = np.ones(train_data_wt_labels.shape[1]).reshape((1, -1))
+    train_data = np.concatenate((train_ones, train_data), axis=0)  ##(3, N)
+
+    print('training.. ')
+    w_init = np.zeros((3, 1), dtype='float')
+    result = minimize(calc_cost, w_init, args=(train_data, train_labels))
+    w_trained = result.x
+    print('training completed!')
+
+    print('w_trained ',w_trained)
+    test_data_wt_labels = test_sample_type[2]
+    test_data = test_data_wt_labels[:2, :]
+    test_labels = test_data_wt_labels[2,:]
+    test_ones = np.ones(test_data_wt_labels.shape[1]).reshape((1, -1))
+    test_data = np.concatenate((test_ones, test_data), axis=0)  ##(3, N)
+
+    decisions = predict(w_trained, test_data)
+    acc = calc_poe(decisions, test_labels)
+    print('acc ',acc)
+
+    plot_boundary(test_data_wt_labels[:2, :], test_labels, decisions)
+    draw_boundary(test_data_wt_labels[:2, :], test_labels, w_trained, num_grid=100)
+    plt.show()
+
+def calc_poe(decisions, labels):
+
+    N0 = np.sum((labels == 0).astype('int'))
+    N1 = np.sum((labels == 1).astype('int'))
+
+    tp = np.sum(np.multiply(labels == 1, decisions==1).astype('int'))/N1
+    fp = np.sum(np.multiply(labels == 0, decisions==1).astype('int'))/N0
+    tn = np.sum(np.multiply(labels == 0, decisions==0).astype('int'))/N0
+    fn = np.sum(np.multiply(labels == 1, decisions==0).astype('int'))/N1
+    f = (fp*N0 + fn*N1)/(N0 + N1)
+
+    return (tp*N1 + tn*N0)/(N0 + N1)
+
+def mle_opt(train_sample_type, test_sample_type):
+
+    mle_opt_log(train_sample_type, test_sample_type)
+
+def plot_boundary(data, labels, decisions):
+
+    tp = np.multiply(labels == 1, decisions == 1).astype('int')
+    tn = np.multiply(labels == 0, decisions == 0).astype('int')
+    fp = np.multiply(labels == 0, decisions == 1).astype('int')
+    fn = np.multiply(labels == 1, decisions == 0).astype('int')
+
+    tp_ids = np.where(tp == 1)[0]
+    tn_ids = np.where(tn == 1)[0]
+    fp_ids = np.where(fp == 1)[0]
+    fn_ids = np.where(fn == 1)[0]
+
+    plt.plot(data[0, tp_ids], data[1, tp_ids], '.', color ='g', markersize = 6)
+    plt.plot(data[0, fn_ids], data[1, fn_ids], '.', color ='r', markersize = 6)
+
+    plt.plot(data[0, tn_ids], data[1, tn_ids], '+', color ='g', markersize = 6)
+    plt.plot(data[0, fp_ids], data[1, fp_ids], '+', color ='r', markersize = 6)
+
+    plt.legend(["class 1 correctly classified",'class 1 wrongly classified','class 0 correctly classified','class 0 wrongly classified'])
+    plt.title('Prediction overlapped with decision boundary')
+    plt.xlabel("Feature x1")
+    plt.xlabel("Feature x2")
+
+def draw_boundary(data, labels, w, num_grid=100):
+
+    hgrid = np.linspace(np.floor(min(data[0,:])), np.ceil(max(data[0,:])), num_grid)
+    vgrid = np.linspace(np.floor(min(data[1,:])), np.ceil(max(data[1,:])), num_grid)
+    mat = np.array(np.meshgrid(hgrid, vgrid))
+
+    boundary = np.zeros((100, 100))
+    for i in range(100):
+        for j in range(100):
+            x1 = mat[0][i][j]
+            x2 = mat[1][i][j]
+            z = np.c_[1, x1, x2].T
+            boundary[i][j] = np.sum(np.dot(w.T, z))
+
+    plt.contour(mat[0],mat[1], boundary, levels = [0])
+
 def plot_dist(data, label_names):
 
     tname, xname, yname = label_names
@@ -345,19 +450,36 @@ if __name__ == "__main__":
     ## generate data for all samples
     samples_type = generate_data_pxgl_samples(samples_type)
 
+    erm_ = 0
+    gmm_ = 0
+    opt_ = 1
+
     ## erm
-    #erm(samples_type['D20k'], [m0, m1], [C0, C1])
+    if erm_:
+        print('Part1')
+        erm(samples_type['D20k'], [m0, m1], [C0, C1])
 
     ## mle_gmm
-    for i, key in enumerate(list(samples_type.keys())[:-1]):
+    if gmm_:
+        print('Part2')
+        for i, key in enumerate(list(samples_type.keys())[:-1]):
 
-        print('**********************************')
-        print('train: ',key,' val: D20k')
-        mle_gmm(samples_type[key], samples_type['D20k'])
-        print('**********************************')
+            print('**********************************')
+            print('train: ',key,' val: D20k')
+            mle_gmm(samples_type[key], samples_type['D20k'])
+            print('**********************************')
 
-        # if i==0:break
+            # if i==0:break
 
+    if opt_:
+        print('Part3')
+        for i, key in enumerate(list(samples_type.keys())[:-1]):
+
+            print('**********************************')
+            print('train: ',key,' val: D20k')
+            mle_opt(samples_type[key], samples_type['D20k'])
+            print('**********************************')
+        
 ###
 # labels = [0]*N0 + [1]*N1
 # for i in range(10):
