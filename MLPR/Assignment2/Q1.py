@@ -267,7 +267,7 @@ def predict(w, data, thresh=0.5):
 
     return h
 
-def mle_opt_log(train_sample_type, test_sample_type):
+def mle_opt_lin(train_sample_type, test_sample_type):
 
     train_data_wt_labels = train_sample_type[2]
     train_data = train_data_wt_labels[:2, :]
@@ -293,7 +293,62 @@ def mle_opt_log(train_sample_type, test_sample_type):
     print('acc ',acc)
 
     plot_boundary(test_data_wt_labels[:2, :], test_labels, decisions)
-    draw_boundary(test_data_wt_labels[:2, :], test_labels, w_trained, num_grid=100)
+    mat = get_mesh_grid(test_data_wt_labels[:2, :])
+    boundary = np.zeros((100, 100))
+    for i in range(100):
+        for j in range(100):
+            x1 = mat[0][i][j]
+            x2 = mat[1][i][j]
+            z = np.c_[1, x1, x2].T
+            boundary[i][j] = np.sum(np.dot(w_trained.T, z))
+    plt.contour(mat[0], mat[1], boundary, levels = [0])
+    plt.show()
+
+def gen_quad_data(data_wt_labels):
+
+    num_samples = data_wt_labels.shape[1]
+    input_data = data_wt_labels[:2, :] # (x1, x2)
+    data = np.zeros((6, num_samples), dtype='float') # (1, x1, x2, x1**2, x1x2, x2**2)
+
+    data[0] = np.ones(num_samples).reshape((1, -1)) # 1
+    data[1:3] = input_data #x1, x2
+    data[3] = np.square(input_data[0, :]) # x1**2
+    data[4] = np.multiply(input_data[0, :], input_data[1, :]) # x1x2
+    data[5] = np.square(input_data[1, :]) # x2**2
+    
+    return data
+
+def mle_opt_quad(train_sample_type, test_sample_type):
+
+    train_data_wt_labels = train_sample_type[2]
+    train_labels = train_data_wt_labels[2,:]
+    train_data = gen_quad_data(train_data_wt_labels)
+
+    print('training.. ')
+    w_init = np.zeros((6, 1), dtype='float')
+    result = minimize(calc_cost, w_init, args=(train_data, train_labels))
+    w_trained = result.x
+    print('training completed!')
+
+    print('w_trained ',w_trained)
+    test_data_wt_labels = test_sample_type[2]
+    test_data = gen_quad_data(test_data_wt_labels)
+    test_labels = test_data_wt_labels[2,:]
+
+    decisions = predict(w_trained, test_data)
+    acc = calc_poe(decisions, test_labels)
+    print('acc ',acc)
+
+    plot_boundary(test_data_wt_labels[:2, :], test_labels, decisions)
+    mat = get_mesh_grid(test_data_wt_labels[:2, :])
+    boundary = np.zeros((100, 100))
+    for i in range(100):
+        for j in range(100):
+            x1 = mat[0][i][j]
+            x2 = mat[1][i][j]
+            z = np.c_[1, x1, x2, x1**2, x1*x2, x2**2].T
+            boundary[i][j] = np.sum(np.dot(w_trained.T, z))
+    plt.contour(mat[0], mat[1], boundary, levels = [0])
     plt.show()
 
 def calc_poe(decisions, labels):
@@ -309,9 +364,12 @@ def calc_poe(decisions, labels):
 
     return (tp*N1 + tn*N0)/(N0 + N1)
 
-def mle_opt(train_sample_type, test_sample_type):
+def mle_opt(train_sample_type, test_sample_type, part=1):
 
-    mle_opt_log(train_sample_type, test_sample_type)
+    if part==1:
+        mle_opt_lin(train_sample_type, test_sample_type)
+    else:
+        mle_opt_quad(train_sample_type, test_sample_type)
 
 def plot_boundary(data, labels, decisions):
 
@@ -336,21 +394,13 @@ def plot_boundary(data, labels, decisions):
     plt.xlabel("Feature x1")
     plt.xlabel("Feature x2")
 
-def draw_boundary(data, labels, w, num_grid=100):
+def get_mesh_grid(data, num_grid=100):
 
     hgrid = np.linspace(np.floor(min(data[0,:])), np.ceil(max(data[0,:])), num_grid)
     vgrid = np.linspace(np.floor(min(data[1,:])), np.ceil(max(data[1,:])), num_grid)
     mat = np.array(np.meshgrid(hgrid, vgrid))
 
-    boundary = np.zeros((100, 100))
-    for i in range(100):
-        for j in range(100):
-            x1 = mat[0][i][j]
-            x2 = mat[1][i][j]
-            z = np.c_[1, x1, x2].T
-            boundary[i][j] = np.sum(np.dot(w.T, z))
-
-    plt.contour(mat[0],mat[1], boundary, levels = [0])
+    return mat
 
 def plot_dist(data, label_names):
 
@@ -477,7 +527,7 @@ if __name__ == "__main__":
 
             print('**********************************')
             print('train: ',key,' val: D20k')
-            mle_opt(samples_type[key], samples_type['D20k'])
+            mle_opt(samples_type[key], samples_type['D20k'], part=2)
             print('**********************************')
         
 ###
