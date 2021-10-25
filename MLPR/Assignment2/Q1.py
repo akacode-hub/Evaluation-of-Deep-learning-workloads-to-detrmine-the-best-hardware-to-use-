@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import sys
 from sklearn.mixture import GaussianMixture
 from scipy.optimize import minimize
+from matplotlib.colors import LogNorm
 np.set_printoptions(suppress=True)
 
 def calc_pxl(data, mean, cov):
@@ -91,31 +92,52 @@ def erm(sample_type, means, covs):
             min_dist = dist
             min_id = id
 
-    print('f_t ',f_t)
-    print('fs ',fs[min_id])
-    print('min_poe_thresh ',log_thresh_range[min_id])
-    print('thresh_t ',log_thresh_t)
+    print('min_poe_t ',f_t)
+    print('min_poe_a ',fs[min_id])
+    print('min_poe_thresh ',np.exp(log_thresh_range[min_id]))
+    print('thresh_t ',np.exp(log_thresh_t))
 
     #ROC curve
     plt.plot(fps, tps, label='ROC Curve')
+    plt.plot(fps[min_id], tps[min_id], 'ro', label='Estimated Minimum Error')
     plt.plot(fp_t, tp_t, 'g+', label='Theoretical Minimum Error')
-    plt.plot(fps[min_id], tps[min_id], 'ro', label='Experimental Minimum Error')
-    plt.title('ERM ROC Curve')
-    plt.xlabel('False positives')
-    plt.ylabel('True positives')
+    plt.title('Minimum Expected Risk ROC Curve')
+    plt.xlabel('Prob. False positives')
+    plt.ylabel('Prob. True positives')
     plt.legend()
     plt.show()
 
     # Probability of Error
     plt.plot(log_thresh_range, fs, label='Probability of Error')
+    plt.plot(log_thresh_range[min_id], fs[min_id], 'ro', label='Estimated Minimum Error threshold')
     plt.plot(log_thresh_t, f_t, 'g+', label='Theoretical Threshold')
-    plt.plot(log_thresh_range[min_id], fs[min_id], 'ro', label='Experimental Minimum Error threshold')
-    plt.title('Probability of Error vs log_thresh')
-    plt.xlabel('log_thresh')
+    plt.title('Probability of Error vs log_threshold')
+    plt.xlabel('log_threshold')
     plt.ylabel('Probability of Error')
     plt.legend()
     plt.show()
     
+    # Decision boundary
+    log_score = np.log(score)
+    decisions = (log_score>log_thresh_t).astype('int')
+    pts = pts.T
+    plot_boundary(pts, labels, decisions)
+    hgrid = np.linspace(np.floor(min(pts[0,:])),np.ceil(max(pts[0,:])),100)
+    vgrid = np.linspace(np.floor(min(pts[1,:])),np.ceil(max(pts[1,:])),100)
+    dsg = np.zeros((100,100))
+    mat = np.array(np.meshgrid(hgrid, vgrid))
+
+    for i in range(100):
+        for j in range(100):
+            px0_0 = scipy.stats.multivariate_normal.pdf(np.array([mat[0][i][j], mat[1][i][j]]), mean=m0[0,:], cov=C0[0,:,:])
+            px0_1 = scipy.stats.multivariate_normal.pdf(np.array([mat[0][i][j], mat[1][i][j]]), mean=m0[1,:], cov=C0[1,:,:])
+            px0 = w1*px0_0 + w2*px0_1 ##(N, 1)
+            px1 = scipy.stats.multivariate_normal.pdf(np.array([mat[0][i][j], mat[1][i][j]]), mean=m1, cov=C1) ##(N, 1)
+            dsg[i][j] = np.log(px0) - np.log(px1) - np.log(pL[0]/pL[1])
+
+    plt.contour(mat[0], mat[1], dsg)
+    plt.show()
+
 def split_data(data_wt_labels):
 
     l0_ids = np.where(data_wt_labels[2,:]==0)[0]
@@ -166,7 +188,9 @@ def mle_gmm(train_sample_type, val_sample_type):
     C01 = gmm_l0.covariances_[0,:]
     C02 = gmm_l0.covariances_[1,:]
     gmm_weights0 = gmm_l0.weights_
-    
+
+    w1 = gmm_weights0[0]; w2 = gmm_weights0[1]
+
     m1 = gmm_l1.means_[0,:]
     C1 = gmm_l1.covariances_[0,:]
     gmm_weights1 = gmm_l1.weights_
@@ -179,10 +203,8 @@ def mle_gmm(train_sample_type, val_sample_type):
     print('m02: ', m02)
     print('m1: ', m1)
 
-    print('gmm_weights0 ',gmm_weights0)
-    print('gmm_weights1 ',gmm_weights1)
-
-    w1 = 0.5; w2 = 0.5
+    print('w1 ',w1)
+    print('w2 ',w2)
 
     data_wt_labels = val_sample_type[2]
     pts = data_wt_labels[:2,:].T ##(N, 2)
@@ -220,29 +242,51 @@ def mle_gmm(train_sample_type, val_sample_type):
             min_dist = dist
             min_id = id
 
-    print('f_t ',f_t)
-    print('fs ',fs[min_id])
-    print('min_poe_thresh ',log_thresh_range[min_id])
-    print('thresh_t ',log_thresh_t)
+    print('min_poe_t ',f_t)
+    print('min_poe_a ',fs[min_id])
+    print('min_poe_thresh ',np.exp(log_thresh_range[min_id]))
+    print('thresh_t ',np.exp(log_thresh_t))
 
     #ROC curve
     plt.plot(fps, tps, label='ROC Curve')
+    plt.plot(fps[min_id], tps[min_id], 'ro', label='Estimated Minimum Error Threshold')
     plt.plot(fp_t, tp_t, 'g+', label='Theoretical Minimum Error')
-    plt.plot(fps[min_id], tps[min_id], 'ro', label='Experimental Minimum Error')
-    plt.title('MLE GMM ROC Curve')
-    plt.xlabel('False positives')
-    plt.ylabel('True positives')
+    plt.title('ROC Curve')
+    plt.xlabel('Prob. False positives')
+    plt.ylabel('Prob. True positives')
     plt.legend()
     plt.show()
 
     # Probability of Error
     plt.plot(log_thresh_range, fs, label='Probability of Error')
+    plt.plot(log_thresh_range[min_id], fs[min_id], 'ro', label='Estimated Minimum Error threshold')
     plt.plot(log_thresh_t, f_t, 'g+', label='Theoretical Threshold')
-    plt.plot(log_thresh_range[min_id], fs[min_id], 'ro', label='Experimental Minimum Error threshold')
-    plt.title('Probability of Error vs log_thresh')
-    plt.xlabel('log_thresh')
+    plt.title('Probability of Error vs log_threshold')
+    plt.xlabel('log_threshold')
     plt.ylabel('Probability of Error')
     plt.legend()
+    plt.show()
+
+    # GMM contour for Class 0
+    data_wt_labels = train_sample_type[2]
+    pts = data_wt_labels[:2,:] ##(2, N)
+    hgrid = np.linspace(np.floor(min(pts[0,:])),np.ceil(max(pts[0,:])),100)
+    vgrid = np.linspace(np.floor(min(pts[1,:])),np.ceil(max(pts[1,:])),100)
+    dsg = np.zeros((100,100))
+    mat = np.array(np.meshgrid(hgrid, vgrid))
+
+    for i in range(100):
+        for j in range(100):
+            px0_0 = scipy.stats.multivariate_normal.pdf(np.array([mat[0][i][j], mat[1][i][j]]), mean=m0[0,:], cov=C0[0,:,:])
+            px0_1 = scipy.stats.multivariate_normal.pdf(np.array([mat[0][i][j], mat[1][i][j]]), mean=m0[1,:], cov=C0[1,:,:])
+            dsg[i][j] = w1*px0_0 + w2*px0_1 ##(N, 1)
+
+    CS = plt.contour(mat[0], mat[1], dsg)
+    CB = plt.colorbar(CS, shrink=0.8, extend='both')
+    plt.scatter(pts[0,:], pts[1,:], .8)
+    plt.title('Contour Plot for Class 0 Estimated GMM for ' + str(pts.shape[1]) + 'samples')
+    plt.xlabel("X1")
+    plt.ylabel("X2")
     plt.show()
 
 def calc_cost(x, data, labels):
@@ -383,16 +427,15 @@ def plot_boundary(data, labels, decisions):
     fp_ids = np.where(fp == 1)[0]
     fn_ids = np.where(fn == 1)[0]
 
+    plt.plot(data[0, tn_ids], data[1, tn_ids], '+', color ='g', markersize = 6)
     plt.plot(data[0, tp_ids], data[1, tp_ids], '.', color ='g', markersize = 6)
+    plt.plot(data[0, fp_ids], data[1, fp_ids], '+', color ='r', markersize = 6)
     plt.plot(data[0, fn_ids], data[1, fn_ids], '.', color ='r', markersize = 6)
 
-    plt.plot(data[0, tn_ids], data[1, tn_ids], '+', color ='g', markersize = 6)
-    plt.plot(data[0, fp_ids], data[1, fp_ids], '+', color ='r', markersize = 6)
-
-    plt.legend(["class 1 correctly classified",'class 1 wrongly classified','class 0 correctly classified','class 0 wrongly classified'])
+    plt.legend(["class 0 correctly classified", 'class 1 correctly classified','class 0 wrongly classified', 'class 1 wrongly classified'])
     plt.title('Prediction overlapped with decision boundary')
-    plt.xlabel("Feature x1")
-    plt.ylabel("Feature x2")
+    plt.xlabel("X1")
+    plt.ylabel("X2")
 
 def get_mesh_grid(data, num_grid=100):
 
@@ -463,7 +506,7 @@ def generate_data_pxgl_samples(samples_type):
         sample_type[1] = [N0, N1]
         sample_type[2] = data_wt_labels
 
-        label_names = ["True Label distribution", "x1", "x2"]
+        label_names = ["True label distribution for " + str(num_samples) + " for two classes", "x1", "x2"]
         plot_dist(data_wt_labels, label_names)
 
     return samples_type
@@ -501,8 +544,8 @@ if __name__ == "__main__":
     samples_type = generate_data_pxgl_samples(samples_type)
 
     erm_ = 0
-    gmm_ = 1
-    opt_ = 0
+    gmm_ = 0
+    opt_ = 1
 
     ## erm
     if erm_:
@@ -527,12 +570,6 @@ if __name__ == "__main__":
 
             print('**********************************')
             print('train: ',key,' val: D20k')
+            mle_opt(samples_type[key], samples_type['D20k'], part=1)
             mle_opt(samples_type[key], samples_type['D20k'], part=2)
             print('**********************************')
-        
-###
-# labels = [0]*N0 + [1]*N1
-# for i in range(10):
-#     random.shuffle(labels)
-# labels = np.array(labels)
-# print('labels ',labels)

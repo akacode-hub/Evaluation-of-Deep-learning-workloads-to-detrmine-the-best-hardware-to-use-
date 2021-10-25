@@ -2,7 +2,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
-CONTOUR_LEVELS = np.geomspace(0.0001, 250, 100)
+CONTOUR_LEVELS = np.geomspace(0.0001, 250, 50)
 
 def get_true_pos(center, radius):
 
@@ -55,7 +55,6 @@ def get_MAP_contour(equ_pts, measurements, quad_range, num_grid_pts):
             x1 = mat[0][i][j]
             x2 = mat[1][i][j]
             pt = np.array([x1, x2])
-            #contours[i][j] = get_MAP_obj(pt, num_pts)
             contours[i][j] = get_MAP_obj(pt, equ_pts, measurements, num_pts)
     
     return contours, mat
@@ -69,7 +68,7 @@ def plot_equilevel_contours(equ_pts, measurements, quad_range, num_grid_pts):
     unit_circle = plt.Circle((0, 0), 1, color='blue', fill=False)
     ax.add_artist(unit_circle)
 
-    plt.contour(grid[0], grid[1], contours, levels=CONTOUR_LEVELS)
+    plt.contour(grid[0], grid[1], contours, cmap='cividis_r', levels=CONTOUR_LEVELS)
 
     for (pt_i, r_i) in zip(equ_pts, measurements):
         
@@ -88,21 +87,6 @@ def plot_equilevel_contours(equ_pts, measurements, quad_range, num_grid_pts):
     ax.plot([true_pos[0]], [true_pos[1]], '+', color='r')
     plt.colorbar();
     plt.show()
-
-def get_MAP_obj_0(pt, num_pts): ##(1, 2)
-
-    sigma_mat = np.array([[sigx**2, 0], [0, sigy**2]])
-
-    prior = np.matmul(pt, np.linalg.inv(sigma_mat))
-    prior = np.matmul(prior, pt.T)
-
-    measure_sum = 0
-    for i in range(num_pts):
-        noise = np.random.normal(0, sigi)    
-        noise = noise**2/sigi**2
-        measure_sum += noise
-
-    return prior + measure_sum
     
 def get_MAP_obj(pt, equ_pts, measurements, num_pts): ##(1, 2)
 
@@ -127,7 +111,7 @@ if __name__ == "__main__":
     center = [0, 0]
     radius = 1
     quad_range = (-2, 2)
-    num_grid_pts = 100
+    num_grid_pts = 128
 
     true_pos = get_true_pos(center, radius)
 
