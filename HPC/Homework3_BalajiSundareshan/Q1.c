@@ -11,7 +11,8 @@ float calc_taylor_series_fp(float x, int num_terms);
 double calc_factorial(int num)
 {   
     double val = 1.0;
-    for(int i=2; i<=num; i++){
+    int i;
+    for(i=2; i<=num; i++){
         val = val*i;
     }
 
@@ -23,7 +24,8 @@ double calc_taylor_series_dfp(double x, int num_terms)
 {
 
     double sum = 1.0;
-    for(int i=0; i<num_terms; i++){
+    int i;
+    for(i=0; i<num_terms; i++){
         sum += pow(x, i+1)/calc_factorial(i+1);
     }
 
@@ -34,7 +36,8 @@ float calc_taylor_series_fp(float x, int num_terms)
 {
 
     float sum = 1.0;
-    for(int i=0; i<num_terms; i++){
+    int i;
+    for(i=0; i<num_terms; i++){
         sum += pow(x, i+1)/calc_factorial(i+1);
     }
 
