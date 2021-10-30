@@ -63,11 +63,11 @@ void * find_numbers(void *arg){
 
 void print_numbers(){
 
-    printf("List of divisible numbers:\n");
+    printf("\nList of divisible numbers:\n");
     int i;
     for(i=min(div1, div2); i<=largest_number; i++){
         if (numbers[i]==1){ 
-            printf("%d, ",i);
+            printf("%d ",i);
         }
     }
 }
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
     time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
 
     // print divisible numbers
-    //print_numbers();
+    print_numbers();
     printf("\nTotal number of numbers: %d\n", total_numbers);
     printf("Total time elapsed: %f seconds \n", time_taken);
 
