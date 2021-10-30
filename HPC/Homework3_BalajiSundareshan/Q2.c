@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <semaphore.h>
 #include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -17,6 +18,15 @@ void * find_numbers(void *arg);
 void print_numbers();
 int min(int a, int b);
 
+typedef struct {
+
+    int id;
+    int start;
+    int end;
+    sem_t * sum_lock;
+    
+} thread_t;
+
 int min(int a, int b){
 
     if(a<=b)
@@ -26,20 +36,13 @@ int min(int a, int b){
 
 void * find_numbers(void *arg){
 
-    int local_len = largest_number/num_threads;
-    int threadid = (long)arg;
 
-    int start = threadid * local_len;
-    int end = start + local_len;
-
-    if (threadid == num_threads-1){
-        end = largest_number + 1;
-    }
+    thread_t *thread = (thread_t *)arg;
+    printf("Thread ID: %d started\n", thread->id);
 
     int i;
-
     int local_sum = 0;
-    for(i=start; i<end; i++){
+    for(i = thread->start; i < thread->end; i++){
         if(i<min(div1, div2)) continue;
         if(i % div1 == 0 || i % div2 == 0){
             numbers[i] = 1;
@@ -50,9 +53,9 @@ void * find_numbers(void *arg){
             local_sum += 1;    
     }
 
-    pthread_mutex_lock (&sum_mutex);
+    sem_wait(thread->sum_lock);
     total_numbers += local_sum;
-    pthread_mutex_unlock (&sum_mutex);
+    sem_post(thread->sum_lock);
 
     pthread_exit((void*) 0);
 
@@ -90,9 +93,26 @@ int main(int argc, char *argv[])
 
     numbers = calloc(largest_number + 1, sizeof(int));
     pthread_t threads[num_threads];
+    int thread_len = largest_number/num_threads;
 
     for(i=0; i<num_threads; i++){
-        pthread_create(&threads[i], NULL, find_numbers, (void *)i);
+
+        thread_t *thread = malloc(sizeof(thread_t));
+        sem_t lock;
+
+        thread->id = i;        
+        thread->start = thread->id * thread_len;
+        thread->end = thread->start + thread_len;
+
+        if (thread->id == num_threads-1){
+             
+            thread->end = largest_number + 1;
+        }
+
+        sem_init(&lock, 0, 1);
+        thread->sum_lock = &lock;
+
+        pthread_create(&threads[i], NULL, find_numbers, (void *)thread);
     }
 
     for(i=0; i<num_threads; i++)
