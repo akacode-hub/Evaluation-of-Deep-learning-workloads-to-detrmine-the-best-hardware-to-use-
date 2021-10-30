@@ -25,8 +25,8 @@ double calc_taylor_series_dfp(double x, int num_terms)
 
     double sum = 1.0;
     int i;
-    for(i=0; i<num_terms; i++){
-        sum += pow(x, i+1)/calc_factorial(i+1);
+    for(i=1; i<num_terms; i++){
+        sum += pow(x, i)/calc_factorial(i);
     }
 
     return sum;
@@ -37,8 +37,8 @@ float calc_taylor_series_fp(float x, int num_terms)
 
     float sum = 1.0;
     int i;
-    for(i=0; i<num_terms; i++){
-        sum += pow(x, i+1)/calc_factorial(i+1);
+    for(i=1; i<num_terms; i++){
+        sum += pow(x, i)/calc_factorial(i);
     }
 
     return sum;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
 
     struct timespec start, end;
     srand(time(NULL));
-    assert(("./count_primes_omp <input number> <number of terms>", argc == 3));
+    assert(("./Q1 <input number> <number of terms>", argc == 3));
 
     double x_dfp = atoi(argv[1]);
     int num_terms = atoi(argv[2]);
