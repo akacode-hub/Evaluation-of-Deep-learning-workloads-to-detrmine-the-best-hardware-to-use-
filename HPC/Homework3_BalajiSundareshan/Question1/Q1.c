@@ -31,7 +31,7 @@ double calc_factorial(int num)
 
 void calc_factorial_terms(int num)
 {   
-    facts = calloc(num+1, sizeof(double) );
+    facts = (double *)calloc(num+1, sizeof(double));
     int i;
 
     for(i=0; i<=num; i++){
