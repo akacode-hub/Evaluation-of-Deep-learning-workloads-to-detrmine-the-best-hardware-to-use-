@@ -6,9 +6,15 @@
 
 double calc_factorial(int num);
 double calc_taylor_series_dfp(double x, int num_terms);
-float calc_taylor_series_fp(float x, int num_terms);
 double calc_taylor_series_dfp_vec(double x, int num_terms);
+void test_dp(double x_dfp, int num_terms);
+void test_dp_vec(double x_dfp, int num_terms);
+
+float calc_taylor_series_fp(float x, int num_terms);
 float calc_taylor_series_fp_vec(float x, int num_terms);
+void test_fp(float x_fp, int num_terms);
+void test_fp_vec(float x_fp, int num_terms);
+
 
 double calc_factorial(int num)
 {   
@@ -19,27 +25,14 @@ double calc_factorial(int num)
     }
 
     return val;
-
 }
 
 double calc_taylor_series_dfp(double x, int num_terms)
 {
 
-    double sum = 1.0;
+    double sum = 0.0;
     int i;
-    for(i=1; i<num_terms; i++){
-        sum += pow(x, i)/calc_factorial(i);
-    }
-
-    return sum;
-}
-
-float calc_taylor_series_fp(float x, int num_terms)
-{
-
-    float sum = 1.0;
-    int i;
-    for(i=1; i<num_terms; i++){
+    for(i=0; i<num_terms; i++){
         sum += pow(x, i)/calc_factorial(i);
     }
 
@@ -49,9 +42,26 @@ float calc_taylor_series_fp(float x, int num_terms)
 double calc_taylor_series_dfp_vec(double x, int num_terms)
 {
 
-    double sum = 1.0;
     int i;
-    for(i=1; i<num_terms; i++){
+    double taylor_terms[num_terms];
+    for(i=0; i<num_terms; i++){
+        taylor_terms[i] = pow(x, i)/calc_factorial(i);
+    }
+
+    double sum = 0.0;
+    for(i=0; i<num_terms; i++){
+        sum += taylor_terms[i];
+    }
+
+    return sum;
+}
+
+float calc_taylor_series_fp(float x, int num_terms)
+{
+
+    float sum = 0.0;
+    int i;
+    for(i=0; i<num_terms; i++){
         sum += pow(x, i)/calc_factorial(i);
     }
 
@@ -61,25 +71,58 @@ double calc_taylor_series_dfp_vec(double x, int num_terms)
 float calc_taylor_series_fp_vec(float x, int num_terms)
 {
 
-    float sum = 1.0;
     int i;
-    for(i=1; i<num_terms; i++){
-        sum += pow(x, i)/calc_factorial(i);
+    float taylor_terms[num_terms];
+    for(i=0; i<num_terms; i++){
+        taylor_terms[i] = pow(x, i)/calc_factorial(i);
+    }
+
+    float sum = 0.0;
+    for(i=0; i<num_terms; i++){
+        sum += taylor_terms[i];
     }
 
     return sum;
 }
 
-int main(int argc, char *argv[]){
+void test_fp(float x_fp, int num_terms){
 
     struct timespec start, end;
-    srand(time(NULL));
-    assert(("./Q1 <input number> <number of terms>", argc == 3));
 
-    double x_dfp = atoi(argv[1]);
-    int num_terms = atoi(argv[2]);
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
-    // compute taylor series double
+    float val_fp = 1.0/x_fp + calc_taylor_series_fp(x_fp, num_terms);
+
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    double time_taken = (end.tv_sec - start.tv_sec);
+    time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
+
+    printf("value of f(x) where x, fx are float: %f\n", val_fp);
+    printf("Time taken: %f\n", time_taken);
+
+}
+
+void test_fp_vec(float x_fp, int num_terms){
+
+    struct timespec start, end;
+
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
+    float val_fp = 1.0/x_fp + calc_taylor_series_fp_vec(x_fp, num_terms);
+
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    double time_taken = (end.tv_sec - start.tv_sec);
+    time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
+
+    printf("value of f(x) where x, fx are float vector: %f\n", val_fp);
+    printf("Time taken: %f\n", time_taken);
+    
+}
+
+void test_dp(double x_dfp, int num_terms){
+
+    struct timespec start, end;
+
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     double val_dfp = 1.0/x_dfp + calc_taylor_series_dfp(x_dfp, num_terms);
@@ -91,18 +134,43 @@ int main(int argc, char *argv[]){
     printf("value of f(x) where x, fx are double: %f\n", val_dfp);
     printf("Time taken: %f\n", time_taken);
 
-    // compute taylor series float
+}
+
+void test_dp_vec(double x_dfp, int num_terms){
+
+    struct timespec start, end;
+
     clock_gettime(CLOCK_MONOTONIC, &start);
 
-    float x_fp = (float) x_dfp;
-    float val_fp = 1.0/x_fp + calc_taylor_series_fp(x_fp, num_terms);
+    double val_dfp = 1.0/x_dfp + calc_taylor_series_dfp_vec(x_dfp, num_terms);
 
     clock_gettime(CLOCK_MONOTONIC, &end);
-    time_taken = (end.tv_sec - start.tv_sec);
+    double time_taken = (end.tv_sec - start.tv_sec);
     time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
 
-    printf("value of f(x) where x, fx are float: %f\n", val_fp);
+    printf("value of f(x) where x, fx are double vector: %f\n", val_dfp);
     printf("Time taken: %f\n", time_taken);
+    
+}
+
+int main(int argc, char *argv[]){
+
+    
+    srand(time(NULL));
+    assert(("./Q1 <input number> <number of terms>", argc == 3));
+
+    double x_dfp = atoi(argv[1]);
+    int num_terms = atoi(argv[2]);
+
+    // compute taylor series double
+    test_dp(x_dfp, num_terms);
+    test_dp_vec(x_dfp, num_terms);
+
+    // compute taylor series float
+    float x_fp = (float) x_dfp;
+    test_fp(x_fp, num_terms);
+    test_fp_vec(x_fp, num_terms);
+    
 
     return 0;
 
