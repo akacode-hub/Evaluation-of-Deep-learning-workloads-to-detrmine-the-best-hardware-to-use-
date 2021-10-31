@@ -199,7 +199,6 @@ int main(int argc, char *argv[]){
     double x_dfp = atoi(argv[1]);
     int num_terms = atoi(argv[2]);
 
-
     calc_factorial_terms(num_terms);
     calc_pow_terms_dp(x_dfp, num_terms);
     
