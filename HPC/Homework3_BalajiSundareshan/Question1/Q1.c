@@ -17,6 +17,8 @@ void test_fp(float x_fp, int num_terms);
 void test_fp_vec(float x_fp, int num_terms);
 
 double * facts;
+double * pows_dp;
+float * pows_fp;
 
 double calc_factorial(int num)
 {   
@@ -40,13 +42,35 @@ void calc_factorial_terms(int num)
 
 }
 
+void calc_pow_terms_dp(double x, int num)
+{   
+    pows_dp = (double *)calloc(num+1, sizeof(double));
+    int i;
+
+    for(i=0; i<=num; i++){
+        pows_dp[i] = pow(x, i);
+    }
+
+}
+
+void calc_pow_terms_fp(float x, int num)
+{   
+    pows_fp = (float *)calloc(num+1, sizeof(float));
+    int i;
+
+    for(i=0; i<=num; i++){
+        pows_fp[i] = pow(x, i);
+    }
+
+}
+
 double calc_taylor_series_dfp(double x, int num_terms)
 {
 
     double sum = 0.0;
     int i;
     for(i=0; i<num_terms; i++){
-        sum += pow(x, i)/facts[i];
+        sum += pows_dp[i]/facts[i];
     }
 
     return sum;
@@ -58,7 +82,7 @@ double calc_taylor_series_dfp_vec(double x, int num_terms)
     int i;
     double taylor_terms[num_terms];
     for(i=0; i<num_terms; i++){
-        taylor_terms[i] = pow(x, i)/facts[i];
+        taylor_terms[i] = pows_dp[i]/facts[i];
     }
 
     double sum = 0.0;
@@ -75,7 +99,7 @@ float calc_taylor_series_fp(float x, int num_terms)
     float sum = 0.0;
     int i;
     for(i=0; i<num_terms; i++){
-        sum += pow(x, i)/facts[i];
+        sum += pows_fp[i]/facts[i];
     }
 
     return sum;
@@ -87,7 +111,7 @@ float calc_taylor_series_fp_vec(float x, int num_terms)
     int i;
     float taylor_terms[num_terms];
     for(i=0; i<num_terms; i++){
-        taylor_terms[i] = pow(x, i)/facts[i];
+        taylor_terms[i] = pows_fp[i]/facts[i];
     }
 
     float sum = 0.0;
@@ -177,12 +201,15 @@ int main(int argc, char *argv[]){
 
 
     calc_factorial_terms(num_terms);
+    calc_pow_terms_dp(x_dfp, num_terms);
+    
     // compute taylor series double
     test_dp(x_dfp, num_terms);
     test_dp_vec(x_dfp, num_terms);
 
     // compute taylor series float
     float x_fp = (float) x_dfp;
+    calc_pow_terms_fp(x_fp, num_terms);
     test_fp(x_fp, num_terms);
     test_fp_vec(x_fp, num_terms);
     
