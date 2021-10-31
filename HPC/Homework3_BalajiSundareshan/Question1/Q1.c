@@ -7,6 +7,8 @@
 double calc_factorial(int num);
 double calc_taylor_series_dfp(double x, int num_terms);
 float calc_taylor_series_fp(float x, int num_terms);
+double calc_taylor_series_dfp_vec(double x, int num_terms);
+float calc_taylor_series_fp_vec(float x, int num_terms);
 
 double calc_factorial(int num)
 {   
@@ -33,6 +35,30 @@ double calc_taylor_series_dfp(double x, int num_terms)
 }
 
 float calc_taylor_series_fp(float x, int num_terms)
+{
+
+    float sum = 1.0;
+    int i;
+    for(i=1; i<num_terms; i++){
+        sum += pow(x, i)/calc_factorial(i);
+    }
+
+    return sum;
+}
+
+double calc_taylor_series_dfp_vec(double x, int num_terms)
+{
+
+    double sum = 1.0;
+    int i;
+    for(i=1; i<num_terms; i++){
+        sum += pow(x, i)/calc_factorial(i);
+    }
+
+    return sum;
+}
+
+float calc_taylor_series_fp_vec(float x, int num_terms)
 {
 
     float sum = 1.0;

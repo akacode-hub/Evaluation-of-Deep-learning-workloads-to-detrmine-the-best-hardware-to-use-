@@ -75,7 +75,11 @@ int main(int argc, char *argv[])
     clock_gettime(CLOCK_MONOTONIC, &gend);
     float time_elapsed = (gend.tv_sec - gstart.tv_sec);
     time_elapsed += (gend.tv_nsec - gstart.tv_nsec) / 1000000000.0;
-    
+
+    int i;
+    for (i = 0; i < num_philosophers; i++)
+	    sem_destroy(&forks[i]);
+
     printf("\nTotal eat duration: %f\n", global_eat_duration);
     printf("Total wait duration: %f\n", global_wait_duration);
     printf("Total think duration: %f\n", global_think_duration);
