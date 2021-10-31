@@ -7,8 +7,13 @@
 #include <unistd.h>
 #include <assert.h>
 
-# define END_TIME 10000 //milliseconds
+# define MAX_ITER 50 //milliseconds
 pthread_mutex_t print_mutex;
+pthread_mutex_t sum_lock;
+float global_eat_duration = 0;
+float global_think_duration = 0;
+float global_wait_duration = 0;
+int num_iter = 0;
 
 typedef struct {
 
@@ -20,6 +25,7 @@ typedef struct {
     int num_times_eat;
     int total_think_duration;
     int total_eat_duration;
+    float total_wait_duration;
     sem_t *left_fork;
     sem_t *right_fork;
 } philosopher_t;
@@ -52,19 +58,31 @@ int main(int argc, char *argv[])
     printf("...................................\n");
     printf("Number of Philosophers: %d\n", num_philosophers);
     printf("Number of Forks: %d\n", num_forks);
-    printf("Expected Running Time: %d secs \n", END_TIME/1000);
+    printf("Maximum iteration: %d secs \n", MAX_ITER);
     printf("Minimum Duration to Think/Eat: %d msecs \n", min_dur);
     printf("Maximum Duration to Think/Eat: %d msecs \n", max_dur);
     printf("...................................\n\n");
     
+    struct timespec gstart, gend;
+    clock_gettime(CLOCK_MONOTONIC, &gstart);
+
     sem_t forks[num_forks];
     pthread_t threads[num_philosophers];
 
     create_forks(forks, num_forks);
     start_threads(forks, num_philosophers, min_dur, max_dur, num_forks); 
+
+    clock_gettime(CLOCK_MONOTONIC, &gend);
+    float time_elapsed = (gend.tv_sec - gstart.tv_sec);
+    time_elapsed += (gend.tv_nsec - gstart.tv_nsec) / 1000000000.0;
     
-    pthread_exit(NULL);
+    printf("\nTotal eat duration: %f\n", global_eat_duration);
+    printf("Total wait duration: %f\n", global_wait_duration);
+    printf("Total think duration: %f\n", global_think_duration);
+    printf("Total time elapsed: %f\n", time_elapsed);
     printf("End of Execution\n");
+
+    return 0;
 }
 
 void create_forks(sem_t *forks, int num_forks)
@@ -88,20 +106,31 @@ void start_threads(sem_t *forks, int num_philosophers, int min_dur, int max_dur,
     philosopher->num_times_eat = 0;
     philosopher->total_think_duration = 0;
     philosopher->total_eat_duration = 0;
+    philosopher->total_wait_duration = 0;
     philosopher->min_dur = min_dur;
     philosopher->max_dur = max_dur;
     philosopher->left_fork = &forks[i];
     philosopher->right_fork = &forks[(i + 1) % num_philosophers];
-    
+
+    printf("Thread ID: %d started!\n",i);    
     pthread_create(&threads[i], NULL, start_activity_philosopher, (void *)philosopher);
   }
+
+
+  for(i=0; i<num_philosophers; i++)
+  {
+        pthread_join(threads[i], NULL);
+	}
+  
 }
 
 void *start_activity_philosopher(void *arg)
 {
+
+  // Wait for all threads to start (similar to barrier)
+  sleep(1);
+
   philosopher_t *philosopher = (philosopher_t *)arg;
-  time_t start_t, end_t;
-  time(&start_t);
 
   while(1)
   {
@@ -109,9 +138,12 @@ void *start_activity_philosopher(void *arg)
     take_forks(philosopher);
     eat(philosopher);
     place_forks(philosopher);
-    time(&end_t);
-    
-    if(difftime(end_t, start_t)*1000>END_TIME){
+
+    pthread_mutex_lock (&sum_lock);
+    num_iter += 1;
+    pthread_mutex_unlock (&sum_lock);
+
+    if(num_iter>MAX_ITER){
         sleep(1);
         print_philosopher_stats(philosopher);
         break;
@@ -127,8 +159,14 @@ void print_philosopher_stats(philosopher_t * philosopher){
   printf("Philosopher %d number of times thought: %d \n", philosopher->position, philosopher->num_times_think);
   printf("Philosopher %d number of plates eaten: %d \n", philosopher->position, philosopher->num_times_eat);
   printf("Philosopher %d total eat duration: %d ms\n", philosopher->position, philosopher->total_eat_duration);
+  printf("Philosopher %d total wait duration: %f ms\n", philosopher->position, philosopher->total_wait_duration);
   printf("Philosopher %d total think duration: %d ms\n", philosopher->position, philosopher->total_think_duration);
   printf("--------------------------------------------\n");
+
+  global_eat_duration += philosopher->total_eat_duration;
+  global_wait_duration += philosopher->total_wait_duration;
+  global_think_duration += philosopher->total_think_duration;
+
   pthread_mutex_unlock (&print_mutex);
 
 }
@@ -175,6 +213,10 @@ void eat(philosopher_t *philosopher)
 
 void take_forks(philosopher_t *philosopher)
 { 
+
+  struct timespec wstart, wend;
+  clock_gettime(CLOCK_MONOTONIC, &wstart);
+
   if (is_last_philosopher(philosopher))
   {
       sem_wait(philosopher->right_fork);
@@ -185,6 +227,12 @@ void take_forks(philosopher_t *philosopher)
       sem_wait(philosopher->left_fork);
       sem_wait(philosopher->right_fork);
   }
+
+  clock_gettime(CLOCK_MONOTONIC, &wend);
+  float wait_time = (wend.tv_sec - wstart.tv_sec);
+  wait_time += (wend.tv_nsec - wstart.tv_nsec) / 1000000000.0;
+  philosopher->total_wait_duration += wait_time*1000; //ms
+
 }
 
 void place_forks(philosopher_t *philosopher)
