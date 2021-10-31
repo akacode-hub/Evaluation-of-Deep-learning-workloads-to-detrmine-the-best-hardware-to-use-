@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define DIM 512
+#define DIM 10
 #define MAXNUM 1000
 
 void gen_random_vector(int vec[DIM]);
@@ -62,21 +62,27 @@ void print_vector(int vec[DIM]){
 
 void matrix_vector_multiply_omp(int inp_mat[DIM][DIM], int inp_vec[DIM], int * out_vec){
 
+    int thread_id;
     int i, j;
 
-    #pragma omp parallel for schedule(static)    
+    #pragma omp parallel for schedule(static) private(i, j)    
     for(i=0;i<DIM;i++){
+        thread_id = omp_get_thread_num();
+        printf("Thread ID: %d works on row no: %d\n", thread_id, i);
         for(j=0;j<DIM;j++){
             inp_mat[i][j] = inp_mat[i][j]*inp_vec[j];
         }
     }
 
-    #pragma omp parallel for 
+    int sum_ = 0;
+    #pragma omp parallel for reduction(+:sum_) private(i, j)  
     for(i=0;i<DIM;i++){
         out_vec[i] = 0;
+        sum_ = 0;
         for(j=0;j<DIM;j++){
-            out_vec[i] += inp_mat[i][j];
+            sum_ += inp_mat[i][j];
         }
+        out_vec[i] = sum_;
     }
 }
 
