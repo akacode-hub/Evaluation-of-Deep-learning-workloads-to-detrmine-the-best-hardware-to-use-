@@ -62,25 +62,24 @@ void print_vector(int vec[DIM]){
 
 void matrix_vector_multiply_omp(int inp_mat[DIM][DIM], int inp_vec[DIM], int * out_vec){
 
-    int thread_id;
+    int thread_id, nthreads;
     int i, j;
+    int sum_;
 
-    #pragma omp parallel for schedule(static) private(i, j)    
+
+    #pragma omp parallel for schedule(static) private(i, j, thread_id) reduction(+:sum_)   
     for(i=0;i<DIM;i++){
+
         thread_id = omp_get_thread_num();
-        printf("Thread ID: %d works on row no: %d\n", thread_id, i);
-        for(j=0;j<DIM;j++){
-            inp_mat[i][j] = inp_mat[i][j]*inp_vec[j];
+        if(thread_id==0){
+            nthreads = omp_get_num_threads();
+            printf("Number of threads: %d\n", nthreads);
         }
-    }
 
-    int sum_ = 0;
-    #pragma omp parallel for reduction(+:sum_) private(i, j)  
-    for(i=0;i<DIM;i++){
-        out_vec[i] = 0;
+        printf("Thread ID: %d works on Row No: %d\n", thread_id, i);
         sum_ = 0;
         for(j=0;j<DIM;j++){
-            sum_ += inp_mat[i][j];
+            sum_ += inp_mat[i][j]*inp_vec[j];
         }
         out_vec[i] = sum_;
     }
@@ -96,7 +95,6 @@ void matrix_vector_multiply_serial(int inp_mat[DIM][DIM], int inp_vec[DIM], int 
     }
 
     for(i=0;i<DIM;i++){
-        out_vec[i] = 0;
         for(j=0;j<DIM;j++){
             out_vec[i] += inp_mat[i][j];
         }
@@ -147,6 +145,13 @@ int main (int argc, char *argv[])
     print_vector(inp_vector);
     printf("\nInput Matrix: \n");
     print_matrix(inp_matrix_serial);
+    
+    // initialize out vector 
+    int i;
+    for(i=0; i<DIM; i++){
+        out_vector_omp[i] = 0;
+        out_vector_serial[i] = 0;
+    }
 
     // multiply serial and omp
     clock_gettime(CLOCK_MONOTONIC, &start);
