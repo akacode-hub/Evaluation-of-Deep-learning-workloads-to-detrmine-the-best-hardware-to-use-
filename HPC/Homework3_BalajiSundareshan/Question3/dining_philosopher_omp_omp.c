@@ -128,7 +128,8 @@ void start_activity_philosopher(philosopher_t * philosopher)
     omp_unset_lock (&sum_lock);
 
     if(num_iter>MAX_ITER){
-        sleep(1);
+
+        #pragma omp barrier
         print_philosopher_stats(philosopher);
         break;
     }
