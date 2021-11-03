@@ -1,0 +1,125 @@
+***** erm *****
+min_poe_t  0.1728
+min_poe_a  0.17225
+min_poe_thresh  1.6852334004969207
+thresh_t  1.4999999999999998
+
+
+
+N0, N1  60 40
+***** plot *****
+N0, N1  600 400
+***** plot *****
+N0, N1  6000 4000
+***** plot *****
+N0, N1  12000 8000
+***** plot *****
+Part2
+**********************************
+train:  D100  val: D20k
+C01:  [[3.17342854 0.3916075 ]
+ [0.3916075  1.27917246]]
+C02:  [[0.87846628 0.06310225]
+ [0.06310225 2.3321848 ]]
+C1:  [[1.98203291 0.04577246]
+ [0.04577246 0.9909813 ]]
+m01:  [5.09437716 0.12408527]
+m02:  [-0.13469243  4.13956624]
+m1:  [3.15417405 1.84906863]
+w1  0.4740758804827492
+w2  0.5259241195172509
+min_poe_t  0.17985
+min_poe_a  0.17965
+min_poe_thresh  1.4652134192125317
+thresh_t  1.4999999999999998
+Q1.py:285: MatplotlibDeprecationWarning: The 'extend' parameter to Colorbar has no effect because it is overridden by the mappable; it is deprecated since 3.3 and will be removed two minor releases later.
+  CB = plt.colorbar(CS, shrink=0.8, extend='both')
+**********************************
+**********************************
+train:  D1k  val: D20k
+C01:  [[ 1.10052866 -0.08258754]
+ [-0.08258754  3.04240083]]
+C02:  [[3.8797325  0.18487034]
+ [0.18487034 2.11361888]]
+C1:  [[ 2.18026469 -0.07760149]
+ [-0.07760149  1.90322954]]
+m01:  [0.10800308 3.79204086]
+m02:  [ 5.10145635 -0.17006771]
+m1:  [3.01615929 2.099023  ]
+w1  0.5053263288227402
+w2  0.49467367117725947
+min_poe_t  0.1778
+min_poe_a  0.1763
+min_poe_thresh  1.2655875034457507
+thresh_t  1.4999999999999998
+Q1.py:285: MatplotlibDeprecationWarning: The 'extend' parameter to Colorbar has no effect because it is overridden by the mappable; it is deprecated since 3.3 and will be removed two minor releases later.
+  CB = plt.colorbar(CS, shrink=0.8, extend='both')
+**********************************
+**********************************
+train:  D10k  val: D20k
+C01:  [[ 0.99310896 -0.0170029 ]
+ [-0.0170029   3.0769662 ]]
+C02:  [[3.8847584  0.01510027]
+ [0.01510027 1.99156512]]
+C1:  [[ 2.07277842 -0.00810859]
+ [-0.00810859  2.0258486 ]]
+m01:  [0.00272817 3.9352249 ]
+m02:  [ 5.00472418 -0.01211934]
+m1:  [3.0101488  1.9885Estimated Means, Covariance and weights for D1k_train4141]
+w1  0.5035797505649787
+w2  0.4964202494350214
+min_poe_t  0.1759
+min_poe_a  0.1754
+min_poe_thresh  1.610227660716424
+thresh_t  1.4999999999999998
+Q1.py:285: MatplotlibDeprecationWarning: The 'extend' parameter to Colorbar has no effect because it is overridden by the mappable; it is deprecated since 3.3 and will be removed two minor releases later.
+  CB = plt.colorbar(CS, shrink=0.8, extend='both')
+**********************************
+
+
+
+Part3 a
+**********************************
+train:  D100  val: D20k
+training.. 
+training completed!
+w_trained  [-1.0461522   0.13425381  0.12851524]
+acc  0.5874
+**********************************
+**********************************
+train:  D1k  val: D20k
+training.. 
+training completed!
+w_trained  [-0.80096474  0.10445304  0.05282733]
+acc  0.57305
+**********************************
+**********************************
+train:  D10k  val: D20k
+training.. 
+training completed!
+w_trained  [-0.8722751   0.11628951  0.07494535]
+acc  0.5733
+**********************************
+Part3 c
+train:  D100  val: D20k
+training.. 
+training completed!
+w_trained  [-1.60372469  0.90248361  1.06239911 -0.16101538  0.12602379 -0.24650095]
+acc  0.807
+**********************************
+**********************************
+train:  D1k  val: D20k
+training.. 
+training completed!
+w_trained  [-1.13836569  1.27623965  0.24495475 -0.27325212  0.30860131 -0.18114788]
+acc  0.82585
+**********************************
+**********************************
+train:  D10k  val: D20k
+training.. 
+training completed!
+w_trained  [-0.76493586  1.25236239  0.00948813 -0.28688413  0.32591031 -0.15754397]
+acc  0.82745
+**********************************
+
+

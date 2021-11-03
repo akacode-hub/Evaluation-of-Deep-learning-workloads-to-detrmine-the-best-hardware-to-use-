@@ -8,7 +8,6 @@ def get_true_pos(center, radius):
 
     rand_r = random.uniform(0.0, 1.0)
     rand_t = random.uniform(0.0, 1.0)
-
     r = radius * np.sqrt(rand_r)
     theta = 2 * np.pi * rand_t
     x = center[0] + r * np.cos(theta)
@@ -75,8 +74,8 @@ def plot_equilevel_contours(equ_pts, measurements, quad_range, num_grid_pts):
         print('r i ',r_i)
         x, y = pt_i[0], pt_i[1]
         plt.plot((x), (y), 'o', color='g', markerfacecolor='none')
-        range_circle = plt.Circle((x, y), r_i, color='g', fill=False)
-        ax.add_artist(range_circle)
+        # range_circle = plt.Circle((x, y), r_i, color='g', fill=False)
+        # ax.add_artist(range_circle)
 
     ax.set_xlabel("x coordinate")
     ax.set_ylabel("y coordinate")
@@ -107,7 +106,7 @@ if __name__ == "__main__":
 
     sigx, sigy = 0.25, 0.25
     sigi = 0.3
-    num_points = [1, 2, 3, 4]
+    num_points = [40, 20, 30, 40]
     center = [0, 0]
     radius = 1
     quad_range = (-2, 2)

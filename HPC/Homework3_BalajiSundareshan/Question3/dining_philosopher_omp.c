@@ -100,9 +100,9 @@ int main(int argc, char *argv[])
     for (i = 0; i < num_philosophers; i++)
 	    omp_destroy_lock(&forks[i]);
 
-    printf("\nTotal eat duration: %f\n", global_eat_duration);
-    printf("Total wait duration: %f\n", global_wait_duration);
-    printf("Total think duration: %f\n", global_think_duration);
+    printf("\nGlobal eat duration: %f\n", global_eat_duration);
+    printf("Global wait duration: %f\n", global_wait_duration);
+    printf("Global think duration: %f\n", global_think_duration);
     printf("Total time elapsed: %f\n", time_elapsed);
     printf("End of Execution\n");
 
@@ -128,7 +128,8 @@ void start_activity_philosopher(philosopher_t * philosopher)
     omp_unset_lock (&sum_lock);
 
     if(num_iter>MAX_ITER){
-        sleep(1);
+
+        #pragma omp barrier
         print_philosopher_stats(philosopher);
         break;
     }

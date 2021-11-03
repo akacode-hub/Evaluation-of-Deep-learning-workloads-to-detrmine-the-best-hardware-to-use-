@@ -8,12 +8,16 @@
 #include <assert.h>
 
 # define MAX_ITER 50 //milliseconds
-pthread_mutex_t print_mutex;
-pthread_mutex_t sum_lock;
+
 float global_eat_duration = 0;
 float global_think_duration = 0;
 float global_wait_duration = 0;
 int num_iter = 0;
+
+pthread_mutex_t print_mutex;
+pthread_mutex_t sum_lock;
+pthread_barrier_t start_barrier, end_barrier;
+
 
 typedef struct {
 
@@ -69,6 +73,9 @@ int main(int argc, char *argv[])
     sem_t forks[num_forks];
     pthread_t threads[num_philosophers];
 
+    pthread_barrier_init (&start_barrier, NULL, num_philosophers);
+    pthread_barrier_init (&end_barrier, NULL, num_philosophers);
+
     create_forks(forks, num_forks);
     start_threads(forks, num_philosophers, min_dur, max_dur, num_forks); 
 
@@ -80,9 +87,12 @@ int main(int argc, char *argv[])
     for (i = 0; i < num_philosophers; i++)
 	    sem_destroy(&forks[i]);
 
-    printf("\nTotal eat duration: %f\n", global_eat_duration);
-    printf("Total wait duration: %f\n", global_wait_duration);
-    printf("Total think duration: %f\n", global_think_duration);
+    pthread_barrier_destroy(&start_barrier);
+    pthread_barrier_destroy(&end_barrier);
+
+    printf("\nGlobal eat duration: %f\n", global_eat_duration);
+    printf("Global wait duration: %f\n", global_wait_duration);
+    printf("Global think duration: %f\n", global_think_duration);
     printf("Total time elapsed: %f\n", time_elapsed);
     printf("End of Execution\n");
 
@@ -131,9 +141,8 @@ void start_threads(sem_t *forks, int num_philosophers, int min_dur, int max_dur,
 void *start_activity_philosopher(void *arg)
 {
 
-  // Wait for all threads to start (similar to barrier)
-  sleep(1);
-
+  // Wait for all threads to start 
+  pthread_barrier_wait(&start_barrier); 
   philosopher_t *philosopher = (philosopher_t *)arg;
 
   while(1)
@@ -148,7 +157,7 @@ void *start_activity_philosopher(void *arg)
     pthread_mutex_unlock (&sum_lock);
 
     if(num_iter>MAX_ITER){
-        sleep(1);
+        pthread_barrier_wait(&end_barrier); 
         print_philosopher_stats(philosopher);
         break;
     }

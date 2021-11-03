@@ -1,0 +1,10 @@
+Input: 1.000000
+Num_terms: 100000
+value of f(x) where x, fx are double: 3.718282
+Time taken: 0.000345
+value of f(x) where x, fx are double vector: 3.718282
+Time taken: 0.000601
+value of f(x) where x, fx are float: 3.718282
+Time taken: 0.000326
+value of f(x) where x, fx are float vector: 3.718282
+Time taken: 0.000250

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define DIM 10
+#define DIM 512
 #define MAXNUM 1000
 
 void gen_random_vector(int vec[DIM]);
@@ -176,8 +176,8 @@ int main (int argc, char *argv[])
     // compare results
     compare_serial_omp(out_vector_omp, out_vector_serial);
 
-    printf("\nTime taken for matrix-vector multiplication OPENMP: %f\n",time_taken_omp);
-    printf("Time taken for matrix-vector multiplication SERIAL: %f\n",time_taken_serial);
+    printf("\nTime taken for matrix-vector multiplication OPENMP: %f seconds\n",time_taken_omp);
+    printf("Time taken for matrix-vector multiplication SERIAL: %f seconds\n",time_taken_serial);
 
     return 0;
 }
