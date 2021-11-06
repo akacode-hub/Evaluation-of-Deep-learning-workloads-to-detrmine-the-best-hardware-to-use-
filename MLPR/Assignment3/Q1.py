@@ -3,7 +3,6 @@ import scipy.stats
 import random
 import matplotlib.pyplot as plt
 import sys
-from sklearn.metrics import confusion_matrix
 import keras
 from keras.models import Sequential
 from keras.layers import Dense
@@ -25,20 +24,22 @@ def set_mean_cov():
 
     return [m0, m1, m2, m3], [C0, C1, C2, C3]
 
-def gen_class_samples(num_samples):
-
+def gen_class_samples(num_samples, label_ids):
+    
+    ##equal prior
+    num_labels = len(label_ids)
     class_dist = np.random.randint(num_labels, size=num_samples)
     class_samples = [np.sum(class_dist==label_id).astype('int') for label_id in label_ids]
 
     return class_samples
 
-def generate_data_pxgl(priors, means, covs, num_samples):
-    
-    class_samples = gen_class_samples(num_samples)
+def generate_data_pxgl(priors, means, covs, num_samples, label_ids):
+
+    class_samples = gen_class_samples(num_samples, label_ids)
     print('class_samples: ',class_samples, ' sum ', sum(class_samples))
 
     # generate class data
-    pxgls = np.array([], dtype=np.float).reshape(3,0)
+    pxgls = np.array([], dtype=float).reshape(3,0)
     labels = []
     for label_id in label_ids:
         num_cls_samples = class_samples[label_id]
@@ -54,39 +55,28 @@ def generate_data_pxgl(priors, means, covs, num_samples):
 
     return data, class_samples
 
-def generate_data_pxgl_samples(samples_type):
+def generate_data_pxgl_samples(samples_type, priors, means, covs, label_ids):
 
     for i, key in enumerate(samples_type.keys()):
 
         sample_type = samples_type[key]
         num_samples = int(sample_type[0][0])
 
-        data_wt_labels, cls_samples = generate_data_pxgl(priors, means, covs, num_samples)
+        data_wt_labels, cls_samples = generate_data_pxgl(priors, means, covs, num_samples, label_ids)
         sample_type[1] = cls_samples
         sample_type[2] = data_wt_labels
 
         label_names = ["True label distribution for " + str(num_samples) + " for two classes", "x", "y", "z"]
-        plot_dist(data_wt_labels, label_names)
+        plot_dist(data_wt_labels, label_names, label_ids)
 
     return samples_type
 
-def split_data(data_wt_labels):
-
-    samples = []
-
-    for label_id in label_ids:
-        class_ids = np.where(data_wt_labels[-1,:]==label_id)[0]
-        cls_samples = data_wt_labels[:,class_ids]    
-        samples.append(cls_samples)
-
-    return samples
-
-def plot_dist(data, label_names):
+def plot_dist(data, label_names, label_ids):
 
     tname, xname, yname, zname = label_names
 
     print('***** plot *****')
-    samples = split_data(data)
+    samples = split_data(data, label_ids)
 
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
@@ -101,6 +91,17 @@ def plot_dist(data, label_names):
     ax.set_zlabel(zname)
     plt.legend()
     plt.show()
+
+def split_data(data_wt_labels, label_ids):
+
+    samples = []
+
+    for label_id in label_ids:
+        class_ids = np.where(data_wt_labels[-1,:]==label_id)[0]
+        cls_samples = data_wt_labels[:,class_ids]    
+        samples.append(cls_samples)
+
+    return samples
 
 def calc_theoretical_classifier(sample_type):
 
@@ -185,7 +186,7 @@ def calc_pe(label, prediction):
 
     return error
 
-def train_kfoldMLP(sample_type, kfold, max_num_perc):
+def MOS(sample_type, kfold, num_perc_lst):
 
     num_samples = sample_type[0][0]
     cls_samples = sample_type[1]
@@ -194,17 +195,15 @@ def train_kfoldMLP(sample_type, kfold, max_num_perc):
 
     data = data_wt_labels[:3,:].T #(N, 3)
     labels = data_wt_labels[3,:].T
-    print('labels ',labels)
 
     data = data.reshape((kfold, -1, 3))
     labels = labels.reshape((kfold, -1))
-    
     
     num_val = num_samples/kfold
     num_train = num_samples - num_val
 
     perc_lst = []
-    for num_perc in range(1, max_num_perc):
+    for num_perc in num_perc_lst:
 
         err_lst = []
         for val_idx in range(kfold):
@@ -235,15 +234,58 @@ def train_kfoldMLP(sample_type, kfold, max_num_perc):
             val_pred = np.squeeze(val_pred, axis=0)
 
             err = calc_pe(val_labels, val_pred)
-            print('num_perc: ',num_perc,' error: ', err)
+            print('num_samples:', num_samples,' num_perc: ',num_perc,' val idx: ', val_idx, ' error: ', np.round(err, 4))
             err_lst.append(err)
 
         mean_err = np.mean(np.array(err_lst))
-        print('num_perc: ',num_perc,' mean error: ', mean_err)
+        std_err = np.std(np.array(err_lst))
+        print('num_samples:', num_samples, ' num_perc: ',num_perc,' mean error: ', np.round(mean_err, 4), ' std error: ',np.round(std_err, 4))
         perc_lst.append(mean_err)
 
     perc_lst = np.array(perc_lst)
-    print(perc_lst)
+    print('pe for each perceptron: ', perc_lst)
+    desired_num_perc = np.argmin(perc_lst)
+
+    return desired_num_perc
+
+def train_kfoldMLP(train_sample_type, val_sample_type, kfold, num_perc_lst):
+
+    num_samples = train_sample_type[0][0]
+    cls_samples = train_sample_type[1]
+    data_wt_labels = train_sample_type[2]
+    
+    data_wt_labels = data_wt_labels[:, np.random.permutation(data_wt_labels.shape[1])] #shuffle
+    data = data_wt_labels[:3,:].T #(N, 3)
+    labels = data_wt_labels[3,:].T
+
+    # Model Order Selection
+    desired_num_perc = MOS(train_sample_type, kfold, num_perc_lst)
+
+    # get model
+    model = get_model(desired_num_perc)
+
+    # train
+    model.fit(data, labels, batch_size = 10, epochs = 100, verbose=0)
+
+    # validate
+    val_err = validate(val_sample_type, model)
+
+    print('num_samples: ',num_samples,' desired_num_perc: ',desired_num_perc,' val_err: ', val_err)
+
+def validate(sample_type, model):
+
+    num_samples = sample_type[0][0]
+    cls_samples = sample_type[1]
+    data_wt_labels = sample_type[2]
+    data = data_wt_labels[:3,:].T #(N, 3)
+    labels = data_wt_labels[3,:].T
+
+    prediction = model.predict(data, workers=4, use_multiprocessing = True)
+
+    prediction = np.argmax(prediction, axis=1)
+    err = calc_pe(labels, prediction)
+
+    return err
 
 if __name__ == "__main__":              
 
@@ -251,26 +293,29 @@ if __name__ == "__main__":
     label_ids = [0, 1, 2, 3]
     num_labels = len(label_ids)
     priors = [0.25, 0.25, 0.25, 0.25]
-    loss_mat = np.ones((num_labels, num_labels)) - np.eye(num_labels )
+    loss_mat = np.ones((num_labels, num_labels)) - np.eye(num_labels)
     kfold = 10
-    max_perc = 10
-
+    num_perc_lst = [1, 2, 4, 8, 16, 25, 35, 50]
+    perc_step = 5
+    
     samples_type = {
-        # 'D100': [[100], [], []],  
-        # 'D200': [[200], [], []],
-        # 'D500': [[500], [], []],
-        # 'D1k': [[1000], [], []],
-        # 'D2k': [[2000], [], []],
+        'D100': [[100], [], []],  
+        'D200': [[200], [], []],
+        'D500': [[500], [], []],
+        'D1k': [[1000], [], []],
+        'D2k': [[2000], [], []],
         'D5k': [[5000], [], []],
-        # 'D100k': [[100000], [], []],
+        'D100k': [[100000], [], []],
     }
 
     means, covs = set_mean_cov()
 
-    generate_data_pxgl_samples(samples_type)
+    # generate data 
+    generate_data_pxgl_samples(samples_type, priors, means, covs, label_ids)
 
     ##theoretical classifier
-    #calc_theoretical_classifier(samples_type['D100'])
+    calc_theoretical_classifier(samples_type['D100'])
 
     ## train MLP
-    train_kfoldMLP(samples_type['D5k'], kfold, max_perc)
+    for i, key in enumerate(list(samples_type.keys())[:-1]):
+        train_kfoldMLP(samples_type[key], samples_type['D100k'], kfold, num_perc_lst)
