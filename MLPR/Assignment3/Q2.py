@@ -15,11 +15,10 @@ def set_mean_cov():
     m2 = np.array([0, 0])*mval
     m3 = np.array([0, 1])*mval
 
-    cval = 10
-    C0 = np.eye(dim, dtype=float)*cval
-    C1 = np.eye(dim, dtype=float)*cval
-    C2 = np.eye(dim, dtype=float)*cval
-    C3 = np.eye(dim, dtype=float)*cval
+    C0 = np.array([[10, 0], [0, 40]])
+    C1 = np.array([[20, 0], [0, 5]])
+    C2 = np.array([[20, 0], [0, 10]])
+    C3 = np.array([[5, 0], [0, 20]])
 
     return [m0, m1, m2, m3], [C0, C1, C2, C3]
 
@@ -108,7 +107,7 @@ def split_data(data_wt_labels, label_ids):
 
     return samples
 
-def mos(sample_type, kfold, num_repeat):
+def MOS(sample_type, kfold, num_repeat):
 
     num_samples = sample_type[0][0]
     cls_samples = sample_type[1]
@@ -142,17 +141,18 @@ def mos(sample_type, kfold, num_repeat):
         print('desired_num_gmm ',desired_num_gmm)
         num_gmm_freq[num_time] = desired_num_gmm
         
-    plot_hist(num_gmm_freq, num_time)
+    plot_hist(num_gmm_freq, num_samples, num_time+1)
 
-def plot_hist(num_gmm_freq, num_time):
+def plot_hist(num_gmm_freq, num_samples, num_time):
 
+    print('num_gmm_freq: ',num_gmm_freq)
     n_bins = num_gmm_freq.shape[0]
     fig, ax = plt.subplots(tight_layout=True)
     ax.set_xlim([1, 6])
     ax.hist(num_gmm_freq, bins=n_bins)
 
-    #plt.show()
-    plt.savefig(str(num_time) + '.png')
+    plt.show()
+    #plt.savefig(str(num_samples) + '_' + str(num_time) + '.png')
 
 if __name__ == "__main__":              
 
@@ -161,7 +161,7 @@ if __name__ == "__main__":
     num_labels = len(label_ids)
     priors = [0.1, 0.2, 0.3, 0.4]
     kfold = 10
-    num_repeat = 10
+    num_repeat = 2
     num_gmm_lst = [1, 2, 3, 4, 5, 6]
 
     samples_type = {
@@ -177,5 +177,5 @@ if __name__ == "__main__":
 
     #Model order selection
     for i, key in enumerate(list(samples_type.keys())):
-        mos(samples_type[key], kfold, num_repeat)
+        MOS(samples_type[key], kfold, num_repeat)
 
