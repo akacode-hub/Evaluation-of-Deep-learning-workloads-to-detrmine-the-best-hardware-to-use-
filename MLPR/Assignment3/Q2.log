@@ -1,0 +1,1544 @@
+Iteration:  0
+class_samples:  [0 1 2 7]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -15.1016  std_scores:  20.7561
+num_samples:  10  num_gmm:  2  mean_scores:  -48.4938  std_scores:  82.6024
+num_samples:  10  num_gmm:  3  mean_scores:  -160.1118  std_scores:  258.0029
+num_samples:  10  num_gmm:  4  mean_scores:  -163.9848  std_scores:  255.3627
+num_samples:  10  num_gmm:  5  mean_scores:  -169.9817  std_scores:  243.715
+num_samples:  10  num_gmm:  6  mean_scores:  -411866.8363  std_scores:  853481.1524
+desired_num_gmm  1
+Iteration:  1
+class_samples:  [0 3 2 5]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.25  std_scores:  1.2502
+num_samples:  10  num_gmm:  2  mean_scores:  -52.901  std_scores:  71.4938
+num_samples:  10  num_gmm:  3  mean_scores:  -107.9011  std_scores:  108.4767
+num_samples:  10  num_gmm:  4  mean_scores:  -324.8883  std_scores:  388.6211
+num_samples:  10  num_gmm:  5  mean_scores:  -493693.0402  std_scores:  1386376.7622
+num_samples:  10  num_gmm:  6  mean_scores:  -2998035.7551  std_scores:  4102326.555
+desired_num_gmm  1
+Iteration:  2
+class_samples:  [0 3 2 5]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.0328  std_scores:  1.169
+num_samples:  10  num_gmm:  2  mean_scores:  -15.4565  std_scores:  22.4295
+num_samples:  10  num_gmm:  3  mean_scores:  -60.6988  std_scores:  59.3424
+num_samples:  10  num_gmm:  4  mean_scores:  -162.8814  std_scores:  169.8668
+num_samples:  10  num_gmm:  5  mean_scores:  -337.0557  std_scores:  171.7835
+num_samples:  10  num_gmm:  6  mean_scores:  -4492813.719  std_scores:  7536200.5216
+desired_num_gmm  1
+Iteration:  3
+class_samples:  [0 2 7 1]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -23.0081  std_scores:  43.7178
+num_samples:  10  num_gmm:  2  mean_scores:  -116.2822  std_scores:  165.0355
+num_samples:  10  num_gmm:  3  mean_scores:  -330.3729  std_scores:  761.332
+num_samples:  10  num_gmm:  4  mean_scores:  -1061.3766  std_scores:  1915.6516
+num_samples:  10  num_gmm:  5  mean_scores:  -1678.1702  std_scores:  2541.579
+num_samples:  10  num_gmm:  6  mean_scores:  -1682.0835  std_scores:  2539.0337
+desired_num_gmm  1
+Iteration:  4
+class_samples:  [0 3 4 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.2712  std_scores:  0.7381
+num_samples:  10  num_gmm:  2  mean_scores:  -19.3903  std_scores:  22.8475
+num_samples:  10  num_gmm:  3  mean_scores:  -139.8089  std_scores:  130.5476
+num_samples:  10  num_gmm:  4  mean_scores:  -225.8891  std_scores:  180.755
+num_samples:  10  num_gmm:  5  mean_scores:  -559.7271  std_scores:  811.7992
+num_samples:  10  num_gmm:  6  mean_scores:  -871552.053  std_scores:  2045235.346
+desired_num_gmm  1
+Iteration:  5
+class_samples:  [2 4 2 2]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3898  std_scores:  0.8351
+num_samples:  10  num_gmm:  2  mean_scores:  -32.8464  std_scores:  63.9493
+num_samples:  10  num_gmm:  3  mean_scores:  -36.6847  std_scores:  62.6476
+num_samples:  10  num_gmm:  4  mean_scores:  -4458.985  std_scores:  6086.4745
+num_samples:  10  num_gmm:  5  mean_scores:  -18769342.3822  std_scores:  29117158.5902
+num_samples:  10  num_gmm:  6  mean_scores:  -20773487.6839  std_scores:  28000240.8723
+desired_num_gmm  1
+Iteration:  6
+class_samples:  [3 0 2 5]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3159  std_scores:  1.049
+num_samples:  10  num_gmm:  2  mean_scores:  -13.1697  std_scores:  14.0091
+num_samples:  10  num_gmm:  3  mean_scores:  -885.0753  std_scores:  1231.4978
+num_samples:  10  num_gmm:  4  mean_scores:  -15772.0065  std_scores:  22513.1502
+num_samples:  10  num_gmm:  5  mean_scores:  -817817.8601  std_scores:  1601008.2327
+num_samples:  10  num_gmm:  6  mean_scores:  -4660003.7255  std_scores:  3626693.7182
+desired_num_gmm  1
+Iteration:  7
+class_samples:  [0 4 3 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.2063  std_scores:  0.744
+num_samples:  10  num_gmm:  2  mean_scores:  -44.7711  std_scores:  57.1397
+num_samples:  10  num_gmm:  3  mean_scores:  -87.4927  std_scores:  52.5664
+num_samples:  10  num_gmm:  4  mean_scores:  -532.401  std_scores:  624.5186
+num_samples:  10  num_gmm:  5  mean_scores:  -302080.477  std_scores:  904560.5902
+num_samples:  10  num_gmm:  6  mean_scores:  -4137995.8295  std_scores:  7225814.9637
+desired_num_gmm  1
+Iteration:  8
+class_samples:  [1 4 2 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.1837  std_scores:  0.9392
+num_samples:  10  num_gmm:  2  mean_scores:  -176.4459  std_scores:  270.7381
+num_samples:  10  num_gmm:  3  mean_scores:  -203.1035  std_scores:  305.3051
+num_samples:  10  num_gmm:  4  mean_scores:  -374.8486  std_scores:  635.3164
+num_samples:  10  num_gmm:  5  mean_scores:  -2007.1393  std_scores:  2465.6721
+num_samples:  10  num_gmm:  6  mean_scores:  -46653.933  std_scores:  133166.0984
+desired_num_gmm  1
+Iteration:  9
+class_samples:  [0 2 1 7]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -25.2933  std_scores:  50.5943
+num_samples:  10  num_gmm:  2  mean_scores:  -44.228  std_scores:  109.7078
+num_samples:  10  num_gmm:  3  mean_scores:  -94.0215  std_scores:  136.4826
+num_samples:  10  num_gmm:  4  mean_scores:  -92.888  std_scores:  122.5687
+num_samples:  10  num_gmm:  5  mean_scores:  -431.1097  std_scores:  740.9497
+num_samples:  10  num_gmm:  6  mean_scores:  -433.7979  std_scores:  740.8266
+desired_num_gmm  1
+Iteration:  10
+class_samples:  [2 2 4 2]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.4323  std_scores:  0.6792
+num_samples:  10  num_gmm:  2  mean_scores:  -15.1841  std_scores:  10.0331
+num_samples:  10  num_gmm:  3  mean_scores:  -50.6885  std_scores:  63.8455
+num_samples:  10  num_gmm:  4  mean_scores:  -94.8909  std_scores:  67.8205
+num_samples:  10  num_gmm:  5  mean_scores:  -1619346.9134  std_scores:  4857696.7489
+num_samples:  10  num_gmm:  6  mean_scores:  -1619392.2562  std_scores:  4857681.6354
+desired_num_gmm  1
+Iteration:  11
+class_samples:  [1 3 3 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3945  std_scores:  0.9076
+num_samples:  10  num_gmm:  2  mean_scores:  -133.199  std_scores:  254.5092
+num_samples:  10  num_gmm:  3  mean_scores:  -181.7731  std_scores:  351.2839
+num_samples:  10  num_gmm:  4  mean_scores:  -706.6959  std_scores:  445.6646
+num_samples:  10  num_gmm:  5  mean_scores:  -1736.0642  std_scores:  1315.9546
+num_samples:  10  num_gmm:  6  mean_scores:  -2262557.7545  std_scores:  6782310.2103
+desired_num_gmm  1
+Iteration:  12
+class_samples:  [0 2 5 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -8.9732  std_scores:  1.2805
+num_samples:  10  num_gmm:  2  mean_scores:  -13.4691  std_scores:  11.6005
+num_samples:  10  num_gmm:  3  mean_scores:  -59.9456  std_scores:  63.6297
+num_samples:  10  num_gmm:  4  mean_scores:  -94.6953  std_scores:  85.0164
+num_samples:  10  num_gmm:  5  mean_scores:  -171.0422  std_scores:  219.6564
+num_samples:  10  num_gmm:  6  mean_scores:  -13724940.9438  std_scores:  24064541.3638
+desired_num_gmm  1
+Iteration:  13
+class_samples:  [3 1 2 4]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.5199  std_scores:  0.7233
+num_samples:  10  num_gmm:  2  mean_scores:  -16.0329  std_scores:  15.8113
+num_samples:  10  num_gmm:  3  mean_scores:  -31.8289  std_scores:  30.4855
+num_samples:  10  num_gmm:  4  mean_scores:  -1408.4527  std_scores:  2017.1907
+num_samples:  10  num_gmm:  5  mean_scores:  -1380.5438  std_scores:  1551.5096
+num_samples:  10  num_gmm:  6  mean_scores:  -782339.4238  std_scores:  1409434.3416
+desired_num_gmm  1
+Iteration:  14
+class_samples:  [0 2 2 6]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.2868  std_scores:  1.5482
+num_samples:  10  num_gmm:  2  mean_scores:  -38.5653  std_scores:  38.6754
+num_samples:  10  num_gmm:  3  mean_scores:  -50.1603  std_scores:  57.9534
+num_samples:  10  num_gmm:  4  mean_scores:  -140.8549  std_scores:  267.8037
+num_samples:  10  num_gmm:  5  mean_scores:  -86586.3528  std_scores:  173559.6206
+num_samples:  10  num_gmm:  6  mean_scores:  -4155636.1126  std_scores:  6851118.3556
+desired_num_gmm  1
+Iteration:  15
+class_samples:  [1 2 1 6]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.8618  std_scores:  2.611
+num_samples:  10  num_gmm:  2  mean_scores:  -30.272  std_scores:  36.6484
+num_samples:  10  num_gmm:  3  mean_scores:  -73.8122  std_scores:  100.9266
+num_samples:  10  num_gmm:  4  mean_scores:  -1077.3226  std_scores:  2265.1177
+num_samples:  10  num_gmm:  5  mean_scores:  -1145.7094  std_scores:  2241.5817
+num_samples:  10  num_gmm:  6  mean_scores:  -97286.9949  std_scores:  278315.1855
+desired_num_gmm  1
+Iteration:  16
+class_samples:  [0 3 3 4]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3544  std_scores:  0.6531
+num_samples:  10  num_gmm:  2  mean_scores:  -70.5969  std_scores:  100.173
+num_samples:  10  num_gmm:  3  mean_scores:  -132.3111  std_scores:  104.5617
+num_samples:  10  num_gmm:  4  mean_scores:  -247.3064  std_scores:  210.0459
+num_samples:  10  num_gmm:  5  mean_scores:  -1411.584  std_scores:  3350.0231
+num_samples:  10  num_gmm:  6  mean_scores:  -15124512.7867  std_scores:  22026061.567
+desired_num_gmm  1
+Iteration:  17
+class_samples:  [0 1 5 4]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -24.1875  std_scores:  46.8637
+num_samples:  10  num_gmm:  2  mean_scores:  -32.5382  std_scores:  53.8466
+num_samples:  10  num_gmm:  3  mean_scores:  -77.2233  std_scores:  148.8137
+num_samples:  10  num_gmm:  4  mean_scores:  -201.6305  std_scores:  360.0167
+num_samples:  10  num_gmm:  5  mean_scores:  -3761983.5133  std_scores:  11264673.3343
+num_samples:  10  num_gmm:  6  mean_scores:  -5299879.5673  std_scores:  10927098.6623
+desired_num_gmm  1
+Iteration:  18
+class_samples:  [2 2 2 4]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.5417  std_scores:  0.7533
+num_samples:  10  num_gmm:  2  mean_scores:  -9.023  std_scores:  1.144
+num_samples:  10  num_gmm:  3  mean_scores:  -29.9248  std_scores:  36.6323
+num_samples:  10  num_gmm:  4  mean_scores:  -268.661  std_scores:  291.7509
+num_samples:  10  num_gmm:  5  mean_scores:  -18330163.8015  std_scores:  42426437.9396
+num_samples:  10  num_gmm:  6  mean_scores:  -25215170.5913  std_scores:  46078314.6295
+desired_num_gmm  2
+Iteration:  19
+class_samples:  [0 1 4 5]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -22.3446  std_scores:  41.646
+num_samples:  10  num_gmm:  2  mean_scores:  -25.0461  std_scores:  41.2371
+num_samples:  10  num_gmm:  3  mean_scores:  -46.0857  std_scores:  105.4021
+num_samples:  10  num_gmm:  4  mean_scores:  -671.8106  std_scores:  777.1216
+num_samples:  10  num_gmm:  5  mean_scores:  -1157.2572  std_scores:  2029.0526
+num_samples:  10  num_gmm:  6  mean_scores:  -81181151.3215  std_scores:  228566372.753
+desired_num_gmm  1
+Iteration:  20
+class_samples:  [0 5 2 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3725  std_scores:  1.2532
+num_samples:  10  num_gmm:  2  mean_scores:  -8.2961  std_scores:  1.8618
+num_samples:  10  num_gmm:  3  mean_scores:  -63.3162  std_scores:  99.701
+num_samples:  10  num_gmm:  4  mean_scores:  -422751.6806  std_scores:  917335.4545
+num_samples:  10  num_gmm:  5  mean_scores:  -4255761.943  std_scores:  9030579.5438
+num_samples:  10  num_gmm:  6  mean_scores:  -12844585.346  std_scores:  10243233.4326
+desired_num_gmm  2
+Iteration:  21
+class_samples:  [2 1 1 6]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.4374  std_scores:  2.043
+num_samples:  10  num_gmm:  2  mean_scores:  -54.2386  std_scores:  64.2193
+num_samples:  10  num_gmm:  3  mean_scores:  -358.802  std_scores:  545.5065
+num_samples:  10  num_gmm:  4  mean_scores:  -589.9995  std_scores:  844.9661
+num_samples:  10  num_gmm:  5  mean_scores:  -937.5252  std_scores:  1032.7518
+num_samples:  10  num_gmm:  6  mean_scores:  -5814.6976  std_scores:  10793.4673
+desired_num_gmm  1
+Iteration:  22
+class_samples:  [0 5 2 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3515  std_scores:  1.2842
+num_samples:  10  num_gmm:  2  mean_scores:  -42.3912  std_scores:  100.4064
+num_samples:  10  num_gmm:  3  mean_scores:  -198.0967  std_scores:  341.5405
+num_samples:  10  num_gmm:  4  mean_scores:  -276.2321  std_scores:  330.2307
+num_samples:  10  num_gmm:  5  mean_scores:  -350.9304  std_scores:  454.1552
+num_samples:  10  num_gmm:  6  mean_scores:  -2779272.9299  std_scores:  6579139.4368
+desired_num_gmm  1
+Iteration:  23
+class_samples:  [4 1 1 4]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.7301  std_scores:  2.4545
+num_samples:  10  num_gmm:  2  mean_scores:  -28.1061  std_scores:  34.9865
+num_samples:  10  num_gmm:  3  mean_scores:  -48.2189  std_scores:  58.1625
+num_samples:  10  num_gmm:  4  mean_scores:  -118.1561  std_scores:  195.1731
+num_samples:  10  num_gmm:  5  mean_scores:  -329.5691  std_scores:  407.5962
+num_samples:  10  num_gmm:  6  mean_scores:  -47763.645  std_scores:  72385.449
+desired_num_gmm  1
+Iteration:  24
+class_samples:  [2 1 4 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.377  std_scores:  0.8047
+num_samples:  10  num_gmm:  2  mean_scores:  -16.2064  std_scores:  20.7255
+num_samples:  10  num_gmm:  3  mean_scores:  -120.3873  std_scores:  249.2474
+num_samples:  10  num_gmm:  4  mean_scores:  -241.9773  std_scores:  255.2557
+num_samples:  10  num_gmm:  5  mean_scores:  -241.9773  std_scores:  255.2557
+num_samples:  10  num_gmm:  6  mean_scores:  -14299570.9783  std_scores:  16896127.7863
+desired_num_gmm  1
+Iteration:  25
+class_samples:  [1 4 3 2]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.52  std_scores:  1.2849
+num_samples:  10  num_gmm:  2  mean_scores:  -53.4248  std_scores:  91.4816
+num_samples:  10  num_gmm:  3  mean_scores:  -63.4052  std_scores:  87.8629
+num_samples:  10  num_gmm:  4  mean_scores:  -266.5583  std_scores:  339.1096
+num_samples:  10  num_gmm:  5  mean_scores:  -346.3504  std_scores:  310.6379
+num_samples:  10  num_gmm:  6  mean_scores:  -9422719.0871  std_scores:  9827121.6946
+desired_num_gmm  1
+Iteration:  26
+class_samples:  [1 2 5 2]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.5458  std_scores:  1.5709
+num_samples:  10  num_gmm:  2  mean_scores:  -14.5433  std_scores:  12.3245
+num_samples:  10  num_gmm:  3  mean_scores:  -28.3588  std_scores:  32.2124
+num_samples:  10  num_gmm:  4  mean_scores:  -54.9374  std_scores:  54.4149
+num_samples:  10  num_gmm:  5  mean_scores:  -114.9981  std_scores:  137.6477
+num_samples:  10  num_gmm:  6  mean_scores:  -304523.9459  std_scores:  912873.0081
+desired_num_gmm  1
+Iteration:  27
+class_samples:  [1 1 5 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.8444  std_scores:  2.3328
+num_samples:  10  num_gmm:  2  mean_scores:  -62.6751  std_scores:  112.932
+num_samples:  10  num_gmm:  3  mean_scores:  -96.7287  std_scores:  102.3297
+num_samples:  10  num_gmm:  4  mean_scores:  -780.3457  std_scores:  1021.7199
+num_samples:  10  num_gmm:  5  mean_scores:  -665.9493  std_scores:  813.7504
+num_samples:  10  num_gmm:  6  mean_scores:  -1328.82  std_scores:  1454.7664
+desired_num_gmm  1
+Iteration:  28
+class_samples:  [1 3 1 5]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -10.7338  std_scores:  5.3395
+num_samples:  10  num_gmm:  2  mean_scores:  -25.4289  std_scores:  36.9109
+num_samples:  10  num_gmm:  3  mean_scores:  -109.1616  std_scores:  179.6375
+num_samples:  10  num_gmm:  4  mean_scores:  -5986.7211  std_scores:  9613.6322
+num_samples:  10  num_gmm:  5  mean_scores:  -35706.478  std_scores:  64798.3486
+num_samples:  10  num_gmm:  6  mean_scores:  -49425781.8261  std_scores:  113602729.935
+desired_num_gmm  1
+Iteration:  29
+class_samples:  [3 3 2 2]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3942  std_scores:  0.7264
+num_samples:  10  num_gmm:  2  mean_scores:  -16.543  std_scores:  11.3982
+num_samples:  10  num_gmm:  3  mean_scores:  -26.3278  std_scores:  15.4678
+num_samples:  10  num_gmm:  4  mean_scores:  -1251.5392  std_scores:  1427.7709
+num_samples:  10  num_gmm:  5  mean_scores:  -1421.757  std_scores:  1396.3828
+num_samples:  10  num_gmm:  6  mean_scores:  -1675712.0622  std_scores:  3457471.2537
+desired_num_gmm  1
+Iteration:  30
+class_samples:  [0 2 3 5]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -10.4401  std_scores:  4.8823
+num_samples:  10  num_gmm:  2  mean_scores:  -8.7473  std_scores:  3.1309
+num_samples:  10  num_gmm:  3  mean_scores:  -100.4387  std_scores:  132.2035
+num_samples:  10  num_gmm:  4  mean_scores:  -102.9056  std_scores:  131.3139
+num_samples:  10  num_gmm:  5  mean_scores:  -1630.4031  std_scores:  3232.5908
+num_samples:  10  num_gmm:  6  mean_scores:  -213953.9684  std_scores:  375411.5761
+desired_num_gmm  2
+Iteration:  31
+class_samples:  [1 3 3 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.4787  std_scores:  1.122
+num_samples:  10  num_gmm:  2  mean_scores:  -52.9498  std_scores:  97.1061
+num_samples:  10  num_gmm:  3  mean_scores:  -121.8165  std_scores:  143.1617
+num_samples:  10  num_gmm:  4  mean_scores:  -338.323  std_scores:  309.4114
+num_samples:  10  num_gmm:  5  mean_scores:  -3230.7476  std_scores:  3082.804
+num_samples:  10  num_gmm:  6  mean_scores:  -3035972.5041  std_scores:  6063296.2342
+desired_num_gmm  1
+Iteration:  32
+class_samples:  [0 2 4 4]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.6126  std_scores:  1.6395
+num_samples:  10  num_gmm:  2  mean_scores:  -18.3168  std_scores:  21.0773
+num_samples:  10  num_gmm:  3  mean_scores:  -109.2743  std_scores:  146.1554
+num_samples:  10  num_gmm:  4  mean_scores:  -109.2743  std_scores:  146.1554
+num_samples:  10  num_gmm:  5  mean_scores:  -1503.2127  std_scores:  1890.7131
+num_samples:  10  num_gmm:  6  mean_scores:  -7562.1564  std_scores:  3083.9573
+desired_num_gmm  1
+Iteration:  33
+class_samples:  [1 2 4 3]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.3973  std_scores:  1.1039
+num_samples:  10  num_gmm:  2  mean_scores:  -27.7066  std_scores:  40.5279
+num_samples:  10  num_gmm:  3  mean_scores:  -216.2777  std_scores:  392.7656
+num_samples:  10  num_gmm:  4  mean_scores:  -640.7847  std_scores:  489.9981
+num_samples:  10  num_gmm:  5  mean_scores:  -960.7742  std_scores:  808.5137
+num_samples:  10  num_gmm:  6  mean_scores:  -12179091.6754  std_scores:  20686829.9895
+desired_num_gmm  1
+Iteration:  34
+class_samples:  [3 1 1 5]  sum  10
+num_samples:  10  num_gmm:  1  mean_scores:  -9.5307  std_scores:  1.7334
+num_samples:  10  num_gmm:  2  mean_scores:  -29.8651  std_scores:  44.4641
+num_samples:  10  num_gmm:  3  mean_scores:  -71.5084  std_scores:  80.8666
+num_samples:  10  num_gmm:  4  mean_scores:  -263.8343  std_scores:  311.7056
+num_samples:  10  num_gmm:  5  mean_scores:  -417.0351  std_scores:  457.512
+num_samples:  10  num_gmm:  6  mean_scores:  -970898.0898  std_scores:  2911242.8114
+desired_num_gmm  1
+num_gmm_freq:  [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1]
+Iteration:  0
+class_samples:  [11 22 28 39]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -9.0056  std_scores:  0.2308
+num_samples:  100  num_gmm:  2  mean_scores:  -8.0087  std_scores:  0.4496
+num_samples:  100  num_gmm:  3  mean_scores:  -7.2032  std_scores:  0.4999
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7641  std_scores:  0.5371
+num_samples:  100  num_gmm:  5  mean_scores:  -6.9496  std_scores:  0.6433
+num_samples:  100  num_gmm:  6  mean_scores:  -7.0197  std_scores:  0.6865
+desired_num_gmm  4
+Iteration:  1
+class_samples:  [12 23 23 42]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -9.0007  std_scores:  0.1747
+num_samples:  100  num_gmm:  2  mean_scores:  -7.9276  std_scores:  0.3075
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1805  std_scores:  0.4302
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8084  std_scores:  0.3825
+num_samples:  100  num_gmm:  5  mean_scores:  -6.9898  std_scores:  0.5729
+num_samples:  100  num_gmm:  6  mean_scores:  -7.085  std_scores:  0.4691
+desired_num_gmm  4
+Iteration:  2
+class_samples:  [12 23 29 36]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9891  std_scores:  0.2048
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8906  std_scores:  0.3982
+num_samples:  100  num_gmm:  3  mean_scores:  -7.5793  std_scores:  0.6074
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9819  std_scores:  0.6674
+num_samples:  100  num_gmm:  5  mean_scores:  -6.936  std_scores:  0.746
+num_samples:  100  num_gmm:  6  mean_scores:  -7.1338  std_scores:  0.8498
+desired_num_gmm  5
+Iteration:  3
+class_samples:  [11 26 23 40]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -9.021  std_scores:  0.2038
+num_samples:  100  num_gmm:  2  mean_scores:  -8.0395  std_scores:  0.4828
+num_samples:  100  num_gmm:  3  mean_scores:  -7.2632  std_scores:  0.5067
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9714  std_scores:  0.4416
+num_samples:  100  num_gmm:  5  mean_scores:  -7.2161  std_scores:  0.7189
+num_samples:  100  num_gmm:  6  mean_scores:  -7.3398  std_scores:  0.7949
+desired_num_gmm  4
+Iteration:  4
+class_samples:  [ 7 22 37 34]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.91  std_scores:  0.1604
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8475  std_scores:  0.2499
+num_samples:  100  num_gmm:  3  mean_scores:  -7.2572  std_scores:  0.3547
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8547  std_scores:  0.2638
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8655  std_scores:  0.3385
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9508  std_scores:  0.3801
+desired_num_gmm  4
+Iteration:  5
+class_samples:  [ 9 15 27 49]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.8715  std_scores:  0.2394
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8219  std_scores:  0.4498
+num_samples:  100  num_gmm:  3  mean_scores:  -7.0934  std_scores:  0.4991
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7054  std_scores:  0.457
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8697  std_scores:  0.5625
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9664  std_scores:  0.7244
+desired_num_gmm  4
+Iteration:  6
+class_samples:  [10 18 26 46]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9169  std_scores:  0.1561
+num_samples:  100  num_gmm:  2  mean_scores:  -8.114  std_scores:  0.3346
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3029  std_scores:  0.4012
+num_samples:  100  num_gmm:  4  mean_scores:  -7.0666  std_scores:  0.4369
+num_samples:  100  num_gmm:  5  mean_scores:  -7.2974  std_scores:  1.1673
+num_samples:  100  num_gmm:  6  mean_scores:  -7.3151  std_scores:  1.2059
+desired_num_gmm  4
+Iteration:  7
+class_samples:  [11 27 31 31]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9051  std_scores:  0.1953
+num_samples:  100  num_gmm:  2  mean_scores:  -7.7453  std_scores:  0.424
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3514  std_scores:  0.6848
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8301  std_scores:  0.591
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8586  std_scores:  0.5693
+num_samples:  100  num_gmm:  6  mean_scores:  -7.0563  std_scores:  1.0363
+desired_num_gmm  4
+Iteration:  8
+class_samples:  [ 6 24 30 40]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.8556  std_scores:  0.1619
+num_samples:  100  num_gmm:  2  mean_scores:  -8.0253  std_scores:  0.4962
+num_samples:  100  num_gmm:  3  mean_scores:  -7.255  std_scores:  0.5029
+num_samples:  100  num_gmm:  4  mean_scores:  -7.1662  std_scores:  0.9947
+num_samples:  100  num_gmm:  5  mean_scores:  -7.1848  std_scores:  0.9662
+num_samples:  100  num_gmm:  6  mean_scores:  -7.2644  std_scores:  0.9319
+desired_num_gmm  4
+Iteration:  9
+class_samples:  [10 13 36 41]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9794  std_scores:  0.1887
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8899  std_scores:  0.3791
+num_samples:  100  num_gmm:  3  mean_scores:  -7.251  std_scores:  0.5488
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7978  std_scores:  0.634
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8958  std_scores:  0.6765
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9114  std_scores:  0.6994
+desired_num_gmm  4
+Iteration:  10
+class_samples:  [ 9 19 37 35]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9678  std_scores:  0.2724
+num_samples:  100  num_gmm:  2  mean_scores:  -7.955  std_scores:  0.4229
+num_samples:  100  num_gmm:  3  mean_scores:  -7.4497  std_scores:  0.3209
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9061  std_scores:  0.2904
+num_samples:  100  num_gmm:  5  mean_scores:  -7.0077  std_scores: Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+ 0.377
+num_samples:  100  num_gmm:  6  mean_scores:  -7.108  std_scores:  0.4107
+desired_num_gmm  4
+Iteration:  11
+class_samples:  [ 9 20 31 40]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.868  std_scores:  0.1909
+num_samples:  100  num_gmm:  2  mean_scores:  -7.7604  std_scores:  0.3068
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1004  std_scores:  0.3548
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7265  std_scores:  0.3295
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8409  std_scores:  0.5272
+num_samples:  100  num_gmm:  6  mean_scores:  -6.8935  std_scores:  0.4521
+desired_num_gmm  4
+Iteration:  12
+class_samples:  [11 21 24 44]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9557  std_scores:  0.1682
+num_samples:  100  num_gmm:  2  mean_scores:  -7.998  std_scores:  0.2607
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3514  std_scores:  0.4768
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8661  std_scores:  0.4027
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8987  std_scores:  0.4095
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9314  std_scores:  0.3877
+desired_num_gmm  4
+Iteration:  13
+class_samples:  [10 17 36 37]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9109  std_scores:  0.2359
+num_samples:  100  num_gmm:  2  mean_scores:  -7.9627  std_scores:  0.4115
+num_samples:  100  num_gmm:  3  mean_scores:  -7.4801  std_scores:  0.5778
+num_samples:  100  num_gmm:  4  mean_scores:  -7.0032  std_scores:  0.6088
+num_samples:  100  num_gmm:  5  mean_scores:  -7.1709  std_scores:  0.7109
+num_samples:  100  num_gmm:  6  mean_scores:  -7.2907  std_scores:  0.7546
+desired_num_gmm  4
+Iteration:  14
+class_samples:  [ 7 26 28 39]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -9.014  std_scores:  0.2576
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8287  std_scores:  0.5446
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1733  std_scores:  0.6713
+num_samples:  100  num_gmm:  4  mean_scores:  -7.0692  std_scores:  1.038
+num_samples:  100  num_gmm:  5  mean_scores:  -7.1373  std_scores:  1.0312
+num_samples:  100  num_gmm:  6  mean_scores:  -7.1592  std_scores:  0.9995
+desired_num_gmm  4
+Iteration:  15
+class_samples:  [15 19 27 39]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9899  std_scores:  0.1209
+num_samples:  100  num_gmm:  2  mean_scores:  -7.9309  std_scores:  0.4847
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3244  std_scores:  0.573
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8623  std_scores:  0.4811
+num_samples:  100  num_gmm:  5  mean_scores:  -6.9279  std_scores:  0.5089
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9376  std_scores:  0.5118
+desired_num_gmm  4
+Iteration:  16
+class_samples:  [ 8 19 35 38]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9049  std_scores:  0.2086
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8756  std_scores:  0.2209
+num_samples:  100  num_gmm:  3  mean_scores:  -7.2137  std_scores:  0.561
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9699  std_scores:  0.982
+num_samples:  100  num_gmm:  5  mean_scores:  -7.0422  std_scores:  1.1002
+num_samples:  100  num_gmm:  6  mean_scores:  -7.218  std_scores:  1.0444
+desired_num_gmm  4
+Iteration:  17
+class_samples:  [12 18 25 45]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9216  std_scores:  0.2961
+num_samples:  100  num_gmm:  2  mean_scores:  -8.0251  std_scores:  0.5569
+num_samples:  100  num_gmm:  3  mean_scores:  -7.5666  std_scores:  0.5002
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8847  std_scores:  0.54
+num_samples:  100  num_gmm:  5  mean_scores:  -6.9799  std_scores:  0.5837
+num_samples:  100  num_gmm:  6  mean_scores:  -7.0501  std_scores:  0.6088
+desired_num_gmm  4
+Iteration:  18
+class_samples:  [10 26 31 33]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9792  std_scores:  0.1089
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8007  std_scores:  0.3509
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1838  std_scores:  0.3973
+num_samples:  100  num_gmm:  4  mean_scores:  -6.5668  std_scores:  0.3601
+num_samples:  100  num_gmm:  5  mean_scores:  -6.7348  std_scores:  0.3836
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9077  std_scores:  0.6332
+desired_num_gmm  4
+Iteration:  19
+class_samples:  [13 17 30 40]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9242  std_scores:  0.2161
+num_samples:  100  num_gmm:  2  mean_scores:  -7.7663  std_scores:  0.3204
+num_samples:  100  num_gmm:  3  mean_scores:  -7.4174  std_scores:  0.4955
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8015  std_scores:  0.5174
+num_samples:  100  num_gmm:  5  mean_scores:  -6.955  std_scores:  0.7501
+num_samples:  100  num_gmm:  6  mean_scores:  -7.2769  std_scores:  1.1334
+desired_num_gmm  4
+Iteration:  20
+class_samples:  [ 8 19 35 38]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9167  std_scores:  0.174
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8787  std_scores:  0.2846
+num_samples:  100  num_gmm:  3  mean_scores:  -7.346  std_scores:  0.4894
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8321  std_scores:  0.3684
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8172  std_scores:  0.3855
+num_samples:  100  num_gmm:  6  mean_scores:  -6.8772  std_scores:  0.4209
+desired_num_gmm  5
+Iteration:  21
+class_samples:  [10 19 37 34]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9241  std_scores:  0.131
+num_samples:  100  num_gmm:  2  mean_scores:  -7.9532  std_scores:  0.8341
+num_samples:  100  num_gmm:  3  mean_scores:  -7.2861  std_scores:  0.7279
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7611  std_scores:  0.8765
+num_samples:  100  num_gmm:  5  mean_scores:  -6.7718  std_scores:  0.8779
+num_samples:  100  num_gmm:  6  mean_scores:  -6.991  std_scores:  1.0038
+desired_num_gmm  4
+Iteration:  22
+class_samples:  [12 21 31 36]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -9.007  std_scores:  0.1896
+num_samples:  100  num_gmm:  2  mean_scores:  -8.0064  std_scores:  0.3005
+num_samples:  100  num_gmm:  3  mean_scores:  -7.6352  std_scores:  0.3346
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9626  std_scores:  0.4873
+num_samples:  100  num_gmm:  5  mean_scores:  -7.0038  std_scores:  0.4859
+num_samples:  100  num_gmm:  6  mean_scores:  -7.2452  std_scores:  0.6281
+desired_num_gmm  4
+Iteration:  23
+class_samples:  [12 18 28 42]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9563  std_scores:  0.2461
+num_samples:  100  num_gmm:  2  mean_scores:  -7.9273  std_scores:  0.4054
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3331  std_scores:  0.6325
+num_samples:  100  num_gmm:  4  mean_scores:  -6.943  std_scores:  0.5949
+num_samples:  100  num_gmm:  5  mean_scores:  -7.0169  std_scores:  0.5567
+num_samples:  100  num_gmm:  6  mean_scores:  -7.1086  std_scores:  0.5557
+desired_num_gmm  4
+Iteration:  24
+class_samples:  [11 17 30 42]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9055  std_scores:  0.222
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8157  std_scores:  0.4329
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3328  std_scores:  0.5942
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7847  std_scores:  0.5454
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8532  std_scores:  0.6279
+num_samples:  100  num_gmm:  6  mean_scores:  -6.944  std_scores:  0.6111
+desired_num_gmm  4
+Iteration:  25
+class_samples:  [12 18 33 37]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9339  std_scores:  0.27
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8016  std_scores:  0.4471
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1978  std_scores:  0.385
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7089  std_scores:  0.4998
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8612  std_scores:  0.799
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9722  std_scores:  0.9061
+desired_num_gmm  4
+Iteration:  26
+class_samples:  [14 21 30 35]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9932  std_scores:  0.0893
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8014  std_scores:  0.2794
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1964  std_scores:  0.3796
+num_samples:  100  num_gmm:  4  mean_scores:  -6.6772  std_scores:  0.4676
+num_samples:  100  num_gmm:  5  mean_scores:  -6.7195  std_scores:  0.4814
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9017  std_scores:  0.5856
+desired_num_gmm  4
+Iteration:  27
+class_samples:  [ 9 19 31 41]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9428  std_scores:  0.2597
+num_samples:  100  num_gmm:  2  mean_scores:  -7.847  std_scores:  0.5203
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3189  std_scores:  0.8974
+num_samples:  100  num_gmm:  4  mean_scores:  -6.6829  std_scores:  0.8534
+num_samples:  100  num_gmm:  5  mean_scores:  -6.7542  std_scores:  0.9182
+num_samples:  100  num_gmm:  6  mean_scores:  -6.898  std_scores:  1.0259
+desired_num_gmm  4
+Iteration:  28
+class_samples:  [11 24 32 33]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9893  std_scores:  0.1707
+num_samples:  100  num_gmm:  2  mean_scores:  -7.9987  std_scores:  0.4724
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3735  std_scores:  0.3956
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9651  std_scores:  0.4935
+num_samples:  100  num_gmm:  5  mean_scores:  -6.9989  std_scores:  0.4679
+num_samples:  100  num_gmm:  6  mean_scores:  -7.1372  std_scores:  0.6482
+desired_num_gmm  4
+Iteration:  29
+class_samples:  [11 23 30 36]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9661  std_scores:  0.1191
+num_samples:  100  num_gmm:  2  mean_scores:  -7.885  std_scores:  0.2649
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3423  std_scores:  0.3555
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8529  std_scores:  0.4791
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8506  std_scores:  0.4851
+num_samples:  100  num_gmm:  6  mean_scores:  -7.0457  std_scores:  0.5876
+desired_num_gmm  5
+Iteration:  30
+class_samples:  [ 8 28 21 43]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9254  std_scores:  0.1999
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8878  std_scores:  0.3023
+num_samples:  100  num_gmm:  3  mean_scores:  -6.974  std_scores:  0.3542
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8874  std_scores:  0.5803
+num_samples:  100  num_gmm:  5  mean_scores:  -6.938  std_scores:  0.541
+num_samples:  100  num_gmm:  6  mean_scores:  -7.0232  std_scores:  0.5317
+desired_num_gmm  4
+Iteration:  31
+class_samples:  [ 9 17 30 44]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.8883  std_scores:  0.1639
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8277  std_scores:  0.38
+num_samples:  100  num_gmm:  3  mean_scores:  -7.159  std_scores:  0.417
+num_samples:  100  num_gmm:  4  mean_scores:  -6.8202  std_scores:  0.5463
+num_samples:  100  num_gmm:  5  mean_scores:  -7.0566  std_scores:  0.866
+num_samples:  100  num_gmm:  6  mean_scores:  -7.3028  std_scores:  1.16
+desired_num_gmm  4
+Iteration:  32
+class_samples:  [ 7 14 33 46]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.8116  std_scores:  0.2177
+num_samples:  100  num_gmm:  2  mean_scores:  -7.7996  std_scores:  0.3494
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1745  std_scores:  0.2971
+num_samples:  100  num_gmm:  4  mean_scores:  -6.7668  std_scores:  0.3688
+num_samples:  100  num_gmm:  5  mean_scores:  -6.8654  std_scores:  0.3467
+num_samples:  100  num_gmm:  6  mean_scores:  -7.009  std_scores:  0.4832
+desired_num_gmm  4
+Iteration:  33
+class_samples:  [10 19 31 40]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.8839  std_scores:  0.1695
+num_samples:  100  num_gmm:  2  mean_scores:  -7.6829  std_scores:  0.3052
+num_samples:  100  num_gmm:  3  mean_scores:  -7.1548  std_scores:  0.3458
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9437  std_scores:  0.708
+num_samples:  100  num_gmm:  5  mean_scores:  -6.9563  std_scores:  0.651
+num_samples:  100  num_gmm:  6  mean_scores:  -6.9821  std_scores:  0.7155
+desired_num_gmm  4
+Iteration:  34
+class_samples:  [13 20 34 33]  sum  100
+num_samples:  100  num_gmm:  1  mean_scores:  -8.9636  std_scores:  0.1077
+num_samples:  100  num_gmm:  2  mean_scores:  -7.8861  std_scores:  0.3936
+num_samples:  100  num_gmm:  3  mean_scores:  -7.3387  std_scores:  0.4659
+num_samples:  100  num_gmm:  4  mean_scores:  -6.9751  std_scores:  0.4711
+num_samples:  100  num_gmm:  5  mean_scores:  -7.0566  std_scores:  0.4508
+num_samples:  100  num_gmm:  6  mean_scores:  -7.3427  std_scores:  1.1673
+desired_num_gmm  4
+num_gmm_freq:  [4 4 5 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 4 4 4 4 4 4 4 4 5 4 4 4 4 4]
+Iteration:  0
+class_samples:  [ 99 202 307 392]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9002  std_scores:  0.0334
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7748  std_scores:  0.0976
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0939  std_scores:  0.1498
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6223  std_scores:  0.1577
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6271  std_scores:  0.1564
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6293  std_scores:  0.1573
+desired_num_gmm  4
+Iteration:  1
+class_samples:  [120 176 297 407]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8988  std_scores:  0.0413
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8471  std_scores:  0.144
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1017  std_scores:  0.0736
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6438  std_scores:  0.0888
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6469  std_scores:  0.0885
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6511  std_scores:  0.0883
+desired_num_gmm  4
+Iteration:  2
+class_samples:  [ 79 191 328 402]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8646  std_scores:  0.0532
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7451  std_scores:  0.084
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0806  std_scores:  0.111
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6459  std_scores:  0.2248
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5903  std_scores:  0.0857
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5937  std_scores:  0.0821
+desired_num_gmm  5
+Iteration:  3
+class_samples:  [ 95 190 316 399]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8987  std_scores:  0.0603
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7328  std_scores:  0.0986
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0527  std_scores:  0.156
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5791  std_scores:  0.1448
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.585  std_scores:  0.1498
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5863  std_scores:  0.1485
+desired_num_gmm  4
+Iteration:  4
+class_samples:  [104 222 303 371]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.905  std_scores:  0.0576
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8217  std_scores:  0.1212
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1948  std_scores:  0.1563
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.625  std_scores:  0.1033
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6301  std_scores:  0.1023
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.631  std_scores:  0.1064
+desired_num_gmm  4
+Iteration:  5
+class_samples:  [ 93 214 310 383]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8973  std_scores:  0.0429
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7957  std_scores:  0.137
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.2278  std_scores:  0.2341
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6626  std_scores:  0.1058
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6614  std_scores:  0.1085
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6618  std_scores:  0.1095
+desired_num_gmm  5
+Iteration:  6
+class_samples:  [116 210 262 412]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9294  std_scores:  0.0516
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7467  std_scores:  0.0728
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.2549  std_scores:  0.1271
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6188  std_scores:  0.1036
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6197  std_scores:  0.1031
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6211  std_scores:  0.1013
+desired_num_gmm  4
+Iteration:  7
+class_samples:  [ 84 192 298 426]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8758  std_scores:  0.0579
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.747  std_scores:  0.0481
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.028  std_scores:  0.1081
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5565  std_scores:  0.0654
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.559  std_scores:  0.0617
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5607  std_scores:  0.0633
+desired_num_gmm  4
+Iteration:  8
+class_samples:  [ 92 198 315 395]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9108  std_scores:  0.0676
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8105  std_scores:  0.1393
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1591  std_scores:  0.2228
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6138  std_scores:  0.1461
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6138  std_scores:  0.152
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6191  std_scores:  0.1504
+desired_num_gmm  5
+Iteration:  9
+class_samples:  [110 200 296 394]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9223  std_scores:  0.0361
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7807  std_scores:  0.033
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0784  std_scores:  0.1374
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5521  std_scores:  0.0762
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5568  std_scores:  0.0783
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5626  std_scores:  0.0812
+desired_num_gmm  4
+Iteration:  10
+class_samples:  [103 204 302 391]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9207  std_scores:  0.0441
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8319  std_scores:  0.0776
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1292  std_scores:  0.1551
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6684  std_scores:  0.1769
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6688  std_scores:  0.1753
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6236  std_scores:  0.1122
+desired_num_gmm  6
+Iteration:  11
+class_samples:  [ 94 232 294 380]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9126  std_scores:  0.0607
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7588  std_scores:  0.0962
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.2398  std_scores:  0.1397
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6072  std_scores:  0.1249
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6058  std_scores:  0.1288
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6066  std_scores:  0.1271
+desired_num_gmm  5
+Iteration:  12
+class_samples:  [ 95 201 302 402]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9214  std_scores:  0.0574
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8041  std_scores:  0.1198
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1278  std_scores:  0.1993
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6299  std_scores:  0.1064
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6282  std_scores:  0.1047
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6314  std_scores:  0.1055
+desired_num_gmm  5
+Iteration:  13
+class_samples:  [112 198 300 390]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9044  std_scores:  0.0499
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8432  std_scores:  0.1123
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.2037  std_scores:  0.08
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6678  std_scores:  0.0724
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6687  std_scores:  0.0737
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6692  std_scores:  0.0693
+desired_num_gmm  4
+Iteration:  14
+class_samples:  [ 98 184 308 410]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8999  std_scores:  0.0394
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8011  std_scores:  0.1057
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1384  std_scores:  0.206
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6777  std_scores:  0.1585
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6293  std_scores:  0.1363
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6265  std_scores:  0.1287
+desired_num_gmm  6
+Iteration:  15
+class_samples:  [ 99 203 319 379]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9009  std_scores:  0.0629
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7601  std_scores:  0.078
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.085  std_scores:  0.1381
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6136  std_scores:  0.1281
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6177  std_scores:  0.1272
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6264  std_scores:  0.1291
+desired_num_gmm  4
+Iteration:  16
+class_samples:  [ 89 197 296 418]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8839  std_scores:  0.0708
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8047  std_scores:  0.1075
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0984  std_scores:  0.1758
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6088  std_scores:  0.0775
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6129  std_scores:  0.0786
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6181  std_scores:  0.0744
+desired_num_gmm  4
+Iteration:  17
+class_samples:  [ 99 189 296 416]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8865  std_scores:  0.0487
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7208  std_scores:  0.1319
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0127  std_scores:  0.1919
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5812  std_scores:  0.1201
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5471  std_scores:  0.1136
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5484  std_scores:  0.1134
+desired_num_gmm  5
+Iteration:  18
+class_samples:  [ 89 193 305 413]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8866  std_scores:  0.0464
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7378  std_scores:  0.1028
+num_samples:  1000  num_gmm:  3  mean_scores:  -6.9996  std_scores:  0.1066
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5342  std_scores:  0.0603
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5324  std_scores:  0.0615
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5389  std_scores:  0.0593
+desired_num_gmm  5
+Iteration:  19
+class_samples:  [100 200 282 418]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9114  std_scores:  0.0807
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8093  std_scores:  0.1433
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0673  std_scores:  0.1812
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.7077  std_scores:  0.2218
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6325  std_scores:  0.1607
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.634  std_scores:  0.1611
+desired_num_gmm  5
+Iteration:  20
+class_samples:  [111 184 285 420]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8942  std_scores:  0.0584
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.734  std_scores:  0.1338
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.2005  std_scores:  0.1947
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5357  std_scores:  0.1289
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5403  std_scores:  0.1283
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5434  std_scores:  0.1287
+desired_num_gmm  4
+Iteration:  21
+class_samples:  [102 199 309 390]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9135  std_scores:  0.0493
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8316  std_scores:  0.0802
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1666  std_scores:  0.199
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.682  std_scores:  0.1312
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6825  std_scores:  0.1367
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6841  std_scores:  0.1339
+desired_num_gmm  4
+Iteration:  22
+class_samples:  [ 94 235 292 379]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9203  std_scores:  0.0537
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8151  std_scores:  0.1054
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1176  std_scores:  0.1403
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6355  std_scores:  0.078
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6399  std_scores:  0.0761
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6449  std_scores:  0.0753
+desired_num_gmm  4
+Iteration:  23
+class_samples:  [ 95 206 323 376]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9118  std_scores:  0.058
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7827  std_scores:  0.1195
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.222  std_scores:  0.1528
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6342  std_scores:  0.0804
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6356  std_scores:  0.0796
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6431  std_scores:  0.0826
+desired_num_gmm  4
+Iteration:  24
+class_samples:  [110 202 279 409]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9069  std_scores:  0.0436
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7867  std_scores:  0.114
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0705  std_scores:  0.1481
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5807  std_scores:  0.1054
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5881  std_scores:  0.1105
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.597  std_scores:  0.1158
+desired_num_gmm  4
+Iteration:  25
+class_samples:  [115 187 283 415]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9262  std_scores:  0.0541
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8418  std_scores:  0.1407
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1845  std_scores:  0.2194
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6225  std_scores:  0.1423
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6213  std_scores:  0.1439
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6247  std_scores:  0.1411
+desired_num_gmm  5
+Iteration:  26
+class_samples:  [ 96 210 288 406]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9238  std_scores:  0.0762
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8468  std_scores:  0.0939
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.2487  std_scores:  0.2198
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6841  std_scores:  0.1639
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6907  std_scores:  0.1696
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6897  std_scores:  0.1634
+desired_num_gmm  4
+Iteration:  27
+class_samples:  [107 205 300 388]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9256  std_scores:  0.0581
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8361  std_scores:  0.1198
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1527  std_scores:  0.1031
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6417  std_scores:  0.104
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6434  std_scores:  0.1082
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6476  std_scores:  0.1145
+desired_num_gmm  4
+Iteration:  28
+class_samples:  [ 89 182 307 422]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8853  std_scores:  0.0668
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7976  std_scores:  0.0648
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0923  std_scores:  0.1678
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5937  std_scores:  0.1267
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5932  std_scores:  0.1299
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5967  std_scores:  0.1313
+desired_num_gmm  5
+Iteration:  29
+class_samples:  [105 210 287 398]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9269  std_scores:  0.0557
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8102  std_scores:  0.0748
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.088  std_scores:  0.1403
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6587  std_scores:  0.1665
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6164  std_scores:  0.1329
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6195  std_scores:  0.1362
+desired_num_gmm  5
+Iteration:  30
+class_samples:  [ 93 199 306 402]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8759  std_scores:  0.0554
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7724  std_scores:  0.0583
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1972  std_scores:  0.189
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5966  std_scores:  0.1178
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5987  std_scores:  0.1212
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6006  std_scores:  0.1189
+desired_num_gmm  4
+Iteration:  31
+class_samples:  [ 94 190 302 414]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8856  std_scores:  0.0724
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7846  std_scores:  0.1373
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.021  std_scores:  0.188
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5941  std_scores:  0.2005
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5587  std_scores:  0.1491
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5617  std_scores:  0.1456
+desired_num_gmm  5
+Iteration:  32
+class_samples:  [102 222 273 403]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.9039  std_scores:  0.0315
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.8869  std_scores:  0.1247
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0986  std_scores:  0.0958
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6324  std_scores:  0.0882
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.6335  std_scores:  0.0887
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.6367  std_scores:  0.0933
+desired_num_gmm  4
+Iteration:  33
+class_samples:  [ 80 202 306 412]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8603  std_scores:  0.0602
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7963  std_scores:  0.1022
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.1513  std_scores:  0.1765
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.5862  std_scores:  0.088
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.5952  std_scores:  0.0887
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.594  std_scores:  0.0869
+desired_num_gmm  4
+Iteration:  34
+class_samples:  [ 92 204 306 398]  sum  1000
+num_samples:  1000  num_gmm:  1  mean_scores:  -8.8999  std_scores:  0.0582
+num_samples:  1000  num_gmm:  2  mean_scores:  -7.7493  std_scores:  0.1107
+num_samples:  1000  num_gmm:  3  mean_scores:  -7.0654  std_scores:  0.1837
+num_samples:  1000  num_gmm:  4  mean_scores:  -6.6017  std_scores:  0.175
+num_samples:  1000  num_gmm:  5  mean_scores:  -6.558  std_scores:  0.1124
+num_samples:  1000  num_gmm:  6  mean_scores:  -6.5623  std_scores:  0.1135
+desired_num_gmm  5
+num_gmm_freq:  [4 4 5 4 4 5 4 4 5 4 6 5 5 4 6 4 4 5 5 5 4 4 4 4 4 5 4 4 5 5 4 5 4 4 5]
+Iteration:  0
+class_samples:  [1004 2033 2941 4022]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9029  std_scores:  0.0168
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.781  std_scores:  0.0382
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1142  std_scores:  0.1188
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5982  std_scores:  0.0404
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5997  std_scores:  0.041
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5999  std_scores:  0.0408
+desired_num_gmm  4
+Iteration:  1
+class_samples:  [ 973 1964 2996 4067]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.8932  std_scores:  0.0195
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7617  std_scores:  0.0373
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0628  std_scores:  0.1012
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5841  std_scores:  0.0407
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5856  std_scores:  0.0405
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5865  std_scores:  0.0402
+desired_num_gmm  4
+Iteration:  2
+class_samples:  [ 970 1960 2980 4090]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.8958  std_scores:  0.0239
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8304  std_scores: Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+ 0.1044
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.077  std_scores:  0.0887
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6047  std_scores:  0.0394
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6046  std_scores:  0.039
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.605  std_scores:  0.0392
+desired_num_gmm  5
+Iteration:  3
+class_samples:  [ 950 2024 3016 4010]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.8962  std_scores:  0.0196
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.779  std_scores:  0.033
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0545  std_scores:  0.0391
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5994  std_scores:  0.0396
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6006  std_scores:  0.04
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6015  std_scores:  0.0399
+desired_num_gmm  4
+Iteration:  4
+class_samples:  [ 977 1947 3019 4057]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.8965  std_scores:  0.016
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7666  std_scores:  0.0214
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0774  std_scores:  0.0882
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5835  std_scores:  0.0386
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5858  std_scores:  0.038
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5868  std_scores:  0.0376
+desired_num_gmm  4
+Iteration:  5
+class_samples:  [1011 2061 2951 3977]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9076  std_scores:  0.0162
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7706  std_scores:  0.0416
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0587  std_scores:  0.0478
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5834  std_scores:  0.0378
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5845  std_scores:  0.0378
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5851  std_scores:  0.0382
+desired_num_gmm  4
+Iteration:  6
+class_samples:  [ 987 2044 2958 4011]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9026  std_scores:  0.0223
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8194  std_scores:  0.0876
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1232  std_scores:  0.1085
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5989  std_scores:  0.0347
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6001  std_scores:  0.0341
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6007  std_scores:  0.0355
+desired_num_gmm  4
+Iteration:  7
+class_samples:  [ 994 1968 3022 4016]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.8987  std_scores:  0.0141
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7774  std_scores:  0.025
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0737  std_scores:  0.0293
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5991  std_scores:  0.0245
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6007  std_scores:  0.0251
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6015  std_scores:  0.0242
+desired_num_gmm  4
+Iteration:  8
+class_samples:  [1010 1965 3031 3994]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.8937  std_scores:  0.0122
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8034  std_scores:  0.0959
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1231  std_scores:  0.0975
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5997  std_scores:  0.0307
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6009  std_scores:  0.0315
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6025  std_scores:  0.0316
+desired_num_gmm  4
+Iteration:  9
+class_samples:  [1007 2036 2960 3997]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9026  std_scores:  0.0176
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7556  std_scores:  0.03
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0781  std_scores:  0.07
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5969  std_scores:  0.038
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5992  std_scores:  0.0378
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6002  std_scores:  0.038
+desired_num_gmm  4
+Iteration:  10
+class_samples:  [ 995 2029 2994 3982]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9036  std_scores:  0.011
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7777  std_scores:  0.0316
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1433  std_scores:  0.1047
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6124  std_scores:  0.0278
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6139  std_scores:  0.0279
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6153  std_scores:  0.0276
+desired_num_gmm  4
+Iteration:  11
+class_samples:  [1016 2000 2947 4037]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9053  std_scores:  0.0222
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8688  std_scores:  0.1274
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0874  std_scores:  0.093
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6309  std_scores:  0.1362
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5903  std_scores:  0.0315
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5912  std_scores:  0.0313
+desired_num_gmm  5
+Iteration:  12
+class_samples:  [1040 1990 2917 4053]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.905  std_scores:  0.0131
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.771  std_scores:  0.0354
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0771  std_scores:  0.0653
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6809  std_scores:  0.1897
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5971  std_scores:  0.0337
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5981  std_scores:  0.0337
+desired_num_gmm  5
+Iteration:  13
+class_samples:  [1034 2006 3007 3953]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9079  std_scores:  0.0149
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7945  std_scores:  0.0311
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.2396  std_scores:  0.116
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6022  std_scores:  0.0387
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6039  std_scores:  0.0391
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6044  std_scores:  0.0391
+desired_num_gmm  4
+Iteration:  14
+class_samples:  [1002 1994 3007 3997]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9009  std_scores:  0.0157
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7733  std_scores:  0.0403
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0658  std_scores:  0.0388
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5904  std_scores:  0.032
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5911  std_scores:  0.0311
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5928  std_scores:  0.0315
+desired_num_gmm  4
+Iteration:  15
+class_samples:  [ 988 1974 3029 4009]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9021  std_scores:  0.0189
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7784  std_scores:  0.0443
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1007  std_scores:  0.1007
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5873  std_scores:  0.049
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5889  std_scores:  0.0503
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5894  std_scores:  0.0512
+desired_num_gmm  4
+Iteration:  16
+class_samples:  [ 926 2001 2928 4145]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.892  std_scores:  0.0217
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.77  std_scores:  0.0235
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0576  std_scores:  0.0916
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5936  std_scores:  0.043
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5951  std_scores:  0.044
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5958  std_scores:  0.0427
+desired_num_gmm  4
+Iteration:  17
+class_samples:  [ 989 2026 2981 4004]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9003  std_scores:  0.0171
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8012  std_scores:  0.0853
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1312  std_scores:  0.1065
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5838  std_scores:  0.0458
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.585  std_scores:  0.0447
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5862  std_scores:  0.0451
+desired_num_gmm  4
+Iteration:  18
+class_samples:  [1026 1944 2991 4039]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9017  std_scores:  0.0205
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8093  std_scores:  0.0887
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0978  std_scores:  0.0874
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5976  std_scores:  0.029
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.599  std_scores:  0.0284
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6008  std_scores:  0.0288
+desired_num_gmm  4
+Iteration:  19
+class_samples:  [1007 1974 2977 4042]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9032  std_scores:  0.0133
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7745  std_scores:  0.0278
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1052  std_scores:  0.1166
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5802  std_scores:  0.0301
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5815  std_scores:  0.0296
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.583  std_scores:  0.0305
+desired_num_gmm  4
+Iteration:  20
+class_samples:  [ 996 1974 3009 4021]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9003  std_scores:  0.0179
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7723  std_scores:  0.0284
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.083  std_scores:  0.0715
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6351  std_scores:  0.1654
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5884  std_scores:  0.0321
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5901  std_scores:  0.0321
+desired_num_gmm  5
+Iteration:  21
+class_samples:  [1072 1982 3037 3909]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9095  std_scores:  0.0171
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7704  std_scores:  0.0327
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1588  std_scores:  0.1046
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6017  std_scores:  0.0258
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6037  std_scores:  0.0269
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6047  std_scores:  0.0274
+desired_num_gmm  4
+Iteration:  22
+class_samples:  [1042 2026 2906 4026]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9084  std_scores:  0.0118
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8644  std_scores:  0.1197
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0859  std_scores:  0.0805
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6937  std_scores:  0.1814
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6016  std_scores:  0.0305
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6028  std_scores:  0.0302
+desired_num_gmm  5
+Iteration:  23
+class_samples:  [1010 1956 3057 3977]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9048  std_scores:  0.0211
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.786  std_scores:  0.0265
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0699  std_scores:  0.0475
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5904  std_scores:  0.0459
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5926  std_scores:  0.0456
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5939  std_scores:  0.0456
+desired_num_gmm  4
+Iteration:  24
+class_samples:  [1041 1970 2985 4004]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9114  std_scores:  0.0116
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8182  std_scores:  0.0876
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0656  std_scores:  0.032
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6307  std_scores:  0.1507
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5838  std_scores:  0.0272
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5842  std_scores:  0.0281
+desired_num_gmm  5
+Iteration:  25
+class_samples:  [ 968 1972 2991 4069]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.895  std_scores:  0.0185
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7645  std_scores:  0.0307
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.056  std_scores:  0.0348
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5908  std_scores:  0.0241
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5932  std_scores:  0.0238
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5941  std_scores:  0.0247
+desired_num_gmm  4
+Iteration:  26
+class_samples:  [1029 2008 2973 3990]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9075  std_scores:  0.0154
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7939  std_scores:  0.0153
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.2453  std_scores:  0.1223
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6152  std_scores:  0.0249
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6176  std_scores:  0.0255
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6186  std_scores:  0.0253
+desired_num_gmm  4
+Iteration:  27
+class_samples:  [1004 1998 3000 3998]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9021  std_scores:  0.0196
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.774  std_scores:  0.038
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0749  std_scores:  0.045
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6188  std_scores:  0.031
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6209  std_scores:  0.0316
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6209  std_scores:  0.0326
+desired_num_gmm  4
+Iteration:  28
+class_samples:  [1030 2003 2980 3987]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9056  std_scores:  0.0136
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8064  std_scores:  0.1
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0644  std_scores:  0.0332
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6384  std_scores:  0.1189
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5982  std_scores:  0.0284
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5995  std_scores:  0.0292
+desired_num_gmm  5
+Iteration:  29
+class_samples:  [ 998 2097 2960 3945]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9138  std_scores:  0.0123
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.8242  std_scores:  0.1069
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.1276  std_scores:  0.1202
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6195  std_scores:  0.039
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6216  std_scores:  0.0396
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6215  std_scores:  0.04
+desired_num_gmm  4
+Iteration:  30
+class_samples:  [1055 1961 3017 3967]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9089  std_scores:  0.0194
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.788  std_scores:  0.0375
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0992  std_scores:  0.0678
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6023  std_scores:  0.0252
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6035  std_scores:  0.0249
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6054  std_scores:  0.0255
+desired_num_gmm  4
+Iteration:  31
+class_samples:  [ 972 2002 2983 4043]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9019  std_scores:  0.0172
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7836  std_scores:  0.0203
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.2474  std_scores:  0.1162
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5943  std_scores:  0.0323
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5951  std_scores:  0.0321
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.5967  std_scores:  0.0324
+desired_num_gmm  4
+Iteration:  32
+class_samples:  [1048 2003 2950 3999]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9056  std_scores:  0.0138
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7806  std_scores:  0.0324
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.2257Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+Q2.py:56: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+  std_scores:  0.1267
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.6001  std_scores:  0.0267
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6023  std_scores:  0.027
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.604  std_scores:  0.026
+desired_num_gmm  4
+Iteration:  33
+class_samples:  [1039 1947 3043 3971]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.9076  std_scores:  0.0261
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7961  std_scores:  0.0319
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0833  std_scores:  0.0581
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5989  std_scores:  0.0462
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.6011  std_scores:  0.0474
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.6023  std_scores:  0.0471
+desired_num_gmm  4
+Iteration:  34
+class_samples:  [1009 1946 2958 4087]  sum  10000
+num_samples:  10000  num_gmm:  1  mean_scores:  -8.8985  std_scores:  0.0084
+num_samples:  10000  num_gmm:  2  mean_scores:  -7.7871  std_scores:  0.034
+num_samples:  10000  num_gmm:  3  mean_scores:  -7.0892  std_scores:  0.0848
+num_samples:  10000  num_gmm:  4  mean_scores:  -6.5961  std_scores:  0.047
+num_samples:  10000  num_gmm:  5  mean_scores:  -6.5978  std_scores:  0.0471
+num_samples:  10000  num_gmm:  6  mean_scores:  -6.598  std_scores:  0.0472
+desired_num_gmm  4
+num_gmm_freq:  [4 4 5 4 4 4 4 4 4 4 4 5 5 4 4 4 4 4 4 4 5 4 5 4 5 4 4 4 5 4 4 4 4 4 4]

@@ -9,16 +9,16 @@ np.set_printoptions(suppress=True)
 
 def set_mean_cov():
 
-    mval = 25
+    mval = 35
     m0 = np.array([1, 0])*mval
-    m1 = np.array([1, 1])*mval
+    m1 = np.array([1, 1.5])*mval
     m2 = np.array([0, 0])*mval
-    m3 = np.array([0, 1])*mval
+    m3 = np.array([0, 1.5])*mval
 
-    C0 = np.array([[10, 0], [0, 40]])
-    C1 = np.array([[20, 0], [0, 5]])
-    C2 = np.array([[20, 0], [0, 10]])
-    C3 = np.array([[5, 0], [0, 20]])
+    C0 = np.array([[10, 20], [0, 40]])
+    C1 = np.array([[20, 0], [40, 5]])
+    C2 = np.array([[20, 30], [0, 10]])
+    C3 = np.array([[5, 0], [10, 20]])
 
     return [m0, m1, m2, m3], [C0, C1, C2, C3]
 
@@ -74,7 +74,7 @@ def generate_data_pxgl_samples(samples_type, priors, means, covs, label_ids):
         sample_type[1] = cls_samples
         sample_type[2] = data_wt_labels
 
-        label_names = ["True label distribution for " + str(num_samples) + " for two classes", "x", "y"]
+        label_names = ["True label distribution of " + str(num_samples) + " samples using four components", "x", "y"]
         plot_dist(data_wt_labels, label_names, label_ids)
 
     return samples_type
@@ -110,18 +110,20 @@ def split_data(data_wt_labels, label_ids):
 def MOS(sample_type, kfold, num_repeat):
 
     num_samples = sample_type[0][0]
-    cls_samples = sample_type[1]
-    data_wt_labels = sample_type[2]
-    data_wt_labels = data_wt_labels[:, np.random.permutation(data_wt_labels.shape[1])] #shuffle
-
-    data = data_wt_labels[:2,:].T #(N, 2)
-    labels = data_wt_labels[2,:].T
 
     num_gmm_freq = np.zeros((num_repeat,), dtype=int)
 
     for num_time in range(num_repeat):
 
         print('Iteration: ',num_time)
+        
+        data_wt_labels, cls_samples = generate_data_pxgl(priors, means, covs, num_samples, label_ids)
+
+        data_wt_labels = data_wt_labels[:, np.random.permutation(data_wt_labels.shape[1])] #shuffle
+
+        data = data_wt_labels[:2,:].T #(N, 2)
+        labels = data_wt_labels[2,:].T
+
         gmm_mean = np.zeros((len(num_gmm_lst),), dtype=float)
         gmm_std = np.zeros((len(num_gmm_lst),), dtype=float)
 
@@ -146,13 +148,16 @@ def MOS(sample_type, kfold, num_repeat):
 def plot_hist(num_gmm_freq, num_samples, num_time):
 
     print('num_gmm_freq: ',num_gmm_freq)
-    n_bins = num_gmm_freq.shape[0]
+    n_bins = len(num_gmm_lst)
     fig, ax = plt.subplots(tight_layout=True)
     ax.set_xlim([1, 6])
     ax.hist(num_gmm_freq, bins=n_bins)
-
-    plt.show()
-    #plt.savefig(str(num_samples) + '_' + str(num_time) + '.png')
+    plt.title('Frequency of model order across 35 experiments for ' + str(num_samples) + ' samples')
+    plt.xlabel('GMM model orders')
+    plt.ylabel('Frequency of GMM model order')
+    
+    #plt.show()
+    plt.savefig(str(num_samples) + '_' + str(num_time) + '.png')
 
 if __name__ == "__main__":              
 
@@ -161,7 +166,7 @@ if __name__ == "__main__":
     num_labels = len(label_ids)
     priors = [0.1, 0.2, 0.3, 0.4]
     kfold = 10
-    num_repeat = 2
+    num_repeat = 35
     num_gmm_lst = [1, 2, 3, 4, 5, 6]
 
     samples_type = {
@@ -172,10 +177,11 @@ if __name__ == "__main__":
     }
 
     means, covs = set_mean_cov()
+    print('means ',means)
+    print('covs ',covs)
 
-    generate_data_pxgl_samples(samples_type, priors, means, covs, label_ids)
+    #generate_data_pxgl_samples(samples_type, priors, means, covs, label_ids)
 
     #Model order selection
     for i, key in enumerate(list(samples_type.keys())):
         MOS(samples_type[key], kfold, num_repeat)
-

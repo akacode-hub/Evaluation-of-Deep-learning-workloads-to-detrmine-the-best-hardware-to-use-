@@ -47,10 +47,35 @@ def plot_pe_data(poes, num_samples):
     plt.legend(["Optimal pFE", "MLP pFE"])
     plt.show()
 
+def plot_hist():
+
+    #num_gmm_freq = [4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 5, 4, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4]
+    #num_samples = 10000
+    # num_gmm_freq = [4, 4, 5, 4, 4, 5, 4, 4, 5, 4, 6, 5, 5, 4, 6, 4, 4, 5, 5, 5, 4, 4, 4, 4, 4, 5, 4, 4, 5, 5, 4, 5, 4, 4, 5]
+    # num_samples = 1000
+
+    # num_gmm_freq = [4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4]
+    # num_samples = 100
+
+    num_gmm_freq = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1]
+    num_samples = 10
+    
+    print('num_gmm_freq: ',num_gmm_freq)
+    n_bins = 6
+    fig, ax = plt.subplots(tight_layout=True)
+    ax.set_xlim([1, 6])
+    ax.hist(num_gmm_freq, bins=n_bins)
+    plt.title('Frequency of model order across 35 experiments for ' + str(num_samples) + ' samples')
+    plt.xlabel('GMM model orders')
+    plt.ylabel('Frequency of GMM model order')
+    plt.show()
+    # plt.savefig(str(num_samples) + '_' + str(num_time) + '.png')
+
 if __name__ == "__main__":              
 
     #50
     poe_test = [0.20, 0.156, 0.152, 0.149, 0.147, 0.145]
     num_samples = [100, 200, 500, 1000, 2000, 5000]
 
-    plot_pe_data(poe_test, num_samples)
+    #plot_pe_data(poe_test, num_samples)
+    plot_hist()
