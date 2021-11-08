@@ -1,0 +1,148 @@
+2021-11-06 18:25:02.594900: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2021-11-06 18:25:02.594937: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+mean:  [array([10.77680199, -1.83144478,  0.35855518]), array([ 9.90270673, 11.26361358,  0.50507929]), array([ 9.95171802,  0.44177773, 10.46763753]), array([ 8.77472261, 10.05745674,  8.9725335 ])]
+covs:  [array([[11.28642235,  1.76511684,  0.24087186],
+       [ 1.80069137, 11.62829032,  0.50756581],
+       [ 1.71460661,  1.70782876,  9.3746503 ]]), array([[ 8.18625708,  0.80294884,  1.25116457],
+       [ 0.79156402, 10.70037689,  1.74080247],
+       [ 0.10764957,  1.2164775 ,  8.22004177]]), array([[10.91792705,  0.33293943,  1.78907106],
+       [ 0.21124766, 11.77404227,  1.88234712],
+       [ 0.01194164,  0.47124712,  9.29536104]]), array([[11.97380581,  0.96141891,  0.01342527],
+       [ 1.59141962, 11.93843782,  1.44424336],
+       [ 0.10926119,  0.46611661,  9.54231525]])]
+class_samples:  [26, 21, 32, 21]  sum  100
+Q1.py:70: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+***** plot *****
+class_samples:  [60, 48, 55, 37]  sum  200
+***** plot *****
+class_samples:  [134, 130, 133, 103]  sum  500
+***** plot *****
+class_samples:  [237, 224, 278, 261]  sum  1000
+***** plot *****
+class_samples:  [487, 508, 527, 478]  sum  2000
+***** plot *****
+class_samples:  [1240, 1269, 1237, 1254]  sum  5000
+***** plot *****
+class_samples:  [25072, 25100, 25150, 24678]  sum  100000
+***** plot *****
+prob_error:  0.05
+^CTraceback (most recent call last):
+  File "Q1.py", line 341, in <module>
+    calc_theoretical_classifier(samples_type['D100k'])
+  File "Q1.py", line 168, in calc_theoretical_classifier
+    plot_decision(data_wt_labels, correct_ids, incorrect_ids)
+  File "Q1.py", line 185, in plot_decision
+    plt.show()
+  File "/usr/local/lib/python3.8/dist-packages/matplotlib/pyplot.py", line 378, in show
+    return _backend_mod.show(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/matplotlib/backend_bases.py", line 3595, in show
+    cls.mainloop()
+  File "/usr/local/lib/python3.8/dist-packages/matplotlib/backends/backend_gtk3.py", line 850, in mainloop
+    Gtk.main()
+  File "/usr/lib/python3/dist-packages/gi/overrides/Gtk.py", line 1632, in main
+    return _Gtk_main(*args, **kwargs)
+  File "/usr/lib/python3.8/contextlib.py", line 120, in __exit__
+    next(self.gen)
+  File "/usr/lib/python3/dist-packages/gi/_ossighelper.py", line 251, in register_sigint_fallback
+    signal.default_int_handler(signal.SIGINT, None)
+KeyboardInterrupt
+^C
+ubuntu@ubuntu-Inspiron-N5050:~/Documents/US/NEU/Courses/Fall2021/NEU-Fall2021/MLPR/Assignment3$ ^C
+ubuntu@ubuntu-Inspiron-N5050:~/Documents/US/NEU/Courses/Fall2021/NEU-Fall2021/MLPR/Assignment3$ python3 Q1.py 
+2021-11-06 18:29:20.364272: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2021-11-06 18:29:20.364313: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+mean:  [array([8.97972637, 0.6743135 , 0.80221106]), array([10.00109745,  9.05394723, -0.98323778]), array([11.37786027, -1.33761782, 11.47010632]), array([ 8.28778737, 10.73167499, 11.5013574 ])]
+covs:  [array([[10.22789555,  0.01330527,  0.75328271],
+       [ 1.45434782, 11.61053475,  0.36846477],
+       [ 1.26786938,  0.04650821,  8.75711676]]), array([[10.01019494,  1.16466181,  0.62934381],
+       [ 0.26350484,  9.57439214,  1.05861784],
+       [ 1.45867816,  0.49582072, 11.51021419]]), array([[ 8.3158652 ,  0.69587704,  1.52354754],
+       [ 0.6954573 ,  9.50934566,  0.60254553],
+       [ 1.98029701,  1.9517268 , 11.21524111]]), array([[10.31364147,  1.83410655,  0.02689235],
+       [ 0.47479693, 11.17606254,  1.91364701],
+       [ 0.38706244,  1.60637928, 11.70370013]])]
+class_samples:  [27, 29, 26, 18]  sum  100
+Q1.py:70: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+***** plot *****
+class_samples:  [52, 60, 37, 51]  sum  200
+***** plot *****
+class_samples:  [132, 133, 112, 123]  sum  500
+***** plot *****
+class_samples:  [256, 255, 262, 227]  sum  1000
+***** plot *****
+class_samples:  [490, 530, 508, 472]  sum  2000
+***** plot *****
+class_samples:  [1204, 1253, 1274, 1269]  sum  5000
+***** plot *****
+class_samples:  [24712, 25097, 25015, 25176]  sum  100000
+***** plot *****
+prob_error:  0.0915
+/usr/lib/python3/dist-packages/gi/overrides/Gtk.py:1632: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  return _Gtk_main(*args, **kwargs)
+2021-11-06 18:35:32.941114: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2021-11-06 18:35:32.941201: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2021-11-06 18:35:32.941270: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (ubuntu-Inspiron-N5050): /proc/driver/nvidia/version does not exist
+WARNING:tensorflow:5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fdfec37d820> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fdfec2213a0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+num_samples: 100  num_perc:  1  mean error:  0.6  std error:  0.2
+num_samples: 100  num_perc:  2  mean error:  0.48  std error:  0.1778
+num_samples: 100  num_perc:  4  mean error:  0.42  std error:  0.1833
+num_samples: 100  num_perc:  8  mean error:  0.4  std error:  0.1549
+num_samples: 100  num_perc:  16  mean error:  0.32  std error:  0.14
+num_samples: 100  num_perc:  25  mean error:  0.28  std error:  0.1536
+num_samples: 100  num_perc:  35  mean error:  0.25  std error:  0.1285
+num_samples: 100  num_perc:  50  mean error:  0.22  std error:  0.098
+pe for each perceptron:  [0.6  0.48 0.42 0.4  0.32 0.28 0.25 0.22]
+num_samples:  100  desired_num_perc:  7  val_err:  0.12616000000000005
+num_samples: 200  num_perc:  1  mean error:  0.535  std error:  0.1343
+num_samples: 200  num_perc:  2  mean error:  0.485  std error:  0.1001
+num_samples: 200  num_perc:  4  mean error:  0.34  std error:  0.1393
+num_samples: 200  num_perc:  8  mean error:  0.27  std error:  0.0872
+num_samples: 200  num_perc:  16  mean error:  0.195  std error:  0.1172
+num_samples: 200  num_perc:  25  mean error:  0.145  std error:  0.065
+num_samples: 200  num_perc:  35  mean error:  0.145  std error:  0.0907
+num_samples: 200  num_perc:  50  mean error:  0.135  std error:  0.0808
+pe for each perceptron:  [0.535 0.485 0.34  0.27  0.195 0.145 0.145 0.135]
+num_samples:  200  desired_num_perc:  7  val_err:  0.12512
+num_samples: 500  num_perc:  1  mean error:  0.542  std error:  0.0832
+num_samples: 500  num_perc:  2  mean error:  0.446  std error:  0.0938
+num_samples: 500  num_perc:  4  mean error:  0.316  std error:  0.0535
+num_samples: 500  num_perc:  8  mean error:  0.252  std error:  0.0553
+num_samples: 500  num_perc:  16  mean error:  0.22  std error:  0.0438
+num_samples: 500  num_perc:  25  mean error:  0.202  std error:  0.0414
+num_samples: 500  num_perc:  35  mean error:  0.178  std error:  0.0363
+num_samples: 500  num_perc:  50  mean error:  0.172  std error:  0.0458
+pe for each perceptron:  [0.542 0.446 0.316 0.252 0.22  0.202 0.178 0.172]
+num_samples:  500  desired_num_perc:  7  val_err:  0.10736999999999997
+num_samples: 1000  num_perc:  1  mean error:  0.57  std error:  0.0832
+num_samples: 1000  num_perc:  2  mean error:  0.441  std error:  0.0905
+num_samples: 1000  num_perc:  4  mean error:  0.387  std error:  0.0668
+num_samples: 1000  num_perc:  8  mean error:  0.293  std error:  0.0922
+num_samples: 1000  num_perc:  16  mean error:  0.239  std error:  0.0418
+num_samples: 1000  num_perc:  25  mean error:  0.192  std error:  0.0508
+num_samples: 1000  num_perc:  35  mean error:  0.19  std error:  0.0498
+num_samples: 1000  num_perc:  50  mean error:  0.175  std error:  0.0446
+pe for each perceptron:  [0.57  0.441 0.387 0.293 0.239 0.192 0.19  0.175]
+num_samples:  1000  desired_num_perc:  7  val_err:  0.09694999999999998
+num_samples: 2000  num_perc:  1  mean error:  0.532  std error:  0.0592
+num_samples: 2000  num_perc:  2  mean error:  0.429  std error:  0.0859
+num_samples: 2000  num_perc:  4  mean error:  0.3645  std error:  0.0555
+num_samples: 2000  num_perc:  8  mean error:  0.2645  std error:  0.0534
+num_samples: 2000  num_perc:  16  mean error:  0.225  std error:  0.0338
+num_samples: 2000  num_perc:  25  mean error:  0.214  std error:  0.024
+num_samples: 2000  num_perc:  35  mean error:  0.184  std error:  0.0252
+num_samples: 2000  num_perc:  50  mean error:  0.174  std error:  0.0296
+pe for each perceptron:  [0.532  0.429  0.3645 0.2645 0.225  0.214  0.184  0.174 ]
+num_samples:  2000  desired_num_perc:  7  val_err:  0.09852000000000005
+num_samples: 5000  num_perc:  1  mean error:  0.54  std error:  0.0588
+num_samples: 5000  num_perc:  2  mean error:  0.437  std error:  0.1076
+num_samples: 5000  num_perc:  4  mean error:  0.3418  std error:  0.0553
+num_samples: 5000  num_perc:  8  mean error:  0.2578  std error:  0.0488
+num_samples: 5000  num_perc:  16  mean error:  0.2108  std error:  0.0437
+num_samples: 5000  num_perc:  25  mean error:  0.1894  std error:  0.0279
+num_samples: 5000  num_perc:  35  mean error:  0.18  std error:  0.0238
+num_samples: 5000  num_perc:  50  mean error:  0.1628  std error:  0.0215
+pe for each perceptron:  [0.54   0.437  0.3418 0.2578 0.2108 0.1894 0.18   0.1628]
+num_samples:  5000  desired_num_perc:  7  val_err:  0.09438000000000002

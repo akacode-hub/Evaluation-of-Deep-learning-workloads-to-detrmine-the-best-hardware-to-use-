@@ -1,0 +1,96 @@
+2021-11-07 14:42:32.673181: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2021-11-07 14:42:32.673237: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+mean:  [array([9.75, 0.  , 0.  ]), array([7.5, 0. , 9. ]), array([0. , 7.5, 9. ]), array([8.25, 9.  , 7.5 ])]
+covs:  [array([[10,  0,  0],
+       [ 0, 40,  0],
+       [ 0,  0, 15]]), array([[20,  0,  0],
+       [ 0,  5,  0],
+       [ 0,  0, 10]]), array([[20,  0,  0],
+       [ 0, 10,  0],
+       [ 0,  0, 40]]), array([[ 5,  0,  0],
+       [ 0, 20,  0],
+       [ 0,  0,  5]])]
+class_samples:  [29, 28, 25, 18]  sum  100
+***** plot *****
+class_samples:  [54, 51, 42, 53]  sum  200
+***** plot *****
+class_samples:  [107, 143, 123, 127]  sum  500
+***** plot *****
+class_samples:  [259, 264, 228, 249]  sum  1000
+***** plot *****
+class_samples:  [478, 504, 504, 514]  sum  2000
+***** plot *****
+class_samples:  [1265, 1226, 1218, 1291]  sum  5000
+***** plot *****
+class_samples:  [25089, 25075, 25076, 24760]  sum  100000
+***** plot *****
+prob_error:  0.1372
+Q1.py:164: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  plt.show()
+/usr/lib/python3/dist-packages/gi/overrides/Gtk.py:1632: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  return _Gtk_main(*args, **kwargs)
+2021-11-07 14:43:24.617001: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2021-11-07 14:43:24.617062: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2021-11-07 14:43:24.617140: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (ubuntu-Inspiron-N5050): /proc/driver/nvidia/version does not exist
+WARNING:tensorflow:5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f3b58b9a670> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f3b58a491f0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+num_samples: 100  num_perc:  1  mean error:  0.63  std error:  0.1792
+num_samples: 100  num_perc:  2  mean error:  0.54  std error:  0.1356
+num_samples: 100  num_perc:  4  mean error:  0.51  std error:  0.1136
+num_samples: 100  num_perc:  8  mean error:  0.33  std error:  0.1418
+num_samples: 100  num_perc:  16  mean error:  0.3  std error:  0.1342
+num_samples: 100  num_perc:  25  mean error:  0.33  std error:  0.1676
+num_samples: 100  num_perc:  35  mean error:  0.27  std error:  0.1187
+num_samples: 100  num_perc:  50  mean error:  0.24  std error:  0.08
+pe for each perceptron:  [0.63 0.54 0.51 0.33 0.3  0.33 0.27 0.24]
+num_samples:  100  desired_num_perc:  50  val_err:  0.20235000000000003
+num_samples: 200  num_perc:  1  mean error:  0.61  std error:  0.0917
+num_samples: 200  num_perc:  2  mean error:  0.57  std error:  0.1269
+num_samples: 200  num_perc:  4  mean error:  0.44  std error:  0.1609
+num_samples: 200  num_perc:  8  mean error:  0.39  std error:  0.097
+num_samples: 200  num_perc:  16  mean error:  0.31  std error:  0.13
+num_samples: 200  num_perc:  25  mean error:  0.275  std error:  0.1124
+num_samples: 200  num_perc:  35  mean error:  0.24  std error:  0.0831
+num_samples: 200  num_perc:  50  mean error:  0.235  std error:  0.0808
+pe for each perceptron:  [0.61  0.57  0.44  0.39  0.31  0.275 0.24  0.235]
+num_samples:  200  desired_num_perc:  50  val_err:  0.15680000000000005
+num_samples: 500  num_perc:  1  mean error:  0.582  std error:  0.1205
+num_samples: 500  num_perc:  2  mean error:  0.55  std error:  0.0677
+num_samples: 500  num_perc:  4  mean error:  0.426  std error:  0.0988
+num_samples: 500  num_perc:  8  mean error:  0.31  std error:  0.096
+num_samples: 500  num_perc:  16  mean error:  0.232  std error:  0.0431
+num_samples: 500  num_perc:  25  mean error:  0.188  std error:  0.0466
+num_samples: 500  num_perc:  35  mean error:  0.184  std error:  0.0408
+num_samples: 500  num_perc:  50  mean error:  0.17  std error:  0.03
+pe for each perceptron:  [0.582 0.55  0.426 0.31  0.232 0.188 0.184 0.17 ]
+num_samples:  500  desired_num_perc:  50  val_err:  0.15210999999999997
+num_samples: 1000  num_perc:  1  mean error:  0.621  std error:  0.0558
+num_samples: 1000  num_perc:  2  mean error:  0.482  std error:  0.0562
+num_samples: 1000  num_perc:  4  mean error:  0.411  std error:  0.0825
+num_samples: 1000  num_perc:  8  mean error:  0.293  std error:  0.064
+num_samples: 1000  num_perc:  16  mean error:  0.228  std error:  0.0337
+num_samples: 1000  num_perc:  25  mean error:  0.211  std error:  0.0305
+num_samples: 1000  num_perc:  35  mean error:  0.218  std error:  0.0279
+num_samples: 1000  num_perc:  50  mean error:  0.2  std error:  0.019
+pe for each perceptron:  [0.621 0.482 0.411 0.293 0.228 0.211 0.218 0.2  ]
+num_samples:  1000  desired_num_perc:  50  val_err:  0.14822999999999997
+num_samples: 2000  num_perc:  1  mean error:  0.5625  std error:  0.0695
+num_samples: 2000  num_perc:  2  mean error:  0.5045  std error:  0.0809
+num_samples: 2000  num_perc:  4  mean error:  0.446  std error:  0.0631
+num_samples: 2000  num_perc:  8  mean error:  0.3275  std error:  0.0604
+num_samples: 2000  num_perc:  16  mean error:  0.264  std error:  0.041
+num_samples: 2000  num_perc:  25  mean error:  0.2425  std error:  0.0484
+num_samples: 2000  num_perc:  35  mean error:  0.2185  std error:  0.0332
+num_samples: 2000  num_perc:  50  mean error:  0.2125  std error:  0.0259
+pe for each perceptron:  [0.5625 0.5045 0.446  0.3275 0.264  0.2425 0.2185 0.2125]
+num_samples:  2000  desired_num_perc:  50  val_err:  0.14763000000000004
+num_samples: 5000  num_perc:  1  mean error:  0.5732  std error:  0.0391
+num_samples: 5000  num_perc:  2  mean error:  0.5612  std error:  0.0816
+num_samples: 5000  num_perc:  4  mean error:  0.425  std error:  0.0864
+num_samples: 5000  num_perc:  8  mean error:  0.3314  std error:  0.0353
+num_samples: 5000  num_perc:  16  mean error:  0.2556  std error:  0.0543
+num_samples: 5000  num_perc:  25  mean error:  0.2154  std error:  0.0234
+num_samples: 5000  num_perc:  35  mean error:  0.2028  std error:  0.0248
+num_samples: 5000  num_perc:  50  mean error:  0.197  std error:  0.023
+pe for each perceptron:  [0.5732 0.5612 0.425  0.3314 0.2556 0.2154 0.2028 0.197 ]
+num_samples:  5000  desired_num_perc:  50  val_err:  0.14566999999999997

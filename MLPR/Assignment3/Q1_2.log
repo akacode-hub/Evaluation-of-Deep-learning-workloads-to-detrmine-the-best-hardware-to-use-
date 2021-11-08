@@ -1,0 +1,574 @@
+2021-11-07 12:07:25.919976: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2021-11-07 12:07:25.920039: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+mean:  [array([ 8.80546258, -1.66486724,  0.51213586]), array([6.05819333, 9.85653072, 1.66909372]), array([8.25292506, 0.89148851, 9.19861126]), array([7.06652157, 8.13088333, 6.06209089])]
+covs:  [array([[10.71004319,  1.18810886,  0.90623279],
+       [ 1.74877317,  8.55983786,  0.41284376],
+       [ 0.05069091,  0.56740973, 10.60279095]]), array([[11.43416051,  1.85756036,  0.74702414],
+       [ 1.3020367 , 11.20204665,  1.04644879],
+       [ 1.24441616,  1.43094542, 10.21885739]]), array([[11.35519359,  0.82531972,  1.71498938],
+       [ 0.4275246 , 11.39814611,  1.33890936],
+       [ 0.13644375,  0.42180156,  9.68528178]]), array([[11.58105966,  0.34678367,  0.83278236],
+       [ 1.14843966,  9.12068828,  0.13226217],
+       [ 0.36195593,  1.86010105,  9.86618636]])]
+class_samples:  [20, 31, 20, 29]  sum  100
+Q1.py:70: RuntimeWarning: covariance is not positive-semidefinite.
+  pxgl = np.random.multivariate_normal(mean, cov, num_cls_samples).T
+***** plot *****
+class_samples:  [61, 47, 39, 53]  sum  200
+***** plot *****
+class_samples:  [112, 112, 143, 133]  sum  500
+***** plot *****
+class_samples:  [234, 279, 243, 244]  sum  1000
+***** plot *****
+class_samples:  [521, 478, 485, 516]  sum  2000
+***** plot *****
+class_samples:  [1305, 1240, 1271, 1184]  sum  5000
+***** plot *****
+class_samples:  [25086, 25002, 25235, 24677]  sum  100000
+***** plot *****
+prob_error:  0.2024
+2021-11-07 12:12:45.053181: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2021-11-07 12:12:45.053229: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2021-11-07 12:12:45.053273: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (ubuntu-Inspiron-N5050): /proc/driver/nvidia/version does not exist
+num_samples: 100  num_perc:  1  val idx:  0  error:  0.6
+num_samples: 100  num_perc:  1  val idx:  1  error:  0.9
+num_samples: 100  num_perc:  1  val idx:  2  error:  0.7
+num_samples: 100  num_perc:  1  val idx:  3  error:  0.6
+WARNING:tensorflow:5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fd9fca88160> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+num_samples: 100  num_perc:  1  val idx:  4  error:  0.8
+WARNING:tensorflow:6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fd9fca84af0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+num_samples: 100  num_perc:  1  val idx:  5  error:  0.4
+num_samples: 100  num_perc:  1  val idx:  6  error:  0.5
+num_samples: 100  num_perc:  1  val idx:  7  error:  0.3
+num_samples: 100  num_perc:  1  val idx:  8  error:  0.7
+num_samples: 100  num_perc:  1  val idx:  9  error:  0.8
+num_samples: 100  num_perc:  1  mean error:  0.63  std error:  0.1792
+num_samples: 100  num_perc:  2  val idx:  0  error:  0.6
+num_samples: 100  num_perc:  2  val idx:  1  error:  0.6
+num_samples: 100  num_perc:  2  val idx:  2  error:  0.5
+num_samples: 100  num_perc:  2  val idx:  3  error:  0.5
+num_samples: 100  num_perc:  2  val idx:  4  error:  0.7
+num_samples: 100  num_perc:  2  val idx:  5  error:  0.4
+num_samples: 100  num_perc:  2  val idx:  6  error:  0.5
+num_samples: 100  num_perc:  2  val idx:  7  error:  0.6
+num_samples: 100  num_perc:  2  val idx:  8  error:  0.7
+num_samples: 100  num_perc:  2  val idx:  9  error:  0.6
+num_samples: 100  num_perc:  2  mean error:  0.57  std error:  0.09
+num_samples: 100  num_perc:  4  val idx:  0  error:  0.5
+num_samples: 100  num_perc:  4  val idx:  1  error:  0.4
+num_samples: 100  num_perc:  4  val idx:  2  error:  0.5
+num_samples: 100  num_perc:  4  val idx:  3  error:  0.5
+num_samples: 100  num_perc:  4  val idx:  4  error:  0.6
+num_samples: 100  num_perc:  4  val idx:  5  error:  0.5
+num_samples: 100  num_perc:  4  val idx:  6  error:  0.5
+num_samples: 100  num_perc:  4  val idx:  7  error:  0.6
+num_samples: 100  num_perc:  4  val idx:  8  error:  0.7
+num_samples: 100  num_perc:  4  val idx:  9  error:  0.8
+num_samples: 100  num_perc:  4  mean error:  0.56  std error:  0.1114
+num_samples: 100  num_perc:  8  val idx:  0  error:  0.5
+num_samples: 100  num_perc:  8  val idx:  1  error:  0.6
+num_samples: 100  num_perc:  8  val idx:  2  error:  0.3
+num_samples: 100  num_perc:  8  val idx:  3  error:  0.5
+num_samples: 100  num_perc:  8  val idx:  4  error:  0.7
+num_samples: 100  num_perc:  8  val idx:  5  error:  0.2
+num_samples: 100  num_perc:  8  val idx:  6  error:  0.5
+num_samples: 100  num_perc:  8  val idx:  7  error:  0.5
+num_samples: 100  num_perc:  8  val idx:  8  error:  0.6
+num_samples: 100  num_perc:  8  val idx:  9  error:  0.2
+num_samples: 100  num_perc:  8  mean error:  0.46  std error:  0.1625
+num_samples: 100  num_perc:  16  val idx:  0  error:  0.3
+num_samples: 100  num_perc:  16  val idx:  1  error:  0.4
+num_samples: 100  num_perc:  16  val idx:  2  error:  0.3
+num_samples: 100  num_perc:  16  val idx:  3  error:  0.6
+num_samples: 100  num_perc:  16  val idx:  4  error:  0.7
+num_samples: 100  num_perc:  16  val idx:  5  error:  0.2
+num_samples: 100  num_perc:  16  val idx:  6  error:  0.5
+num_samples: 100  num_perc:  16  val idx:  7  error:  0.6
+num_samples: 100  num_perc:  16  val idx:  8  error:  0.5
+num_samples: 100  num_perc:  16  val idx:  9  error:  0.2
+num_samples: 100  num_perc:  16  mean error:  0.43  std error:  0.1676
+num_samples: 100  num_perc:  25  val idx:  0  error:  0.4
+num_samples: 100  num_perc:  25  val idx:  1  error:  0.6
+num_samples: 100  num_perc:  25  val idx:  2  error:  0.3
+num_samples: 100  num_perc:  25  val idx:  3  error:  0.6
+num_samples: 100  num_perc:  25  val idx:  4  error:  0.6
+num_samples: 100  num_perc:  25  val idx:  5  error:  0.3
+num_samples: 100  num_perc:  25  val idx:  6  error:  0.5
+num_samples: 100  num_perc:  25  val idx:  7  error:  0.3
+num_samples: 100  num_perc:  25  val idx:  8  error:  0.4
+num_samples: 100  num_perc:  25  val idx:  9  error:  0.1
+num_samples: 100  num_perc:  25  mean error:  0.41  std error:  0.1578
+num_samples: 100  num_perc:  35  val idx:  0  error:  0.4
+num_samples: 100  num_perc:  35  val idx:  1  error:  0.4
+num_samples: 100  num_perc:  35  val idx:  2  error:  0.3
+num_samples: 100  num_perc:  35  val idx:  3  error:  0.5
+num_samples: 100  num_perc:  35  val idx:  4  error:  0.4
+num_samples: 100  num_perc:  35  val idx:  5  error:  0.3
+num_samples: 100  num_perc:  35  val idx:  6  error:  0.2
+num_samples: 100  num_perc:  35  val idx:  7  error:  0.3
+num_samples: 100  num_perc:  35  val idx:  8  error:  0.5
+num_samples: 100  num_perc:  35  val idx:  9  error:  0.2
+num_samples: 100  num_perc:  35  mean error:  0.35  std error:  0.1025
+num_samples: 100  num_perc:  50  val idx:  0  error:  0.4
+num_samples: 100  num_perc:  50  val idx:  1  error:  0.4
+num_samples: 100  num_perc:  50  val idx:  2  error:  0.3
+num_samples: 100  num_perc:  50  val idx:  3  error:  0.5
+num_samples: 100  num_perc:  50  val idx:  4  error:  0.5
+num_samples: 100  num_perc:  50  val idx:  5  error:  0.3
+num_samples: 100  num_perc:  50  val idx:  6  error:  0.2
+num_samples: 100  num_perc:  50  val idx:  7  error:  0.3
+num_samples: 100  num_perc:  50  val idx:  8  error:  0.3
+num_samples: 100  num_perc:  50  val idx:  9  error:  0.1
+num_samples: 100  num_perc:  50  mean error:  0.33  std error:  0.1187
+pe for each perceptron:  [0.63 0.57 0.56 0.46 0.43 0.41 0.35 0.33]
+num_samples:  100  desired_num_perc:  7  val_err:  0.22324
+num_samples: 200  num_perc:  1  val idx:  0  error:  0.7
+num_samples: 200  num_perc:  1  val idx:  1  error:  0.45
+num_samples: 200  num_perc:  1  val idx:  2  error:  0.6
+num_samples: 200  num_perc:  1  val idx:  3  error:  0.65
+num_samples: 200  num_perc:  1  val idx:  4  error:  0.4
+num_samples: 200  num_perc:  1  val idx:  5  error:  0.3
+num_samples: 200  num_perc:  1  val idx:  6  error:  0.45
+num_samples: 200  num_perc:  1  val idx:  7  error:  0.8
+num_samples: 200  num_perc:  1  val idx:  8  error:  0.65
+num_samples: 200  num_perc:  1  val idx:  9  error:  0.55
+num_samples: 200  num_perc:  1  mean error:  0.555  std error:  0.1457
+num_samples: 200  num_perc:  2  val idx:  0  error:  0.7
+num_samples: 200  num_perc:  2  val idx:  1  error:  0.45
+num_samples: 200  num_perc:  2  val idx:  2  error:  0.5
+num_samples: 200  num_perc:  2  val idx:  3  error:  0.5
+num_samples: 200  num_perc:  2  val idx:  4  error:  0.45
+num_samples: 200  num_perc:  2  val idx:  5  error:  0.55
+num_samples: 200  num_perc:  2  val idx:  6  error:  0.3
+num_samples: 200  num_perc:  2  val idx:  7  error:  0.7
+num_samples: 200  num_perc:  2  val idx:  8  error:  0.7
+num_samples: 200  num_perc:  2  val idx:  9  error:  0.6
+num_samples: 200  num_perc:  2  mean error:  0.545  std error:  0.1254
+num_samples: 200  num_perc:  4  val idx:  0  error:  0.45
+num_samples: 200  num_perc:  4  val idx:  1  error:  0.6
+num_samples: 200  num_perc:  4  val idx:  2  error:  0.65
+num_samples: 200  num_perc:  4  val idx:  3  error:  0.35
+num_samples: 200  num_perc:  4  val idx:  4  error:  0.35
+num_samples: 200  num_perc:  4  val idx:  5  error:  0.35
+num_samples: 200  num_perc:  4  val idx:  6  error:  0.45
+num_samples: 200  num_perc:  4  val idx:  7  error:  0.6
+num_samples: 200  num_perc:  4  val idx:  8  error:  0.6
+num_samples: 200  num_perc:  4  val idx:  9  error:  0.6
+num_samples: 200  num_perc:  4  mean error:  0.5  std error:  0.1162
+num_samples: 200  num_perc:  8  val idx:  0  error:  0.5
+num_samples: 200  num_perc:  8  val idx:  1  error:  0.4
+num_samples: 200  num_perc:  8  val idx:  2  error:  0.6
+num_samples: 200  num_perc:  8  val idx:  3  error:  0.45
+num_samples: 200  num_perc:  8  val idx:  4  error:  0.3
+num_samples: 200  num_perc:  8  val idx:  5  error:  0.3
+num_samples: 200  num_perc:  8  val idx:  6  error:  0.4
+num_samples: 200  num_perc:  8  val idx:  7  error:  0.5
+num_samples: 200  num_perc:  8  val idx:  8  error:  0.45
+num_samples: 200  num_perc:  8  val idx:  9  error:  0.65
+num_samples: 200  num_perc:  8  mean error:  0.455  std error:  0.1083
+num_samples: 200  num_perc:  16  val idx:  0  error:  0.45
+num_samples: 200  num_perc:  16  val idx:  1  error:  0.25
+num_samples: 200  num_perc:  16  val idx:  2  error:  0.4
+num_samples: 200  num_perc:  16  val idx:  3  error:  0.2
+num_samples: 200  num_perc:  16  val idx:  4  error:  0.15
+num_samples: 200  num_perc:  16  val idx:  5  error:  0.3
+num_samples: 200  num_perc:  16  val idx:  6  error:  0.45
+num_samples: 200  num_perc:  16  val idx:  7  error:  0.55
+num_samples: 200  num_perc:  16  val idx:  8  error:  0.35
+num_samples: 200  num_perc:  16  val idx:  9  error:  0.55
+num_samples: 200  num_perc:  16  mean error:  0.365  std error:  0.1324
+num_samples: 200  num_perc:  25  val idx:  0  error:  0.35
+num_samples: 200  num_perc:  25  val idx:  1  error:  0.25
+num_samples: 200  num_perc:  25  val idx:  2  error:  0.55
+num_samples: 200  num_perc:  25  val idx:  3  error:  0.2
+num_samples: 200  num_perc:  25  val idx:  4  error:  0.15
+num_samples: 200  num_perc:  25  val idx:  5  error:  0.3
+num_samples: 200  num_perc:  25  val idx:  6  error:  0.4
+num_samples: 200  num_perc:  25  val idx:  7  error:  0.4
+num_samples: 200  num_perc:  25  val idx:  8  error:  0.3
+num_samples: 200  num_perc:  25  val idx:  9  error:  0.5
+num_samples: 200  num_perc:  25  mean error:  0.34  std error:  0.12
+num_samples: 200  num_perc:  35  val idx:  0  error:  0.4
+num_samples: 200  num_perc:  35  val idx:  1  error:  0.2
+num_samples: 200  num_perc:  35  val idx:  2  error:  0.25
+num_samples: 200  num_perc:  35  val idx:  3  error:  0.2
+num_samples: 200  num_perc:  35  val idx:  4  error:  0.2
+num_samples: 200  num_perc:  35  val idx:  5  error:  0.25
+num_samples: 200  num_perc:  35  val idx:  6  error:  0.4
+num_samples: 200  num_perc:  35  val idx:  7  error:  0.55
+num_samples: 200  num_perc:  35  val idx:  8  error:  0.4
+num_samples: 200  num_perc:  35  val idx:  9  error:  0.4
+num_samples: 200  num_perc:  35  mean error:  0.325  std error:  0.1146
+num_samples: 200  num_perc:  50  val idx:  0  error:  0.2
+num_samples: 200  num_perc:  50  val idx:  1  error:  0.2
+num_samples: 200  num_perc:  50  val idx:  2  error:  0.25
+num_samples: 200  num_perc:  50  val idx:  3  error:  0.2
+num_samples: 200  num_perc:  50  val idx:  4  error:  0.2
+num_samples: 200  num_perc:  50  val idx:  5  error:  0.25
+num_samples: 200  num_perc:  50  val idx:  6  error:  0.3
+num_samples: 200  num_perc:  50  val idx:  7  error:  0.3
+num_samples: 200  num_perc:  50  val idx:  8  error:  0.5
+num_samples: 200  num_perc:  50  val idx:  9  error:  0.45
+num_samples: 200  num_perc:  50  mean error:  0.285  std error:  0.1026
+pe for each perceptron:  [0.555 0.545 0.5   0.455 0.365 0.34  0.325 0.285]
+num_samples:  200  desired_num_perc:  7  val_err:  0.20958
+num_samples: 500  num_perc:  1  val idx:  0  error:  0.5
+num_samples: 500  num_perc:  1  val idx:  1  error:  0.7
+num_samples: 500  num_perc:  1  val idx:  2  error:  0.56
+num_samples: 500  num_perc:  1  val idx:  3  error:  0.7
+num_samples: 500  num_perc:  1  val idx:  4  error:  0.7
+num_samples: 500  num_perc:  1  val idx:  5  error:  0.6
+num_samples: 500  num_perc:  1  val idx:  6  error:  0.6
+num_samples: 500  num_perc:  1  val idx:  7  error:  0.74
+num_samples: 500  num_perc:  1  val idx:  8  error:  0.46
+num_samples: 500  num_perc:  1  val idx:  9  error:  0.72
+num_samples: 500  num_perc:  1  mean error:  0.628  std error:  0.0935
+num_samples: 500  num_perc:  2  val idx:  0  error:  0.48
+num_samples: 500  num_perc:  2  val idx:  1  error:  0.48
+num_samples: 500  num_perc:  2  val idx:  2  error:  0.54
+num_samples: 500  num_perc:  2  val idx:  3  error:  0.6
+num_samples: 500  num_perc:  2  val idx:  4  error:  0.66
+num_samples: 500  num_perc:  2  val idx:  5  error:  0.16
+num_samples: 500  num_perc:  2  val idx:  6  error:  0.58
+num_samples: 500  num_perc:  2  val idx:  7  error:  0.54
+num_samples: 500  num_perc:  2  val idx:  8  error:  0.68
+num_samples: 500  num_perc:  2  val idx:  9  error:  0.46
+num_samples: 500  num_perc:  2  mean error:  0.518  std error:  0.1387
+num_samples: 500  num_perc:  4  val idx:  0  error:  0.46
+num_samples: 500  num_perc:  4  val idx:  1  error:  0.46
+num_samples: 500  num_perc:  4  val idx:  2  error:  0.52
+num_samples: 500  num_perc:  4  val idx:  3  error:  0.52
+num_samples: 500  num_perc:  4  val idx:  4  error:  0.7
+num_samples: 500  num_perc:  4  val idx:  5  error:  0.48
+num_samples: 500  num_perc:  4  val idx:  6  error:  0.26
+num_samples: 500  num_perc:  4  val idx:  7  error:  0.48
+num_samples: 500  num_perc:  4  val idx:  8  error:  0.26
+num_samples: 500  num_perc:  4  val idx:  9  error:  0.5
+num_samples: 500  num_perc:  4  mean error:  0.464  std error:  0.1213
+num_samples: 500  num_perc:  8  val idx:  0  error:  0.38
+num_samples: 500  num_perc:  8  val idx:  1  error:  0.3
+num_samples: 500  num_perc:  8  val idx:  2  error:  0.28
+num_samples: 500  num_perc:  8  val idx:  3  error:  0.36
+num_samples: 500  num_perc:  8  val idx:  4  error:  0.36
+num_samples: 500  num_perc:  8  val idx:  5  error:  0.3
+num_samples: 500  num_perc:  8  val idx:  6  error:  0.38
+num_samples: 500  num_perc:  8  val idx:  7  error:  0.48
+num_samples: 500  num_perc:  8  val idx:  8  error:  0.24
+num_samples: 500  num_perc:  8  val idx:  9  error:  0.4
+num_samples: 500  num_perc:  8  mean error:  0.348  std error:  0.0658
+num_samples: 500  num_perc:  16  val idx:  0  error:  0.22
+num_samples: 500  num_perc:  16  val idx:  1  error:  0.16
+num_samples: 500  num_perc:  16  val idx:  2  error:  0.32
+num_samples: 500  num_perc:  16  val idx:  3  error:  0.18
+num_samples: 500  num_perc:  16  val idx:  4  error:  0.32
+num_samples: 500  num_perc:  16  val idx:  5  error:  0.32
+num_samples: 500  num_perc:  16  val idx:  6  error:  0.26
+num_samples: 500  num_perc:  16  val idx:  7  error:  0.4
+num_samples: 500  num_perc:  16  val idx:  8  error:  0.18
+num_samples: 500  num_perc:  16  val idx:  9  error:  0.38
+num_samples: 500  num_perc:  16  mean error:  0.274  std error:  0.082
+num_samples: 500  num_perc:  25  val idx:  0  error:  0.2
+num_samples: 500  num_perc:  25  val idx:  1  error:  0.3
+num_samples: 500  num_perc:  25  val idx:  2  error:  0.22
+num_samples: 500  num_perc:  25  val idx:  3  error:  0.18
+num_samples: 500  num_perc:  25  val idx:  4  error:  0.28
+num_samples: 500  num_perc:  25  val idx:  5  error:  0.22
+num_samples: 500  num_perc:  25  val idx:  6  error:  0.32
+num_samples: 500  num_perc:  25  val idx:  7  error:  0.36
+num_samples: 500  num_perc:  25  val idx:  8  error:  0.14
+num_samples: 500  num_perc:  25  val idx:  9  error:  0.36
+num_samples: 500  num_perc:  25  mean error:  0.258  std error:  0.0729
+num_samples: 500  num_perc:  35  val idx:  0  error:  0.2
+num_samples: 500  num_perc:  35  val idx:  1  error:  0.28
+num_samples: 500  num_perc:  35  val idx:  2  error:  0.24
+num_samples: 500  num_perc:  35  val idx:  3  error:  0.18
+num_samples: 500  num_perc:  35  val idx:  4  error:  0.32
+num_samples: 500  num_perc:  35  val idx:  5  error:  0.2
+num_samples: 500  num_perc:  35  val idx:  6  error:  0.24
+num_samples: 500  num_perc:  35  val idx:  7  error:  0.42
+num_samples: 500  num_perc:  35  val idx:  8  error:  0.26
+num_samples: 500  num_perc:  35  val idx:  9  error:  0.36
+num_samples: 500  num_perc:  35  mean error:  0.27  std error:  0.0728
+num_samples: 500  num_perc:  50  val idx:  0  error:  0.18
+num_samples: 500  num_perc:  50  val idx:  1  error:  0.3
+num_samples: 500  num_perc:  50  val idx:  2  error:  0.2
+num_samples: 500  num_perc:  50  val idx:  3  error:  0.18
+num_samples: 500  num_perc:  50  val idx:  4  error:  0.24
+num_samples: 500  num_perc:  50  val idx:  5  error:  0.18
+num_samples: 500  num_perc:  50  val idx:  6  error:  0.2
+num_samples: 500  num_perc:  50  val idx:  7  error:  0.34
+num_samples: 500  num_perc:  50  val idx:  8  error:  0.22
+num_samples: 500  num_perc:  50  val idx:  9  error:  0.32
+num_samples: 500  num_perc:  50  mean error:  0.236  std error:  0.0585
+pe for each perceptron:  [0.628 0.518 0.464 0.348 0.274 0.258 0.27  0.236]
+num_samples:  500  desired_num_perc:  7  val_err:  0.20986000000000005
+num_samples: 1000  num_perc:  1  val idx:  0  error:  0.58
+num_samples: 1000  num_perc:  1  val idx:  1  error:  0.5
+num_samples: 1000  num_perc:  1  val idx:  2  error:  0.49
+num_samples: 1000  num_perc:  1  val idx:  3  error:  0.59
+num_samples: 1000  num_perc:  1  val idx:  4  error:  0.74
+num_samples: 1000  num_perc:  1  val idx:  5  error:  0.54
+num_samples: 1000  num_perc:  1  val idx:  6  error:  0.53
+num_samples: 1000  num_perc:  1  val idx:  7  error:  0.48
+num_samples: 1000  num_perc:  1  val idx:  8  error:  0.7
+num_samples: 1000  num_perc:  1  val idx:  9  error:  0.69
+num_samples: 1000  num_perc:  1  mean error:  0.584  std error:  0.0898
+num_samples: 1000  num_perc:  2  val idx:  0  error:  0.72
+num_samples: 1000  num_perc:  2  val idx:  1  error:  0.57
+num_samples: 1000  num_perc:  2  val idx:  2  error:  0.41
+num_samples: 1000  num_perc:  2  val idx:  3  error:  0.44
+num_samples: 1000  num_perc:  2  val idx:  4  error:  0.59
+num_samples: 1000  num_perc:  2  val idx:  5  error:  0.55
+num_samples: 1000  num_perc:  2  val idx:  6  error:  0.52
+num_samples: 1000  num_perc:  2  val idx:  7  error:  0.6
+num_samples: 1000  num_perc:  2  val idx:  8  error:  0.44
+num_samples: 1000  num_perc:  2  val idx:  9  error:  0.57
+num_samples: 1000  num_perc:  2  mean error:  0.541  std error:  0.0881
+num_samples: 1000  num_perc:  4  val idx:  0  error:  0.47
+num_samples: 1000  num_perc:  4  val idx:  1  error:  0.42
+num_samples: 1000  num_perc:  4  val idx:  2  error:  0.44
+num_samples: 1000  num_perc:  4  val idx:  3  error:  0.52
+num_samples: 1000  num_perc:  4  val idx:  4  error:  0.42
+num_samples: 1000  num_perc:  4  val idx:  5  error:  0.51
+num_samples: 1000  num_perc:  4  val idx:  6  error:  0.43
+num_samples: 1000  num_perc:  4  val idx:  7  error:  0.27
+num_samples: 1000  num_perc:  4  val idx:  8  error:  0.46
+num_samples: 1000  num_perc:  4  val idx:  9  error:  0.45
+num_samples: 1000  num_perc:  4  mean error:  0.439  std error:  0.0652
+num_samples: 1000  num_perc:  8  val idx:  0  error:  0.28
+num_samples: 1000  num_perc:  8  val idx:  1  error:  0.33
+num_samples: 1000  num_perc:  8  val idx:  2  error:  0.29
+num_samples: 1000  num_perc:  8  val idx:  3  error:  0.43
+num_samples: 1000  num_perc:  8  val idx:  4  error:  0.52
+num_samples: 1000  num_perc:  8  val idx:  5  error:  0.28
+num_samples: 1000  num_perc:  8  val idx:  6  error:  0.49
+num_samples: 1000  num_perc:  8  val idx:  7  error:  0.37
+num_samples: 1000  num_perc:  8  val idx:  8  error:  0.38
+num_samples: 1000  num_perc:  8  val idx:  9  error:  0.44
+num_samples: 1000  num_perc:  8  mean error:  0.381  std error:  0.0828
+num_samples: 1000  num_perc:  16  val idx:  0  error:  0.29
+num_samples: 1000  num_perc:  16  val idx:  1  error:  0.33
+num_samples: 1000  num_perc:  16  val idx:  2  error:  0.35
+num_samples: 1000  num_perc:  16  val idx:  3  error:  0.32
+num_samples: 1000  num_perc:  16  val idx:  4  error:  0.35
+num_samples: 1000  num_perc:  16  val idx:  5  error:  0.27
+num_samples: 1000  num_perc:  16  val idx:  6  error:  0.41
+num_samples: 1000  num_perc:  16  val idx:  7  error:  0.22
+num_samples: 1000  num_perc:  16  val idx:  8  error:  0.32
+num_samples: 1000  num_perc:  16  val idx:  9  error:  0.38
+num_samples: 1000  num_perc:  16  mean error:  0.324  std error:  0.0518
+num_samples: 1000  num_perc:  25  val idx:  0  error:  0.25
+num_samples: 1000  num_perc:  25  val idx:  1  error:  0.24
+num_samples: 1000  num_perc:  25  val idx:  2  error:  0.31
+num_samples: 1000  num_perc:  25  val idx:  3  error:  0.38
+num_samples: 1000  num_perc:  25  val idx:  4  error:  0.28
+num_samples: 1000  num_perc:  25  val idx:  5  error:  0.24
+num_samples: 1000  num_perc:  25  val idx:  6  error:  0.32
+num_samples: 1000  num_perc:  25  val idx:  7  error:  0.2
+num_samples: 1000  num_perc:  25  val idx:  8  error:  0.28
+num_samples: 1000  num_perc:  25  val idx:  9  error:  0.27
+num_samples: 1000  num_perc:  25  mean error:  0.277  std error:  0.048
+num_samples: 1000  num_perc:  35  val idx:  0  error:  0.26
+num_samples: 1000  num_perc:  35  val idx:  1  error:  0.27
+num_samples: 1000  num_perc:  35  val idx:  2  error:  0.31
+num_samples: 1000  num_perc:  35  val idx:  3  error:  0.28
+num_samples: 1000  num_perc:  35  val idx:  4  error:  0.3
+num_samples: 1000  num_perc:  35  val idx:  5  error:  0.22
+num_samples: 1000  num_perc:  35  val idx:  6  error:  0.32
+num_samples: 1000  num_perc:  35  val idx:  7  error:  0.21
+num_samples: 1000  num_perc:  35  val idx:  8  error:  0.28
+num_samples: 1000  num_perc:  35  val idx:  9  error:  0.26
+num_samples: 1000  num_perc:  35  mean error:  0.271  std error:  0.0339
+num_samples: 1000  num_perc:  50  val idx:  0  error:  0.22
+num_samples: 1000  num_perc:  50  val idx:  1  error:  0.26
+num_samples: 1000  num_perc:  50  val idx:  2  error:  0.3
+num_samples: 1000  num_perc:  50  val idx:  3  error:  0.29
+num_samples: 1000  num_perc:  50  val idx:  4  error:  0.28
+num_samples: 1000  num_perc:  50  val idx:  5  error:  0.24
+num_samples: 1000  num_perc:  50  val idx:  6  error:  0.34
+num_samples: 1000  num_perc:  50  val idx:  7  error:  0.21
+num_samples: 1000  num_perc:  50  val idx:  8  error:  0.25
+num_samples: 1000  num_perc:  50  val idx:  9  error:  0.24
+num_samples: 1000  num_perc:  50  mean error:  0.263  std error:  0.0377
+pe for each perceptron:  [0.584 0.541 0.439 0.381 0.324 0.277 0.271 0.263]
+num_samples:  1000  desired_num_perc:  7  val_err:  0.20494999999999997
+num_samples: 2000  num_perc:  1  val idx:  0  error:  0.55
+num_samples: 2000  num_perc:  1  val idx:  1  error:  0.665
+num_samples: 2000  num_perc:  1  val idx:  2  error:  0.6
+num_samples: 2000  num_perc:  1  val idx:  3  error:  0.6
+num_samples: 2000  num_perc:  1  val idx:  4  error:  0.51
+num_samples: 2000  num_perc:  1  val idx:  5  error:  0.725
+num_samples: 2000  num_perc:  1  val idx:  6  error:  0.495
+num_samples: 2000  num_perc:  1  val idx:  7  error:  0.57
+num_samples: 2000  num_perc:  1  val idx:  8  error:  0.585
+num_samples: 2000  num_perc:  1  val idx:  9  error:  0.575
+num_samples: 2000  num_perc:  1  mean error:  0.5875  std error:  0.0645
+num_samples: 2000  num_perc:  2  val idx:  0  error:  0.45
+num_samples: 2000  num_perc:  2  val idx:  1  error:  0.4
+num_samples: 2000  num_perc:  2  val idx:  2  error:  0.345
+num_samples: 2000  num_perc:  2  val idx:  3  error:  0.6
+num_samples: 2000  num_perc:  2  val idx:  4  error:  0.27
+num_samples: 2000  num_perc:  2  val idx:  5  error:  0.595
+num_samples: 2000  num_perc:  2  val idx:  6  error:  0.51
+num_samples: 2000  num_perc:  2  val idx:  7  error:  0.415
+num_samples: 2000  num_perc:  2  val idx:  8  error:  0.565
+num_samples: 2000  num_perc:  2  val idx:  9  error:  0.49
+num_samples: 2000  num_perc:  2  mean error:  0.464  std error:  0.1035
+num_samples: 2000  num_perc:  4  val idx:  0  error:  0.465
+num_samples: 2000  num_perc:  4  val idx:  1  error:  0.41
+num_samples: 2000  num_perc:  4  val idx:  2  error:  0.325
+num_samples: 2000  num_perc:  4  val idx:  3  error:  0.34
+num_samples: 2000  num_perc:  4  val idx:  4  error:  0.37
+num_samples: 2000  num_perc:  4  val idx:  5  error:  0.31
+num_samples: 2000  num_perc:  4  val idx:  6  error:  0.32
+num_samples: 2000  num_perc:  4  val idx:  7  error:  0.445
+num_samples: 2000  num_perc:  4  val idx:  8  error:  0.485
+num_samples: 2000  num_perc:  4  val idx:  9  error:  0.335
+num_samples: 2000  num_perc:  4  mean error:  0.3805  std error:  0.0621
+num_samples: 2000  num_perc:  8  val idx:  0  error:  0.325
+num_samples: 2000  num_perc:  8  val idx:  1  error:  0.335
+num_samples: 2000  num_perc:  8  val idx:  2  error:  0.3
+num_samples: 2000  num_perc:  8  val idx:  3  error:  0.305
+num_samples: 2000  num_perc:  8  val idx:  4  error:  0.405
+num_samples: 2000  num_perc:  8  val idx:  5  error:  0.34
+num_samples: 2000  num_perc:  8  val idx:  6  error:  0.255
+num_samples: 2000  num_perc:  8  val idx:  7  error:  0.245
+num_samples: 2000  num_perc:  8  val idx:  8  error:  0.44
+num_samples: 2000  num_perc:  8  val idx:  9  error:  0.335
+num_samples: 2000  num_perc:  8  mean error:  0.3285  std error:  0.0568
+num_samples: 2000  num_perc:  16  val idx:  0  error:  0.185
+num_samples: 2000  num_perc:  16  val idx:  1  error:  0.28
+num_samples: 2000  num_perc:  16  val idx:  2  error:  0.33
+num_samples: 2000  num_perc:  16  val idx:  3  error:  0.28
+num_samples: 2000  num_perc:  16  val idx:  4  error:  0.26
+num_samples: 2000  num_perc:  16  val idx:  5  error:  0.275
+num_samples: 2000  num_perc:  16  val idx:  6  error:  0.225
+num_samples: 2000  num_perc:  16  val idx:  7  error:  0.33
+num_samples: 2000  num_perc:  16  val idx:  8  error:  0.27
+num_samples: 2000  num_perc:  16  val idx:  9  error:  0.17
+num_samples: 2000  num_perc:  16  mean error:  0.2605  std error:  0.0509
+num_samples: 2000  num_perc:  25  val idx:  0  error:  0.19
+num_samples: 2000  num_perc:  25  val idx:  1  error:  0.26
+num_samples: 2000  num_perc:  25  val idx:  2  error:  0.24
+num_samples: 2000  num_perc:  25  val idx:  3  error:  0.205
+num_samples: 2000  num_perc:  25  val idx:  4  error:  0.24
+num_samples: 2000  num_perc:  25  val idx:  5  error:  0.27
+num_samples: 2000  num_perc:  25  val idx:  6  error:  0.215
+num_samples: 2000  num_perc:  25  val idx:  7  error:  0.215
+num_samples: 2000  num_perc:  25  val idx:  8  error:  0.22
+num_samples: 2000  num_perc:  25  val idx:  9  error:  0.22
+num_samples: 2000  num_perc:  25  mean error:  0.2275  std error:  0.0235
+num_samples: 2000  num_perc:  35  val idx:  0  error:  0.19
+num_samples: 2000  num_perc:  35  val idx:  1  error:  0.23
+num_samples: 2000  num_perc:  35  val idx:  2  error:  0.25
+num_samples: 2000  num_perc:  35  val idx:  3  error:  0.245
+num_samples: 2000  num_perc:  35  val idx:  4  error:  0.235
+num_samples: 2000  num_perc:  35  val idx:  5  error:  0.28
+num_samples: 2000  num_perc:  35  val idx:  6  error:  0.245
+num_samples: 2000  num_perc:  35  val idx:  7  error:  0.23
+num_samples: 2000  num_perc:  35  val idx:  8  error:  0.275
+num_samples: 2000  num_perc:  35  val idx:  9  error:  0.175
+num_samples: 2000  num_perc:  35  mean error:  0.2355  std error:  0.0312
+num_samples: 2000  num_perc:  50  val idx:  0  error:  0.195
+num_samples: 2000  num_perc:  50  val idx:  1  error:  0.23
+num_samples: 2000  num_perc:  50  val idx:  2  error:  0.245
+num_samples: 2000  num_perc:  50  val idx:  3  error:  0.2
+num_samples: 2000  num_perc:  50  val idx:  4  error:  0.25
+num_samples: 2000  num_perc:  50  val idx:  5  error:  0.255
+num_samples: 2000  num_perc:  50  val idx:  6  error:  0.185
+num_samples: 2000  num_perc:  50  val idx:  7  error:  0.19
+num_samples: 2000  num_perc:  50  val idx:  8  error:  0.23
+num_samples: 2000  num_perc:  50  val idx:  9  error:  0.205
+num_samples: 2000  num_perc:  50  mean error:  0.2185  std error:  0.0251
+pe for each perceptron:  [0.5875 0.464  0.3805 0.3285 0.2605 0.2275 0.2355 0.2185]
+num_samples:  2000  desired_num_perc:  7  val_err:  0.20682999999999996
+num_samples: 5000  num_perc:  1  val idx:  0  error:  0.516
+num_samples: 5000  num_perc:  1  val idx:  1  error:  0.534
+num_samples: 5000  num_perc:  1  val idx:  2  error:  0.488
+num_samples: 5000  num_perc:  1  val idx:  3  error:  0.49
+num_samples: 5000  num_perc:  1  val idx:  4  error:  0.492
+num_samples: 5000  num_perc:  1  val idx:  5  error:  0.574
+num_samples: 5000  num_perc:  1  val idx:  6  error:  0.526
+num_samples: 5000  num_perc:  1  val idx:  7  error:  0.52
+num_samples: 5000  num_perc:  1  val idx:  8  error:  0.548
+num_samples: 5000  num_perc:  1  val idx:  9  error:  0.544
+num_samples: 5000  num_perc:  1  mean error:  0.5232  std error:  0.0267
+num_samples: 5000  num_perc:  2  val idx:  0  error:  0.472
+num_samples: 5000  num_perc:  2  val idx:  1  error:  0.44
+num_samples: 5000  num_perc:  2  val idx:  2  error:  0.45
+num_samples: 5000  num_perc:  2  val idx:  3  error:  0.514
+num_samples: 5000  num_perc:  2  val idx:  4  error:  0.344
+num_samples: 5000  num_perc:  2  val idx:  5  error:  0.348
+num_samples: 5000  num_perc:  2  val idx:  6  error:  0.49
+num_samples: 5000  num_perc:  2  val idx:  7  error:  0.486
+num_samples: 5000  num_perc:  2  val idx:  8  error:  0.428
+num_samples: 5000  num_perc:  2  val idx:  9  error:  0.642
+num_samples: 5000  num_perc:  2  mean error:  0.4614  std error:  0.0808
+num_samples: 5000  num_perc:  4  val idx:  0  error:  0.38
+num_samples: 5000  num_perc:  4  val idx:  1  error:  0.464
+num_samples: 5000  num_perc:  4  val idx:  2  error:  0.466
+num_samples: 5000  num_perc:  4  val idx:  3  error:  0.308
+num_samples: 5000  num_perc:  4  val idx:  4  error:  0.47
+num_samples: 5000  num_perc:  4  val idx:  5  error:  0.468
+num_samples: 5000  num_perc:  4  val idx:  6  error:  0.32
+num_samples: 5000  num_perc:  4  val idx:  7  error:  0.348
+num_samples: 5000  num_perc:  4  val idx:  8  error:  0.388
+num_samples: 5000  num_perc:  4  val idx:  9  error:  0.488
+num_samples: 5000  num_perc:  4  mean error:  0.41  std error:  0.0654
+num_samples: 5000  num_perc:  8  val idx:  0  error:  0.326
+num_samples: 5000  num_perc:  8  val idx:  1  error:  0.352
+num_samples: 5000  num_perc:  8  val idx:  2  error:  0.404
+num_samples: 5000  num_perc:  8  val idx:  3  error:  0.322
+num_samples: 5000  num_perc:  8  val idx:  4  error:  0.32
+num_samples: 5000  num_perc:  8  val idx:  5  error:  0.246
+num_samples: 5000  num_perc:  8  val idx:  6  error:  0.304
+num_samples: 5000  num_perc:  8  val idx:  7  error:  0.248
+num_samples: 5000  num_perc:  8  val idx:  8  error:  0.238
+num_samples: 5000  num_perc:  8  val idx:  9  error:  0.36
+num_samples: 5000  num_perc:  8  mean error:  0.312  std error:  0.0517
+num_samples: 5000  num_perc:  16  val idx:  0  error:  0.276
+num_samples: 5000  num_perc:  16  val idx:  1  error:  0.29
+num_samples: 5000  num_perc:  16  val idx:  2  error:  0.272
+num_samples: 5000  num_perc:  16  val idx:  3  error:  0.224
+num_samples: 5000  num_perc:  16  val idx:  4  error:  0.206
+num_samples: 5000  num_perc:  16  val idx:  5  error:  0.302
+num_samples: 5000  num_perc:  16  val idx:  6  error:  0.252
+num_samples: 5000  num_perc:  16  val idx:  7  error:  0.308
+num_samples: 5000  num_perc:  16  val idx:  8  error:  0.28
+num_samples: 5000  num_perc:  16  val idx:  9  error:  0.224
+num_samples: 5000  num_perc:  16  mean error:  0.2634  std error:  0.0335
+num_samples: 5000  num_perc:  25  val idx:  0  error:  0.248
+num_samples: 5000  num_perc:  25  val idx:  1  error:  0.246
+num_samples: 5000  num_perc:  25  val idx:  2  error:  0.256
+num_samples: 5000  num_perc:  25  val idx:  3  error:  0.258
+num_samples: 5000  num_perc:  25  val idx:  4  error:  0.218
+num_samples: 5000  num_perc:  25  val idx:  5  error:  0.29
+num_samples: 5000  num_perc:  25  val idx:  6  error:  0.258
+num_samples: 5000  num_perc:  25  val idx:  7  error:  0.25
+num_samples: 5000  num_perc:  25  val idx:  8  error:  0.296
+num_samples: 5000  num_perc:  25  val idx:  9  error:  0.258
+num_samples: 5000  num_perc:  25  mean error:  0.2578  std error:  0.0209
+num_samples: 5000  num_perc:  35  val idx:  0  error:  0.246
+num_samples: 5000  num_perc:  35  val idx:  1  error:  0.242
+num_samples: 5000  num_perc:  35  val idx:  2  error:  0.262
+num_samples: 5000  num_perc:  35  val idx:  3  error:  0.242
+num_samples: 5000  num_perc:  35  val idx:  4  error:  0.212
+num_samples: 5000  num_perc:  35  val idx:  5  error:  0.26
+num_samples: 5000  num_perc:  35  val idx:  6  error:  0.258
+num_samples: 5000  num_perc:  35  val idx:  7  error:  0.254
+num_samples: 5000  num_perc:  35  val idx:  8  error:  0.22
+num_samples: 5000  num_perc:  35  val idx:  9  error:  0.256
+num_samples: 5000  num_perc:  35  mean error:  0.2452  std error:  0.0162
+num_samples: 5000  num_perc:  50  val idx:  0  error:  0.24
+num_samples: 5000  num_perc:  50  val idx:  1  error:  0.238
+num_samples: 5000  num_perc:  50  val idx:  2  error:  0.22
+num_samples: 5000  num_perc:  50  val idx:  3  error:  0.21
+num_samples: 5000  num_perc:  50  val idx:  4  error:  0.218
+num_samples: 5000  num_perc:  50  val idx:  5  error:  0.244
+num_samples: 5000  num_perc:  50  val idx:  6  error:  0.26
+num_samples: 5000  num_perc:  50  val idx:  7  error:  0.26
+num_samples: 5000  num_perc:  50  val idx:  8  error:  0.216
+num_samples: 5000  num_perc:  50  val idx:  9  error:  0.238
+num_samples: 5000  num_perc:  50  mean error:  0.2344  std error:  0.0169
+pe for each perceptron:  [0.5232 0.4614 0.41   0.312  0.2634 0.2578 0.2452 0.2344]
+num_samples:  5000  desired_num_perc:  7  val_err:  0.20755

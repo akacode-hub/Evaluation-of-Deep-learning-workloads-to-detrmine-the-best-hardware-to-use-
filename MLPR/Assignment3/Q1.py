@@ -10,19 +10,20 @@ np.set_printoptions(suppress=True)
 
 def set_mean_cov():
 
-    mval = 10
-    m0 = np.array([1, 0, 0])*mval
-    m1 = np.array([1, 1, 0])*mval
-    m2 = np.array([1, 0, 1])*mval
-    m3 = np.array([1, 1, 1])*mval
+    mval = 7.5
+    m0 = np.array([1.3, 0, 0])*mval
+    m1 = np.array([1, 0, 1.2])*mval
+    m2 = np.array([0, 1, 1.2])*mval
+    m3 = np.array([1.1, 1.2, 1])*mval
+    means = [m0, m1, m2, m3]
 
-    cval = 10
-    C0 = np.eye(dim, dtype=float)*cval
-    C1 = np.eye(dim, dtype=float)*cval
-    C2 = np.eye(dim, dtype=float)*cval
-    C3 = np.eye(dim, dtype=float)*cval
+    C0 = np.array([[10, 0, 0], [0, 40, 0], [0, 0, 15]])
+    C1 = np.array([[20, 0, 0], [0, 5, 0], [0, 0, 10]])
+    C2 = np.array([[20, 0, 0], [0, 10, 0], [0, 0, 40]])
+    C3 = np.array([[5, 0, 0], [0, 20, 0], [0, 0, 5]])
+    covs = [C0, C1, C2, C3]
 
-    return [m0, m1, m2, m3], [C0, C1, C2, C3]
+    return means, covs
 
 def gen_class_samples(num_samples, label_ids):
     
@@ -66,7 +67,7 @@ def generate_data_pxgl_samples(samples_type, priors, means, covs, label_ids):
         sample_type[1] = cls_samples
         sample_type[2] = data_wt_labels
 
-        label_names = ["True label distribution for " + str(num_samples) + " for two classes", "x", "y", "z"]
+        label_names = ["True label distribution for " + str(num_samples) + " for four classes", "x", "y", "z"]
         plot_dist(data_wt_labels, label_names, label_ids)
 
     return samples_type
@@ -234,7 +235,7 @@ def MOS(sample_type, kfold, num_perc_lst):
             val_pred = np.squeeze(val_pred, axis=0)
 
             err = calc_pe(val_labels, val_pred)
-            print('num_samples:', num_samples,' num_perc: ',num_perc,' val idx: ', val_idx, ' error: ', np.round(err, 4))
+            #print('num_samples:', num_samples,' num_perc: ',num_perc,' val idx: ', val_idx, ' error: ', np.round(err, 4))
             err_lst.append(err)
 
         mean_err = np.mean(np.array(err_lst))
@@ -244,7 +245,7 @@ def MOS(sample_type, kfold, num_perc_lst):
 
     perc_lst = np.array(perc_lst)
     print('pe for each perceptron: ', perc_lst)
-    desired_num_perc = np.argmin(perc_lst)
+    desired_num_perc = num_perc_lst[np.argmin(perc_lst)]
 
     return desired_num_perc
 
@@ -261,16 +262,23 @@ def train_kfoldMLP(train_sample_type, val_sample_type, kfold, num_perc_lst):
     # Model Order Selection
     desired_num_perc = MOS(train_sample_type, kfold, num_perc_lst)
 
-    # get model
-    model = get_model(desired_num_perc)
+    for num in range(num_train):
+        
+        print('Train ',num_samples)
 
-    # train
-    model.fit(data, labels, batch_size = 10, epochs = 100, verbose=0)
+        # get model
+        model = get_model(desired_num_perc)
+        
+        # train
+        model.fit(data, labels, batch_size = 10, epochs = 100, verbose=1)
 
-    # validate
-    val_err = validate(val_sample_type, model)
+        print('model summary')
+        print(model.summary())
 
-    print('num_samples: ',num_samples,' desired_num_perc: ',desired_num_perc,' val_err: ', val_err)
+        # validate
+        val_err = validate(val_sample_type, model)
+
+        print('num_samples: ',num_samples,' desired_num_perc: ',desired_num_perc,' val_err: ', val_err)
 
 def validate(sample_type, model):
 
@@ -296,8 +304,8 @@ if __name__ == "__main__":
     loss_mat = np.ones((num_labels, num_labels)) - np.eye(num_labels)
     kfold = 10
     num_perc_lst = [1, 2, 4, 8, 16, 25, 35, 50]
-    perc_step = 5
-    
+    num_train = 10
+
     samples_type = {
         'D100': [[100], [], []],  
         'D200': [[200], [], []],
@@ -309,13 +317,15 @@ if __name__ == "__main__":
     }
 
     means, covs = set_mean_cov()
+    print('mean: ',means)
+    print('covs: ',covs)
 
     # generate data 
     generate_data_pxgl_samples(samples_type, priors, means, covs, label_ids)
 
     ##theoretical classifier
-    calc_theoretical_classifier(samples_type['D100'])
+    calc_theoretical_classifier(samples_type['D100k'])
 
-    ## train MLP
+    # train MLP
     for i, key in enumerate(list(samples_type.keys())[:-1]):
         train_kfoldMLP(samples_type[key], samples_type['D100k'], kfold, num_perc_lst)
