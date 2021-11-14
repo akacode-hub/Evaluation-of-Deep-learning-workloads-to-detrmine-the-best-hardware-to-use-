@@ -126,17 +126,6 @@ void dist_data(int global_data_len, int num_classes, int num_proc){
     } 
 }
 
-void initialize_recarr(int recarr[global_data_len][num_procs]){
-
-    int i, j;
-    for(i=0; i<global_data_len; i++){
-        for(j=0; j<num_procs; j++){
-            recarr[i][j] = 0;
-        }
-    }
-
-}
-
 void print_scatter_params(int num_proc){
 
     int i, j;

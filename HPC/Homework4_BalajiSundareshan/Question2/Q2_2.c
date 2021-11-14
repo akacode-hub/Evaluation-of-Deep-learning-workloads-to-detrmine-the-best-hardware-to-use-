@@ -12,6 +12,7 @@
 int * data;
 int * local_data;
 int * local_data_lens;
+int * class_dist_proc_count;
 int * data_stride;
 int * displs;
 int num_procs, global_data_len;
@@ -20,9 +21,10 @@ int proc_rank, name_len;
 char processor_name[MPI_MAX_PROCESSOR_NAME];
 
 int * classes;
-int * local_classes;
 float * min_range_cls;
 float * max_range_cls;
+
+int * result_len;
 
 void gen_data(int global_data_len)
 {
@@ -38,7 +40,6 @@ void gen_data(int global_data_len)
 
 void set_classes(int num_classes){
 
-    local_classes = (int *)calloc(num_classes, sizeof(int));
     min_range_cls = (float *)calloc(num_classes, sizeof(float));
     max_range_cls = (float *)calloc(num_classes, sizeof(float));
     
@@ -52,7 +53,6 @@ void set_classes(int num_classes){
 
         min_range_cls[i] = i*interval + MIN_NUM;
         max_range_cls[i] = (i+1)*interval + MIN_NUM;
-        local_classes[i] = 0;
     }
 
 }
@@ -84,28 +84,34 @@ void print_hist(int num_classes, int * hist_classes){
     printf("total values in histogram: %d\n", total_vals);
 }
 
-void group_data_bins(int local_data_len, int num_classes){
+void group_class_bins(int data_len, int proc_rank, int class_dist_proc[num_procs][num_classes], int result[num_classes][global_data_len])
+{
 
-    int i, class_;
-    for(i = 0; i < local_data_len; i++) 
-    {
-        class_ = find_bin(local_data[i], num_classes);  
-        assert(("class index should not be negative", class_>=0));
-        local_classes[class_] += 1;
+    int i, len;
+    int * class_ids = class_dist_proc[proc_rank];
+    for(i = 0; i < data_len; i++) 
+    {   
+        len = class_dist_proc_count[proc_rank];
+        find_bin(data[i], class_ids, len, result);    
     }
 
 }
 
-int find_bin(int local_data_val, int num_classes){
+int find_bin(int val, int * class_ids, int id_len, int result[num_classes][global_data_len])
+{
 
-    int i;
-    for(i = 0; i < num_classes; i++) 
-    {
-        if(local_data_val>=min_range_cls[i] && local_data_val<max_range_cls[i])
-            return  i;
+    int i, cls_id, idx;
+    for(i = 0; i < id_len; i++) 
+    {   
+        cls_id = class_ids[i];
+        if(val >= min_range_cls[cls_id] && val < max_range_cls[cls_id]){
+
+            idx = result_len[cls_id];
+            result[cls_id][idx] = val;
+            result_len[cls_id] += 1;
+            return 1;   
+        }       
     }
-
-    return -1;
 }
 
 void dist_data(int global_data_len, int num_classes, int num_proc){
@@ -126,15 +132,28 @@ void dist_data(int global_data_len, int num_classes, int num_proc){
     } 
 }
 
-void initialize_recarr(int recarr[global_data_len][num_procs]){
+void class_dist(int num_classes, int num_procs, int class_dist_proc[num_procs][num_classes]){
+    
+    int i, id;
+    class_dist_proc_count = (int *)calloc(num_procs, sizeof(int));
 
-    int i, j;
-    for(i=0; i<global_data_len; i++){
-        for(j=0; j<num_procs; j++){
-            recarr[i][j] = 0;
+    for(i=0; i<num_classes; i++){
+        id = class_dist_proc_count[i%num_procs];
+        class_dist_proc[i%num_procs][id] = i;
+        class_dist_proc_count[i%num_procs] += 1;
+    }
+}
+
+void print_class_dist(int class_dist_proc[num_procs][num_classes]){
+
+    int i, j, len;
+    for(i=0; i<num_procs; i++){
+        len = class_dist_proc_count[i];
+        printf("proc id %d: ", i);
+        for(j=0; j<len; j++){
+            printf("%d, ",class_dist_proc[i][j]);
         }
     }
-
 }
 
 void print_scatter_params(int num_proc){
@@ -160,6 +179,19 @@ void print_data_buffer(int proc_rank){
     printf("\n");
 }
 
+void print_results(int result[num_classes][global_data_len])
+{
+    int i, j, len;
+    for(i=0; i<num_classes; i++){
+        len = result_len[i];
+        printf("cls id: %d ", i);
+        for(j=0; j<len; j++){
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -180,6 +212,9 @@ int main(int argc, char *argv[])
     MPI_Bcast(&num_classes, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&global_data_len, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
+    int class_dict_proc[num_procs][num_classes];
+    int result[num_classes][global_data_len];
+
     dist_data(global_data_len, num_classes, num_procs);
 
     if(proc_rank == 0){
@@ -189,24 +224,28 @@ int main(int argc, char *argv[])
 
     local_data = (int *)calloc(local_data_lens[proc_rank], sizeof(int));
     classes = (int *)calloc(num_classes, sizeof(int));
+    result_len = (int *)calloc(num_classes, sizeof(int));
 
-    MPI_Scatterv(data, local_data_lens, displs, MPI_INT, local_data, local_data_lens[proc_rank], MPI_INT, 0, MPI_COMM_WORLD);
+    //MPI_Bcast(&data, global_data_len, MPI_INT, 0, MPI_COMM_WORLD);
 
     printf("processor rank: %d len: %d\n", proc_rank, local_data_lens[proc_rank]);
     //print_data_buffer(proc_rank);
 
-    group_data_bins(local_data_lens[proc_rank], num_classes);
+    class_dist(num_classes, num_procs, class_dict_proc);
+    print_class_dist(class_dict_proc);
 
+    group_class_bins(global_data_len, proc_rank, class_dict_proc, result);
     printf("Histogram for process %d on %s out of %d:\n", proc_rank, processor_name, num_procs);
-    //print_hist(num_classes, local_classes);
-
-    MPI_Reduce(local_classes, classes, num_classes, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-
+    
+    MPI_Reduce(result_len, classes, num_classes, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    
     MPI_Finalize();
 
     if(proc_rank==0){
         printf("\nFinal Histogram:\n");
         print_hist(num_classes, classes);
+        print_results(result);
     }
+
     return 0;
 }
