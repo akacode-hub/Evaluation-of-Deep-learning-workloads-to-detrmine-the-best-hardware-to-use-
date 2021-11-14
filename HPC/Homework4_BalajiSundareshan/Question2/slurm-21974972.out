@@ -1,0 +1,28 @@
+Input data: 433, 21, 525, 637, 455, 389, 274, 243, 771, 300, 428, 743, 969, 220, 771, 36, 407, 89, 368, 625, 492, 501, 718, 887, 724, 728, 69, 361, 943, 21, 872, 375, 394, 397, 11, 848, 785, 637, 90, 555, 288, 869, 650, 256, 440, 420, 292, 198, 860, 11, 823, 351, 511, 892, 238, 586, 971, 658, 947, 913, 31, 170, 639, 424, 918, 1, 623, 702, 989, 64, 609, 276, 285, 610, 884, 724, 29, 175, 274, 240, 185, 448, 591, 48, 339, 180, 633, 309, 189, 931, 573, 571, 101, 563, 346, 18, 563, 968, 72, 904, 
+Min: 1.000000, Max: 201.000000
+Min: 201.000000, Max: 401.000000
+Min: 401.000000, Max: 601.000000
+Min: 601.000000, Max: 801.000000
+Min: 801.000000, Max: 1001.000000
+Histogram for process 0 on c0196 out of 2:
+Number of values in Class 0: 9
+Number of values in Class 1: 13
+Histogram for process 1 on c0197 out of 2:
+Number of values in Class 2: 10
+Number of values in Class 0: 13
+Number of values in Class 1: 9
+Number of values in Class 3: 11
+Number of values in Class 2: 9
+Number of values in Class 4: 7
+total values in histogram: 50
+Number of values in Class 3: 8
+Number of values in Class 4: 11
+total values in histogram: 50
+
+Final Histogram:
+Number of values in Class 0: 22
+Number of values in Class 1: 22
+Number of values in Class 2: 19
+Number of values in Class 3: 19
+Number of values in Class 4: 18
+total values in histogram: 100

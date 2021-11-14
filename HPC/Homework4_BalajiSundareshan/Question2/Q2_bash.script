@@ -6,4 +6,4 @@
 #SBATCH --job-name=BS
 #SBATCH --mem=2G
 #SBATCH --partition=express
-$SRUN mpirun -mca btl_base_warn_component_unused 0 Q2_1 100 5
+$SRUN mpirun -mca btl_base_warn_component_unused 0 Q2_11 100 5
