@@ -17,6 +17,9 @@ int * displs;
 int *rptr;
 MPI_Datatype rtype; 
 int num_procs, global_data_len;
+int num_classes;
+int proc_rank, name_len;
+char processor_name[MPI_MAX_PROCESSOR_NAME];
 
 int * classes;
 int * local_classes;
@@ -86,12 +89,13 @@ void print_hist(int num_classes, int * hist_classes){
     printf("total values in histogram: %d\n", total_vals);
 }
 
-void group_data_bins(int local_data_len, int num_classes, int num_proc, int local_data){
+void group_data_bins(int local_data_len, int num_classes, int proc_rank, int recarr[global_data_len][num_procs]){
 
     int i, class_;
     for(i = 0; i < local_data_len; i++) 
-    {
-        class_ = find_bin(local_data[i], num_classes);  
+    {   
+        printf("%d, ", recarr[i][proc_rank]);
+        class_ = find_bin(recarr[i][proc_rank], num_classes);  
         assert(("class index should not be negative", class_>=0));
         local_classes[class_] += 1;
     }
@@ -176,16 +180,16 @@ int main(int argc, char *argv[])
 {
     srand(time(NULL));
 
-    int proc_rank, name_len;
-    char processor_name[MPI_MAX_PROCESSOR_NAME];
-
-    int num_classes, local_data_len;
+    int local_data_len;
     int recvarray[global_data_len][num_procs];
 
     assert(("./Q2 <number of values> <number of classes>", argc == 3));
 
     global_data_len = atoi(argv[1]);
     num_classes = atoi(argv[2]);
+    
+    printf("Number of Values: %d\n", global_data_len);
+    printf("Number of Values: %d\n", num_classes);
 
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
@@ -206,18 +210,19 @@ int main(int argc, char *argv[])
     dist_data(global_data_len, num_classes, num_procs);
     scatter_data(proc_rank, num_procs, recvarray);
 
-    group_data_bins(local_data_len, num_classes, recvarray);
-
+    printf("bef gr\n");
+    group_data_bins(local_data_lens[proc_rank], num_classes, proc_rank, recvarray);
     printf("Histogram for process %d on %s out of %d:\n", proc_rank, processor_name, num_procs);
     print_hist(num_classes, local_classes);
 
-    MPI_Reduce(local_classes, classes, num_classes, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    // printf("2 group: %d\n, ",num_classes);
+    // MPI_Reduce(local_classes, classes, num_classes, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 
     MPI_Finalize();
 
     if(proc_rank==0){
         printf("\nFinal Histogram:\n");
-        print_hist(num_classes, classes);
+        //print_hist(num_classes, classes);
     }
     
     return 0;
