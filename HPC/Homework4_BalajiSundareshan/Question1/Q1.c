@@ -25,7 +25,8 @@ long count_toss_in_circle(long num_tosses_process, int process_rank)
     long num_toss_in = 0;
     bool dart_in_circle;
 
-    for(toss = 0; toss < num_tosses_process; toss++){
+    for(toss = 0; toss < num_tosses_process; toss++)
+    {
 
         x = rand_r(&seed)/(double)RAND_MAX;
 	    y = rand_r(&seed)/(double)RAND_MAX;
@@ -35,7 +36,9 @@ long count_toss_in_circle(long num_tosses_process, int process_rank)
             num_toss_in += 1;
         }
     }
+
     return num_toss_in;
+
 }
 
 int main(int argc, char *argv[])
@@ -49,7 +52,7 @@ int main(int argc, char *argv[])
     double start_time, end_time, time_elapsed_procs, total_time_elapsed;
     double calculated_pi;
 
-    assert(("./Q1 <number of darts> <number of nodes>", argc == 3));
+    assert(("./Q1 <number of darts>", argc == 2));
 
     num_darts = atoi(argv[1]);
 
@@ -58,6 +61,8 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &proc_rank);
     MPI_Get_processor_name(processor_name, &name_len); 
 
+    if(proc_rank==0){printf("Number of darts thrown: %ld\n", num_darts);}
+    
     MPI_Bcast(&num_darts, 1, MPI_LONG, 0, MPI_COMM_WORLD);
 
     num_darts_procs = num_darts/num_procs;
@@ -74,7 +79,7 @@ int main(int argc, char *argv[])
     // reduction in tosses
     MPI_Reduce(&num_darts_procs_circle, &num_darts_circle, 1, MPI_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
 
-    printf("Number of darts for process %d on %s out of %d: %ld\n", proc_rank, processor_name, num_procs, num_darts_procs_circle);
+    printf("Number of darts inside circle for process %d on %s out of %d: %ld\n", proc_rank, processor_name, num_procs, num_darts_procs_circle);
 
     MPI_Finalize(); 
 
@@ -82,7 +87,7 @@ int main(int argc, char *argv[])
         calculated_pi = (4*num_darts_circle)/((double) num_darts);
         double error = fabs(calculated_pi - PI25DT);
         printf("Elapsed time = %f seconds \n", total_time_elapsed);
-        printf("Pi is approximately %.16f, Error is %.16f\n", calculated_pi, error);
+        printf("Calculated Pi is %.16f, Error is %.16f\n", calculated_pi, error);
     }
 
     return 0;

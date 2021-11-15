@@ -53,20 +53,24 @@ void set_classes(int num_classes){
     for(i=0; i<num_classes; i++){
 
         min_range_cls[i] = i*interval + MIN_NUM;
-        max_range_cls[i] = (i+1)*interval + MIN_NUM;
-    }
 
+        if(i == num_classes-1){
+            max_range_cls[i] = MAX_NUM + 1;
+        }else{
+            max_range_cls[i] = (i+1)*interval + MIN_NUM;
+        }
+    }
 }
 
 void print_data(int global_data_len, int num_classes){
 
     int i;
 
-    printf("Input data: ");
-    for(i=0; i<global_data_len; i++){
-        printf("%d, ",data[i]);
-    }
-    printf("\n");
+    // printf("Input data: ");
+    // for(i=0; i<global_data_len; i++){
+    //     printf("%d ",data[i]);
+    // }
+    // printf("\n");
 
     for(i=0; i<num_classes; i++){
         printf("Min: %f, Max: %f\n", min_range_cls[i], max_range_cls[i]);
@@ -150,34 +154,12 @@ void print_class_dist(int class_dist_proc[num_procs][num_classes]){
     int i, j, len;
     for(i=0; i<num_procs; i++){
         len = class_dist_proc_count[i];
-        printf("proc id %d: ", i);
+        printf("proc ID %d: ", i);
         for(j=0; j<len; j++){
-            printf("%d, ",class_dist_proc[i][j]);
+            printf("%d ",class_dist_proc[i][j]);
         }
+        printf("\n");
     }
-}
-
-void print_scatter_params(int num_proc){
-
-    int i, j;
-    printf("Data len for each proc:\n");
-    for(i=0; i<num_proc; i++){
-        printf("proc %d: %d\n", i, local_data_lens[i]);
-    }
-    
-    printf("Displs for each proc:\n");
-    for(i=0; i<num_proc; i++){
-        printf("proc %d: %d\n", i, displs[i]);
-    }
-}
-
-void print_data_buffer(int proc_rank){
-
-    int i;
-    for (i = 0; i < local_data_lens[proc_rank]; i++) {
-        printf("%d, ", local_data[i]);
-    }
-    printf("\n");
 }
 
 void print_results(int result[num_classes * global_data_len])
@@ -185,7 +167,7 @@ void print_results(int result[num_classes * global_data_len])
     int i, j, len;
     for(i=0; i<num_classes; i++){
         len = classes[i];
-        printf("cls id: %d ", i);
+        printf("Number of values in Class %d: %d Values are: ", i, classes[i]);
         for(j=0; j<len; j++){
             printf("%d ", result[i * global_data_len + j]);
         }
@@ -204,15 +186,21 @@ void initialize_result(int result[num_classes * global_data_len]){
 int main(int argc, char *argv[])
 {
 
-    assert(("./Q2_1 <number of values> <number of classes>", argc == 3));
+    assert(("./Q2_2 <number of values> <number of classes>", argc == 3));
 
     global_data_len = atoi(argv[1]);
     num_classes = atoi(argv[2]);
+
+    assert(("Num_values should be evenly divisible by num_classes", global_data_len % num_classes == 0));
 
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
     MPI_Comm_rank(MPI_COMM_WORLD, &proc_rank);
     MPI_Get_processor_name(processor_name, &name_len); 
+
+    if(proc_rank==0){
+    printf("Number of values: %d\n", global_data_len);
+    printf("Number of classes: %d\n", num_classes);}
 
     // Data initialize
     gen_data(global_data_len);   
@@ -221,6 +209,7 @@ int main(int argc, char *argv[])
     MPI_Bcast(&num_classes, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&global_data_len, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
+    double start_time, end_time, time_elapsed_procs, total_time_elapsed;
     int class_dict_proc[num_procs][num_classes];
     int result[num_classes * global_data_len];
     initialize_result(result);
@@ -229,7 +218,6 @@ int main(int argc, char *argv[])
 
     if(proc_rank == 0){
         print_data(global_data_len, num_classes);
-        print_scatter_params(num_procs);
     }
 
     local_data = (int *)calloc(local_data_lens[proc_rank], sizeof(int));
@@ -238,24 +226,34 @@ int main(int argc, char *argv[])
     global_result = (int *)calloc(num_classes * global_data_len, sizeof(int));
 
     MPI_Bcast(data, global_data_len, MPI_INT, 0, MPI_COMM_WORLD);
-    printf("processor rank: %d len: %d\n", proc_rank, local_data_lens[proc_rank]);
-    //print_data_buffer(proc_rank);
+
+    // printf("processor rank: %d len: %d\n", proc_rank, local_data_lens[proc_rank]);
+    // printf("Histogram for process %d on %s out of %d:\n", proc_rank, processor_name, num_procs);
 
     class_dist(num_classes, num_procs, class_dict_proc);
-    print_class_dist(class_dict_proc);
+    if(proc_rank == 0){print_class_dist(class_dict_proc);}
 
+    start_time = MPI_Wtime();
     group_class_bins(global_data_len, proc_rank, class_dict_proc, result);
-    printf("Histogram for process %d on %s out of %d:\n", proc_rank, processor_name, num_procs);
-    
+    end_time = MPI_Wtime();
+    time_elapsed_procs = end_time - start_time;
+
+    // reduction in time
+    MPI_Reduce(&time_elapsed_procs, &total_time_elapsed, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD); 
+
+    // reduction in histogram
     MPI_Reduce(result_len, classes, num_classes, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+
+    // reduction in data values
     MPI_Reduce(&result, global_result, num_classes*global_data_len, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 
     MPI_Finalize();
 
     if(proc_rank==0){
-        printf("\nFinal Histogram:\n");
+        printf("Final Histogram:\n");
         print_hist(num_classes, classes);
-        print_results(global_result);
+        // print_results(global_result);
+        printf("Elapsed time: %f seconds \n", total_time_elapsed);
     }
 
     return 0;

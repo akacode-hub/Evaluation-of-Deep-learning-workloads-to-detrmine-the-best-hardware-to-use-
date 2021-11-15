@@ -1,0 +1,49 @@
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+Number of darts thrown: 1600000
+--------------------------------------------------------------------------
+WARNING: Open MPI accepted a TCP connection from what appears to be a
+another Open MPI process but cannot find a corresponding process
+entry for that peer.
+
+This attempted connection will be ignored; your MPI job may or may not
+continue properly.
+
+  Local host: c0195
+  PID:        44359
+--------------------------------------------------------------------------
+Number of darts inside circle for process 15 on c0243 out of 16: 78736
+Number of darts inside circle for process 1 on c0158 out of 16: 78526
+Number of darts inside circle for process 9 on c0168 out of 16: 78622
+Number of darts inside circle for process 7 on c0166 out of 16: 78601
+Number of darts inside circle for process 11 on c0196 out of 16: 78522
+Number of darts inside circle for process 13 on c0241 out of 16: 78581
+Number of darts inside circle for process 3 on c0161 out of 16: 78386
+Number of darts inside circle for process 5 on c0163 out of 16: 78366
+[c0156:31834] 1 more process has sent help message help-mpi-btl-tcp.txt / server accept cannot find guid
+[c0156:31834] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+slurmstepd: error: *** JOB 21985622 ON c0156 CANCELLED AT 2021-11-14T21:22:05 DUE TO TIME LIMIT ***
+--------------------------------------------------------------------------
+ORTE has lost communication with a remote daemon.
+
+  HNP daemon   : [[12117,0],0] on node c0156
+  Remote daemon: [[12117,0],1] on node c0158
+
+This is usually due to either a failure of the TCP network
+connection to the node, or possibly an internal failure of
+the daemon itself. We cannot recover from this failure, and
+therefore will terminate the job.
+--------------------------------------------------------------------------

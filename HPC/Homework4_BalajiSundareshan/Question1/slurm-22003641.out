@@ -1,0 +1,7 @@
+Number of darts thrown: 800000
+Number of darts inside circle for process 1 on c0202 out of 4: 157306
+Number of darts inside circle for process 2 on c0203 out of 4: 157031
+Number of darts inside circle for process 0 on c0201 out of 4: 157327
+Number of darts inside circle for process 3 on c0204 out of 4: 157084
+Elapsed time = 0.006853 seconds 
+Calculated Pi is 3.1437400000000002, Error is 0.0021473464102071

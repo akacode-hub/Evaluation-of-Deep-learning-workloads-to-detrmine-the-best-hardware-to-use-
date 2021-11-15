@@ -1,0 +1,17 @@
+Number of values: 100000
+Number of classes: 4
+Min: 1.000000, Max: 251.000000
+Min: 251.000000, Max: 501.000000
+Min: 501.000000, Max: 751.000000
+Min: 751.000000, Max: 1001.000000
+proc ID 0: 0 
+proc ID 1: 1 
+proc ID 2: 2 
+proc ID 3: 3 
+Final Histogram:
+Number of values in Class 0: 25180
+Number of values in Class 1: 24793
+Number of values in Class 2: 24962
+Number of values in Class 3: 25065
+total values in histogram: 100000
+Elapsed time: 0.003748 seconds 
