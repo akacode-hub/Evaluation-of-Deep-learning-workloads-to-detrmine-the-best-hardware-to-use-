@@ -47,6 +47,41 @@ def plot_pe_data(poes, num_samples):
     plt.legend(["Optimal pFE", "MLP pFE"])
     plt.show()
 
+def plot_optnumperc_data():
+
+    optnumperc = [50, 35, 50, 50, 35, 35]
+    num_samples = [100, 200, 500, 1000, 2000, 5000]
+    plt.xscale('log')
+    plt.ylim([1, 60])
+    plt.scatter(num_samples, optnumperc, s=20, color = 'blue')
+    plt.title('Optimal number of perceptrons vs number of training samples')
+    plt.xlabel('Number of training samples')
+    plt.ylabel('Optimal number of perceptrons')
+    plt.show()
+
+def plot_ce_gmm():
+
+    order = [1, 2, 3, 4, 5, 6]
+    # ce_loss = [-15.1016, -48.4938, -160.1118, -163.9848, -169.9817, -411866.8363]
+    # num_samples = 10
+
+    # ce_loss = [-9.0056, -8.0087, -7.2032, -6.7641, -6.9496, -7.0197]
+    # num_samples = 100
+
+    # ce_loss = [-8.9002, -7.7748, -7.0939, -6.6223, -6.6271, -6.6293]
+    # num_samples = 1000
+
+    ce_loss = [-8.9029, -7.781, -7.1142, -6.5982, -6.5997, -6.5999]
+    num_samples = 10000
+
+    plt.scatter(order, -np.array(ce_loss), s=20, color = 'blue')
+
+    plt.title('Negative log likelihood for GMM model orders for ' + str(num_samples) + ' samples')
+    plt.xlabel('GMM model orders')
+    plt.ylabel('Negative log likelihood')
+    
+    plt.show()
+
 def plot_hist():
 
     #num_gmm_freq = [4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 5, 4, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4]
@@ -59,7 +94,7 @@ def plot_hist():
 
     num_gmm_freq = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1]
     num_samples = 10
-    
+
     print('num_gmm_freq: ',num_gmm_freq)
     n_bins = 6
     fig, ax = plt.subplots(tight_layout=True)
@@ -78,4 +113,6 @@ if __name__ == "__main__":
     num_samples = [100, 200, 500, 1000, 2000, 5000]
 
     #plot_pe_data(poe_test, num_samples)
-    plot_hist()
+    #plot_hist()
+    #plot_ce_gmm()
+    plot_optnumperc_data()
