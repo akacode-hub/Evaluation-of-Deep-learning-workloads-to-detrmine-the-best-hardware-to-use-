@@ -66,11 +66,11 @@ void print_data(int global_data_len, int num_classes){
 
     int i;
 
-    // printf("Input data: ");
-    // for(i=0; i<global_data_len; i++){
-    //     printf("%d ",data[i]);
-    // }
-    // printf("\n");
+    printf("Input data: ");
+    for(i=0; i<global_data_len; i++){
+        printf("%d ",data[i]);
+    }
+    printf("\n");
 
     for(i=0; i<num_classes; i++){
         printf("Min: %f, Max: %f\n", min_range_cls[i], max_range_cls[i]);
@@ -252,7 +252,7 @@ int main(int argc, char *argv[])
     if(proc_rank==0){
         printf("Final Histogram:\n");
         print_hist(num_classes, classes);
-        // print_results(global_result);
+        print_results(global_result);
         printf("Elapsed time: %f seconds \n", total_time_elapsed);
     }
 
