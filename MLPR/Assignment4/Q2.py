@@ -3,6 +3,8 @@ import cv2
 from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import normalize
+from scipy.stats import multivariate_normal
+import matplotlib.pyplot as plt
 
 def train_val_split(data, idx, kfold):
 
@@ -42,7 +44,7 @@ def MOS(data, num_gmm_lst, kfold):
         gmm_mls.append(mean_max_likelihoods)
         print('num_gmm: ', num_gmm, ' mean_mle: ',np.round(mean_max_likelihoods, 3))
 
-    desired_num_gmm = gmm_mls[np.argmax(gmm_mls)]
+    desired_num_gmm = num_gmm_lst[np.argmax(gmm_mls)]
 
     return desired_num_gmm
 
@@ -63,20 +65,41 @@ def get_feature_vector(img):
 
     norm_feat_vec = normalize(feat_vec, axis=0, norm='max')
     
-    for shuffle_num in range(5):
-        np.random.shuffle(norm_feat_vec)
+    # for shuffle_num in range(5):
+    #     np.random.shuffle(norm_feat_vec)
 
     return norm_feat_vec
 
 if __name__ == "__main__":
 
-    img_path = '157055.jpg'
+    img_path = '42049.jpg'
 
     num_gmm_lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     kfold = 10
 
     img = cv2.imread(img_path)  
+
     print('img shape ',img.shape)
     norm_feat_vec = get_feature_vector(img)
-    desired_num_gmm = MOS(norm_feat_vec, num_gmm_lst, kfold)
+    print('norm_feat_vec: ',norm_feat_vec)
     
+    desired_num_gmm = MOS(norm_feat_vec, num_gmm_lst, kfold)
+
+    print('desired_num_gmm: ',desired_num_gmm)    
+
+    model = GaussianMixture(desired_num_gmm, covariance_type='full', 
+                    random_state=0, init_params='kmeans', max_iter=100)            
+    model.fit(norm_feat_vec)
+
+    prediction = np.zeros((norm_feat_vec.shape[0], desired_num_gmm))
+    for i in range(desired_num_gmm):
+        pdf = multivariate_normal.pdf(norm_feat_vec, mean=model.means_[i,:],cov=model.covariances_[i,:,:])
+        print('pdf shape ', pdf.shape)
+        
+        prediction[:, i] = model.weights_[i] * pdf
+
+    prediction = np.argmax(prediction, axis=1)
+    print('prediction ', prediction,prediction.shape)
+    prediction = prediction.reshape((img.shape[0], img.shape[1]))
+    plt.imshow(prediction)
+    plt.show()
