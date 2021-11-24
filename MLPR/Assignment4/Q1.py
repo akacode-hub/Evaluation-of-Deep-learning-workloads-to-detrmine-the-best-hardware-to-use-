@@ -8,7 +8,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from keras.models import Sequential
 from keras.layers import Dense
 np.set_printoptions(suppress=True)
-from keras.optimizers import SGD
+from tensorflow.keras.optimizers import SGD
 from sklearn.svm import SVC
 
 def gen_data(num_samples, priors):
@@ -106,11 +106,11 @@ def SVC_hyperparams(data_wt_labels, kfold):
     print('data shape: ',data.shape)
     print('labels shape: ',labels.shape)
 
-    num = 20
+    num = 5
     hp_values = get_hp_values(num)
     hp_accs = np.zeros((num*num, 2), dtype='float')
 
-    perc_lst = []
+    hp_lst = []
     for C, kernel_width in hp_values:
 
         err_lst = []
@@ -132,27 +132,28 @@ def SVC_hyperparams(data_wt_labels, kfold):
             model = SVC(C=C, kernel='rbf', gamma=gamma)
 
             # train
-            model.fit(train_data, train_labels, batch_size = 100, epochs = 300, verbose=0)
+            model.fit(train_data, train_labels)
             
             # validate
-            (err, accuracy) = model.evaluate(val_data, val_labels)
+            predictions = model.predict(val_data)
+            acc = np.sum(((predictions - val_labels) == 0).astype('int'))/val_data.shape[0]
+            err = 1 - acc
 
-            print('num_samples:', num_samples,' num_perc: ',num_perc,' val idx: ', val_idx, ' error: ', np.round(err, 4), ' accuracy: ', np.round(accuracy, 4))
+            # print('num_samples: ', num_samples,' val idx: ', val_idx,' C: ',C, ' kernel_width: ',kernel_width,' error: ', np.round(err, 4), ' accuracy: ', np.round(acc, 4))
             err_lst.append(err)
-            acc_lst.append(accuracy)
+            acc_lst.append(acc)
 
         mean_err = np.mean(np.array(err_lst))
         std_err = np.std(np.array(err_lst))
         mean_acc = np.mean(np.array(acc_lst))
 
-        print('num_samples:', num_samples, ' num_perc: ',num_perc,' mean error: ', np.round(mean_err, 4), ' std error: ',np.round(std_err, 4), ' mean_acc: ', mean_acc)
-        perc_lst.append(mean_err)
+        print('num_samples:', num_samples, ' C: ',C, ' kernel_width: ',kernel_width,' mean error: ', np.round(mean_err, 4), ' std error: ',np.round(std_err, 4), ' mean_acc: ', np.round(mean_acc, 4))
+        hp_lst.append(mean_err)
 
-    perc_lst = np.array(perc_lst)
-    print('pe for each perceptron: ', perc_lst)
-    desired_num_perc = num_perc_lst[np.argmin(perc_lst)]
+    hp_lst = np.array(hp_lst)
+    desired_hp = hp_values[np.argmin(hp_lst)]
 
-    return desired_num_perc
+    return desired_hp
 
 def MLP_hyperparams(data_wt_labels, kfold, num_perc_lst):
 
@@ -226,7 +227,8 @@ def train_kfoldMLP(train_wt_cls, test_wt_cls, kfold):
 
     print('train_wt_cls shape ',train_wt_cls.shape)
     # Model Order Selection
-    desired_num_perc = MLP_hyperparams(train_wt_cls, kfold, num_perc_lst)
+    #desired_num_perc = MLP_hyperparams(train_wt_cls, kfold, num_perc_lst)
+    desired_num_perc = 6
 
     # get model
     model = get_model(desired_num_perc)
@@ -243,6 +245,8 @@ def train_kfoldMLP(train_wt_cls, test_wt_cls, kfold):
     (val_err, val_acc) = model.evaluate(test_data, test_labels)
 
     print('num_samples: ',num_train,' desired_num_perc: ',desired_num_perc,' val_err: ', val_err, ' val_acc: ', val_acc)
+
+    plot_prediction(model, test_data, test_labels, 'MLP')
 
 def train_kfoldSVC(train_wt_cls, test_wt_cls, kfold):
 
@@ -253,29 +257,53 @@ def train_kfoldSVC(train_wt_cls, test_wt_cls, kfold):
     train_labels = train_wt_cls[2,:].T
 
     # Model Order Selection
-    desired_num_perc = SVC_hyperparams(train_wt_cls, kfold, num_perc_lst)
+    desired_hp = SVC_hyperparams(train_wt_cls, kfold)
+    print('desired params: ',desired_hp)
+    desired_C, desired_kernel_width = desired_hp[0], desired_hp[1]
 
     # get model
-    model = get_model(desired_num_perc)
+    model = SVC(C=desired_C, kernel='rbf', gamma=1/(2*desired_kernel_width**2))
     
     # train
-    model.fit(train_data, train_labels, batch_size = 100, epochs = 300, verbose=0)
-
-    print('model summary')
-    print(model.summary())
+    model.fit(train_data, train_labels)
 
     # validate
     test_data = test_wt_cls[:2,:].T #(N, 2)
     test_labels = test_wt_cls[2,:].T
-    (val_err, val_acc) = model.evaluate(test_data, test_labels)
+    predictions = model.predict(test_data)
+    val_acc = np.sum(((predictions - test_labels) == 0).astype('int'))/test_data.shape[0]
+    val_err = 1 - val_acc    
 
-    print('num_samples: ',num_train,' desired_num_perc: ',desired_num_perc,' val_err: ', val_err, ' val_acc: ', val_acc)
+    print('num_samples: ',num_train,' C: ',desired_C,' kernel_width: ',desired_kernel_width,' val_err: ', val_err, ' val_acc: ', val_acc)
 
-def plot_prediction(model, test_data, test_labels):
+    plot_prediction(model, test_data, test_labels, 'SVC')
 
-    pass
+def plot_prediction(model, test_data, test_labels, method):
 
-    
+    predictions = np.squeeze(model.predict(test_data))
+    correct = np.array(np.squeeze((np.round(predictions) == test_labels).nonzero()))
+    incorrect = np.array(np.squeeze((np.round(predictions) != test_labels).nonzero()))
+
+    plt.plot(test_data[correct][:,0],
+            test_data[correct][:,1],
+            'g.', alpha=0.25)
+    plt.plot(test_data[incorrect][:,0],
+            test_data[incorrect][:,1],
+            'r.', alpha=0.25)
+
+    plt.title(method + ' Classification Performance')
+    plt.xlabel('x1')
+    plt.ylabel('x2')
+    plt.legend(['Correct classification', 'Incorrect classification'])
+
+    gridpoints = np.meshgrid(np.linspace(-8, 8, 128), np.linspace(-8, 8, 128))
+    contour_values = np.transpose(np.reshape(model.predict(np.reshape(np.transpose(gridpoints), (-1, 2))), (128, 128)))
+    CS = plt.contour(gridpoints[0], gridpoints[1], contour_values)
+    CB = plt.colorbar(CS, shrink=0.8, extend='both', cmap='magma')
+    # plt.contourf(gridpoints[0], gridpoints[1], contour_values, levels=1)
+    # plt.colorbar()
+
+    plt.show()
 
 if __name__ == "__main__":
 
@@ -297,4 +325,7 @@ if __name__ == "__main__":
     #plot_data(test_wt_cls, label_ids)
 
     ## Train MLP
-    train_kfoldMLP(train_wt_cls, test_wt_cls, kfold)
+    #train_kfoldMLP(train_wt_cls, test_wt_cls, kfold)
+
+    ## Train SVC
+    train_kfoldSVC(train_wt_cls, test_wt_cls, kfold)

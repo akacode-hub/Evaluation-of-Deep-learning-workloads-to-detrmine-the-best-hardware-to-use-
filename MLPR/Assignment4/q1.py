@@ -185,17 +185,17 @@ if plotData:
     plot_data(TrainingData_labels, TrainingData_features, TestingData_labels, TestingData_features)
 
 SVM_hyperparams = train_SVM_hyperparams(TrainingData_labels, TrainingData_features)
-# MLP_hyperparams = train_MLP_hyperparams(TrainingData_labels, TrainingData_features)
+MLP_hyperparams = train_MLP_hyperparams(TrainingData_labels, TrainingData_features)
 
-# (overlap_penalty, kernel_width) = SVM_hyperparams
-# print("The best SVM accuracy was achieved with an overlap penalty weight of " + str(overlap_penalty_weight) + " and a Gaussian kernel width of " + str(kernel_width) + ".")
-# print("The best MLP accuracy was achieved with " + str(MLP_hyperparams) + " perceptrons.")
+(overlap_penalty, kernel_width) = SVM_hyperparams
+print("The best SVM accuracy was achieved with an overlap penalty weight of " + str(overlap_penalty) + " and a Gaussian kernel width of " + str(kernel_width) + ".")
+print("The best MLP accuracy was achieved with " + str(MLP_hyperparams) + " perceptrons.")
 
-# (SVM_model, SVM_performance) = SVM_accuracy(SVM_hyperparams, TrainingData_features, TrainingData_labels, TestingData_features, TestingData_labels)
-# (MLP_model, MLP_performance) = max(map(lambda _: MLP_accuracy(MLP_hyperparams, TrainingData_features, TrainingData_labels, TestingData_features, TestingData_labels), range(5)), key=lambda r: r[1])
+(SVM_model, SVM_performance) = SVM_accuracy(SVM_hyperparams, TrainingData_features, TrainingData_labels, TestingData_features, TestingData_labels)
+(MLP_model, MLP_performance) = max(map(lambda _: MLP_accuracy(MLP_hyperparams, TrainingData_features, TrainingData_labels, TestingData_features, TestingData_labels), range(5)), key=lambda r: r[1])
 
-# print("The test dataset was fit by the SVM model with an accuracy of " + str(SVM_performance) + ".")
-# print("The test dataset was fit by the MLP model with an accuracy of " + str(MLP_performance) + ".")
+print("The test dataset was fit by the SVM model with an accuracy of " + str(SVM_performance) + ".")
+print("The test dataset was fit by the MLP model with an accuracy of " + str(MLP_performance) + ".")
 
-# plot_trained_model('SVM', SVM_model, TestingData_features, TestingData_labels)
-# plot_trained_model('MLP', MLP_model, TestingData_features, TestingData_labels)
+plot_trained_model('SVM', SVM_model, TestingData_features, TestingData_labels)
+plot_trained_model('MLP', MLP_model, TestingData_features, TestingData_labels)

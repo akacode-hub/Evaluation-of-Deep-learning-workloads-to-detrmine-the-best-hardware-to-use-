@@ -64,9 +64,6 @@ def get_feature_vector(img):
             feat_vec[row*w + col, 4] = img[row, col, 0] #blue
 
     norm_feat_vec = normalize(feat_vec, axis=0, norm='max')
-    
-    # for shuffle_num in range(5):
-    #     np.random.shuffle(norm_feat_vec)
 
     return norm_feat_vec
 
@@ -94,8 +91,6 @@ if __name__ == "__main__":
     prediction = np.zeros((norm_feat_vec.shape[0], desired_num_gmm))
     for i in range(desired_num_gmm):
         pdf = multivariate_normal.pdf(norm_feat_vec, mean=model.means_[i,:],cov=model.covariances_[i,:,:])
-        print('pdf shape ', pdf.shape)
-        
         prediction[:, i] = model.weights_[i] * pdf
 
     prediction = np.argmax(prediction, axis=1)
