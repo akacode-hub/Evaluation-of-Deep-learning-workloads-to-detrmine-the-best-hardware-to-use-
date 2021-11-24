@@ -7,7 +7,7 @@ from sklearn.svm import SVC
 import keras
 from keras.models import Sequential
 from keras.layers import Dense
-# from keras.optimizers import SGD
+from tensorflow.keras.optimizers import SGD
 
 plotData = True
 n = 2
@@ -56,13 +56,15 @@ def plot_data(TrainingData_labels, TrainingData_features, TestingData_labels, Te
 
 # Uses K-Fold cross validation to find the best hyperparameters for an SVM model, and plots the results
 def train_SVM_hyperparams(TrainingData_labels, TrainingData_features):
+    
     hyperparam_candidates = np.meshgrid(np.geomspace(0.05, 10, 40), np.geomspace(0.05, 20, 40))
+
     hyperparam_performance = np.zeros((np.shape(hyperparam_candidates)[1] * np.shape(hyperparam_candidates)[2]))
+
     for (i, hyperparams) in enumerate(np.reshape(np.transpose(hyperparam_candidates), (-1, 2))):
         skf = StratifiedKFold(n_splits=K, shuffle=False)
 
         total_accuracy = 0
-
         for(k, (train, test)) in enumerate(skf.split(TrainingData_features, TrainingData_labels)):
             (_, accuracy) = SVM_accuracy(hyperparams, TrainingData_features[train], TrainingData_labels[train], TrainingData_features[test], TrainingData_labels[test])
             total_accuracy += accuracy
@@ -70,7 +72,7 @@ def train_SVM_hyperparams(TrainingData_labels, TrainingData_features):
         accuracy = total_accuracy / K
         hyperparam_performance[i] = accuracy
 
-        print(i, accuracy)
+        print(hyperparams, accuracy)
 
     plt.style.use('seaborn-white')
     ax = plt.gca()
@@ -182,7 +184,7 @@ K = 10
 if plotData:
     plot_data(TrainingData_labels, TrainingData_features, TestingData_labels, TestingData_features)
 
-# SVM_hyperparams = train_SVM_hyperparams(TrainingData_labels, TrainingData_features)
+SVM_hyperparams = train_SVM_hyperparams(TrainingData_labels, TrainingData_features)
 # MLP_hyperparams = train_MLP_hyperparams(TrainingData_labels, TrainingData_features)
 
 # (overlap_penalty, kernel_width) = SVM_hyperparams
