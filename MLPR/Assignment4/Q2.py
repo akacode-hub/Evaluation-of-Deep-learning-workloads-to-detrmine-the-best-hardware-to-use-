@@ -69,13 +69,12 @@ def get_feature_vector(img):
 
 if __name__ == "__main__":
 
-    img_path = '42049.jpg'
+    img_path = '157055.jpg'
 
     num_gmm_lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     kfold = 10
 
     img = cv2.imread(img_path)  
-
     print('img shape ',img.shape)
     norm_feat_vec = get_feature_vector(img)
     print('norm_feat_vec: ',norm_feat_vec)

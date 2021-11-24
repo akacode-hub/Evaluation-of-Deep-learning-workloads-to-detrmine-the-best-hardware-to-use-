@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 from sklearn.model_selection import StratifiedKFold
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 import keras
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
@@ -17,7 +18,7 @@ def gen_data(num_samples, priors):
     
     thetas = np.random.uniform(-np.pi, np.pi, num_samples)
     sample_data = np.random.uniform(0.0, 1.0, num_samples)
-    num_cls1 = np.sum((sample_data > priors[0]).astype('int'))
+    num_cls1 = np.sum((sample_data <= priors[0]).astype('int'))
     num_cls2 = num_samples - num_cls1
 
     print('num_cls1: ',num_cls1)
@@ -95,6 +96,14 @@ def get_hp_values(num):
 
     return hp_values
 
+def plot_hp_values(hp_lst, num):
+
+    gridpoints = np.meshgrid(np.geomspace(0.05, 10, num), np.geomspace(0.05, 20, num))
+    contour_values = np.transpose(np.reshape(hp_lst, (num, num)))
+    #CS = plt.contour(gridpoints[0], gridpoints[1], contour_values)
+    CB = plt.colorbar(contour_values, shrink=0.8, extend='both', cmap='magma')
+    plt.show()
+
 def SVC_hyperparams(data_wt_labels, kfold):
 
     num_samples = data_wt_labels.shape[1] #(3, N)
@@ -108,7 +117,6 @@ def SVC_hyperparams(data_wt_labels, kfold):
 
     num = 5
     hp_values = get_hp_values(num)
-    hp_accs = np.zeros((num*num, 2), dtype='float')
 
     hp_lst = []
     for C, kernel_width in hp_values:
@@ -148,11 +156,24 @@ def SVC_hyperparams(data_wt_labels, kfold):
         mean_acc = np.mean(np.array(acc_lst))
 
         print('num_samples:', num_samples, ' C: ',C, ' kernel_width: ',kernel_width,' mean error: ', np.round(mean_err, 4), ' std error: ',np.round(std_err, 4), ' mean_acc: ', np.round(mean_acc, 4))
-        hp_lst.append(mean_err)
+        hp_lst.append(mean_acc)
 
     hp_lst = np.array(hp_lst)
-    desired_hp = hp_values[np.argmin(hp_lst)]
+    desired_hp = hp_values[np.argmax(hp_lst)]
+    print('desired_hp: ',desired_hp)
+    max_acc = hp_lst[np.argmax(hp_lst)]
+    print('max acc: ', max_acc)
 
+    grid = np.meshgrid(np.geomspace(0.05, 10, num), np.geomspace(0.05, 20, num))    
+    plt.contour(grid[0], grid[1], np.transpose(np.reshape(hp_lst, (num, num))), cmap='plasma_r', levels=num);
+    plt.title("SVM K-Fold Hyperparameter Validation Performance")
+    plt.xlabel("Overlap penalty weight")
+    plt.ylabel("Gaussian kernel width")
+    plt.plot(desired_hp[0], desired_hp[1], 'rx')
+    plt.colorbar()
+    print("The best SVM accuracy was " + str(max_acc) + ".")
+    # plt.show()
+    plt.savefig("svc_hp_plot.png")
     return desired_hp
 
 def MLP_hyperparams(data_wt_labels, kfold, num_perc_lst):
@@ -167,6 +188,7 @@ def MLP_hyperparams(data_wt_labels, kfold, num_perc_lst):
     print('labels shape: ',labels.shape)
 
     perc_lst = []
+    perc_lst_acc = []
     for num_perc in num_perc_lst:
 
         err_lst = []
@@ -196,7 +218,7 @@ def MLP_hyperparams(data_wt_labels, kfold, num_perc_lst):
             model.fit(train_data, train_labels, batch_size = 100, epochs = 300, verbose=0)
             
             # validate
-            (err, accuracy) = model.evaluate(val_data, val_labels)
+            (err, accuracy) = model.evaluate(val_data, val_labels, verbose=0)
 
             print('num_samples:', num_samples,' num_perc: ',num_perc,' val idx: ', val_idx, ' error: ', np.round(err, 4), ' accuracy: ', np.round(accuracy, 4))
             err_lst.append(err)
@@ -208,10 +230,21 @@ def MLP_hyperparams(data_wt_labels, kfold, num_perc_lst):
 
         print('num_samples:', num_samples, ' num_perc: ',num_perc,' mean error: ', np.round(mean_err, 4), ' std error: ',np.round(std_err, 4), ' mean_acc: ', mean_acc)
         perc_lst.append(mean_err)
+        perc_lst_acc.append(mean_acc)
 
     perc_lst = np.array(perc_lst)
     print('pe for each perceptron: ', perc_lst)
     desired_num_perc = num_perc_lst[np.argmin(perc_lst)]
+
+    plt.plot(num_perc_lst, perc_lst, 'b.')
+    plt.title("MLP K-Fold Hyperparameter Validation Performance")
+    plt.xlabel("Number of perceptrons in hidden layer")
+    plt.ylabel("MLP accuracy")
+    plt.ylim([0,1])
+    plt.plot(desired_num_perc, perc_lst[np.argmin(perc_lst)], 'rx')
+    print("The best MLP accuracy was " + str(perc_lst_acc[np.argmin(perc_lst)]) + ".")
+    #plt.show()
+    plt.savefig("MLP_perc.png")
 
     return desired_num_perc
 
@@ -223,12 +256,12 @@ def train_kfoldMLP(train_wt_cls, test_wt_cls, kfold):
     train_data = train_wt_cls[:2,:].T #(N, 2)
     train_labels = train_wt_cls[2,:].T
 
-    num_perc_lst = np.array([3, 4])*2 #np.array([3, 4, 5, 6, 7, 8, 9, 10])*2
+    num_perc_lst = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])*2
 
     print('train_wt_cls shape ',train_wt_cls.shape)
     # Model Order Selection
-    #desired_num_perc = MLP_hyperparams(train_wt_cls, kfold, num_perc_lst)
-    desired_num_perc = 6
+    desired_num_perc = MLP_hyperparams(train_wt_cls, kfold, num_perc_lst)
+    #desired_num_perc = 6
 
     # get model
     model = get_model(desired_num_perc)
@@ -298,16 +331,17 @@ def plot_prediction(model, test_data, test_labels, method):
 
     gridpoints = np.meshgrid(np.linspace(-8, 8, 128), np.linspace(-8, 8, 128))
     contour_values = np.transpose(np.reshape(model.predict(np.reshape(np.transpose(gridpoints), (-1, 2))), (128, 128)))
-    CS = plt.contour(gridpoints[0], gridpoints[1], contour_values)
-    CB = plt.colorbar(CS, shrink=0.8, extend='both', cmap='magma')
-    # plt.contourf(gridpoints[0], gridpoints[1], contour_values, levels=1)
-    # plt.colorbar()
+    # CS = plt.contour(gridpoints[0], gridpoints[1], contour_values)
+    # CB = plt.colorbar(CS, shrink=0.8, extend='both', cmap='magma')
+    plt.contourf(gridpoints[0], gridpoints[1], contour_values, levels=1)
+    plt.colorbar()
 
-    plt.show()
+    #plt.show()
+    plt.savefig(method + "_plt_pred.png")
 
 if __name__ == "__main__":
 
-    priors = [0.6, 0.4]
+    priors = [0.4, 0.6]
     label_ids = [0, 1]
     num_train_samples = 1000
     num_test_samples = 10000
