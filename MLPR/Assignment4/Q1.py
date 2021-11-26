@@ -51,7 +51,7 @@ def split_data(data_wt_labels, label_ids):
 
     return samples
 
-def plot_data(data_wt_labels, label_ids):
+def plot_data(data_wt_labels, label_ids, name):
 
     fig = plt.figure()
     ax = fig.add_subplot()
@@ -62,7 +62,7 @@ def plot_data(data_wt_labels, label_ids):
     for label_id, sample in enumerate(samples):
         ax.scatter(sample[0, :], sample[1, :], s=5, color = colors[label_id], label = 'class ' + str(label_id), marker='*')
     
-    ax.set_title('Data distribution')
+    ax.set_title(name + ' data distribution')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
 
@@ -89,20 +89,12 @@ def get_model(first_num_nodes, num_labels=1):
 
 def get_hp_values(num):
 
-    hp_values = np.meshgrid(np.geomspace(0.05, 10, num), np.geomspace(0.05, 20, num))    
+    hp_values = np.meshgrid(np.geomspace(0.05, 20, num), np.geomspace(0.05, 20, num))    
     hp_values[0] = hp_values[0].reshape(num*num)
     hp_values[1] = hp_values[1].reshape(num*num)
     hp_values = np.vstack((hp_values[0], hp_values[1])).T
 
     return hp_values
-
-def plot_hp_values(hp_lst, num):
-
-    gridpoints = np.meshgrid(np.geomspace(0.05, 10, num), np.geomspace(0.05, 20, num))
-    contour_values = np.transpose(np.reshape(hp_lst, (num, num)))
-    #CS = plt.contour(gridpoints[0], gridpoints[1], contour_values)
-    CB = plt.colorbar(contour_values, shrink=0.8, extend='both', cmap='magma')
-    plt.show()
 
 def SVC_hyperparams(data_wt_labels, kfold):
 
@@ -115,8 +107,9 @@ def SVC_hyperparams(data_wt_labels, kfold):
     print('data shape: ',data.shape)
     print('labels shape: ',labels.shape)
 
-    num = 5
+    num = 20
     hp_values = get_hp_values(num)
+    print('hp_values: ',hp_values)
 
     hp_lst = []
     for C, kernel_width in hp_values:
@@ -124,6 +117,7 @@ def SVC_hyperparams(data_wt_labels, kfold):
         err_lst = []
         acc_lst = []
         skf = StratifiedKFold(n_splits=kfold, shuffle=False)
+        print(C, kernel_width)
 
         for(val_idx, (train, val)) in enumerate(skf.split(data, labels)):
 
@@ -147,7 +141,6 @@ def SVC_hyperparams(data_wt_labels, kfold):
             acc = np.sum(((predictions - val_labels) == 0).astype('int'))/val_data.shape[0]
             err = 1 - acc
 
-            # print('num_samples: ', num_samples,' val idx: ', val_idx,' C: ',C, ' kernel_width: ',kernel_width,' error: ', np.round(err, 4), ' accuracy: ', np.round(acc, 4))
             err_lst.append(err)
             acc_lst.append(acc)
 
@@ -162,18 +155,26 @@ def SVC_hyperparams(data_wt_labels, kfold):
     desired_hp = hp_values[np.argmax(hp_lst)]
     print('desired_hp: ',desired_hp)
     max_acc = hp_lst[np.argmax(hp_lst)]
+    min_err = 1 - max_acc
     print('max acc: ', max_acc)
 
-    grid = np.meshgrid(np.geomspace(0.05, 10, num), np.geomspace(0.05, 20, num))    
-    plt.contour(grid[0], grid[1], np.transpose(np.reshape(hp_lst, (num, num))), cmap='plasma_r', levels=num);
-    plt.title("SVM K-Fold Hyperparameter Validation Performance")
-    plt.xlabel("Overlap penalty weight")
-    plt.ylabel("Gaussian kernel width")
-    plt.plot(desired_hp[0], desired_hp[1], 'rx')
-    plt.colorbar()
-    print("The best SVM accuracy was " + str(max_acc) + ".")
-    # plt.show()
-    plt.savefig("svc_hp_plot.png")
+    grid = np.meshgrid(np.geomspace(0.05, 20, num), np.geomspace(0.05, 20, num)
+    )    
+    hp_lst_reshape = np.reshape(hp_lst, (num, num))
+
+    fig, ax = plt.subplots()
+
+    c = ax.pcolormesh(grid[0], grid[1], hp_lst_reshape, cmap='RdBu')
+    ax.set_title("SVM K-Fold Hyperparameter Validation Performance")
+    ax.set_xlabel("Overlap penalty weight")
+    ax.set_ylabel("Gaussian kernel width")
+    ax.axis([grid[0].min(), grid[0].max(), grid[1].min(), grid[1].max()])
+    fig.colorbar(c, ax=ax, boundaries=np.linspace(0,1,10))
+    ax.grid(True, color="crimson", lw=2)
+    #plt.show()
+    plt.savefig("SVM_hp.png")
+    plt.close()
+
     return desired_hp
 
 def MLP_hyperparams(data_wt_labels, kfold, num_perc_lst):
@@ -204,12 +205,6 @@ def MLP_hyperparams(data_wt_labels, kfold, num_perc_lst):
             # val
             val_data = data[val]
             val_labels = labels[val]
-
-            #data shape summary
-            # print('train data shape ',train_data.shape)
-            # print('train label shape ',train_labels.shape)
-            # print('val data shape ',val_data.shape)
-            # print('val labels shape ',val_labels.shape)
 
             # get model
             model = get_model(num_perc)
@@ -261,7 +256,6 @@ def train_kfoldMLP(train_wt_cls, test_wt_cls, kfold):
     print('train_wt_cls shape ',train_wt_cls.shape)
     # Model Order Selection
     desired_num_perc = MLP_hyperparams(train_wt_cls, kfold, num_perc_lst)
-    #desired_num_perc = 6
 
     # get model
     model = get_model(desired_num_perc)
@@ -292,6 +286,7 @@ def train_kfoldSVC(train_wt_cls, test_wt_cls, kfold):
     # Model Order Selection
     desired_hp = SVC_hyperparams(train_wt_cls, kfold)
     print('desired params: ',desired_hp)
+
     desired_C, desired_kernel_width = desired_hp[0], desired_hp[1]
 
     # get model
@@ -319,12 +314,13 @@ def plot_prediction(model, test_data, test_labels, method):
 
     plt.plot(test_data[correct][:,0],
             test_data[correct][:,1],
-            'g.', alpha=0.25)
+            'k.', alpha=0.25)
     plt.plot(test_data[incorrect][:,0],
             test_data[incorrect][:,1],
             'r.', alpha=0.25)
 
     plt.title(method + ' Classification Performance')
+    #plt.title(method + ' Confidence Contour')
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.legend(['Correct classification', 'Incorrect classification'])
@@ -334,10 +330,10 @@ def plot_prediction(model, test_data, test_labels, method):
     # CS = plt.contour(gridpoints[0], gridpoints[1], contour_values)
     # CB = plt.colorbar(CS, shrink=0.8, extend='both', cmap='magma')
     plt.contourf(gridpoints[0], gridpoints[1], contour_values, levels=1)
-    plt.colorbar()
+    plt.colorbar(cmap='magma')
 
-    #plt.show()
-    plt.savefig(method + "_plt_pred.png")
+    plt.show()
+    #plt.savefig(method + "_plt_pred.png")
 
 if __name__ == "__main__":
 
@@ -352,14 +348,14 @@ if __name__ == "__main__":
     
     ## train
     train_wt_cls = gen_data(num_train_samples, priors)
-    #plot_data(train_wt_cls, label_ids)
+    plot_data(train_wt_cls, label_ids, 'Training')
 
     ## test
     test_wt_cls = gen_data(num_test_samples, priors)
-    #plot_data(test_wt_cls, label_ids)
+    plot_data(test_wt_cls, label_ids, 'Testing')
 
     ## Train MLP
-    #train_kfoldMLP(train_wt_cls, test_wt_cls, kfold)
+    train_kfoldMLP(train_wt_cls, test_wt_cls, kfold)
 
     ## Train SVC
     train_kfoldSVC(train_wt_cls, test_wt_cls, kfold)
