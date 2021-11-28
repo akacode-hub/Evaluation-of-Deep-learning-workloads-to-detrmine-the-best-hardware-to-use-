@@ -1,0 +1,6 @@
+Number of blocks: 1000
+Number of threads per block: 256
+Number of darts per thread: 2
+Total number of darts thrown: 512000
+Elapsed time = 1.083531 seconds 
+Calculated Pi is 3.1415926535897931, Error is 0.0000000000000000
