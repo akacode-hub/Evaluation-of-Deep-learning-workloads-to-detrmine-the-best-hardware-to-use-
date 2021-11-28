@@ -6,33 +6,41 @@
 #include <curand_kernel.h>
 
 const double PI25DT = 3.141592653589793238462643;         /* 25-digit-PI*/
-const int iteration = 2;
-const int num_blocks = 1000;
+const int num_blocks = 10000;
 const int num_threads_per_block = 256;
+const int num_dart_per_thread = 1;
 
 __global__ void fill_dart_count(int *in_dart_counts)
-{
+{   
     int tid = blockIdx.x*blockDim.x + threadIdx.x;
+    int __shared__ dart_in_thread[num_threads_per_block];
 
-    long toss, num_toss_in;
+    long toss;
     double x, y;
     
     curandState_t rng;
 	curand_init(clock64(), tid, 0, &rng);
 
-    //printf("num_darts_thread: %d\n", iteration);
-    num_toss_in = 0;
-    for (toss = 0; toss < iteration; toss++) {
+    dart_in_thread[threadIdx.x] = 0;
+
+    for (toss = 0; toss < num_dart_per_thread; toss++) {
 
 		x = curand_uniform(&rng); // Random x position in [0,1]
 		y = curand_uniform(&rng); // Random y position in [0,1]
 
         if(x*x + y*y <= 1.0){
-            num_toss_in += 1;
+            dart_in_thread[threadIdx.x] += 1;
         }
     }
     
-    in_dart_counts[tid] = num_toss_in;
+    __syncthreads();
+
+    int i;
+    if (threadIdx.x == 0) {
+        for(i=0; i<num_threads_per_block; i++){
+            in_dart_counts[blockIdx.x] += dart_in_thread[i];
+        }
+    }
 
 }
 
@@ -40,7 +48,7 @@ __global__ void count_darts(int *in_dart_counts, long *num_darts)
 {
     int i;
     long sum = 0.0;
-    for(i = 0; i<num_blocks*num_threads_per_block; i++){
+    for(i = 0; i<num_blocks; i++){
         // printf("in_dart_counts %d: %d\n",i,in_dart_counts[i]);
         sum += in_dart_counts[i];
     }
@@ -54,12 +62,7 @@ int main(int argc, char *argv[])
     
     struct timespec start, end;
 
-    assert(("./Q1 <number of darts>", argc == 2));
-    long num_darts = atoi(argv[1]);
-    assert(("num_darts should be divisible by 256*1000", num_darts % num_blocks * num_threads_per_block == 0));
-
-    int num_dart_per_thread = num_darts / (num_blocks * num_threads_per_block);
-
+    long num_darts = num_blocks * num_threads_per_block * num_dart_per_thread;
     printf("Number of blocks: %d\n", num_blocks);
     printf("Number of threads per block: %d\n", num_threads_per_block);
     printf("Number of darts per thread: %d\n", num_dart_per_thread);
@@ -68,13 +71,10 @@ int main(int argc, char *argv[])
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     int *dart_counts_block;
-    cudaMalloc((void**)&dart_counts_block, num_blocks * num_threads_per_block * sizeof(int));
+    cudaMalloc((void**)&dart_counts_block, num_blocks * sizeof(int));
 
     long *num_darts_gpu, num_darts_in;
     cudaMalloc((void**)&num_darts_gpu, sizeof(num_darts_in));
-
-    int *num_dart_per_thread_gpu;
-    cudaMalloc((void**)&num_dart_per_thread_gpu, sizeof(num_dart_per_thread));
 
     fill_dart_count<<<num_blocks, num_threads_per_block>>>(dart_counts_block);
 
