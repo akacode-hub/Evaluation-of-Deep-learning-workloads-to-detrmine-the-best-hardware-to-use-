@@ -1,0 +1,64 @@
+Using TensorFlow backend.
+/usr/lib/python3/dist-packages/matplotlib/contour.py:1180: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+num_cls1:  394
+num_cls2:  606
+num_cls1:  4129
+num_cls2:  5871
+data shape:  (1000, 2)
+labels shape:  (1000,)
+num_samples: 1000  C:  0.05  kernel_width:  0.05  mean error:  0.394  std error:  0.0022  mean_acc:  0.606
+num_samples: 1000  C:  0.188030154654  kernel_width:  0.05  mean error:  0.394  std error:  0.0022  mean_acc:  0.606
+num_samples: 1000  C:  0.707106781187  kernel_width:  0.05  mean error:  0.378  std error:  0.0162  mean_acc:  0.622
+num_samples: 1000  C:  2.65914794847  kernel_width:  0.05  mean error:  0.338  std error:  0.0224  mean_acc:  0.662
+num_samples: 1000  C:  10.0  kernel_width:  0.05  mean error:  0.337  std error:  0.0223  mean_acc:  0.663
+num_samples: 1000  C:  0.05  kernel_width:  0.22360679775  mean error:  0.394  std error:  0.0022  mean_acc:  0.606
+num_samples: 1000  C:  0.188030154654  kernel_width:  0.22360679775  mean error:  0.3221  std error:  0.0145  mean_acc:  0.6779
+num_samples: 1000  C:  0.707106781187  kernel_width:  0.22360679775  mean error:  0.1899  std error:  0.037  mean_acc:  0.8101
+num_samples: 1000  C:  2.65914794847  kernel_width:  0.22360679775  mean error:  0.1899  std error:  0.0416  mean_acc:  0.8101
+num_samples: 1000  C:  10.0  kernel_width:  0.22360679775  mean error:  0.2019  std error:  0.0291  mean_acc:  0.7981
+num_samples: 1000  C:  0.05  kernel_width:  1.0  mean error:  0.1629  std error:  0.0421  mean_acc:  0.8371
+num_samples: 1000  C:  0.188030154654  kernel_width:  1.0  mean error:  0.1658  std error:  0.042  mean_acc:  0.8342
+num_samples: 1000  C:  0.707106781187  kernel_width:  1.0  mean error:  0.1658  std error:  0.043  mean_acc:  0.8342
+num_samples: 1000  C:  2.65914794847  kernel_width:  1.0  mean error:  0.1738  std error:  0.0432  mean_acc:  0.8262
+num_samples: 1000  C:  10.0  kernel_width:  1.0  mean error:  0.1768  std error:  0.0433  mean_acc:  0.8232
+num_samples: 1000  C:  0.05  kernel_width:  4.472135955  mean error:  0.1659  std error:  0.0387  mean_acc:  0.8341
+num_samples: 1000  C:  0.188030154654  kernel_width:  4.472135955  mean error:  0.1578  std error:  0.0439  mean_acc:  0.8422
+num_samples: 1000  C:  0.707106781187  kernel_width:  4.472135955  mean error:  0.1578  std error:  0.0425  mean_acc:  0.8422
+num_samples: 1000  C:  2.65914794847  kernel_width:  4.472135955  mean error:  0.1578  std error:  0.0413  mean_acc:  0.8422
+num_samples: 1000  C:  10.0  kernel_width:  4.472135955  mean error:  0.1598  std error:  0.0428  mean_acc:  0.8402
+num_samples: 1000  C:  0.05  kernel_width:  20.0  mean error:  0.394  std error:  0.0022  mean_acc:  0.606
+num_samples: 1000  C:  0.188030154654  kernel_width:  20.0  mean error:  0.394  std error:  0.0022  mean_acc:  0.606
+num_samples: 1000  C:  0.707106781187  kernel_width:  20.0  mean error:  0.394  std error:  0.0022  mean_acc:  0.606
+num_samples: 1000  C:  2.65914794847  kernel_width:  20.0  mean error:  0.394  std error:  0.0022  mean_acc:  0.606
+num_samples: 1000  C:  10.0  kernel_width:  20.0  mean error:  0.1549  std error:  0.0402  mean_acc:  0.8451
+desired_hp:  [ 10.  20.]
+max acc:  0.845148614861
+Traceback (most recent call last):
+  File "Q1.py", line 365, in <module>
+    train_kfoldSVC(train_wt_cls, test_wt_cls, kfold)
+  File "Q1.py", line 293, in train_kfoldSVC
+    desired_hp = SVC_hyperparams(train_wt_cls, kfold)
+  File "Q1.py", line 173, in SVC_hyperparams
+    plt.colorbar()
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 2201, in colorbar
+    ret = gcf().colorbar(mappable, cax = cax, ax=ax, **kw)
+  File "/usr/lib/python3/dist-packages/matplotlib/figure.py", line 1864, in colorbar
+    cb = cbar.colorbar_factory(cax, mappable, **kw)
+  File "/usr/lib/python3/dist-packages/matplotlib/colorbar.py", line 1368, in colorbar_factory
+    cb = Colorbar(cax, mappable, **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/colorbar.py", line 936, in __init__
+    ColorbarBase.__init__(self, ax, **kw)
+  File "/usr/lib/python3/dist-packages/matplotlib/colorbar.py", line 329, in __init__
+    self.draw_all()
+  File "/usr/lib/python3/dist-packages/matplotlib/colorbar.py", line 355, in draw_all
+    self._config_axes(X, Y)
+  File "/usr/lib/python3/dist-packages/matplotlib/colorbar.py", line 439, in _config_axes
+    xy = self._outline(X, Y)
+  File "/usr/lib/python3/dist-packages/matplotlib/colorbar.py", line 487, in _outline
+    x = np.take(np.ravel(np.transpose(X)), ii)
+  File "/usr/lib/python3/dist-packages/numpy/core/fromnumeric.py", line 134, in take
+    return _wrapfunc(a, 'take', indices, axis=axis, out=out, mode=mode)
+  File "/usr/lib/python3/dist-packages/numpy/core/fromnumeric.py", line 57, in _wrapfunc
+    return getattr(obj, method)(*args, **kwds)
+IndexError: index 2 is out of bounds for size 2

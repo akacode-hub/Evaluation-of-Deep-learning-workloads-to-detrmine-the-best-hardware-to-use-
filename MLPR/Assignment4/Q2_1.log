@@ -1,0 +1,134 @@
+img path:  66075.jpg
+img shape  (481, 321, 3)
+norm_feat_vec:  [[ 0.          0.          0.21176471  0.25882353  0.00913242]
+ [ 0.          0.003125    0.21176471  0.25882353  0.00913242]
+ [ 0.          0.00625     0.21176471  0.25882353  0.00913242]
+ ..., 
+ [ 1.          0.99375     0.21568627  0.18823529  0.1369863 ]
+ [ 1.          0.996875    0.19607843  0.17254902  0.12785388]
+ [ 1.          1.          0.03921569  0.02745098  0.        ]]
+val idx:  0  num_val_samples:  15440  num_gmm:  1  mls:  3.241
+val idx:  1  num_val_samples:  15440  num_gmm:  1  mls:  3.202
+val idx:  2  num_val_samples:  15440  num_gmm:  1  mls:  1.178
+val idx:  3  num_val_samples:  15440  num_gmm:  1  mls:  2.819
+val idx:  4  num_val_samples:  15440  num_gmm:  1  mls:  4.716
+val idx:  5  num_val_samples:  15440  num_gmm:  1  mls:  4.341
+val idx:  6  num_val_samples:  15440  num_gmm:  1  mls:  3.769
+val idx:  7  num_val_samples:  15440  num_gmm:  1  mls:  4.011
+val idx:  8  num_val_samples:  15440  num_gmm:  1  mls:  2.275
+val idx:  9  num_val_samples:  15440  num_gmm:  1  mls:  1.58
+num_gmm:  1  mean_mle:  3.113
+val idx:  0  num_val_samples:  15440  num_gmm:  2  mls:  3.315
+val idx:  1  num_val_samples:  15440  num_gmm:  2  mls:  3.699
+val idx:  2  num_val_samples:  15440  num_gmm:  2  mls:  3.106
+val idx:  3  num_val_samples:  15440  num_gmm:  2  mls:  3.926
+val idx:  4  num_val_samples:  15440  num_gmm:  2  mls:  3.888
+val idx:  5  num_val_samples:  15440  num_gmm:  2  mls:  4.189
+val idx:  6  num_val_samples:  15440  num_gmm:  2  mls:  4.062
+val idx:  7  num_val_samples:  15440  num_gmm:  2  mls:  4.068
+val idx:  8  num_val_samples:  15440  num_gmm:  2  mls:  1.657
+val idx:  9  num_val_samples:  15440  num_gmm:  2  mls:  1.69
+num_gmm:  2  mean_mle:  3.36
+val idx:  0  num_val_samples:  15440  num_gmm:  3  mls:  2.616
+val idx:  1  num_val_samples:  15440  num_gmm:  3  mls:  5.501
+val idx:  2  num_val_samples:  15440  num_gmm:  3  mls:  3.423
+val idx:  3  num_val_samples:  15440  num_gmm:  3  mls:  2.118
+val idx:  4  num_val_samples:  15440  num_gmm:  3  mls:  3.875
+val idx:  5  num_val_samples:  15440  num_gmm:  3  mls:  4.307
+val idx:  6  num_val_samples:  15440  num_gmm:  3  mls:  3.72
+val idx:  7  num_val_samples:  15440  num_gmm:  3  mls:  5.107
+val idx:  8  num_val_samples:  15440  num_gmm:  3  mls:  1.562
+val idx:  9  num_val_samples:  15440  num_gmm:  3  mls:  1.786
+num_gmm:  3  mean_mle:  3.401
+val idx:  0  num_val_samples:  15440  num_gmm:  4  mls:  2.676
+val idx:  1  num_val_samples:  15440  num_gmm:  4  mls:  5.389
+val idx:  2  num_val_samples:  15440  num_gmm:  4  mls:  3.908
+val idx:  3  num_val_samples:  15440  num_gmm:  4  mls:  2.403
+val idx:  4  num_val_samples:  15440  num_gmm:  4  mls:  4.114
+val idx:  5  num_val_samples:  15440  num_gmm:  4  mls:  4.181
+val idx:  6  num_val_samples:  15440  num_gmm:  4  mls:  4.91
+val idx:  7  num_val_samples:  15440  num_gmm:  4  mls:  3.784
+val idx:  8  num_val_samples:  15440  num_gmm:  4  mls:  2.163
+val idx:  9  num_val_samples:  15440  num_gmm:  4  mls:  -0.152
+num_gmm:  4  mean_mle:  3.338
+val idx:  0  num_val_samples:  15440  num_gmm:  5  mls:  1.338
+val idx:  1  num_val_samples:  15440  num_gmm:  5  mls:  5.466
+val idx:  2  num_val_samples:  15440  num_gmm:  5  mls:  4.32
+val idx:  3  num_val_samples:  15440  num_gmm:  5  mls:  3.076
+val idx:  4  num_val_samples:  15440  num_gmm:  5  mls:  3.972
+val idx:  5  num_val_samples:  15440  num_gmm:  5  mls:  3.847
+val idx:  6  num_val_samples:  15440  num_gmm:  5  mls:  5.37
+val idx:  7  num_val_samples:  15440  num_gmm:  5  mls:  5.545
+val idx:  8  num_val_samples:  15440  num_gmm:  5  mls:  1.762
+val idx:  9  num_val_samples:  15440  num_gmm:  5  mls:  -0.631
+num_gmm:  5  mean_mle:  3.406
+val idx:  0  num_val_samples:  15440  num_gmm:  6  mls:  1.562
+val idx:  1  num_val_samples:  15440  num_gmm:  6  mls:  5.256
+val idx:  2  num_val_samples:  15440  num_gmm:  6  mls:  3.442
+val idx:  3  num_val_samples:  15440  num_gmm:  6  mls:  3.047
+val idx:  4  num_val_samples:  15440  num_gmm:  6  mls:  3.688
+val idx:  5  num_val_samples:  15440  num_gmm:  6  mls:  3.861
+val idx:  6  num_val_samples:  15440  num_gmm:  6  mls:  5.65
+val idx:  7  num_val_samples:  15440  num_gmm:  6  mls:  5.294
+val idx:  8  num_val_samples:  15440  num_gmm:  6  mls:  2.956
+val idx:  9  num_val_samples:  15440  num_gmm:  6  mls:  -0.824
+num_gmm:  6  mean_mle:  3.393
+val idx:  0  num_val_samples:  15440  num_gmm:  7  mls:  1.002
+val idx:  1  num_val_samples:  15440  num_gmm:  7  mls:  5.032
+val idx:  2  num_val_samples:  15440  num_gmm:  7  mls:  3.694
+val idx:  3  num_val_samples:  15440  num_gmm:  7  mls:  4.24
+val idx:  4  num_val_samples:  15440  num_gmm:  7  mls:  3.909
+val idx:  5  num_val_samples:  15440  num_gmm:  7  mls:  4.021
+val idx:  6  num_val_samples:  15440  num_gmm:  7  mls:  4.907
+val idx:  7  num_val_samples:  15440  num_gmm:  7  mls:  4.955
+val idx:  8  num_val_samples:  15440  num_gmm:  7  mls:  3.369
+val idx:  9  num_val_samples:  15440  num_gmm:  7  mls:  -0.709
+num_gmm:  7  mean_mle:  3.442
+val idx:  0  num_val_samples:  15440  num_gmm:  8  mls:  1.595
+val idx:  1  num_val_samples:  15440  num_gmm:  8  mls:  4.624
+val idx:  2  num_val_samples:  15440  num_gmm:  8  mls:  3.065
+val idx:  3  num_val_samples:  15440  num_gmm:  8  mls:  3.197
+val idx:  4  num_val_samples:  15440  num_gmm:  8  mls:  4.525
+val idx:  5  num_val_samples:  15440  num_gmm:  8  mls:  3.612
+val idx:  6  num_val_samples:  15440  num_gmm:  8  mls:  4.513
+val idx:  7  num_val_samples:  15440  num_gmm:  8  mls:  3.856
+val idx:  8  num_val_samples:  15440  num_gmm:  8  mls:  1.787
+val idx:  9  num_val_samples:  15440  num_gmm:  8  mls:  -0.486
+num_gmm:  8  mean_mle:  3.029
+val idx:  0  num_val_samples:  15440  num_gmm:  9  mls:  2.228
+val idx:  1  num_val_samples:  15440  num_gmm:  9  mls:  6.17
+val idx:  2  num_val_samples:  15440  num_gmm:  9  mls:  3.285
+val idx:  3  num_val_samples:  15440  num_gmm:  9  mls:  3.224
+val idx:  4  num_val_samples:  15440  num_gmm:  9  mls:  4.773
+val idx:  5  num_val_samples:  15440  num_gmm:  9  mls:  3.392
+val idx:  6  num_val_samples:  15440  num_gmm:  9  mls:  4.594
+val idx:  7  num_val_samples:  15440  num_gmm:  9  mls:  3.929
+val idx:  8  num_val_samples:  15440  num_gmm:  9  mls:  2.808
+val idx:  9  num_val_samples:  15440  num_gmm:  9  mls:  -0.416
+num_gmm:  9  mean_mle:  3.399
+val idx:  0  num_val_samples:  15440  num_gmm:  10  mls:  2.429
+val idx:  1  num_val_samples:  15440  num_gmm:  10  mls:  4.749
+val idx:  2  num_val_samples:  15440  num_gmm:  10  mls:  3.046
+val idx:  3  num_val_samples:  15440  num_gmm:  10  mls:  3.264
+val idx:  4  num_val_samples:  15440  num_gmm:  10  mls:  5.351
+val idx:  5  num_val_samples:  15440  num_gmm:  10  mls:  3.316
+val idx:  6  num_val_samples:  15440  num_gmm:  10  mls:  4.351
+val idx:  7  num_val_samples:  15440  num_gmm:  10  mls:  3.045
+val idx:  8  num_val_samples:  15440  num_gmm:  10  mls:  2.466
+val idx:  9  num_val_samples:  15440  num_gmm:  10  mls:  -0.318
+num_gmm:  10  mean_mle:  3.17
+val idx:  0  num_val_samples:  15440  num_gmm:  11  mls:  0.6
+val idx:  1  num_val_samples:  15440  num_gmm:  11  mls:  4.849
+val idx:  2  num_val_samples:  15440  num_gmm:  11  mls:  2.554
+val idx:  3  num_val_samples:  15440  num_gmm:  11  mls:  3.293
+val idx:  4  num_val_samples:  15440  num_gmm:  11  mls:  5.329
+val idx:  5  num_val_samples:  15440  num_gmm:  11  mls:  3.928
+val idx:  6  num_val_samples:  15440  num_gmm:  11  mls:  4.364
+val idx:  7  num_val_samples:  15440  num_gmm:  11  mls:  3.663
+val idx:  8  num_val_samples:  15440  num_gmm:  11  mls:  2.525
+val idx:  9  num_val_samples:  15440  num_gmm:  11  mls:  -0.259
+num_gmm:  11  mean_mle:  3.085
+max mle:  3.44191122393
+gmm_mls:  [3.1132494541350546, 3.3600297536476038, 3.4014812364419473, 3.3375141776894606, 3.4064769634125667, 3.3929960156993721, 3.4419112239270189, 3.0288618740033839, 3.3987047720231796, 3.1698983599522452, 3.084582777610438]
+desired_num_gmm:  7
+prediction  [4 4 4 ..., 5 5 5] (154401,)

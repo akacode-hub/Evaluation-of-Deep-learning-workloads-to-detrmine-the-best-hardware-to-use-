@@ -1,0 +1,154 @@
+2021-11-24 02:25:21.812342: E tensorflow/stream_executor/cuda/cuda_driver.cc:300] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+num_cls1:  374
+num_cls2:  626
+num_cls1:  3970
+num_cls2:  6030
+train_wt_cls shape  (3, 1000)
+data shape:  (1000, 2)
+labels shape:  (1000,)
+num_samples: 1000  num_perc:  2  val idx:  0  error:  0.5922  accuracy:  0.6238
+num_samples: 1000  num_perc:  2  val idx:  1  error:  0.5247  accuracy:  0.6931
+num_samples: 1000  num_perc:  2  val idx:  2  error:  0.5921  accuracy:  0.6832
+num_samples: 1000  num_perc:  2  val idx:  3  error:  0.6197  accuracy:  0.6139
+num_samples: 1000  num_perc:  2  val idx:  4  error:  0.4942  accuracy:  0.74
+num_samples: 1000  num_perc:  2  val idx:  5  error:  0.509  accuracy:  0.72
+num_samples: 1000  num_perc:  2  val idx:  6  error:  0.6435  accuracy:  0.6263
+num_samples: 1000  num_perc:  2  val idx:  7  error:  0.6738  accuracy:  0.5354
+num_samples: 1000  num_perc:  2  val idx:  8  error:  0.6105  accuracy:  0.6364
+num_samples: 1000  num_perc:  2  val idx:  9  error:  0.6699  accuracy:  0.6263
+num_samples: 1000  num_perc:  2  mean error:  0.593  std error:  0.0612  mean_acc:  0.649810381557
+num_samples: 1000  num_perc:  4  val idx:  0  error:  0.4202  accuracy:  0.802
+num_samples: 1000  num_perc:  4  val idx:  1  error:  0.3029  accuracy:  0.8515
+num_samples: 1000  num_perc:  4  val idx:  2  error:  0.4053  accuracy:  0.8218
+num_samples: 1000  num_perc:  4  val idx:  3  error:  0.3728  accuracy:  0.8218
+num_samples: 1000  num_perc:  4  val idx:  4  error:  0.2847  accuracy:  0.9
+num_samples: 1000  num_perc:  4  val idx:  5  error:  0.4406  accuracy:  0.77
+num_samples: 1000  num_perc:  4  val idx:  6  error:  0.6635  accuracy:  0.6263
+num_samples: 1000  num_perc:  4  val idx:  7  error:  0.5444  accuracy:  0.7071
+num_samples: 1000  num_perc:  4  val idx:  8  error:  0.619  accuracy:  0.6061
+num_samples: 1000  num_perc:  4  val idx:  9  error:  0.3698  accuracy:  0.8485
+num_samples: 1000  num_perc:  4  mean error:  0.4423  std error:  0.1212  mean_acc:  0.775490849411
+num_samples: 1000  num_perc:  6  val idx:  0  error:  0.4086  accuracy:  0.8119
+num_samples: 1000  num_perc:  6  val idx:  1  error:  0.3106  accuracy:  0.8515
+num_samples: 1000  num_perc:  6  val idx:  2  error:  0.4151  accuracy:  0.8119
+num_samples: 1000  num_perc:  6  val idx:  3  error:  0.3711  accuracy:  0.8218
+num_samples: 1000  num_perc:  6  val idx:  4  error:  0.2771  accuracy:  0.88
+num_samples: 1000  num_perc:  6  val idx:  5  error:  0.4499  accuracy:  0.77
+num_samples: 1000  num_perc:  6  val idx:  6  error:  0.3735  accuracy:  0.8586
+num_samples: 1000  num_perc:  6  val idx:  7  error:  0.3883  accuracy:  0.8586
+num_samples: 1000  num_perc:  6  val idx:  8  error:  0.5886  accuracy:  0.7677
+num_samples: 1000  num_perc:  6  val idx:  9  error:  0.381  accuracy:  0.7879
+num_samples: 1000  num_perc:  6  mean error:  0.3964  std error:  0.0796  mean_acc:  0.821975697896
+num_samples: 1000  num_perc:  8  val idx:  0  error:  0.4184  accuracy:  0.8218
+num_samples: 1000  num_perc:  8  val idx:  1  error:  0.3169  accuracy:  0.8515
+num_samples: 1000  num_perc:  8  val idx:  2  error:  0.4058  accuracy:  0.8317
+num_samples: 1000  num_perc:  8  val idx:  3  error:  0.3736  accuracy:  0.8119
+num_samples: 1000  num_perc:  8  val idx:  4  error:  0.2775  accuracy:  0.9
+num_samples: 1000  num_perc:  8  val idx:  5  error:  0.4422  accuracy:  0.74
+num_samples: 1000  num_perc:  8  val idx:  6  error:  0.3267  accuracy:  0.8788
+num_samples: 1000  num_perc:  8  val idx:  7  error:  0.494  accuracy:  0.8182
+num_samples: 1000  num_perc:  8  val idx:  8  error:  0.6087  accuracy:  0.596
+num_samples: 1000  num_perc:  8  val idx:  9  error:  0.5365  accuracy:  0.7071
+num_samples: 1000  num_perc:  8  mean error:  0.42  std error:  0.0986  mean_acc:  0.795683168643
+num_samples: 1000  num_perc:  10  val idx:  0  error:  0.4271  accuracy:  0.802
+num_samples: 1000  num_perc:  10  val idx:  1  error:  0.3053  accuracy:  0.8416
+num_samples: 1000  num_perc:  10  val idx:  2  error:  0.4038  accuracy:  0.8119
+num_samples: 1000  num_perc:  10  val idx:  3  error:  0.3863  accuracy:  0.802
+num_samples: 1000  num_perc:  10  val idx:  4  error:  0.2716  accuracy:  0.91
+num_samples: 1000  num_perc:  10  val idx:  5  error:  0.445  accuracy:  0.77
+num_samples: 1000  num_perc:  10  val idx:  6  error:  0.405  accuracy:  0.8283
+num_samples: 1000  num_perc:  10  val idx:  7  error:  0.3603  accuracy:  0.8384
+num_samples: 1000  num_perc:  10  val idx:  8  error:  0.483  accuracy:  0.7879
+num_samples: 1000  num_perc:  10  val idx:  9  error:  0.3293  accuracy:  0.8586
+num_samples: 1000  num_perc:  10  mean error:  0.3817  std error:  0.0621  mean_acc:  0.825055705897
+num_samples: 1000  num_perc:  12  val idx:  0  error:  0.4199  accuracy:  0.8119
+num_samples: 1000  num_perc:  12  val idx:  1  error:  0.3005  accuracy:  0.8515
+num_samples: 1000  num_perc:  12  val idx:  2  error:  0.409  accuracy:  0.802
+num_samples: 1000  num_perc:  12  val idx:  3  error:  0.3919  accuracy:  0.802
+num_samples: 1000  num_perc:  12  val idx:  4  error:  0.2717  accuracy:  0.89
+num_samples: 1000  num_perc:  12  val idx:  5  error:  0.4531  accuracy:  0.75
+num_samples: 1000  num_perc:  12  val idx:  6  error:  0.3233  accuracy:  0.8889
+num_samples: 1000  num_perc:  12  val idx:  7  error:  0.431  accuracy:  0.8081
+num_samples: 1000  num_perc:  12  val idx:  8  error:  0.6101  accuracy:  0.7475
+num_samples: 1000  num_perc:  12  val idx:  9  error:  0.4104  accuracy:  0.8485
+num_samples: 1000  num_perc:  12  mean error:  0.4021  std error:  0.0899  mean_acc:  0.820025602826
+num_samples: 1000  num_perc:  14  val idx:  0  error:  0.4231  accuracy:  0.8119
+num_samples: 1000  num_perc:  14  val idx:  1  error:  0.2991  accuracy:  0.8416
+num_samples: 1000  num_perc:  14  val idx:  2  error:  0.4126  accuracy:  0.8119
+num_samples: 1000  num_perc:  14  val idx:  3  error:  0.3853  accuracy:  0.802
+num_samples: 1000  num_perc:  14  val idx:  4  error:  0.2764  accuracy:  0.9
+num_samples: 1000  num_perc:  14  val idx:  5  error:  0.4507  accuracy:  0.75
+num_samples: 1000  num_perc:  14  val idx:  6  error:  0.4805  accuracy:  0.8384
+num_samples: 1000  num_perc:  14  val idx:  7  error:  0.4376  accuracy:  0.798
+num_samples: 1000  num_perc:  14  val idx:  8  error:  0.6038  accuracy:  0.7071
+num_samples: 1000  num_perc:  14  val idx:  9  error:  0.3903  accuracy:  0.8182
+num_samples: 1000  num_perc:  14  mean error:  0.4159  std error:  0.0871  mean_acc:  0.807894289755
+num_samples: 1000  num_perc:  16  val idx:  0  error:  0.4239  accuracy:  0.8119
+num_samples: 1000  num_perc:  16  val idx:  1  error:  0.3013  accuracy:  0.8416
+num_samples: 1000  num_perc:  16  val idx:  2  error:  0.4058  accuracy:  0.8218
+num_samples: 1000  num_perc:  16  val idx:  3  error:  0.3847  accuracy:  0.802
+num_samples: 1000  num_perc:  16  val idx:  4  error:  0.2711  accuracy:  0.89
+num_samples: 1000  num_perc:  16  val idx:  5  error:  0.4513  accuracy:  0.77
+num_samples: 1000  num_perc:  16  val idx:  6  error:  0.3344  accuracy:  0.8283
+num_samples: 1000  num_perc:  16  val idx:  7  error:  0.3917  accuracy:  0.8283
+num_samples: 1000  num_perc:  16  val idx:  8  error:  0.4975  accuracy:  0.8384
+num_samples: 1000  num_perc:  16  val idx:  9  error:  0.3442  accuracy:  0.8283
+num_samples: 1000  num_perc:  16  mean error:  0.3806  std error:  0.0656  mean_acc:  0.826046004927
+num_samples: 1000  num_perc:  18  val idx:  0  error:  0.4225  accuracy:  0.8119
+num_samples: 1000  num_perc:  18  val idx:  1  error:  0.298  accuracy:  0.8317
+num_samples: 1000  num_perc:  18  val idx:  2  error:  0.4091  accuracy:  0.8119
+num_samples: 1000  num_perc:  18  val idx:  3  error:  0.4024  accuracy:  0.8218
+num_samples: 1000  num_perc:  18  val idx:  4  error:  0.2728  accuracy:  0.9
+num_samples: 1000  num_perc:  18  val idx:  5  error:  0.4426  accuracy:  0.77
+num_samples: 1000  num_perc:  18  val idx:  6  error:  0.3292  accuracy:  0.8586
+num_samples: 1000  num_perc:  18  val idx:  7  error:  0.4112  accuracy:  0.798
+num_samples: 1000  num_perc:  18  val idx:  8  error:  0.454  accuracy:  0.7879
+num_samples: 1000  num_perc:  18  val idx:  9  error:  0.3701  accuracy:  0.8485
+num_samples: 1000  num_perc:  18  mean error:  0.3812  std error:  0.0587  mean_acc:  0.824015701897
+num_samples: 1000  num_perc:  20  val idx:  0  error:  0.4201  accuracy:  0.802
+num_samples: 1000  num_perc:  20  val idx:  1  error:  0.299  accuracy:  0.8416
+num_samples: 1000  num_perc:  20  val idx:  2  error:  0.4148  accuracy:  0.8119
+num_samples: 1000  num_perc:  20  val idx:  3  error:  0.3812  accuracy:  0.8218
+num_samples: 1000  num_perc:  20  val idx:  4  error:  0.2728  accuracy:  0.9
+num_samples: 1000  num_perc:  20  val idx:  5  error:  0.4479  accuracy:  0.75
+num_samples: 1000  num_perc:  20  val idx:  6  error:  0.4072  accuracy:  0.8081
+num_samples: 1000  num_perc:  20  val idx:  7  error:  0.5281  accuracy:  0.7677
+num_samples: 1000  num_perc:  20  val idx:  8  error:  0.5412  accuracy:  0.7879
+num_samples: 1000  num_perc:  20  val idx:  9  error:  0.3677  accuracy:  0.8182
+num_samples: 1000  num_perc:  20  mean error:  0.408  std error:  0.0815  mean_acc:  0.810904590785
+num_samples: 1000  num_perc:  22  val idx:  0  error:  0.4174  accuracy:  0.8119
+num_samples: 1000  num_perc:  22  val idx:  1  error:  0.3008  accuracy:  0.8515
+num_samples: 1000  num_perc:  22  val idx:  2  error:  0.4172  accuracy:  0.8119
+num_samples: 1000  num_perc:  22  val idx:  3  error:  0.3704  accuracy:  0.8119
+num_samples: 1000  num_perc:  22  val idx:  4  error:  0.2732  accuracy:  0.89
+num_samples: 1000  num_perc:  22  val idx:  5  error:  0.4495  accuracy:  0.76
+num_samples: 1000  num_perc:  22  val idx:  6  error:  0.3875  accuracy:  0.8485
+num_samples: 1000  num_perc:  22  val idx:  7  error:  0.3866  accuracy:  0.8283
+num_samples: 1000  num_perc:  22  val idx:  8  error:  0.4692  accuracy:  0.8081
+num_samples: 1000  num_perc:  22  val idx:  9  error:  0.4349  accuracy:  0.8182
+num_samples: 1000  num_perc:  22  mean error:  0.3907  std error:  0.0594  mean_acc:  0.824015901917
+Using TensorFlow backend.
+pe for each perceptron:  [ 0.59295471  0.44231551  0.39638435  0.42003531  0.3816584   0.40209259
+  0.41593478  0.38058893  0.38119623  0.40798661  0.39067709]
+Traceback (most recent call last):
+  File "Q1.py", line 362, in <module>
+    train_kfoldMLP(train_wt_cls, test_wt_cls, kfold)
+  File "Q1.py", line 263, in train_kfoldMLP
+    desired_num_perc = MLP_hyperparams(train_wt_cls, kfold, num_perc_lst)
+  File "Q1.py", line 239, in MLP_hyperparams
+    plt.plot(num_perc_lst, perc_lst, 'b.')
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 3250, in plot
+    ax = gca()
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 962, in gca
+    return gcf().gca(**kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 592, in gcf
+    return figure()
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 539, in figure
+    **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/backend_bases.py", line 171, in new_figure_manager
+    return cls.new_figure_manager_given_figure(num, fig)
+  File "/usr/lib/python3/dist-packages/matplotlib/backends/backend_tkagg.py", line 1049, in new_figure_manager_given_figure
+    window = Tk.Tk(className="matplotlib")
+  File "/usr/lib/python3.6/tkinter/__init__.py", line 2023, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: couldn't connect to display "lambda-quad4:10.0"
