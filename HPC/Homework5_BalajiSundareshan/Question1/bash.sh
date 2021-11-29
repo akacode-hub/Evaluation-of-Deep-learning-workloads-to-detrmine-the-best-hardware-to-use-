@@ -6,4 +6,4 @@
 #SBATCH --gres=gpu:1
 #SBATCH --output=Q1_out
 #SBATCH --partition=gpu
-./Q1 1000
+./Q1 33554432
