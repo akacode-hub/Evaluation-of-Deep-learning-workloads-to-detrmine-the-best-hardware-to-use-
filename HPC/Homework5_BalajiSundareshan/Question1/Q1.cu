@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <time.h>
+#include <omp.h>
 #include <cuda.h>
 #include <curand_kernel.h>
 
@@ -11,9 +12,10 @@
 const int num_classes = 9;
 const int num_blocks = 256;
 const int num_threads_per_block = 64;
+const int num_threads_omp = 64;
 int tot_threads = num_blocks * num_threads_per_block;
 
-__device__ int find_bin(int val, float * min_range_cls, float * max_range_cls){
+__host__ __device__ int find_bin(int val, float * min_range_cls, float * max_range_cls){
 
     int i;
     
@@ -148,7 +150,8 @@ void print_data(int * data, float * min_range_cls, float * max_range_cls, int * 
 
 }
 
-void print_results(int * hist_data, int * cls_el){
+void print_hist(int * hist_data)
+{
 
     int i;
     int sum = 0;
@@ -158,22 +161,25 @@ void print_results(int * hist_data, int * cls_el){
     }
     printf("histogram sum: %d\n", sum);
 
+}
+
+void print_one_ele(int * cls_el)
+{
+    int i;
     for(i=0;i<num_classes;i++){
         printf("One element from cls %d: %d\n", i, cls_el[i]);
     }
-
 }
 
-int main(int argc, char *argv[])
+void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_range_cls)
 {   
     srand(time(NULL));
     struct timespec start, end;
-    int data_len;
-    int * data, * data_gpu;
+    int * data_gpu;
     int * data_cls_map, * data_cls_map_gpu;
 
     int * min_tidxs, * max_tidxs;
-    float * min_range_cls, * max_range_cls;
+
     int * min_tidxs_gpu, * max_tidxs_gpu;
     float * min_range_cls_gpu, * max_range_cls_gpu;
 
@@ -181,12 +187,6 @@ int main(int argc, char *argv[])
     int * red_hist_bin, * red_hist_bin_gpu;
     int * cls_el, * cls_el_gpu;
 
-    assert(("./Q1 <number of values>", argc == 2));
-
-    data_len = atoi(argv[1]);
-
-    min_range_cls = (float *)calloc(num_classes, sizeof(float));
-    max_range_cls = (float *)calloc(num_classes, sizeof(float));
     cudaMalloc((void **) &min_range_cls_gpu, sizeof(float)*num_classes);
     cudaMalloc((void **) &max_range_cls_gpu, sizeof(float)*num_classes);
 
@@ -206,9 +206,6 @@ int main(int argc, char *argv[])
     cls_el = (int *)calloc(num_classes, sizeof(int));
     cudaMalloc((void **) &cls_el_gpu, sizeof(int)*num_classes);
 
-    data = (int *)calloc(data_len, sizeof(int));
-    gen_data(data, data_len);
-    set_classes(min_range_cls, max_range_cls, num_classes);
     dist_data_tids(min_tidxs, max_tidxs, data_len);
 
     print_data(data, min_range_cls, max_range_cls, min_tidxs, max_tidxs, data_len, num_classes);
@@ -230,7 +227,8 @@ int main(int argc, char *argv[])
     cudaMemcpy(red_hist_bin, red_hist_bin_gpu, sizeof(int)*num_classes, cudaMemcpyDeviceToHost);
     cudaMemcpy(cls_el, cls_el_gpu, sizeof(int)*num_classes, cudaMemcpyDeviceToHost);
 
-    print_results(red_hist_bin, cls_el);
+    print_hist(red_hist_bin);
+    print_one_ele(cls_el);
 
     cudaFree(data_gpu); 
     cudaFree(min_range_cls_gpu);
@@ -238,5 +236,66 @@ int main(int argc, char *argv[])
     cudaFree(min_tidxs_gpu);
     cudaFree(max_tidxs_gpu);
     cudaFree(hist_bin_gpu);
+    cudaFree(red_hist_bin_gpu);
     cudaFree(cls_el_gpu);
+}
+
+void histbin_CPU(int * data, int data_len, float * min_range_cls, float * max_range_cls)
+{
+
+    omp_set_num_threads(num_threads_omp);
+
+    int i, j, thread_num, clsid, num_threads;
+    int * hist_bin, *red_hist_bin;
+    hist_bin = (int *)calloc(num_threads_omp*num_classes, sizeof(int));
+    red_hist_bin = (int *)calloc(num_classes, sizeof(int));
+
+    #pragma omp parallel for private(i, thread_num)
+    for(i=0; i<data_len; i++){
+        
+        thread_num = omp_get_thread_num();
+        if(thread_num==0){
+            num_threads = omp_get_num_threads();
+            //printf("num_threads: %d\n", num_threads);
+        }
+
+        clsid = find_bin(data[i], min_range_cls, max_range_cls);
+        assert(("class index should not be negative", clsid>=0));
+
+        #pragma omp atomic
+        hist_bin[thread_num*num_classes + clsid] += 1;
+    }
+
+    int val = 0;
+    #pragma omp parallel for schedule(static) private(i, j) reduction(+:val)
+    for(i=0; i<num_classes; i++){
+        val = 0;
+        for(j=0; j<num_threads_omp; j++){
+            val += hist_bin[j*num_classes + i];
+        }
+        red_hist_bin[i] = val;
+    }
+
+    print_hist(red_hist_bin);
+}
+
+int main(int argc, char *argv[])
+{
+    assert(("./Q1 <number of values>", argc == 2));
+    int data_len = atoi(argv[1]);
+    int * data; 
+    float * min_range_cls, * max_range_cls;
+
+    data = (int *)calloc(data_len, sizeof(int));
+    min_range_cls = (float *)calloc(num_classes, sizeof(float));
+    max_range_cls = (float *)calloc(num_classes, sizeof(float));
+
+    gen_data(data, data_len);
+    set_classes(min_range_cls, max_range_cls, num_classes);
+
+    //histbin_GPU(data, data_len, min_range_cls, max_range_cls);
+
+    histbin_CPU(data, data_len, min_range_cls, max_range_cls);
+    
+    return 0;
 }
