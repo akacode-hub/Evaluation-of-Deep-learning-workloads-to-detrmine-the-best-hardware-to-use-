@@ -1,0 +1,3 @@
+Starting simulation with 640 blocks, 32 threads, and 1000000 iterations
+Approximated PI using 20480000000 random tests
+PI ~= 3.1415861941406251
