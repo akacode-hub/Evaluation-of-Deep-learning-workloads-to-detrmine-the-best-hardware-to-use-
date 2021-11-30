@@ -30,6 +30,30 @@ __global__ void tile_compute(int * a, int * b)
 
 }
 
+void gen_mat(int arr[][N][N]){
+
+    int i, j, k;
+    for(k=0;k<N;k++){
+        for(j=0;j<N;j++){
+            for(i=0;i<N;i++){
+                arr[k][j][i] = rand() % MAX_NUM + MIN_NUM;
+            }
+        }
+    }
+}
+
+void print_mat(int arr[][N][N]){
+
+    int i, j, k;
+    for(k=0;k<N;k++){
+        for(j=0;j<N;j++){
+            for(i=0;i<N;i++){
+                printf("i: %d, j: %d, k: %d, val: %d\n", i, j, k, arr[k][j][i]);
+            }
+        }
+    }
+}
+
 int main(int argc, char *argv[])
 {
     int * a, * b; 
@@ -38,25 +62,13 @@ int main(int argc, char *argv[])
     cudaMallocManaged(&b, N*N*N*sizeof(int));
 
     int b_vals[N][N][N];
-    int i, j, k;
 
     // generate data
-    for(k=0;k<N;k++){
-        for(j=0;j<N;j++){
-            for(i=0;i<N;i++){
-                b_vals[k][j][i] = rand() % MAX_NUM + MIN_NUM;
-            }
-        }
-    }
+    gen_mat(b_vals);
 
     // print data
-    for(k=0;k<N;k++){
-        for(j=0;j<N;j++){
-            for(i=0;i<N;i++){
-                printf("i: %d, j: %d, k: %d, val: %d\n", i, j, k, b_vals[k][j][i]);
-            }
-        }
-    }
+    printf("Input matrix: \n");
+    print_mat(b_vals);
 
     int (*a_vals)[N][N] = reinterpret_cast<int (*)[N][N]>(a);
     memcpy(b, &b_vals[0][0][0], sizeof(b_vals));
@@ -69,12 +81,9 @@ int main(int argc, char *argv[])
 
     cudaDeviceSynchronize();
 
-    memcpy(a, &a_vals[0][0][0], sizeof(a_vals));
-
     // print result
-    for(i=0;i<N*N*N;i++){
-        printf("i: %d, a: %d\n", i, a[i]);
-    }
+    printf("Result matrix: \n");
+    print_mat(a_vals);   
 
     return 0;
 }
