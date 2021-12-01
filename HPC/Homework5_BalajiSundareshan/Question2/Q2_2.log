@@ -1,0 +1,7 @@
+Input Dimension: 64 x 64 x 64
+Block Dimension: 4 x 4 x 4
+Grid Dimension: 16 x 16 x 16
+Time elapsed for tiled implementation: 0.000406
+Compare tiled implementation with serial: 
+Time elapsed for non-tiled implementation: 0.000009
+Compare non tiled implementation with serial: 
