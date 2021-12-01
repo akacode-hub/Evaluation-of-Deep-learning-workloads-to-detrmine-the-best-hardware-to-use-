@@ -8,9 +8,9 @@
 
 #define MIN_NUM 1
 #define MAX_NUM 100
-const int N = 4;
-const int num_threads_per_block = 2;
-const int num_blocks = 2;
+const int N = 64;
+const int num_threads_per_block = 8;
+const int num_blocks = 8;
 const int sblock_size = num_threads_per_block + 2;
 
 __global__ void non_tile_compute(float b[][N][N], float a[][N][N])
@@ -36,18 +36,22 @@ __global__ void tile_compute(float b[][N][N], float a[][N][N])
     int j = blockIdx.y * blockDim.y + threadIdx.y;
     int k = blockIdx.z * blockDim.z + threadIdx.z;
 
+    int tx = threadIdx.x;
+    int ty = threadIdx.y;
+    int tz = threadIdx.z;
+
+    i = i + 1; j = j + 1; k = k + 1;
+    tx = tx + 1; ty = ty + 1; tz = tz + 1;
+
     int offx, offy, offz;
     int i_, j_, k_;
 
-    for(offx=0; offx<sblock_size; offx+=2){
-        for(offy=0; offy<sblock_size; offy+=2){
-            for(offz=0; offz<sblock_size; offz+=2){
+    for(offx=-1; offx<2; offx+=1){
+        for(offy=-1; offy<2; offy+=1){
+            for(offz=-1; offz<2; offz+=1){
                 i_ = i + offx; j_ = j + offy; k_ = k + offz;
                 if(i_ < N && j_ < N && k_ < N){
-                    shared_b[threadIdx.x + offx][threadIdx.y + offy][threadIdx.z + offz] = b[i_][j_][k_];
-                    // if(blockIdx.x == 1 && blockIdx.y == 1 && blockIdx.z == 1){
-                    //     printf("i: %d, j: %d, k: %d, ox: %d, oy: %d, oz: %d\n", i_, j_, k_, threadIdx.x + offx, threadIdx.y + offy, threadIdx.z + offz);
-                    // }
+                    shared_b[tx + offx][ty + offy][tz + offz] = b[i_][j_][k_];
                 }
             }
         }
@@ -55,27 +59,9 @@ __global__ void tile_compute(float b[][N][N], float a[][N][N])
 
     __syncthreads();
 
-    // if(blockIdx.x==1 && blockIdx.y==1 && blockIdx.z==1 && threadIdx.x==0 && threadIdx.y==0 && threadIdx.z==0)
-    // {
-    //     printf("shared: \n\n");
-    //     for(i_=0;i_<sblock_size;i_++){
-    //         for(j_=0;j_<sblock_size;j_++){
-    //             for(k_=0;i_<sblock_size;k_++){
-    //                 printf("%f, ", shared_b[i_][j_][k_]);
-    //             }
-    //         }
-    //     }
-    // }
-
-    // __syncthreads();
-
-    int tx = threadIdx.x + 1;
-    int ty = threadIdx.y + 1;
-    int tz = threadIdx.z + 1;
-
     if (i > 0 && i < N-1 && j > 0 && j < N-1 && k > 0 &&  k < N-1)
     {   
-        //printf("bx: %d, by: %d, bz: %d, i: %d, j: %d, k: %d, tx: %d, ty: %d, tz: %d\n", blockIdx.x, blockIdx.y, blockIdx.z, i, j, k, tx, ty, tz);
+
         a[i][j][k] = 0.8*(shared_b[tx-1][ty][tz] + shared_b[tx+1][ty][tz] + shared_b[tx][ty-1][tz]
                         + shared_b[tx][ty+1][tz] + shared_b[tx][ty][tz-1] + shared_b[tx][ty][tz+1]);
     }
@@ -117,13 +103,13 @@ void compare_mat(float arr1[][N][N], float arr2[][N][N]){
         for(j=0;j<N;j++){
             for(k=0;k<N;k++){
                 if (arr1[i][j][k] != arr2[i][j][k]){
-                    printf("Test failed !!!\n");
+                    printf("Results are NOT accurate !!!\n");
                     return;
                 }
             }
         }
     }
-    printf("Test passed !!!\n");
+    printf("Results are accurate !!!\n");
 }
 
 void serial_compute(float b[][N][N], float a[][N][N]){
@@ -157,8 +143,8 @@ int main(int argc, char *argv[])
     gen_mat(b_vals);
 
     // print data
-    printf("Input matrix: \n");
-    print_mat(b_vals);
+    // printf("Input matrix: \n");
+    // print_mat(b_vals);
 
     float (*a_vals_tile)[N][N] = reinterpret_cast<float (*)[N][N]>(a_tile);
     float (*a_vals_nontile)[N][N] = reinterpret_cast<float (*)[N][N]>(a_nontile);
@@ -170,31 +156,34 @@ int main(int argc, char *argv[])
 
     //Tiled computation
     tile_compute<<<blocks, threads_per_block>>>(reinterpret_cast<float (*)[N][N]>(b), a_vals_tile);
-    
+
     //Non Tiled computation
-    // non_tile_compute<<<blocks, threads_per_block>>>(reinterpret_cast<float (*)[N][N]>(b), a_vals_nontile);
+    non_tile_compute<<<blocks, threads_per_block>>>(reinterpret_cast<float (*)[N][N]>(b), a_vals_nontile);
 
     cudaDeviceSynchronize();
 
     //Serial Computation
     serial_compute(b_vals, a_vals_serial);
     
+    printf("Input Dimension: %d x %d x %d\n", N, N, N);
+    printf("Block Dimension: %d x %d x %d\n", num_threads_per_block, num_threads_per_block, num_threads_per_block);
+    printf("Grid Dimension: %d x %d x %d\n", num_blocks, num_blocks, num_blocks);
+
     // print result
+    printf("Compare tiled implementation with serial: \n");
     compare_mat(a_vals_tile, a_vals_serial);
 
-    printf("Tiled: \n");
-    print_mat(a_vals_tile);
+    printf("Compare non tiled implementation with serial: \n");
+    compare_mat(a_vals_tile, a_vals_serial);
+
+    // printf("Tiled: \n");
+    // print_mat(a_vals_tile);
 
     // printf("Non Tiled: \n");
     // print_mat(a_vals_nontile);
 
-    printf("Serial: \n");
-    print_mat(a_vals_serial);
+    // printf("Serial: \n");
+    // print_mat(a_vals_serial);
 
     return 0;
 }
-
-
-
-
-// __syncthreads();

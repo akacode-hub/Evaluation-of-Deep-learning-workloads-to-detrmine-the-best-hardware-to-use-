@@ -9,9 +9,9 @@
 #define MIN_NUM 1
 #define MAX_NUM 1000000
 
-const int num_classes = 9;
-const int num_blocks = 256;
-const int num_threads_per_block = 64;
+const int num_classes = 10;
+const int num_blocks = 32;
+const int num_threads_per_block = 32;
 const int num_threads_omp = 64;
 int tot_threads = num_blocks * num_threads_per_block;
 
@@ -155,11 +155,12 @@ void print_hist(int * hist_data)
 
     int i;
     int sum = 0;
+    printf("Histogram: \n");
     for(i=0;i<num_classes;i++){
         sum += hist_data[i];
         printf("number of samples in cls %d: %d\n", i, hist_data[i]);
     }
-    printf("histogram sum: %d\n", sum);
+    printf("Total sum: %d\n", sum);
 
 }
 
@@ -175,17 +176,19 @@ void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_ra
 {   
     srand(time(NULL));
     struct timespec start, end;
+
     int * data_gpu;
-    int * data_cls_map, * data_cls_map_gpu;
 
     int * min_tidxs, * max_tidxs;
 
     int * min_tidxs_gpu, * max_tidxs_gpu;
     float * min_range_cls_gpu, * max_range_cls_gpu;
 
-    int * hist_bin, * hist_bin_gpu;
+    int * hist_bin_gpu;
     int * red_hist_bin, * red_hist_bin_gpu;
     int * cls_el, * cls_el_gpu;
+
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     cudaMalloc((void **) &min_range_cls_gpu, sizeof(float)*num_classes);
     cudaMalloc((void **) &max_range_cls_gpu, sizeof(float)*num_classes);
@@ -195,7 +198,6 @@ void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_ra
     cudaMalloc((void **) &min_tidxs_gpu, sizeof(int)*tot_threads);
     cudaMalloc((void **) &max_tidxs_gpu, sizeof(int)*tot_threads);
 
-    hist_bin = (int *)calloc(num_classes*num_blocks, sizeof(int));
     cudaMalloc((void **) &hist_bin_gpu, sizeof(int)*num_classes*num_blocks);
     cudaMemset(hist_bin_gpu, 0, sizeof(int)*num_classes*num_blocks);
 
@@ -208,7 +210,7 @@ void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_ra
 
     dist_data_tids(min_tidxs, max_tidxs, data_len);
 
-    print_data(data, min_range_cls, max_range_cls, min_tidxs, max_tidxs, data_len, num_classes);
+    //print_data(data, min_range_cls, max_range_cls, min_tidxs, max_tidxs, data_len, num_classes);
 
     cudaMalloc((void **) &data_gpu, sizeof(int)*data_len);
     
@@ -227,6 +229,12 @@ void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_ra
     cudaMemcpy(red_hist_bin, red_hist_bin_gpu, sizeof(int)*num_classes, cudaMemcpyDeviceToHost);
     cudaMemcpy(cls_el, cls_el_gpu, sizeof(int)*num_classes, cudaMemcpyDeviceToHost);
 
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    double time_taken = (end.tv_sec - start.tv_sec);
+    time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
+
+    printf("Time taken by GPU CUDA implementation: %f\n", time_taken);
+
     print_hist(red_hist_bin);
     print_one_ele(cls_el);
 
@@ -242,6 +250,9 @@ void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_ra
 
 void histbin_CPU(int * data, int data_len, float * min_range_cls, float * max_range_cls)
 {
+
+    struct timespec start, end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     omp_set_num_threads(num_threads_omp);
 
@@ -276,7 +287,12 @@ void histbin_CPU(int * data, int data_len, float * min_range_cls, float * max_ra
         red_hist_bin[i] = val;
     }
 
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    double time_taken = (end.tv_sec - start.tv_sec);
+    time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
+    printf("Time taken by CPU OPENMP implementation: %f\n", time_taken);
     print_hist(red_hist_bin);
+
 }
 
 int main(int argc, char *argv[])
@@ -289,11 +305,17 @@ int main(int argc, char *argv[])
     data = (int *)calloc(data_len, sizeof(int));
     min_range_cls = (float *)calloc(num_classes, sizeof(float));
     max_range_cls = (float *)calloc(num_classes, sizeof(float));
+    
+    printf("Total number of elements: %d\n", data_len);
+    printf("Range of elements: %d - %d\n", MIN_NUM, MAX_NUM);
+    printf("Number of classes: %d\n", num_classes);
+    printf("Block dimension: %d x 1 x 1\n", num_threads_per_block);
+    printf("Grid dimension: %d x 1 x 1\n", num_blocks);
 
     gen_data(data, data_len);
     set_classes(min_range_cls, max_range_cls, num_classes);
 
-    //histbin_GPU(data, data_len, min_range_cls, max_range_cls);
+    histbin_GPU(data, data_len, min_range_cls, max_range_cls);
 
     histbin_CPU(data, data_len, min_range_cls, max_range_cls);
     

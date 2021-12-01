@@ -38,7 +38,7 @@ void * find_numbers(void *arg){
 
 
     thread_t *thread = (thread_t *)arg;
-    printf("Thread ID: %d started\n", thread->id);
+    //printf("Thread ID: %d started\n", thread->id);
 
     int i;
     int local_sum = 0;
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
     time_taken += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
 
     // print divisible numbers
-    print_numbers();
+    // print_numbers();
     printf("\nTotal number of numbers: %d\n", total_numbers);
     printf("Total time elapsed: %f seconds \n", time_taken);
 
