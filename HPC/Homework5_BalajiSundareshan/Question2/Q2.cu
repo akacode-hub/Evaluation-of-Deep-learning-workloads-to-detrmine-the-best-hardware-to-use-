@@ -55,17 +55,19 @@ __global__ void tile_compute(float b[][N][N], float a[][N][N])
 
     __syncthreads();
 
-    if(blockIdx.x==0 && blockIdx.y==0 && blockIdx.z==0 && threadIdx.x==0 && threadIdx.y==0 && threadIdx.z==0)
-    {
-        printf("shared: \n\n");
-        for(i_=0;i_<sblock_size;i_++){
-            for(j_=0;j_<sblock_size;j_++){
-                for(k_=0;i_<sblock_size;k_++){
-                    printf("%f, ", shared_b[i_][j_][k_]);
-                }
-            }
-        }
-    }
+    // if(blockIdx.x==1 && blockIdx.y==1 && blockIdx.z==1 && threadIdx.x==0 && threadIdx.y==0 && threadIdx.z==0)
+    // {
+    //     printf("shared: \n\n");
+    //     for(i_=0;i_<sblock_size;i_++){
+    //         for(j_=0;j_<sblock_size;j_++){
+    //             for(k_=0;i_<sblock_size;k_++){
+    //                 printf("%f, ", shared_b[i_][j_][k_]);
+    //             }
+    //         }
+    //     }
+    // }
+
+    // __syncthreads();
 
     int tx = threadIdx.x + 1;
     int ty = threadIdx.y + 1;
@@ -73,7 +75,7 @@ __global__ void tile_compute(float b[][N][N], float a[][N][N])
 
     if (i > 0 && i < N-1 && j > 0 && j < N-1 && k > 0 &&  k < N-1)
     {   
-        printf("i: %d, j: %d, k: %d, tx: %d, ty: %d, tz: %d\n", i, j, k, tx, ty, tz);
+        //printf("bx: %d, by: %d, bz: %d, i: %d, j: %d, k: %d, tx: %d, ty: %d, tz: %d\n", blockIdx.x, blockIdx.y, blockIdx.z, i, j, k, tx, ty, tz);
         a[i][j][k] = 0.8*(shared_b[tx-1][ty][tz] + shared_b[tx+1][ty][tz] + shared_b[tx][ty-1][tz]
                         + shared_b[tx][ty+1][tz] + shared_b[tx][ty][tz-1] + shared_b[tx][ty][tz+1]);
     }
