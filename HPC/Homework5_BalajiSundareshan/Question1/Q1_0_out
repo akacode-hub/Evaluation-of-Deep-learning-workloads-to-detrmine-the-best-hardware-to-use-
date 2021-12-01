@@ -1,0 +1,42 @@
+Total number of elements: 1024
+Range of elements: 1 - 1000000
+Number of classes: 10
+Block dimension: 32 x 1 x 1
+Grid dimension: 32 x 1 x 1
+Time taken by GPU CUDA kernel: 0.000079
+Time taken by GPU CUDA implementation: 2.155054
+Histogram: 
+number of samples in cls 0: 99
+number of samples in cls 1: 91
+number of samples in cls 2: 109
+number of samples in cls 3: 117
+number of samples in cls 4: 102
+number of samples in cls 5: 120
+number of samples in cls 6: 102
+number of samples in cls 7: 104
+number of samples in cls 8: 84
+number of samples in cls 9: 96
+Total sum: 1024
+One element from cls 0: 92623
+One element from cls 1: 101840
+One element from cls 2: 228795
+One element from cls 3: 334472
+One element from cls 4: 436874
+One element from cls 5: 533460
+One element from cls 6: 668364
+One element from cls 7: 723619
+One element from cls 8: 826608
+One element from cls 9: 933682
+Time taken by CPU OPENMP implementation: 0.001665
+Histogram: 
+number of samples in cls 0: 99
+number of samples in cls 1: 91
+number of samples in cls 2: 109
+number of samples in cls 3: 117
+number of samples in cls 4: 102
+number of samples in cls 5: 120
+number of samples in cls 6: 102
+number of samples in cls 7: 104
+number of samples in cls 8: 84
+number of samples in cls 9: 96
+Total sum: 1024

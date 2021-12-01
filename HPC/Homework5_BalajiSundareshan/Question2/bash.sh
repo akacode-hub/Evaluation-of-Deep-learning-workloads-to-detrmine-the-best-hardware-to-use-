@@ -4,6 +4,6 @@
 #SBATCH --job-name=your_job_name
 #SBATCH --mem=1G
 #SBATCH --gres=gpu:1
-#SBATCH --output=Q2_out
+#SBATCH --output=Q2_0_out
 #SBATCH --partition=gpu
 ./Q2

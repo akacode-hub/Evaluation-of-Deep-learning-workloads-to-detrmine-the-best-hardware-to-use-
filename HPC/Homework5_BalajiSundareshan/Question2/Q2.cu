@@ -7,7 +7,7 @@
 #include <curand_kernel.h>
 
 #define MIN_NUM 1
-#define MAX_NUM 100
+#define MAX_NUM 1000
 const int N = 64;
 const int num_threads_per_block = 8;
 const int num_blocks = 8;
@@ -130,6 +130,9 @@ int main(int argc, char *argv[])
 {
     float * a_tile, * a_nontile, * b; 
     
+    struct timespec start1, end1;
+    struct timespec start2, end2;
+
     cudaMallocManaged(&a_tile, N*N*N*sizeof(float));
     cudaMallocManaged(&a_nontile, N*N*N*sizeof(float));
     cudaMallocManaged(&b, N*N*N*sizeof(float));
@@ -155,12 +158,24 @@ int main(int argc, char *argv[])
     dim3 blocks(num_blocks, num_blocks, num_blocks);
 
     //Tiled computation
+    clock_gettime(CLOCK_MONOTONIC, &start1);
+
     tile_compute<<<blocks, threads_per_block>>>(reinterpret_cast<float (*)[N][N]>(b), a_vals_tile);
 
+    clock_gettime(CLOCK_MONOTONIC, &end1);
+    double time_taken1 = (end1.tv_sec - start1.tv_sec);
+    time_taken1 += (end1.tv_nsec - start1.tv_nsec) / 1000000000.0;
+
     //Non Tiled computation
+    clock_gettime(CLOCK_MONOTONIC, &start2);
+
     non_tile_compute<<<blocks, threads_per_block>>>(reinterpret_cast<float (*)[N][N]>(b), a_vals_nontile);
 
-    cudaDeviceSynchronize();
+    clock_gettime(CLOCK_MONOTONIC, &end2);
+    double time_taken2 = (end2.tv_sec - start2.tv_sec);
+    time_taken2 += (end2.tv_nsec - start2.tv_nsec) / 1000000000.0;
+
+    // cudaDeviceSynchronize();
 
     //Serial Computation
     serial_compute(b_vals, a_vals_serial);
@@ -170,11 +185,13 @@ int main(int argc, char *argv[])
     printf("Grid Dimension: %d x %d x %d\n", num_blocks, num_blocks, num_blocks);
 
     // print result
+    printf("Time elapsed for tiled implementation: %f\n", time_taken1);
     printf("Compare tiled implementation with serial: \n");
     compare_mat(a_vals_tile, a_vals_serial);
 
+    printf("Time elapsed for non-tiled implementation: %f\n", time_taken2);
     printf("Compare non tiled implementation with serial: \n");
-    compare_mat(a_vals_tile, a_vals_serial);
+    compare_mat(a_vals_nontile, a_vals_serial);
 
     // printf("Tiled: \n");
     // print_mat(a_vals_tile);

@@ -1,0 +1,132 @@
+Total number of elements: 32768
+Range of elements: 1 - 1000000
+Number of classes: 40
+Block dimension: 128 x 1 x 1
+Grid dimension: 256 x 1 x 1
+Time taken by GPU CUDA kernel: 0.000084
+Time taken by GPU CUDA implementation: 2.260430
+Histogram: 
+number of samples in cls 0: 791
+number of samples in cls 1: 826
+number of samples in cls 2: 870
+number of samples in cls 3: 802
+number of samples in cls 4: 802
+number of samples in cls 5: 841
+number of samples in cls 6: 788
+number of samples in cls 7: 880
+number of samples in cls 8: 836
+number of samples in cls 9: 808
+number of samples in cls 10: 857
+number of samples in cls 11: 801
+number of samples in cls 12: 822
+number of samples in cls 13: 813
+number of samples in cls 14: 802
+number of samples in cls 15: 810
+number of samples in cls 16: 849
+number of samples in cls 17: 818
+number of samples in cls 18: 813
+number of samples in cls 19: 804
+number of samples in cls 20: 820
+number of samples in cls 21: 826
+number of samples in cls 22: 824
+number of samples in cls 23: 832
+number of samples in cls 24: 812
+number of samples in cls 25: 843
+number of samples in cls 26: 839
+number of samples in cls 27: 809
+number of samples in cls 28: 878
+number of samples in cls 29: 782
+number of samples in cls 30: 804
+number of samples in cls 31: 815
+number of samples in cls 32: 766
+number of samples in cls 33: 797
+number of samples in cls 34: 799
+number of samples in cls 35: 774
+number of samples in cls 36: 875
+number of samples in cls 37: 806
+number of samples in cls 38: 804
+number of samples in cls 39: 830
+Total sum: 32768
+One element from cls 0: 7357
+One element from cls 1: 35915
+One element from cls 2: 66308
+One element from cls 3: 83430
+One element from cls 4: 106354
+One element from cls 5: 141225
+One element from cls 6: 174310
+One element from cls 7: 192509
+One element from cls 8: 222028
+One element from cls 9: 238062
+One element from cls 10: 253849
+One element from cls 11: 291927
+One element from cls 12: 307085
+One element from cls 13: 344146
+One element from cls 14: 369846
+One element from cls 15: 375926
+One element from cls 16: 411578
+One element from cls 17: 441533
+One element from cls 18: 462884
+One element from cls 19: 475152
+One element from cls 20: 501798
+One element from cls 21: 532205
+One element from cls 22: 552861
+One element from cls 23: 578652
+One element from cls 24: 603849
+One element from cls 25: 641965
+One element from cls 26: 662966
+One element from cls 27: 680146
+One element from cls 28: 713927
+One element from cls 29: 739666
+One element from cls 30: 768074
+One element from cls 31: 781475
+One element from cls 32: 822841
+One element from cls 33: 849778
+One element from cls 34: 874208
+One element from cls 35: 889684
+One element from cls 36: 910518
+One element from cls 37: 940925
+One element from cls 38: 966137
+One element from cls 39: 991762
+Time taken by CPU OPENMP implementation: 0.003979
+Histogram: 
+number of samples in cls 0: 791
+number of samples in cls 1: 826
+number of samples in cls 2: 870
+number of samples in cls 3: 802
+number of samples in cls 4: 802
+number of samples in cls 5: 841
+number of samples in cls 6: 788
+number of samples in cls 7: 880
+number of samples in cls 8: 836
+number of samples in cls 9: 808
+number of samples in cls 10: 857
+number of samples in cls 11: 801
+number of samples in cls 12: 822
+number of samples in cls 13: 813
+number of samples in cls 14: 802
+number of samples in cls 15: 810
+number of samples in cls 16: 849
+number of samples in cls 17: 818
+number of samples in cls 18: 813
+number of samples in cls 19: 804
+number of samples in cls 20: 820
+number of samples in cls 21: 826
+number of samples in cls 22: 824
+number of samples in cls 23: 832
+number of samples in cls 24: 812
+number of samples in cls 25: 843
+number of samples in cls 26: 839
+number of samples in cls 27: 809
+number of samples in cls 28: 878
+number of samples in cls 29: 782
+number of samples in cls 30: 804
+number of samples in cls 31: 815
+number of samples in cls 32: 766
+number of samples in cls 33: 797
+number of samples in cls 34: 799
+number of samples in cls 35: 774
+number of samples in cls 36: 875
+number of samples in cls 37: 806
+number of samples in cls 38: 804
+number of samples in cls 39: 830
+Total sum: 32768

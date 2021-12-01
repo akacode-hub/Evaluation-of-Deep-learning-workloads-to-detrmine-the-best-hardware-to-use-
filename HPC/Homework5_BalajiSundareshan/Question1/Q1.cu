@@ -10,8 +10,8 @@
 #define MAX_NUM 1000000
 
 const int num_classes = 10;
-const int num_blocks = 32;
-const int num_threads_per_block = 32;
+const int num_blocks = 1024;
+const int num_threads_per_block = 128;
 const int num_threads_omp = 64;
 int tot_threads = num_blocks * num_threads_per_block;
 
@@ -176,6 +176,7 @@ void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_ra
 {   
     srand(time(NULL));
     struct timespec start, end;
+    struct timespec start1, end1;
 
     int * data_gpu;
 
@@ -222,9 +223,16 @@ void histbin_GPU(int * data, int data_len, float * min_range_cls, float * max_ra
     cudaMemcpy(min_tidxs_gpu, min_tidxs, sizeof(int)*tot_threads, cudaMemcpyHostToDevice);
     cudaMemcpy(max_tidxs_gpu, max_tidxs, sizeof(int)*tot_threads, cudaMemcpyHostToDevice);
 
+    clock_gettime(CLOCK_MONOTONIC, &start1);
+
     hist_binning<<<num_blocks, num_threads_per_block>>>(data_gpu, hist_bin_gpu, cls_el_gpu, min_range_cls_gpu, max_range_cls_gpu, min_tidxs_gpu, max_tidxs_gpu);
 
     add_bins<<<1, 1>>>(hist_bin_gpu, red_hist_bin_gpu);
+
+    clock_gettime(CLOCK_MONOTONIC, &end1);
+    double time_taken1 = (end1.tv_sec - start1.tv_sec);
+    time_taken1 += (end1.tv_nsec - start1.tv_nsec) / 1000000000.0;
+    printf("Time taken by GPU CUDA kernel: %f\n", time_taken1);
 
     cudaMemcpy(red_hist_bin, red_hist_bin_gpu, sizeof(int)*num_classes, cudaMemcpyDeviceToHost);
     cudaMemcpy(cls_el, cls_el_gpu, sizeof(int)*num_classes, cudaMemcpyDeviceToHost);
