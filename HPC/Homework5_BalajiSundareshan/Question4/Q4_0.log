@@ -1,0 +1,9 @@
+Number of blocks: 256
+Number of threads per block: 256
+Number of darts per thread: 1
+Total number of darts thrown: 65536
+num_darts_in: 51334
+Calculated_pi: 3.1331787109375000
+Total elapsed time = 2.285896 seconds 
+Elapsed time CUDA kernel = 0.005910 seconds 
+Calculated Pi is 3.1331787109375000, Error is 0.0084139426522931

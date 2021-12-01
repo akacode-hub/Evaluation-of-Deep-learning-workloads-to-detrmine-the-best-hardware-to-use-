@@ -6,8 +6,8 @@
 #include <curand_kernel.h>
 
 const double PI25DT = 3.141592653589793238462643;         /* 25-digit-PI*/
-const int num_blocks = 10000;
-const int num_threads_per_block = 256;
+const int num_blocks = 256;
+const int num_threads_per_block = 128;
 const int num_dart_per_thread = 1;
 
 __global__ void fill_dart_count(int *in_dart_counts)
@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
     srand(time(NULL));
     
     struct timespec start, end;
+    struct timespec start1, end1;
 
     long num_darts = num_blocks * num_threads_per_block * num_dart_per_thread;
     printf("Number of blocks: %d\n", num_blocks);
@@ -76,9 +77,15 @@ int main(int argc, char *argv[])
     long *num_darts_gpu, num_darts_in;
     cudaMalloc((void**)&num_darts_gpu, sizeof(num_darts_in));
 
+    clock_gettime(CLOCK_MONOTONIC, &start1);
+
     fill_dart_count<<<num_blocks, num_threads_per_block>>>(dart_counts_block);
 
     count_darts<<<1, 1>>>(dart_counts_block, num_darts_gpu);
+
+    clock_gettime(CLOCK_MONOTONIC, &end1);
+    double time_elapsed1 = (end1.tv_sec - start1.tv_sec);
+    time_elapsed1 += (end1.tv_nsec - start1.tv_nsec) / 1000000000.0;
 
     cudaMemcpy(&num_darts_in, num_darts_gpu, sizeof(num_darts_in), cudaMemcpyDeviceToHost);
 
@@ -92,7 +99,8 @@ int main(int argc, char *argv[])
     printf("Calculated_pi: %.16f\n", calculated_pi);
 
     double error = fabs(calculated_pi - PI25DT);
-    printf("Elapsed time = %f seconds \n", time_elapsed);    
+    printf("Total elapsed time = %f seconds \n", time_elapsed);    
+    printf("Elapsed time CUDA kernel = %f seconds \n", time_elapsed1);
     printf("Calculated Pi is %.16f, Error is %.16f\n", calculated_pi, error);
 
     return 0;
