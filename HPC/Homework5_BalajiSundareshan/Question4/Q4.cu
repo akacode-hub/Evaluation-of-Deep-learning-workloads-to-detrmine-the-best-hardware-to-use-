@@ -8,7 +8,7 @@
 const double PI25DT = 3.141592653589793238462643;         /* 25-digit-PI*/
 const int num_blocks = 1024;
 const int num_threads_per_block = 1024;
-const int num_dart_per_thread = 10000;
+const int num_dart_per_thread = 100;
 
 __global__ void fill_dart_count(int *in_dart_counts)
 {   

@@ -1,5 +1,0 @@
-Elapsed time for matrix multiplication of a 4096 x 4096 matrix by a  4096 x 4096 matrix on a GPU: 594.389404 ms.
-
-Elapsed time for matrix multiplication of a 4096 x 4096 matrix by a  4096 x 4096 matrix on a CPU: 1315827.750000 ms.
-
-all results are correct!!!, speedup = 2213.747070

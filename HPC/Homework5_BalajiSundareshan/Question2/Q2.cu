@@ -10,8 +10,8 @@
 #define MAX_NUM 1000
 
 const int N = 64;
-const int num_threads_per_block = 2;
-const int num_blocks = 32;
+const int num_threads_per_block = 8;
+const int num_blocks = 8;
 const int sblock_size = num_threads_per_block + 2;
 
 __global__ void non_tile_compute(float b[][N][N], float a[][N][N])
@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
     double time_taken2 = (end2.tv_sec - start2.tv_sec);
     time_taken2 += (end2.tv_nsec - start2.tv_nsec) / 1000000000.0;
 
-    // cudaDeviceSynchronize();
+    cudaDeviceSynchronize();
 
     //Serial Computation
     serial_compute(b_vals, a_vals_serial);
@@ -188,11 +188,11 @@ int main(int argc, char *argv[])
     // print result
     printf("Time elapsed for tiled implementation: %f\n", time_taken1);
     printf("Compare tiled implementation with serial: \n");
-    //compare_mat(a_vals_tile, a_vals_serial);
+    compare_mat(a_vals_tile, a_vals_serial);
 
     printf("Time elapsed for non-tiled implementation: %f\n", time_taken2);
     printf("Compare non tiled implementation with serial: \n");
-    //compare_mat(a_vals_nontile, a_vals_serial);
+    compare_mat(a_vals_nontile, a_vals_serial);
 
     // printf("Tiled: \n");
     // print_mat(a_vals_tile);
