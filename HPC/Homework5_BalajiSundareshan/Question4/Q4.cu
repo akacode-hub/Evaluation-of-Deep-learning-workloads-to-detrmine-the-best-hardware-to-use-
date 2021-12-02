@@ -6,9 +6,9 @@
 #include <curand_kernel.h>
 
 const double PI25DT = 3.141592653589793238462643;         /* 25-digit-PI*/
-const int num_blocks = 256;
-const int num_threads_per_block = 128;
-const int num_dart_per_thread = 1;
+const int num_blocks = 1024;
+const int num_threads_per_block = 1024;
+const int num_dart_per_thread = 10000;
 
 __global__ void fill_dart_count(int *in_dart_counts)
 {   
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     printf("Number of blocks: %d\n", num_blocks);
     printf("Number of threads per block: %d\n", num_threads_per_block);
     printf("Number of darts per thread: %d\n", num_dart_per_thread);
-    printf("Total number of darts thrown: %d\n", num_darts);
+    printf("Total number of darts thrown: %ld\n", num_darts);
 
     clock_gettime(CLOCK_MONOTONIC, &start);
 
@@ -95,13 +95,20 @@ int main(int argc, char *argv[])
 
     printf("num_darts_in: %ld\n", num_darts_in);
 
-    double calculated_pi = (4*num_darts_in)/((double) num_darts);
-    printf("Calculated_pi: %.16f\n", calculated_pi);
+    double calculated_pi_double = ((double) 4*num_darts_in)/((double) num_darts);
+    printf("Calculated_pi double: %.16f\n", calculated_pi_double);
 
-    double error = fabs(calculated_pi - PI25DT);
+    double error_double = fabs(calculated_pi_double - PI25DT);
+
+    float calculated_pi_float = ((float) 4*num_darts_in)/((float) num_darts);
+    printf("Calculated_pi float: %.16f\n", calculated_pi_float);
+
+    double error_float = fabs(calculated_pi_float - PI25DT);
+
     printf("Total elapsed time = %f seconds \n", time_elapsed);    
     printf("Elapsed time CUDA kernel = %f seconds \n", time_elapsed1);
-    printf("Calculated Pi is %.16f, Error is %.16f\n", calculated_pi, error);
+    printf("Calculated Pi(float) is %.16f, Error is %.16f\n", calculated_pi_float, error_float);
+    printf("Calculated Pi(double) is %.16f, Error is %.16f\n", calculated_pi_double, error_double);
 
     return 0;
 }
