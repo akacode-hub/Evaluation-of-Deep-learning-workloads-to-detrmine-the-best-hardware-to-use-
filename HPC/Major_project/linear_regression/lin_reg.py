@@ -61,8 +61,9 @@ def scale_labels(train_labels, test_labels):
 
     min_label, max_label = np.min(train_labels), np.max(train_labels)
     width = max_label - min_label
-    train_labels = (train_labels - min_label) / width
-    test_labels = (test_labels - min_label) / width
+    
+    # train_labels = (train_labels - min_label) / width
+    # test_labels = (test_labels - min_label) / width
 
     return train_labels, test_labels
 
@@ -187,8 +188,8 @@ def validate(network, num_dim):
         pred = network(test_inp).detach().numpy()
         mse_err = (pred - test_label) ** 2
 
-        test_label = int(test_label*89 + 1922)
-        pred = int(pred*89 + 1922)
+        test_label = int(test_label + 1922)
+        pred = int(pred + 1922)
 
         print('idx: ',idx, ' label: ',test_label, ' pred: ', pred, ' mse_err: ',mse_err)
 
