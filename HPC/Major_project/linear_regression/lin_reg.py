@@ -10,6 +10,7 @@ import torch
 import torch.nn as nn
 import torch.distributed as dist
 from torch.utils.data import Dataset, DataLoader
+import time
 
 class YearPredictionDataset(Dataset):
     
@@ -55,6 +56,15 @@ def scale_data(train_data, test_data):
     scale_test_data = scaler.transform(test_data)
 
     return scale_train_data, scale_test_data
+
+def scale_labels(train_labels, test_labels):
+
+    min_label, max_label = np.min(train_labels), np.max(train_labels)
+    width = max_label - min_label
+    train_labels = (train_labels - min_label) / width
+    test_labels = (test_labels - min_label) / width
+
+    return train_labels, test_labels
 
 def dimension_reduction(train_data, test_data, variance_frac=0.9):
 
@@ -103,6 +113,8 @@ def train(num_dim, gpu_id=0):
     test_data, test_labels = data[2:]
     scale_train_data, scale_test_data = scale_data(train_data, test_data)
 
+    train_labels, test_labels = scale_labels(train_labels, test_labels)
+
     if use_pca:
         scale_train_data, scale_test_data, num_dim = dimension_reduction(scale_train_data, scale_test_data)
 
@@ -114,6 +126,7 @@ def train(num_dim, gpu_id=0):
     # define loss function (criterion) and optimizer
     criterion = nn.MSELoss().cuda(gpu_id)
     optimizer = torch.optim.Adam(model.parameters(), 1e-4)
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=lr_steps, gamma=lr_drop)
 
     # Data loading code
     train_dataset = YearPredictionDataset(features=scale_train_data, labels=train_labels)
@@ -129,6 +142,7 @@ def train(num_dim, gpu_id=0):
 
     for epoch in range(num_epochs):
 
+        start = time.time()
         for i, sample in enumerate(train_loader):
             
             features = sample['features'].float()
@@ -144,11 +158,48 @@ def train(num_dim, gpu_id=0):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-
-        print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch + 1, num_epochs, loss.item()))
+        
+        scheduler.step()
+        train_mins = (time.time() - start) / 60 
+        print('Epoch [{}/{}], time: {:.4f} mins, lr: {}, Loss: {:.4f}'.format(epoch + 1, num_epochs, train_mins, scheduler.get_last_lr()[0], loss.item()), flush=True)
 
         if epoch % 5 == 0:
             torch.save(model.state_dict(), model_save_dir + str(epoch) + '.pth')
+
+def validate(network, num_dim):
+
+    features, labels = get_data(fpath)    
+    data = train_test_split(features, labels, num_train)
+    train_data, train_labels = data[:2]
+    test_data, test_labels = data[2:]
+    scale_train_data, scale_test_data = scale_data(train_data, test_data)
+
+    if use_pca:
+        scale_train_data, scale_test_data, num_dim = dimension_reduction(scale_train_data, scale_test_data)
+
+    train_labels, test_labels = scale_labels(train_labels, test_labels)
+    
+    for idx in range(scale_test_data.shape[0]):
+        
+        test_inp = scale_test_data[idx]
+        test_label = test_labels[idx]
+        test_inp = torch.tensor(test_inp).float()
+        pred = network(test_inp).detach().numpy()
+        mse_err = (pred - test_label) ** 2
+
+        test_label = int(test_label*89 + 1922)
+        pred = int(pred*89 + 1922)
+
+        print('idx: ',idx, ' label: ',test_label, ' pred: ', pred, ' mse_err: ',mse_err)
+
+def test(model_path, num_dim):
+
+    print('model_path: ',model_path)
+    network = MLP(num_dim, pred_dim)
+    network.load_state_dict(torch.load(model_path))
+    network.eval()
+
+    validate(network, num_dim)
 
 if __name__ == "__main__":
 
@@ -164,5 +215,12 @@ if __name__ == "__main__":
     num_dim = 90
     pred_dim = 1
     use_pca = 0
-    
+    lr_steps = [30, 60, 90]
+    lr_drop = 0.1
+
+    #train
     train(num_dim)
+
+    #validate
+    # model_path = os.path.join(model_save_dir, '35.pth')
+    # test(model_path, num_dim)
