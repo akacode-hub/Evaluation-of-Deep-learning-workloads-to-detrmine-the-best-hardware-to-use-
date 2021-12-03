@@ -1,7 +1,7 @@
 import sys, os
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.decomposition import PCA
 import torch.multiprocessing as mp
 import torchvision
@@ -48,7 +48,7 @@ def train_test_split(features, labels, num_train):
 
 def scale_data(train_data, test_data):
 
-    scaler = MinMaxScaler()
+    scaler = StandardScaler()
 
     scaler.fit(train_data)
     
@@ -62,8 +62,8 @@ def scale_labels(train_labels, test_labels):
     min_label, max_label = np.min(train_labels), np.max(train_labels)
     width = max_label - min_label
     
-    # train_labels = (train_labels - min_label) / width
-    # test_labels = (test_labels - min_label) / width
+    train_labels = train_labels - min_label
+    test_labels = test_labels - min_label
 
     return train_labels, test_labels
 
@@ -87,7 +87,7 @@ class MLP(nn.Module):
         # Hidden layers
         self.layers = []
         self.layers.append(nn.Linear(num_channels, num_channels))
-        self.layers.append(nn.LeakyReLU())
+        self.layers.append(nn.ReLU())
         self.layers.append(nn.Linear(num_channels, out_size))
 
         self.network = nn.Sequential(*self.layers)
@@ -95,7 +95,7 @@ class MLP(nn.Module):
 
     def init_weights(self, gate_bias_init: float = 0.0) -> None:
 
-        for i in [0, 2]:
+        for i in range(0, len(self.layers), 2):
 
             fc = self.layers[i]
             torch.nn.init.xavier_uniform_(fc.weight)
@@ -105,6 +105,10 @@ class MLP(nn.Module):
 
         # Feedforward
         return self.network(x)
+
+def calc_mae(output, label):
+
+    return torch.mean(torch.abs(output - label))
 
 def train(num_dim, gpu_id=0):
 
@@ -118,15 +122,17 @@ def train(num_dim, gpu_id=0):
 
     if use_pca:
         scale_train_data, scale_test_data, num_dim = dimension_reduction(scale_train_data, scale_test_data)
+        print('pca dim: ', num_dim)
 
     torch.manual_seed(0)
     model = MLP(num_dim, pred_dim)
+    print('model: ',model)
     torch.cuda.set_device(gpu_id)
     model.cuda(gpu_id)
     
     # define loss function (criterion) and optimizer
     criterion = nn.MSELoss().cuda(gpu_id)
-    optimizer = torch.optim.Adam(model.parameters(), 1e-4)
+    optimizer = torch.optim.Adam(model.parameters(), lr)
     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=lr_steps, gamma=lr_drop)
 
     # Data loading code
@@ -148,12 +154,14 @@ def train(num_dim, gpu_id=0):
             
             features = sample['features'].float()
             labels = sample['label'].float()
+            
             features = features.cuda(non_blocking=True)
             labels = labels.cuda(non_blocking=True)
 
             # Forward pass
             outputs = model(features)
             loss = criterion(outputs, labels)
+            metric = calc_mae(outputs, labels)
 
             # Backward and optimize
             optimizer.zero_grad()
@@ -162,9 +170,9 @@ def train(num_dim, gpu_id=0):
         
         scheduler.step()
         train_mins = (time.time() - start) / 60 
-        print('Epoch [{}/{}], time: {:.4f} mins, lr: {}, Loss: {:.4f}'.format(epoch + 1, num_epochs, train_mins, scheduler.get_last_lr()[0], loss.item()), flush=True)
+        print('Epoch [{}/{}], time: {:.4f} mins, lr: {}, mse: {:.4f},  mae: {:.4f}'.format(epoch + 1, num_epochs, train_mins, scheduler.get_last_lr()[0], loss.item(), metric), flush=True)
 
-        if epoch % 5 == 0:
+        if epoch % 2 == 0:
             torch.save(model.state_dict(), model_save_dir + str(epoch) + '.pth')
 
 def validate(network, num_dim):
@@ -202,6 +210,28 @@ def test(model_path, num_dim):
 
     validate(network, num_dim)
 
+def print_params():
+
+    num_train = 463715
+    batch_size = 512
+    num_epochs = 102
+    num_dim = 90
+    pred_dim = 1
+    use_pca = 0
+    lr = 5e-3
+    lr_steps = [50]
+    lr_drop = 0.1
+
+    print('num_train: ',num_train)
+    print('batch_size: ',batch_size)
+    print('num_epochs: ',num_epochs)
+    print('num_dim: ',num_dim)
+    print('pred_dim: ',pred_dim)
+    print('use_pca: ',use_pca)
+    print('lr: ',lr)
+    print('lr_steps: ',lr_steps)
+    print('lr_drop: ',lr_drop, flush=True)
+
 if __name__ == "__main__":
 
     fpath = '../dataset/YearPredictionMSD.txt'
@@ -211,17 +241,20 @@ if __name__ == "__main__":
         os.makedirs(model_save_dir)
 
     num_train = 463715
-    batch_size = 100
-    num_epochs = 100
+    batch_size = 512
+    num_epochs = 102
     num_dim = 90
     pred_dim = 1
     use_pca = 0
-    lr_steps = [30, 60, 90]
+    lr = 5e-3
+    lr_steps = [50]
     lr_drop = 0.1
+
+    print_params()
 
     #train
     train(num_dim)
 
     #validate
-    # model_path = os.path.join(model_save_dir, '35.pth')
+    # model_path = os.path.join(model_save_dir, '100.pth')
     # test(model_path, num_dim)
