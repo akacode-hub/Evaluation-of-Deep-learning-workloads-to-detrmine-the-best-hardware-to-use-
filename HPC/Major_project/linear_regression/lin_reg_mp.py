@@ -110,7 +110,36 @@ def calc_mae(output, label):
 
     return torch.mean(torch.abs(output - label))
 
-def train(num_dim, gpu_id=0):
+def train(gpu):
+
+    fpath = '../dataset/YearPredictionMSD.txt'
+    model_save_dir = 'models/exp1/'
+
+    if not os.path.exists(model_save_dir):
+        os.makedirs(model_save_dir)
+
+    num_train = 463715
+    batch_size = 512
+    num_epochs = 102
+    num_dim = 90
+    pred_dim = 1
+    use_pca = 0
+
+    lr = 5e-3
+    lr_steps = [50]
+    lr_drop = 0.1
+
+    nr = 0; gpus = 2
+    rank = nr * gpus + gpu	                          
+    nodes = 1; world_size = gpus * nodes
+    print_params()
+
+    dist.init_process_group(                                   
+    	backend='nccl',                                         
+   		init_method='env://',                                   
+    	world_size=world_size,                              
+    	rank=rank                                               
+    )      
 
     features, labels = get_data(fpath)    
     data = train_test_split(features, labels, num_train)
@@ -127,22 +156,24 @@ def train(num_dim, gpu_id=0):
     torch.manual_seed(0)
     model = MLP(num_dim, pred_dim)
     print('model: ',model)
-    torch.cuda.set_device(gpu_id)
-    model.cuda(gpu_id)
-    
+    torch.cuda.set_device(gpu)
+    model.cuda(gpu)
+    model = nn.parallel.DistributedDataParallel(model, device_ids=[gpu])
+
     # define loss function (criterion) and optimizer
-    criterion = nn.MSELoss().cuda(gpu_id)
+    criterion = nn.MSELoss().cuda(gpu)
     optimizer = torch.optim.Adam(model.parameters(), lr)
     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=lr_steps, gamma=lr_drop)
 
     # Data loading code
     train_dataset = YearPredictionDataset(features=scale_train_data, labels=train_labels)
-
+    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset, num_replicas=world_size, rank=rank)
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                                batch_size=batch_size,
-                                               shuffle=True,
+                                               shuffle=False,
                                                num_workers=0,
-                                               pin_memory=True)
+                                               pin_memory=True,
+                                               sampler=train_sampler)
 
 
     total_step = len(train_loader)
@@ -170,9 +201,10 @@ def train(num_dim, gpu_id=0):
         
         scheduler.step()
         train_mins = (time.time() - start) / 60 
-        print('Epoch [{}/{}], time: {:.4f} mins, lr: {}, mse: {:.4f},  mae: {:.4f}'.format(epoch + 1, num_epochs, train_mins, scheduler.get_last_lr()[0], loss.item(), metric), flush=True)
+        if gpu == 0:
+            print('Epoch [{}/{}], time: {:.4f} mins, lr: {}, mse: {:.4f},  mae: {:.4f}'.format(epoch + 1, num_epochs, train_mins, scheduler.get_last_lr()[0], loss.item(), metric), flush=True)
 
-        if epoch % 2 == 0:
+        if epoch % 2 == 0 and gpu == 0:
             torch.save(model.state_dict(), model_save_dir + str(epoch) + '.pth')
 
 def validate(network, num_dim):
@@ -234,26 +266,12 @@ def print_params():
 
 if __name__ == "__main__":
 
-    fpath = '../dataset/YearPredictionMSD.txt'
-    model_save_dir = 'models/exp1/'
-
-    if not os.path.exists(model_save_dir):
-        os.makedirs(model_save_dir)
-
-    num_train = 463715
-    batch_size = 512
-    num_epochs = 102
-    num_dim = 90
-    pred_dim = 1
-    use_pca = 0
-    lr = 5e-3
-    lr_steps = [50]
-    lr_drop = 0.1
-
-    print_params()
+    gpus = 2
 
     #train
-    train(num_dim)
+    os.environ['MASTER_ADDR'] = '10.90.33.206'
+    os.environ['MASTER_PORT'] = '8888'
+    mp.spawn(train, nprocs=gpus)
 
     #validate
     # model_path = os.path.join(model_save_dir, '100.pth')
