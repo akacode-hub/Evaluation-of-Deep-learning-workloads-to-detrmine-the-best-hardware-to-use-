@@ -48,7 +48,7 @@ if __name__ == "__main__":
     num_round = 1000        
 
     fpath = '../dataset/HIGGS.csv'
-    num_gpus = 2
+    num_gpus = 3
 
     # `LocalCUDACluster` is used for assigning GPU to XGBoost processes.  Here
     # `n_workers` represents the number of GPUs since we use one GPU per worker
