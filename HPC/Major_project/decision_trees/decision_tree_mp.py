@@ -5,8 +5,11 @@ import pandas as pd
 import time
 import xgboost as xgb
 import sys
+from dask_cuda import LocalCUDACluster
+from dask.distributed import Client
+from xgboost.dask import DaskDMatrix
 
-def get_data(filename):
+def get_data(client: Client, filename):
     
     higgs_train = pd.read_csv(filename, dtype=np.float32, 
                                      nrows=train_rows, header=None)
@@ -15,12 +18,12 @@ def get_data(filename):
                                     skiprows=train_rows, nrows=test_rows, 
                                     header=None)
 
-    higgs_train = xgb.DMatrix(higgs_train.ix[:, 1:29], higgs_train[0])
-    higgs_train = xgb.DMatrix(higgs_test.ix[:, 1:29], higgs_test[0])
+    higgs_train = DaskDMatrix(higgs_train.ix[:, 1:29], higgs_train[0])
+    higgs_train = DaskDMatrix(higgs_test.ix[:, 1:29], higgs_test[0])
 
     return higgs_train, higgs_test
 
-def train_GPU():
+def train(client: Client):
 
     param = {}
     param['objective'] = 'binary:logitraw'
@@ -37,23 +40,6 @@ def train_GPU():
     gpu_time = time.time() - tmp
     print("GPU Training Time: %s seconds" % (str(gpu_time)))
 
-def train_CPU():
-
-    param = {}
-    param['objective'] = 'binary:logitraw'
-    param['eval_metric'] = 'error'
-    param['tree_method'] = 'hist'
-    param['silent'] = 1
-
-    print("Training with CPU ...")
-    dtrain, dtest = get_data(fpath)
-    tmp = time.time()
-    cpu_res = {}
-    xgb.train(param, dtrain, num_round, evals=[(dtest, "test")], 
-            evals_result=cpu_res)
-    cpu_time = time.time() - tmp
-    print("CPU Training Time: %s seconds" % (str(cpu_time)))
-
 if __name__ == "__main__":
 
     train_rows = 10500000
@@ -61,7 +47,10 @@ if __name__ == "__main__":
     num_round = 1000        
 
     fpath = '../dataset/HIGGS.csv'
-
-    train_GPU()
-
-    train_CPU()
+    num_gpus = 2
+    # `LocalCUDACluster` is used for assigning GPU to XGBoost processes.  Here
+    # `n_workers` represents the number of GPUs since we use one GPU per worker
+    # process.
+    with LocalCUDACluster(n_workers=num_gpus, threads_per_worker=4) as cluster:
+        with Client(cluster) as client:
+            train(client)
