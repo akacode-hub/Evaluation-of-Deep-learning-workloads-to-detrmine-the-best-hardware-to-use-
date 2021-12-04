@@ -16,7 +16,7 @@ def get_data(filename):
                                     header=None)
 
     higgs_train = xgb.DMatrix(higgs_train.ix[:, 1:29], higgs_train[0])
-    higgs_train = xgb.DMatrix(higgs_test.ix[:, 1:29], higgs_test[0])
+    higgs_test = xgb.DMatrix(higgs_test.ix[:, 1:29], higgs_test[0])
 
     return higgs_train, higgs_test
 
@@ -28,10 +28,11 @@ def train_GPU():
     param['tree_method'] = 'gpu_hist'
     param['silent'] = 1
 
-    print("Training with GPU ...")
+    print("Loading data ...")
     dtrain, dtest = get_data(fpath)
     tmp = time.time()
     gpu_res = {}
+    print("Training with GPU ...")
     xgb.train(param, dtrain, num_round, evals=[(dtest, "test")], 
             evals_result=gpu_res)
     gpu_time = time.time() - tmp

@@ -9,7 +9,7 @@ from dask_cuda import LocalCUDACluster
 from dask.distributed import Client
 from xgboost.dask import DaskDMatrix
 
-def get_data(client: Client, filename):
+def get_data(filename):
     
     higgs_train = pd.read_csv(filename, dtype=np.float32, 
                                      nrows=train_rows, header=None)
@@ -18,12 +18,9 @@ def get_data(client: Client, filename):
                                     skiprows=train_rows, nrows=test_rows, 
                                     header=None)
 
-    higgs_train = DaskDMatrix(higgs_train.ix[:, 1:29], higgs_train[0])
-    higgs_train = DaskDMatrix(higgs_test.ix[:, 1:29], higgs_test[0])
-
     return higgs_train, higgs_test
 
-def train(client: Client):
+def train(client):
 
     param = {}
     param['objective'] = 'binary:logitraw'
@@ -31,11 +28,15 @@ def train(client: Client):
     param['tree_method'] = 'gpu_hist'
     param['silent'] = 1
 
-    print("Training with GPU ...")
+    print("Loading data ...")
     dtrain, dtest = get_data(fpath)
+    dtrain = DaskDMatrix(client, dtrain.ix[:, 1:29], dtrain[0])
+    dtest = DaskDMatrix(client, dtest.ix[:, 1:29], dtest[0])
+
     tmp = time.time()
     gpu_res = {}
-    xgb.train(param, dtrain, num_round, evals=[(dtest, "test")], 
+    print("Training with GPU ...")
+    output = xgb.dask.train(client, param, dtrain, num_boost_round=4, evals=[(dtest, "test")], 
             evals_result=gpu_res)
     gpu_time = time.time() - tmp
     print("GPU Training Time: %s seconds" % (str(gpu_time)))
@@ -48,6 +49,7 @@ if __name__ == "__main__":
 
     fpath = '../dataset/HIGGS.csv'
     num_gpus = 2
+
     # `LocalCUDACluster` is used for assigning GPU to XGBoost processes.  Here
     # `n_workers` represents the number of GPUs since we use one GPU per worker
     # process.
