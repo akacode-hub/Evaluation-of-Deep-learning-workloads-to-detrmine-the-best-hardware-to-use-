@@ -220,41 +220,6 @@ def train(gpu):
         if epoch % 2 == 0 and gpu == 0:
             torch.save(model.state_dict(), model_save_dir + str(epoch) + '.pth')
 
-def validate(network, num_dim):
-
-    features, labels = get_data(fpath)    
-    data = train_test_split(features, labels, num_train)
-    train_data, train_labels = data[:2]
-    test_data, test_labels = data[2:]
-    scale_train_data, scale_test_data = scale_data(train_data, test_data)
-
-    if use_pca:
-        scale_train_data, scale_test_data, num_dim = dimension_reduction(scale_train_data, scale_test_data)
-
-    train_labels, test_labels = scale_labels(train_labels, test_labels)
-    
-    for idx in range(scale_test_data.shape[0]):
-        
-        test_inp = scale_test_data[idx]
-        test_label = test_labels[idx]
-        test_inp = torch.tensor(test_inp).float()
-        pred = network(test_inp).detach().numpy()
-        mse_err = (pred - test_label) ** 2
-
-        test_label = int(test_label + 1922)
-        pred = int(pred + 1922)
-
-        print('idx: ',idx, ' label: ',test_label, ' pred: ', pred, ' mse_err: ',mse_err)
-
-def test(model_path, num_dim):
-
-    print('model_path: ',model_path)
-    network = MLP(num_dim, pred_dim)
-    network.load_state_dict(torch.load(model_path))
-    network.eval()
-
-    validate(network, num_dim)
-
 if __name__ == "__main__":
 
     gpus = 2
