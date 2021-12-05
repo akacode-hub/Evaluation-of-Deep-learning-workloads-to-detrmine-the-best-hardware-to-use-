@@ -86,7 +86,11 @@ class MLP(nn.Module):
 
         # Hidden layers
         self.layers = []
-        self.layers.append(nn.Linear(num_channels, num_channels))
+        self.layers.append(nn.Linear(num_channels, 2*num_channels))
+        self.layers.append(nn.ReLU())
+        self.layers.append(nn.Linear(2*num_channels, 2*num_channels))
+        self.layers.append(nn.ReLU())
+        self.layers.append(nn.Linear(2*num_channels, num_channels))
         self.layers.append(nn.ReLU())
         self.layers.append(nn.Linear(num_channels, out_size))
 
@@ -113,11 +117,8 @@ def calc_mae(output, label):
 def train(gpu):
 
     fpath = '../dataset/YearPredictionMSD.txt'
-    model_save_dir = 'models/exp1/'
-
-    if not os.path.exists(model_save_dir):
-        os.makedirs(model_save_dir)
-
+    model_save_dir = 'models/exp3/'
+    
     num_train = 463715
     batch_size = 512
     num_epochs = 102
@@ -132,7 +133,19 @@ def train(gpu):
     nr = 0; gpus = 2
     rank = nr * gpus + gpu	                          
     nodes = 1; world_size = gpus * nodes
-    print_params()
+
+    print('num_train: ',num_train)
+    print('batch_size: ',batch_size)
+    print('num_epochs: ',num_epochs)
+    print('num_dim: ',num_dim)
+    print('pred_dim: ',pred_dim)
+    print('use_pca: ',use_pca)
+    print('lr: ',lr)
+    print('lr_steps: ',lr_steps)
+    print('lr_drop: ',lr_drop)
+    print('nodes: ',nodes)
+    print('num_gpus: ',gpus)
+    print('world_size: ',world_size, flush=True)
 
     dist.init_process_group(                                   
     	backend='nccl',                                         
@@ -242,21 +255,13 @@ def test(model_path, num_dim):
 
     validate(network, num_dim)
 
-def print_params():
-
-    print('num_train: ',num_train)
-    print('batch_size: ',batch_size)
-    print('num_epochs: ',num_epochs)
-    print('num_dim: ',num_dim)
-    print('pred_dim: ',pred_dim)
-    print('use_pca: ',use_pca)
-    print('lr: ',lr)
-    print('lr_steps: ',lr_steps)
-    print('lr_drop: ',lr_drop, flush=True)
-
 if __name__ == "__main__":
 
     gpus = 2
+    model_save_dir = 'models/exp3/'
+
+    if not os.path.exists(model_save_dir):
+        os.makedirs(model_save_dir)
 
     #train
     os.environ['MASTER_ADDR'] = '10.90.33.206'

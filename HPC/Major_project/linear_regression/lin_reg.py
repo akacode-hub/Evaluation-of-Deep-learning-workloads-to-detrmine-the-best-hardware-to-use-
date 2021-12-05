@@ -318,7 +318,7 @@ def print_params():
 if __name__ == "__main__":
 
     fpath = '../dataset/YearPredictionMSD.txt'
-    model_save_dir = 'models/exp1/'
+    model_save_dir = 'models/exp2/'
 
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
