@@ -5,6 +5,7 @@ import pandas as pd
 import time
 import xgboost as xgb
 import sys
+np.set_printoptions(suppress=True)
 
 def get_data(filename):
     
@@ -14,11 +15,20 @@ def get_data(filename):
     higgs_test = pd.read_csv(filename, dtype=np.float32, 
                                     skiprows=train_rows, nrows=test_rows, 
                                     header=None)
+    
+    train_label = higgs_train.iloc[:, 0].values
+    test_label = higgs_test.iloc[:, 0].values
 
     higgs_train = xgb.DMatrix(higgs_train.ix[:, 1:29], higgs_train[0])
     higgs_test = xgb.DMatrix(higgs_test.ix[:, 1:29], higgs_test[0])
 
-    return higgs_train, higgs_test
+    return higgs_train, higgs_test, train_label, test_label
+
+def calc_metric(output, label, thresh=0.5):
+
+    output = (output>thresh).astype('int')
+
+    return 1 - np.mean(np.abs(output - label))
 
 def train_GPU():
 
@@ -29,14 +39,23 @@ def train_GPU():
     param['silent'] = 1
 
     print("Loading data ...")
-    dtrain, dtest = get_data(fpath)
+    dtrain, dtest, train_label, test_label = get_data(fpath)
     tmp = time.time()
-    gpu_res = {}
+
     print("Training with GPU ...")
-    xgb.train(param, dtrain, num_round, evals=[(dtest, "test")], 
-            evals_result=gpu_res)
-    gpu_time = time.time() - tmp
-    print("GPU Training Time: %s seconds" % (str(gpu_time)))
+    model = xgb.train(param, dtrain, num_round)
+    train_time = time.time() - tmp
+    print("GPU Training Time: %s seconds" % (str(train_time)))
+
+    print("Testing with GPU ...")
+    spred = time.time()
+    predictions = model.predict(dtest)
+    test_time = time.time() - spred
+
+    mean_acc = calc_metric(predictions, test_label)
+
+    print('mean_acc: ',mean_acc)
+    print("GPU Testing Time: %s seconds" % (str(test_time)))
 
 def train_CPU():
 
@@ -46,19 +65,28 @@ def train_CPU():
     param['tree_method'] = 'hist'
     param['silent'] = 1
 
-    print("Training with CPU ...")
-    dtrain, dtest = get_data(fpath)
+    print("Loading data ...")
+    dtrain, dtest, train_label, test_label = get_data(fpath)
     tmp = time.time()
-    cpu_res = {}
-    xgb.train(param, dtrain, num_round, evals=[(dtest, "test")], 
-            evals_result=cpu_res)
-    cpu_time = time.time() - tmp
-    print("CPU Training Time: %s seconds" % (str(cpu_time)))
+
+    print("Training with CPU ...")
+    model = xgb.train(param, dtrain, num_round)
+    train_time = time.time() - tmp
+    print("CPU Training Time: %s seconds" % (str(train_time)))
+
+    print("Testing with CPU ...")
+    spred = time.time()
+    predictions = model.predict(dtest)
+    test_time = time.time() - spred
+
+    mean_acc = calc_metric(predictions, test_label)
+    print('mean_acc: ',mean_acc)
+    print("CPU Testing Time: %s seconds" % (str(test_time)))
 
 if __name__ == "__main__":
 
-    train_rows = 10500000
-    test_rows = 500000
+    train_rows = 1050000
+    test_rows = 50000
     num_round = 1000        
 
     fpath = '../dataset/HIGGS.csv'
