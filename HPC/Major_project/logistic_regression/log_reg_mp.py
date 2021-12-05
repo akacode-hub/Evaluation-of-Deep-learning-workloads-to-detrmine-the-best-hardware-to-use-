@@ -104,7 +104,7 @@ def train(gpu):
     model_save_dir = 'models/exp3/'
     
     num_train = 1050000 #10500000
-    batch_size = 512
+    batch_size = 512*2
     num_epochs = 102
     num_dim = 28
     pred_dim = 1
