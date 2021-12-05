@@ -85,7 +85,11 @@ class MLP(nn.Module):
         
         # Hidden layers
         self.layers = []
-        self.layers.append(nn.Linear(num_channels, num_channels))
+        self.layers.append(nn.Linear(num_channels, 2*num_channels))
+        self.layers.append(nn.ReLU())
+        self.layers.append(nn.Linear(2*num_channels, 2*num_channels))
+        self.layers.append(nn.ReLU())
+        self.layers.append(nn.Linear(2*num_channels, num_channels))
         self.layers.append(nn.ReLU())
         self.layers.append(nn.Linear(num_channels, out_size))
 
@@ -300,12 +304,12 @@ def test(model_path, num_dim):
 if __name__ == "__main__":
 
     fpath = '../dataset/HIGGS.csv'
-    model_save_dir = 'models/exp1/'
+    model_save_dir = 'models/exp2/'
 
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
 
-    num_train = 10500000 #10500000
+    num_train = 1050000 #10500000
     num_test = 50000
     batch_size = 512*2
     num_epochs = 102
@@ -313,9 +317,9 @@ if __name__ == "__main__":
     num_dim = 28
 
     lr = 5e-2
-    lr_steps = [10, 30, 50, 80]
-    lr_drop = 0.1
-    num_workers = 16
+    lr_steps = [20, 40, 60, 80]
+    lr_drop = 0.3
+    num_workers = 24
 
     if not torch.cuda.is_available():
         usegpu = 0
@@ -324,7 +328,7 @@ if __name__ == "__main__":
 
     print_params()
 
-    train = 0
+    train = 1
 
     #train
     if train:
@@ -336,6 +340,7 @@ if __name__ == "__main__":
             print('Using CPU for training')
             train_cpu(num_dim)
 
-    #validate
-    model_path = os.path.join(model_save_dir, '100.pth')
-    test(model_path, num_dim)
+    else:
+        #validate
+        model_path = os.path.join(model_save_dir, '100.pth')
+        test(model_path, num_dim)
