@@ -244,16 +244,6 @@ def test(model_path, num_dim):
 
 def print_params():
 
-    num_train = 463715
-    batch_size = 512
-    num_epochs = 102
-    num_dim = 90
-    pred_dim = 1
-    use_pca = 0
-    lr = 5e-3
-    lr_steps = [50]
-    lr_drop = 0.1
-
     print('num_train: ',num_train)
     print('batch_size: ',batch_size)
     print('num_epochs: ',num_epochs)

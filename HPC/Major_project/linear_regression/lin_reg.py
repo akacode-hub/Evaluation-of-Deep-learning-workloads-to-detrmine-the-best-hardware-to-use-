@@ -86,7 +86,11 @@ class MLP(nn.Module):
 
         # Hidden layers
         self.layers = []
-        self.layers.append(nn.Linear(num_channels, num_channels))
+        self.layers.append(nn.Linear(num_channels, 2*num_channels))
+        self.layers.append(nn.ReLU())
+        self.layers.append(nn.Linear(2*num_channels, 2*num_channels))
+        self.layers.append(nn.ReLU())
+        self.layers.append(nn.Linear(2*num_channels, num_channels))
         self.layers.append(nn.ReLU())
         self.layers.append(nn.Linear(num_channels, out_size))
 
@@ -141,7 +145,7 @@ def train_gpu(num_dim, gpu_id=0):
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                                batch_size=batch_size,
                                                shuffle=True,
-                                               num_workers=0,
+                                               num_workers=num_workers,
                                                pin_memory=True)
 
 
@@ -204,7 +208,7 @@ def train_cpu(num_dim):
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                                batch_size=batch_size,
                                                shuffle=True,
-                                               num_workers=0,
+                                               num_workers=num_workers,
                                                pin_memory=True)
 
 
@@ -274,11 +278,9 @@ def validate(network, num_dim):
 
 def test(model_path, num_dim):
 
-    if not torch.cuda.is_available():
-        usegpu = 0
+    if not usegpu:
         print('Using CPU for testing')
     else:
-        usegpu = 1
         print('Using GPU for testing')
 
     print('model_path: ',model_path)
@@ -308,6 +310,7 @@ def print_params():
     print('num_dim: ',num_dim)
     print('pred_dim: ',pred_dim)
     print('use_pca: ',use_pca)
+    print('num_workers: ',num_workers)
     print('lr: ',lr)
     print('lr_steps: ',lr_steps)
     print('lr_drop: ',lr_drop, flush=True)
@@ -323,23 +326,31 @@ if __name__ == "__main__":
     num_train = 463715
     num_test = 51630
     batch_size = 512
-    num_epochs = 2
+    num_epochs = 102
     num_dim = 90
     pred_dim = 1
     use_pca = 0
     lr = 5e-3
     lr_steps = [50]
     lr_drop = 0.1
-    usegpu = 1
+    num_workers = 0
+
+    if not torch.cuda.is_available():
+        usegpu = 0
+    else:
+        usegpu = 1
+
     print_params()
 
     #train    
 
     if usegpu:
+        print('Using GPU for training')
         train_gpu(num_dim)
     else:
+        print('Using CPU for training')
         train_cpu(num_dim)
 
     #validate
-    # model_path = os.path.join(model_save_dir, '0.pth')
-    # test(model_path, num_dim)
+    model_path = os.path.join(model_save_dir, '100.pth')
+    test(model_path, num_dim)
