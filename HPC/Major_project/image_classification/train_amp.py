@@ -31,8 +31,8 @@ def get_data():
         tt.Normalize(*stats)
     ])
 
-    train_data = CIFAR100(download=True,root="./data",transform=train_transform)
-    test_data = CIFAR100(root="./data",train=False,transform=test_transform)
+    train_data = CIFAR100(download=True,root="./../data",transform=train_transform)
+    test_data = CIFAR100(root="./../data",train=False,transform=test_transform)
 
     return train_data, test_data
 
@@ -153,7 +153,7 @@ def train(gpu):
             loss = criterion(outputs, labels)
 
             optimizer.zero_grad()
-            
+
             with amp.scale_loss(loss, optimizer) as scaled_loss:
                 scaled_loss.backward()
 

@@ -123,7 +123,7 @@ def train(gpu):
     model = MResnet(3, 100)
     torch.cuda.set_device(gpu)
     model.cuda(gpu)
-    model = nn.parallel.DistributedDataParallel(model, device_ids=[gpu])
+    model = nn.DistributedDataParallel(model, device_ids=[gpu])
 
     criterion = nn.CrossEntropyLoss().cuda(gpu)
     optimizer = torch.optim.Adam(model.parameters(), lr,weight_decay=weight_decay)
