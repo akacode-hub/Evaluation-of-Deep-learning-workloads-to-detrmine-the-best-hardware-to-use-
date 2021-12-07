@@ -101,7 +101,7 @@ class MLP(nn.Module):
 def train(gpu):
 
     fpath = '../dataset/HIGGS.csv'
-    model_save_dir = 'models/exp3/'
+    model_save_dir = 'models/exp4/'
     
     num_train = 1050000 #10500000
     batch_size = 512*2
@@ -113,7 +113,7 @@ def train(gpu):
     lr_drop = 0.3
     num_workers = 24
 
-    nr = 0; gpus = 2
+    nr = 0; gpus = 4
     rank = nr * gpus + gpu	                          
     nodes = 1; world_size = gpus * nodes
 
@@ -207,8 +207,8 @@ def train(gpu):
         
 if __name__ == "__main__":
 
-    gpus = 2
-    model_save_dir = 'models/exp3/'
+    gpus = 4
+    model_save_dir = 'models/exp4/'
 
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)

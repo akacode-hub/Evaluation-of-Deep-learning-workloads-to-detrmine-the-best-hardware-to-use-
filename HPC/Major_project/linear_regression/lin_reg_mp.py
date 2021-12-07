@@ -117,7 +117,7 @@ def calc_mae(output, label):
 def train(gpu):
 
     fpath = '../dataset/YearPredictionMSD.txt'
-    model_save_dir = 'models/exp3/'
+    model_save_dir = 'models/exp4/'
     
     num_train = 463715
     batch_size = 512
@@ -130,7 +130,7 @@ def train(gpu):
     lr_steps = [50]
     lr_drop = 0.1
 
-    nr = 0; gpus = 2
+    nr = 0; gpus = 4
     rank = nr * gpus + gpu	                          
     nodes = 1; world_size = gpus * nodes
 
@@ -222,8 +222,8 @@ def train(gpu):
 
 if __name__ == "__main__":
 
-    gpus = 2
-    model_save_dir = 'models/exp3/'
+    gpus = 4
+    model_save_dir = 'models/exp4/'
 
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)

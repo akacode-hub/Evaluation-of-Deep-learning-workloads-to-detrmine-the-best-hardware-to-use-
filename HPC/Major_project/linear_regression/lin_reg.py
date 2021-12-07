@@ -318,7 +318,7 @@ def print_params():
 if __name__ == "__main__":
 
     fpath = '../dataset/YearPredictionMSD.txt'
-    model_save_dir = 'models/exp2/'
+    model_save_dir = 'models/exp1/'
 
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
@@ -344,12 +344,12 @@ if __name__ == "__main__":
 
     #train    
 
-    if usegpu:
-        print('Using GPU for training')
-        train_gpu(num_dim)
-    else:
-        print('Using CPU for training')
-        train_cpu(num_dim)
+    # if usegpu:
+    #     print('Using GPU for training')
+    #     train_gpu(num_dim)
+    # else:
+    #     print('Using CPU for training')
+    #     train_cpu(num_dim)
 
     #validate
     model_path = os.path.join(model_save_dir, '100.pth')
