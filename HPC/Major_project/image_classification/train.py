@@ -146,7 +146,7 @@ def train():
 if __name__ == "__main__":
 
     batch_size = 512
-    num_workers = 8
+    num_workers = 24
     num_epochs = 100
     lr = 1e-3
     grad_clip = 0.1

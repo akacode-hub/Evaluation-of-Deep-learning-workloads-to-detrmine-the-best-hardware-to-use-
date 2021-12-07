@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import torch.nn as nn
 import time
 import torch.multiprocessing as mp
-import torch.nn.functional as F
 from torchvision.datasets import CIFAR100
 import torchvision.transforms as tt
 from torchvision.utils import make_grid
@@ -14,6 +13,8 @@ from torch.utils.data.dataloader import DataLoader
 from torch.utils.data import random_split,ConcatDataset
 from model import MResnet
 import torch.distributed as dist
+from apex.parallel import DistributedDataParallel as DDP
+from apex import amp
 
 def get_data():
 
@@ -75,7 +76,7 @@ def evaluate(model,test_data_loader):
 def train(gpu):
 
     batch_size = 1024
-    num_workers = 8
+    num_workers = 24
     num_epochs = 100
     grad_clip = 0.1
     weight_decay = 1e-4
@@ -85,6 +86,7 @@ def train(gpu):
     lr_drop = 0.2
 
     nr = 0; gpus = 2
+    print('gpu: ', gpu)
     rank = nr * gpus + gpu	                          
     nodes = 1; world_size = gpus * nodes
     
@@ -123,10 +125,14 @@ def train(gpu):
     model = MResnet(3, 100)
     torch.cuda.set_device(gpu)
     model.cuda(gpu)
-    model = nn.parallel.DistributedDataParallel(model, device_ids=[gpu])
 
     criterion = nn.CrossEntropyLoss().cuda(gpu)
     optimizer = torch.optim.Adam(model.parameters(), lr,weight_decay=weight_decay)
+
+    ## amp model
+    model, optimizer = amp.initialize(model, optimizer, opt_level='O2')
+    model = DDP(model)
+
     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=lr_steps, gamma=lr_drop)
 
     for epoch in range(0, num_epochs):
@@ -140,14 +146,17 @@ def train(gpu):
         for batch in train_data_loader:
 
             images, labels = batch
-            images = images.cuda(gpu)
-            labels = labels.cuda(gpu)
+            images = images.cuda(non_blocking=True)
+            labels = labels.cuda(non_blocking=True)
 
             outputs = model(images)
             loss = criterion(outputs, labels)
 
             optimizer.zero_grad()
-            loss.backward()
+            
+            with amp.scale_loss(loss, optimizer) as scaled_loss:
+                scaled_loss.backward()
+
             optimizer.step()
             
             losses.append(loss.data.item())

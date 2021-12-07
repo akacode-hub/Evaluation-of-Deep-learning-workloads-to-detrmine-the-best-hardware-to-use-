@@ -75,7 +75,7 @@ def evaluate(model,test_data_loader):
 def train(gpu):
 
     batch_size = 1024
-    num_workers = 8
+    num_workers = 24
     num_epochs = 100
     grad_clip = 0.1
     weight_decay = 1e-4
@@ -140,8 +140,8 @@ def train(gpu):
         for batch in train_data_loader:
 
             images, labels = batch
-            images = images.cuda(gpu)
-            labels = labels.cuda(gpu)
+            images = images.cuda()
+            labels = labels.cuda()
 
             outputs = model(images)
             loss = criterion(outputs, labels)
