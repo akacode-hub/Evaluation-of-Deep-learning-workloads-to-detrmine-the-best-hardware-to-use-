@@ -54,8 +54,9 @@ def class_dist(train_data, test_data):
 
     return train_classes_items, test_classes_items
 
-def show_batch(dl):
-    for batch in dl:
+def show_batch(data_loader):
+
+    for batch in data_loader:
         images,labels = batch
         fig, ax = plt.subplots(figsize=(7.5,7.5))
         ax.set_yticks([])
@@ -86,9 +87,9 @@ class ToDeviceLoader:
         return len(self.data)
 
 @torch.no_grad()
-def evaluate(model,test_dl):
+def evaluate(model,test_data_loader):
     model.eval()
-    outputs = [model.validation_step(batch) for batch in test_dl]
+    outputs = [model.validation_step(batch) for batch in test_data_loader]
     return model.validation_epoch_end(outputs)
 
 def train():
@@ -144,7 +145,7 @@ def train():
 
 if __name__ == "__main__":
 
-    batch_size = 256
+    batch_size = 512
     num_workers = 8
     num_epochs = 100
     lr = 1e-3

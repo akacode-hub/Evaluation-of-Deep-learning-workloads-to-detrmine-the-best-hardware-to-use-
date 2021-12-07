@@ -13,7 +13,7 @@ class BaseModel(nn.Module):
         images,labels = batch
         out = self(images)
         loss = F.cross_entropy(out,labels)
-        acc = accuracy(out,labels)
+        acc = accuracy(out, labels)
         return {"val_loss":loss.detach(),"val_acc":acc}
     
     def validation_epoch_end(self,outputs):
