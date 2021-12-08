@@ -22,15 +22,15 @@ class DriverDataset(data.Dataset):
         imgs_num = len(imgs_in)
         print('imgs_num ', imgs_num)
         if transforms is None and self.train:
-            self.transforms = T.Compose([T.RandomHorizontalFlip(),
-                                         T.RandomResizedCrop(224),
-                                         T.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5),
-                                         T.RandomRotation(degrees=60, resample=False, expand=False),
+            self.transforms = T.Compose([#T.RandomHorizontalFlip(),
+                                         T.RandomResizedCrop(112),
+                                        #  T.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5),
+                                        #  T.RandomRotation(degrees=60, resample=False, expand=False),
                                          T.ToTensor(),
                                          T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
                                          ])
         else:
-            self.transforms = T.Compose([T.Resize(size=(224, 224)),
+            self.transforms = T.Compose([T.Resize(size=(112, 112)),
                                          T.ToTensor(),
                                          T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
                                          ])
