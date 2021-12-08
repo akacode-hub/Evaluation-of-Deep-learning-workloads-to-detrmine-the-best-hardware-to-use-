@@ -30,8 +30,8 @@ def train(client):
 
     print("Loading data ...")
     dtrain, dtest = get_data(fpath)
-    dtrain = DaskDMatrix(client, dtrain.ix[:, 1:29], dtrain[0])
-    dtest = DaskDMatrix(client, dtest.ix[:, 1:29], dtest[0])
+    dtrain = DaskDMatrix(client, dtrain.loc[:, 1:29], dtrain[0])
+    dtest = DaskDMatrix(client, dtest.loc[:, 1:29], dtest[0])
 
     tmp = time.time()
     gpu_res = {}
@@ -43,8 +43,8 @@ def train(client):
 
 if __name__ == "__main__":
 
-    train_rows = 10500000
-    test_rows = 500000
+    train_rows = 1050#0000
+    test_rows = 500#000
     num_round = 1000        
 
     fpath = '../dataset/HIGGS.csv'
