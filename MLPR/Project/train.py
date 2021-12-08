@@ -171,11 +171,11 @@ if __name__ == "__main__":
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
 
-    istrain = 1
+    istrain = 0
 
     if istrain:
         train()
 
     else:
-        model_path = os.path.join(model_save_dir, '93.pth')
+        model_path = os.path.join(model_save_dir, '98.pth')
         validate()
