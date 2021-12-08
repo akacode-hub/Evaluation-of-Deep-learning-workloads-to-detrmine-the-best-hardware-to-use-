@@ -79,25 +79,25 @@ class Flatten(nn.Module):
         return input.view(input.size(0), -1)
 
 class Model2(nn.Module):
-    def __init__(self):
+    def __init__(self, num_channels):
         super(Model2, self).__init__()
 
         self.gating_layers = []
-        self.gating_layers.append(ConvReLUBN(3, 32, kernel_size=3, stride=1))
-        self.gating_layers.append(ConvReLUBN(32, 32, kernel_size=3, stride=2))
+        self.gating_layers.append(ConvReLUBN(3, num_channels[0], kernel_size=3, stride=1))
+        self.gating_layers.append(ConvReLUBN(num_channels[0], num_channels[0], kernel_size=3, stride=2))
         self.gating_layers.append(nn.Dropout(0.3))
 
-        self.gating_layers.append(ConvReLUBN(32, 64, kernel_size=3, stride=1))
-        self.gating_layers.append(ConvReLUBN(64, 64, kernel_size=3, stride=2))
+        self.gating_layers.append(ConvReLUBN(num_channels[0], num_channels[1], kernel_size=3, stride=1))
+        self.gating_layers.append(ConvReLUBN(num_channels[1], num_channels[1], kernel_size=3, stride=2))
         self.gating_layers.append(nn.Dropout(0.3))
 
-        self.gating_layers.append(ConvReLUBN(64, 128, kernel_size=3, stride=1))
-        self.gating_layers.append(ConvReLUBN(128, 128, kernel_size=3, stride=2))
+        self.gating_layers.append(ConvReLUBN(num_channels[1], num_channels[2], kernel_size=3, stride=1))
+        self.gating_layers.append(ConvReLUBN(num_channels[2], num_channels[2], kernel_size=3, stride=2))
         self.gating_layers.append(nn.Dropout(0.5))
 
         self.gating_layers.append(Flatten())
 
-        self.gating_layers.append(nn.Linear(14*14*128, 512))
+        self.gating_layers.append(nn.Linear(14*14*num_channels[2], 512))
         self.gating_layers.append(nn.ReLU6(inplace=True))
         self.gating_layers.append(nn.BatchNorm1d(512))
         self.gating_layers.append(nn.Dropout(0.5))
@@ -118,11 +118,13 @@ class Model2(nn.Module):
 
 if __name__ == "__main__":
 
-    num_layers_lst = [1, 1, 1, 1, 1, 1, 1]
-    num_channels_lst = [3, 16, 32, 64, 128, 256]
-    num_classes = 10
-    num_layers = 4
+    # num_layers_lst = [1, 1, 1, 1, 1, 1, 1]
+    # num_channels_lst = [3, 16, 32, 64, 128, 256]
+    # num_classes = 10
+    # num_layers = 4
     # network = Model1(num_layers_lst, num_channels_lst, num_layers, num_classes)
-    network = Model2()
+
+    num_channels_lst = [16, 32, 64]
+    network = Model2(num_channels_lst)
     from torchsummary import summary
     summary(network.cuda(), (3, 112, 112))

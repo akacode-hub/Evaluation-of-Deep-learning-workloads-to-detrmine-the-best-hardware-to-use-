@@ -26,14 +26,16 @@ def get_dataloader():
 def get_model():
 
     #model = V2_m.mobilenet_v2()
-    num_layers_lst = [1, 1, 1, 1, 1, 1, 1]
-    num_channels_lst = [3, 16, 32, 64, 128, 256]
-    num_classes = 10
-    num_layers = 5
+    # num_layers_lst = [1, 1, 1, 1, 1, 1, 1]
+    # num_channels_lst = [3, 16, 32, 64, 128, 256]
+    # num_classes = 10
+    # num_layers = 5
+
+    num_channels_lst = [16, 32, 64]
     print('num_channels_lst: ',num_channels_lst, flush=True)
     #model = network.Model(num_layers_lst, num_channels_lst, num_classes)
     # model = network.Model1(num_layers_lst, num_channels_lst, num_layers, num_classes)
-    model = network.Model2()
+    model = network.Model2(num_channels_lst)
     model.cuda()
 
     return model
@@ -41,6 +43,7 @@ def get_model():
 def calc_metric(model, val_loader):
 
     mean_accs = []
+
     for (val_data, val_label) in val_loader:
 
         val_data = val_data.cuda()
@@ -65,10 +68,14 @@ def train():
     optimizer = RMSprop(model.parameters(), lr=lr)
     scheduler = lr_scheduler.MultiStepLR(optimizer, milestones=lr_steps, gamma=lr_drop)
 
+    mean_train_losses = []
+    mean_val_losses = []
+
     for epoch in range(0, num_epochs):
 
         print('Epoch:', epoch, 'lr: ', scheduler.get_last_lr())
         losses = []
+        accs = []
         start = time.time()
 
         for (data, label) in train_dataloader:
@@ -85,19 +92,28 @@ def train():
             
             losses.append(loss.data.item())
 
+            output = torch.max(output, 1)[1]
+            acc = torch.mean(torch.eq(output, label).float()).cpu()
+            accs.append(acc)
+
         scheduler.step()
         losses_np = np.mean(np.asarray(losses))
+        accs_np = np.mean(np.asarray(accs))
 
         train_mins = (time.time() - start) / 60 
-        print('Epoch [{}/{}], time: {:.4f} mins, lr: {}, loss: {:.4f}'.format(epoch + 1, num_epochs, train_mins, scheduler.get_last_lr()[0], losses_np), flush=True)
+        print('Epoch [{}/{}], time: {:.4f} mins, lr: {}, loss: {:.4f}, accs: {:.4f}'.format(epoch + 1, num_epochs, train_mins, scheduler.get_last_lr()[0], losses_np, accs_np), flush=True)
 
-        if epoch % 4 == 0:
+        if epoch % 1 == 0:
+
             mean_acc = calc_metric(model, val_dataloader)
             print('Epoch [{}/{}], acc: {:.4f}'.format(epoch + 1, num_epochs, mean_acc), flush=True)
 
         torch.save(model.state_dict(), model_save_dir + str(epoch) + '.pth')
+        mean_train_losses.append(accs_np)
+        mean_val_losses.append(mean_acc)
 
-    print('losses: ', losses_np, flush=True)
+    print('mean_train_losses: ', mean_train_losses, flush=True)
+    print('mean_val_losses: ', mean_val_losses, flush=True)
 
 def validate(vis=0):
 
@@ -147,10 +163,10 @@ if __name__ == "__main__":
     num_epochs = 100
 
     lr = 1e-3
-    lr_steps = [30]
+    lr_steps = [30, 60]
     lr_drop = 0.1
     num_workers = 24
-    model_save_dir = 'models/exp4/'
+    model_save_dir = 'models/exp5/'
 
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
@@ -161,5 +177,5 @@ if __name__ == "__main__":
         train()
 
     else:
-        model_path = os.path.join(model_save_dir, '57.pth')
+        model_path = os.path.join(model_save_dir, '93.pth')
         validate()
