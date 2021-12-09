@@ -19,8 +19,8 @@ def get_data(filename):
     train_label = higgs_train.iloc[:, 0].values
     test_label = higgs_test.iloc[:, 0].values
 
-    higgs_train = xgb.DMatrix(higgs_train.ix[:, 1:29], higgs_train[0])
-    higgs_test = xgb.DMatrix(higgs_test.ix[:, 1:29], higgs_test[0])
+    higgs_train = xgb.DMatrix(higgs_train.loc[:, 1:29], higgs_train[0])
+    higgs_test = xgb.DMatrix(higgs_test.loc[:, 1:29], higgs_test[0])
 
     return higgs_train, higgs_test, train_label, test_label
 
@@ -40,9 +40,9 @@ def train_GPU():
 
     print("Loading data ...")
     dtrain, dtest, train_label, test_label = get_data(fpath)
-    tmp = time.time()
 
     print("Training with GPU ...")
+    tmp = time.time()
     model = xgb.train(param, dtrain, num_round)
     train_time = time.time() - tmp
     print("GPU Training Time: %s seconds" % (str(train_time)))
@@ -91,6 +91,6 @@ if __name__ == "__main__":
 
     fpath = '../dataset/HIGGS.csv'
 
-    train_GPU()
+    # train_GPU()
 
     train_CPU()

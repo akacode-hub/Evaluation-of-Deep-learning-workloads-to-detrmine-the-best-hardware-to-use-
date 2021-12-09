@@ -5,6 +5,7 @@ import pandas as pd
 import time
 import xgboost as xgb
 import sys
+import dask.dataframe as dd
 from dask_cuda import LocalCUDACluster
 from dask.distributed import Client
 from xgboost.dask import DaskDMatrix
@@ -18,7 +19,20 @@ def get_data(filename):
                                     skiprows=train_rows, nrows=test_rows, 
                                     header=None)
 
-    return higgs_train, higgs_test
+    train_label = higgs_train.iloc[:, 0].values
+    test_label = higgs_test.iloc[:, 0].values
+
+    higgs_train = dd.from_pandas(higgs_train, npartitions=8)
+    higgs_test = dd.from_pandas(higgs_test, npartitions=8)
+
+    return higgs_train, higgs_test, train_label, test_label
+
+def calc_metric(output, label, thresh=0.5):
+
+    output = np.asarray(output)
+    output = (output>thresh).astype('int')
+
+    return 1 - np.mean(np.abs(output - label))
 
 def train(client):
 
@@ -26,29 +40,42 @@ def train(client):
     param['objective'] = 'binary:logitraw'
     param['eval_metric'] = 'error'
     param['tree_method'] = 'gpu_hist'
-    param['silent'] = 1
+    param['nthread'] = 1
+    param['silence'] = 1
 
     print("Loading data ...")
-    dtrain, dtest = get_data(fpath)
+    dtrain, dtest, train_label, test_label = get_data(fpath)
+
     dtrain = DaskDMatrix(client, dtrain.loc[:, 1:29], dtrain[0])
     dtest = DaskDMatrix(client, dtest.loc[:, 1:29], dtest[0])
 
-    tmp = time.time()
-    gpu_res = {}
     print("Training with GPU ...")
-    output = xgb.dask.train(client, param, dtrain, num_boost_round=4, evals=[(dtest, "test")], 
-            evals_result=gpu_res)
+    tmp = time.time()
+    output = xgb.dask.train(client, param, dtrain, num_boost_round=num_boost_round, evals=[])
     gpu_time = time.time() - tmp
     print("GPU Training Time: %s seconds" % (str(gpu_time)))
 
+    bst = output['booster']
+    history = output['history']
+
+    print("Testing with GPU ...")
+    spred = time.time()
+    predictions = xgb.dask.predict(client, bst, dtest)
+    test_time = time.time() - spred
+
+    mean_acc = calc_metric(predictions, test_label)
+
+    print('mean_acc: ',mean_acc)
+    print("GPU Testing Time: %s seconds" % (str(test_time)))
+
 if __name__ == "__main__":
 
-    train_rows = 1050#0000
-    test_rows = 500#000
-    num_round = 1000        
+    train_rows = 1050000
+    test_rows = 50000
+    num_boost_round = 1000
 
     fpath = '../dataset/HIGGS.csv'
-    num_gpus = 3
+    num_gpus = 2
 
     # `LocalCUDACluster` is used for assigning GPU to XGBoost processes.  Here
     # `n_workers` represents the number of GPUs since we use one GPU per worker
