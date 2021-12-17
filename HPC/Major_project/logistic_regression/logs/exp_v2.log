@@ -1,0 +1,23 @@
+num_train:  1050000
+batch_size:  1024
+num_epochs:  102
+num_dim:  28
+pred_dim:  1
+num_workers:  24
+lr:  0.05
+lr_steps:  [20, 40, 60, 80]
+lr_drop:  0.3
+Using CPU for training
+model:  MLP(
+  (sigmoid): Sigmoid()
+  (network): Sequential(
+    (0): Linear(in_features=28, out_features=56, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=56, out_features=56, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=56, out_features=28, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=28, out_features=1, bias=True)
+  )
+)
+Epoch [1/102], time: 0.121 mins, lr: 0.05, bce: 0.5728, mse: 0.1953
