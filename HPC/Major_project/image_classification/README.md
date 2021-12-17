@@ -18,3 +18,8 @@ This repository contains the following script:
 * To train for multi-GPU(4) - FP16,
 
     `CUDA_VISIBLE_DEVICES="0, 1, 2, 3" python3 train_amp.py`
+
+## Log
+* `logs/exp_v1.log` provides sample log for training image classification model on GPU-FP32.
+* `logs/exp_v2.log` provides sample log for training image classification model on multi-GPU(4)-FP32.
+* `logs/exp_v3.log` provides sample log for training image classification model on multi-GPU(4)-FP16.
