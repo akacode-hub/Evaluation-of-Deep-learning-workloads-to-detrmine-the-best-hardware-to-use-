@@ -328,7 +328,7 @@ if __name__ == "__main__":
 
     print_params()
 
-    train = 0
+    train = 1
 
     #train
     if train:
