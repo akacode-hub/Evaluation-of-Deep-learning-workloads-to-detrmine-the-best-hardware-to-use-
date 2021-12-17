@@ -111,7 +111,7 @@ def train(gpu):
     lr = 5e-2
     lr_steps = [20, 40, 60, 80]
     lr_drop = 0.3
-    num_workers = 24
+    num_workers = 0
 
     nr = 0; gpus = 4
     rank = nr * gpus + gpu	                          

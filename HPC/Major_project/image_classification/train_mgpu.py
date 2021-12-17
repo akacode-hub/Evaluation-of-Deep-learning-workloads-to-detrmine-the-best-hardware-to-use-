@@ -19,8 +19,8 @@ def get_data():
 
     stats = ((0.5074,0.4867,0.4411),(0.2011,0.1987,0.2025))
     train_transform = tt.Compose([
-        tt.RandomHorizontalFlip(),
-        tt.RandomCrop(32,padding=4),
+        # tt.RandomHorizontalFlip(),
+        # tt.RandomCrop(32,padding=4),
         tt.ToTensor(),
         tt.Normalize(*stats)
     ])
@@ -74,8 +74,8 @@ def evaluate(model,test_data_loader):
 
 def train(gpu):
 
-    batch_size = 1024
-    num_workers = 24
+    batch_size = 512
+    num_workers = 0
     num_epochs = 100
     grad_clip = 0.1
     weight_decay = 1e-4
@@ -84,7 +84,7 @@ def train(gpu):
     lr_steps = [20, 40, 60, 80]
     lr_drop = 0.2
 
-    nr = 0; gpus = 2
+    nr = 0; gpus = 4
     rank = nr * gpus + gpu	                          
     nodes = 1; world_size = gpus * nodes
     
@@ -123,7 +123,7 @@ def train(gpu):
     model = MResnet(3, 100)
     torch.cuda.set_device(gpu)
     model.cuda(gpu)
-    model = nn.DistributedDataParallel(model, device_ids=[gpu])
+    model = nn.parallel.DistributedDataParallel(model, device_ids=[gpu])
 
     criterion = nn.CrossEntropyLoss().cuda(gpu)
     optimizer = torch.optim.Adam(model.parameters(), lr,weight_decay=weight_decay)
@@ -173,7 +173,7 @@ if __name__ == "__main__":
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
 
-    gpus = 2
+    gpus = 4
 
     #train
     os.environ['MASTER_ADDR'] = '10.90.33.206'

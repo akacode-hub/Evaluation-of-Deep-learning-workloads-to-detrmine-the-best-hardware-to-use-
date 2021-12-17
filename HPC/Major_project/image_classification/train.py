@@ -17,8 +17,8 @@ def get_data():
 
     stats = ((0.5074,0.4867,0.4411),(0.2011,0.1987,0.2025))
     train_transform = tt.Compose([
-        tt.RandomHorizontalFlip(),
-        tt.RandomCrop(32,padding=4),
+        # tt.RandomHorizontalFlip(),
+        # tt.RandomCrop(32,padding=4),
         tt.ToTensor(),
         tt.Normalize(*stats)
     ])
@@ -143,19 +143,86 @@ def train():
             print('Epoch [{}/{}], val_loss: {:.4f}, val_acc: {:.4f}'.format(epoch + 1, num_epochs, val_loss, val_acc), flush=True)
             torch.save(model.state_dict(), model_save_dir + str(epoch) + '.pth')
 
+def accuracy(predicted, actual):
+    _, predictions = torch.max(predicted,dim=1)
+    return torch.tensor(torch.sum(predictions==actual).item()/len(predictions))
+
+def validate(network):
+
+    train_data, test_data = get_data()
+
+    test_data_loader = DataLoader(test_data, batch_size, num_workers=num_workers,pin_memory=True)
+    
+    device = get_device()
+    test_data_loader = ToDeviceLoader(test_data_loader, device)
+
+    network = network.cuda()
+
+    mean_acc = 0.0    
+    tot_pred_time = 0.0
+    num_samples = 0
+    for batch in test_data_loader:
+        
+        images, labels = batch
+
+        start = time.time()
+        pred = network(images)
+        end = time.time()
+        tot_pred_time += end - start
+
+        acc = accuracy(pred, labels)
+
+        #print('idx: ',idx, ' label: ',test_label, ' pred: ', pred, ' mse_err: ',mse_err)
+        mean_acc += acc
+        num_samples += 1
+
+    return np.round(mean_acc/num_samples, 3), np.round(tot_pred_time, 3), num_samples
+
+def test(model_path):
+
+    print('model_path: ',model_path)
+    network = MResnet(3, 100)
+
+    if usegpu:
+        network.load_state_dict(torch.load(model_path))
+    else:
+        network.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+
+    network.eval()
+
+    start = time.time()
+    avg_acc, pred_time, num_test = validate(network)
+    print('avg_acc: ',avg_acc)
+    end = time.time()
+    test_secs = (time.time() - start)
+    print('Test Mean Accuracy for {} samples: {:.4f}'.format(num_test, avg_acc), flush=True)
+    print('Total Prediction Time elapsed to test {} samples: {:.4f} secs'.format(num_test, pred_time), flush=True)
+    print('Total Time elapsed to test {} samples: {:.4f} secs'.format(num_test, test_secs), flush=True)
+
 if __name__ == "__main__":
 
     batch_size = 512
-    num_workers = 24
+    num_workers = 0
     num_epochs = 100
     lr = 1e-3
     grad_clip = 0.1
     weight_decay = 1e-4
-    lr_steps = [20, 40, 60, 80]
-    lr_drop = 0.2
+    lr_steps = [40, 80]
+    lr_drop = 0.1
     model_save_dir = 'models/exp1/'
 
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
 
     train()
+
+    if not torch.cuda.is_available():
+        usegpu = 0
+    else:
+        usegpu = 1
+
+    model_path = os.path.join(model_save_dir, '95.pth')
+    batch_size = 1
+    test(model_path)
+
+    

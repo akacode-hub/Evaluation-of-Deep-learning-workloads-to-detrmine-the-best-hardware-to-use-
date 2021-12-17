@@ -319,7 +319,7 @@ if __name__ == "__main__":
     lr = 5e-2
     lr_steps = [20, 40, 60, 80]
     lr_drop = 0.3
-    num_workers = 24
+    num_workers = 0
 
     if not torch.cuda.is_available():
         usegpu = 0
