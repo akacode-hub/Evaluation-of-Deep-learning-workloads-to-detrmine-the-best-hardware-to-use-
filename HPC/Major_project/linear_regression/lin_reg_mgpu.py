@@ -120,7 +120,7 @@ def train(gpu):
     model_save_dir = 'models/exp4/'
     
     num_train = 463715
-    batch_size = 512
+    batch_size = 2048
     num_epochs = 102
     num_dim = 90
     pred_dim = 1
