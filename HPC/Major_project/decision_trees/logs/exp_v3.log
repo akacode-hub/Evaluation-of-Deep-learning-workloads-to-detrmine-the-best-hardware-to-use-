@@ -1,0 +1,7 @@
+Loading data ...
+Training with GPU ...
+[20:32:48] task [xgboost.dask]:tcp://127.0.0.1:35417 got new rank 0
+[20:32:48] task [xgboost.dask]:tcp://127.0.0.1:40557 got new rank 1
+[20:32:48] task [xgboost.dask]:tcp://127.0.0.1:39349 got new rank 2
+[20:32:48] task [xgboost.dask]:tcp://127.0.0.1:36075 got new rank 3
+GPU Training Time: 11.23653769493103 seconds
