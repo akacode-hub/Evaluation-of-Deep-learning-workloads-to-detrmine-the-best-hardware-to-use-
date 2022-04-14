@@ -38,7 +38,6 @@ class GradCamModel(nn.Module):
     def forward_hook(self):
         def hook(module, inp, out):
             self.selected_out = out
-            print('out shape: ', out.shape)
             self.tensorhook.append(out.register_hook(self.activations_hook))
         return hook
 
@@ -103,19 +102,36 @@ def predict(data_loader):
         for i in range(5):
             print("'{}' - {:.4f}".format(ans_vocab[indices[i].item()], probs[i].item()))
 
+def get_result(output):
+
+    predicts = torch.softmax(output, 1)
+    probs, indices = torch.topk(predicts, k=5, dim=1)
+    probs = probs.squeeze()
+    indices = indices.squeeze()
+    print("predicted - probabilty")
+
+    for i in range(5):
+        print("'{}' - {:.4f}".format(ans_vocab[indices[i].item()], probs[i].item()))
 
 def grad_cam(data_loader):
 
     phase = 'train'
     model = GradCamModel().to('cuda:0')
-
+        
     for batch_idx, batch_sample in enumerate(data_loader[phase]):
 
         image = batch_sample['image'].to(device)
         question = batch_sample['question'].to(device)
         label = batch_sample['answer_label'].to(device)
 
+        img_path = batch_sample['image_path']
+        question_str = batch_sample['question_str']
+        answer_str = batch_sample['answer_str']
+
+        print(img_path, question_str, answer_str)
+
         with torch.set_grad_enabled(phase == 'train'):
+
             output, acts = model(image, question)      # [batch_size, ans_vocab_size=1000]
             loss = criterion(output, label)
             loss.backward()    
@@ -123,11 +139,11 @@ def grad_cam(data_loader):
             grads = model.get_act_grads().detach().cpu()
             acts = acts.detach().cpu()
             image = image.detach().cpu().numpy()
+
+            print('loss: ', loss.item())            
+            get_result(output)
             calc_grad_cam_rgb(grads, acts, image)
-
-        if batch_idx > 1: break
-
-
+            
 def calc_grad_cam_rgb(grads, acts, img):
 
     pooled_grads = torch.mean(grads, dim=[0,2,3]).detach().cpu()
