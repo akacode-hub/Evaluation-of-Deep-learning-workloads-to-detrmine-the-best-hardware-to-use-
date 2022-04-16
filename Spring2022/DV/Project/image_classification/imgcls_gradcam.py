@@ -6,7 +6,7 @@ import torch.nn as nn
 from torchvision import models
 from skimage.io import imread
 from skimage.transform import resize
-
+import cv2
 
 class GradCamModel(nn.Module):
     def __init__(self):
@@ -17,14 +17,14 @@ class GradCamModel(nn.Module):
         self.selected_out = None
         
         #PRETRAINED MODEL
-        self.pretrained = models.resnet50(pretrained=True)
+        self.pretrained = models.vgg16(pretrained=True)
 
-        self.layerhook.append(self.pretrained.layer3.register_forward_hook(self.forward_hook()))
+        self.layerhook.append(self.pretrained.features.register_forward_hook(self.forward_hook()))
 
         for name, param in self.pretrained.named_parameters():
             param.requires_grad = True
     
-    def activations_hook(self,grad):
+    def activations_hook(self, grad):
         self.gradients = grad
 
     def get_act_grads(self):
@@ -66,13 +66,18 @@ heatmap_j = torch.mean(acts, dim = 1).squeeze()
 heatmap_j_max = heatmap_j.max(axis = 0)[0]
 heatmap_j /= heatmap_j_max
 heatmap_j = resize(heatmap_j,(224,224),preserve_range=True)
+img  = img*std + mean
+img = np.transpose(img.squeeze(), (1, 2, 0))
+remap_img = np.clip(img*255, 0, 255).astype('uint8')
+remap_img = cv2.cvtColor(remap_img, cv2.COLOR_BGR2RGB)
+heatmap_j = np.clip(heatmap_j*255, 0, 255).astype('uint8')
+heatmap_j = cv2.applyColorMap(heatmap_j, cv2.COLORMAP_INFERNO)
+overlay = cv2.addWeighted(remap_img, 0.7, heatmap_j, 0.3, 0.0)
 
-cmap = mpl.cm.get_cmap('jet', 256)
-heatmap_j2 = cmap(heatmap_j,alpha = 0.2)
-fig, axs = plt.subplots(1,1,figsize = (5,5))
-axs.imshow((img*std+mean)[0].transpose(1,2,0))
-axs.imshow(heatmap_j)
-plt.show()
+cv2.imshow('heatmap_j', heatmap_j)
+cv2.imshow('remap_img', remap_img)
+cv2.imshow('overlay', overlay)
+cv2.waitKey(-1)
 
 for h in gcmodel.layerhook:
     h.remove()
