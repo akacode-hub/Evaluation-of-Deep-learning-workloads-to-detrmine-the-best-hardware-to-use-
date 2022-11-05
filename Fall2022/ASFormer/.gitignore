@@ -1,0 +1,6 @@
+*.png
+*.jpg
+results/
+models/
+data/
+*.model
