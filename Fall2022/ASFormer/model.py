@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import optim
-
+import time
 import copy
 import numpy as np
 import math
@@ -323,7 +323,7 @@ class Trainer:
         self.model = MyTransformer(3, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate)
         self.ce = nn.CrossEntropyLoss(ignore_index=-100)
 
-        print('Model Size: ', sum(p.numel() for p in self.model.parameters()))
+        print('Model Size: ', sum(p.numel() for p in self.model.parameters()), flush=True)
         self.mse = nn.MSELoss(reduction='none')
         self.num_classes = num_classes
 
@@ -331,7 +331,7 @@ class Trainer:
         self.model.train()
         self.model.to(device)
         optimizer = optim.Adam(self.model.parameters(), lr=learning_rate, weight_decay=1e-5)
-        print('LR:{}'.format(learning_rate))
+        print('LR:{}'.format(learning_rate), flush=True)
         
         
         scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3, verbose=True)
@@ -339,7 +339,7 @@ class Trainer:
             epoch_loss = 0
             correct = 0
             total = 0
-
+            start_time = time.time()
             while batch_gen.has_next():
                 batch_input, batch_target, mask, vids = batch_gen.next_batch(batch_size, False)
                 batch_input, batch_target, mask = batch_input.to(device), batch_target.to(device), mask.to(device)
@@ -364,8 +364,12 @@ class Trainer:
             
             scheduler.step(epoch_loss)
             batch_gen.reset()
-            print("[epoch %d]: epoch loss = %f,   acc = %f" % (epoch + 1, epoch_loss / len(batch_gen.list_of_examples),
-                                                               float(correct) / total))
+
+            end_time = time.time()	
+            time_elapsed = (end_time - start_time) / 60 #mins
+
+            print("Epoch: {}, Time: {:.4f}, Train loss: {:.4f}, Train acc: {:.4f}".format(
+		epoch + 1, time_elapsed, epoch_loss / len(batch_gen.list_of_examples), float(correct) / total ), flush=True)
 
             if (epoch + 1) % 10 == 0 and batch_gen_tst is not None:
                 self.test(batch_gen_tst, epoch)
@@ -387,7 +391,7 @@ class Trainer:
                 total += torch.sum(mask[:, 0, :]).item()
 
         acc = float(correct) / total
-        print("---[epoch %d]---: tst acc = %f" % (epoch + 1, acc))
+        print("---[epoch %d]---: tst acc = %f" % (epoch + 1, acc), flush=True)
 
         self.model.train()
         batch_gen_tst.reset()
