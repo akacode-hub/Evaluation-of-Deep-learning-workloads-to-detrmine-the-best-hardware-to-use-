@@ -1,0 +1,5 @@
+Model Size:  1147584
+LR:0.0001
+Epoch: 1, Time: 7.3765, Train loss: 1.7141, Train acc: 0.1168
+Epoch: 2, Time: 8.4899, Train loss: 1.4802, Train acc: 0.2152
+Epoch: 3, Time: 8.1088, Train loss: 1.3529, Train acc: 0.2609

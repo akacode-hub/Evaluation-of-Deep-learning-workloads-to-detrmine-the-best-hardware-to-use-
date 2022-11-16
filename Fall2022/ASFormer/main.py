@@ -32,13 +32,13 @@ lr = 0.0005
 num_layers = 10
 num_f_maps = 64
 features_dim = 2048
-bz = 1
+bz = 12
 
 channel_mask_rate = 0.3
 
 
 # use the full temporal resolution @ 15fps
-sample_rate = 1
+sample_rate = 4
 # sample input features @ 15fps instead of 30 fps
 # for 50salads, and up-sample the output to 30 fps
 if args.dataset == "50salads":
@@ -49,7 +49,7 @@ if args.dataset == "gtea":
     channel_mask_rate = 0.5
     
 if args.dataset == 'breakfast':
-    lr = 0.0001
+    lr = 0.0005
 
 
 vid_list_file = "./data/"+args.dataset+"/splits/train.split"+args.split+".bundle"

@@ -135,7 +135,7 @@ class AttLayer(nn.Module):
         _, c3, _ = v.size()
         
         
-        assert m_batchsize == 1  # currently, we only accept input with batch size 1
+        # assert m_batchsize == 1  # currently, we only accept input with batch size 1
         # padding zeros for the last segment
         nb = L // self.bl 
         if L % self.bl != 0:
