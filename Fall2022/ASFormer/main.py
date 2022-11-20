@@ -22,12 +22,13 @@ parser.add_argument('--action', default='train')
 parser.add_argument('--dataset', default="50salads")
 parser.add_argument('--split', default='1')
 parser.add_argument('--model_dir', default='models')
+parser.add_argument('--version', default='exp2')
 parser.add_argument('--result_dir', default='results')
 
 args = parser.parse_args()
  
 num_epochs = 120
-
+    
 lr = 0.0005
 num_layers = 10
 num_f_maps = 64
@@ -49,7 +50,7 @@ if args.dataset == "gtea":
     channel_mask_rate = 0.5
     
 if args.dataset == 'breakfast':
-    lr = 0.0005
+    lr = 0.001
 
 
 vid_list_file = "./data/"+args.dataset+"/splits/train.split"+args.split+".bundle"
@@ -59,16 +60,15 @@ gt_path = "./data/"+args.dataset+"/groundTruth/"
  
 mapping_file = "./data/"+args.dataset+"/mapping.txt"
  
-model_dir = "./{}/".format(args.model_dir)+args.dataset+"/split_"+args.split
+model_dir = "./{}/".format(args.model_dir)+args.dataset+"/split_"+args.split + '/' + args.version
 
-results_dir = "./{}/".format(args.result_dir)+args.dataset+"/split_"+args.split
+results_dir = "./{}/".format(args.result_dir)+args.dataset+"/split_"+args.split+ '/' + args.version
  
 if not os.path.exists(model_dir):
     os.makedirs(model_dir)
 if not os.path.exists(results_dir):
     os.makedirs(results_dir)
- 
- 
+  
 file_ptr = open(mapping_file, 'r')
 actions = file_ptr.read().split('\n')[:-1]
 file_ptr.close()

@@ -306,7 +306,6 @@ class MyTransformer(nn.Module):
         self.encoder = Encoder(num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, att_type='sliding_att', alpha=1)
         self.decoders = nn.ModuleList([copy.deepcopy(Decoder(num_layers, r1, r2, num_f_maps, num_classes, num_classes, att_type='sliding_att', alpha=exponential_descrease(s))) for s in range(num_decoders)]) # num_decoders
         
-        
     def forward(self, x, mask):
         out, feature = self.encoder(x, mask)
         outputs = out.unsqueeze(0)
@@ -317,24 +316,23 @@ class MyTransformer(nn.Module):
  
         return outputs
 
-    
 class Trainer:
     def __init__(self, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate):
         self.model = MyTransformer(3, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate)
         self.ce = nn.CrossEntropyLoss(ignore_index=-100)
 
         print('Model Size: ', sum(p.numel() for p in self.model.parameters()), flush=True)
-        self.mse = nn.MSELoss(reduction='none')
+        self.mse = nn.MSELoss(reduction ='none')
         self.num_classes = num_classes
 
     def train(self, save_dir, batch_gen, num_epochs, batch_size, learning_rate, batch_gen_tst=None):
+        
         self.model.train()
         self.model.to(device)
         optimizer = optim.Adam(self.model.parameters(), lr=learning_rate, weight_decay=1e-5)
         print('LR:{}'.format(learning_rate), flush=True)
-        
-        
         scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3, verbose=True)
+        
         for epoch in range(num_epochs):
             epoch_loss = 0
             correct = 0
