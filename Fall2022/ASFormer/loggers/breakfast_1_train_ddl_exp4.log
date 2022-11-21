@@ -41,3 +41,5 @@ lvl:  8  d1:  256  d2:  2
 lvl:  9  d1:  512  d2:  1
 Model Size:  1971904
 LR:0.001
+Epoch: 1, Time: 6.9460, Train loss: 0.9552, Train acc: 0.2218
+Epoch: 2, Time: 6.9234, Train loss: 0.7282, Train acc: 0.3133

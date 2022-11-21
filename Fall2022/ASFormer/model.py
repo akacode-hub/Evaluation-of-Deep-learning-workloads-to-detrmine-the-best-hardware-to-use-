@@ -217,8 +217,8 @@ class AttModuleDDL(nn.Module):
         dilation1, dilation2 = 2 ** layer_lvl, 2 ** (num_layers - 1 - layer_lvl)
         print('lvl: ', layer_lvl, ' d1: ', dilation1, ' d2: ', dilation2, flush=True)
 
-        self.feed_forward_1 = ConvFeedForward(dilation1, in_channels, out_channels)
-        self.feed_forward_2 = ConvFeedForward(dilation2, in_channels, out_channels)
+        self.feed_forward_1 = nn.Conv1d(in_channels, out_channels, 3, padding=dilation1, dilation=dilation1)
+        self.feed_forward_2 = nn.Conv1d(in_channels, out_channels, 3, padding=dilation2, dilation=dilation2)
         self.conv_fusion = nn.Conv1d(2 * out_channels, out_channels, 1)
 
         self.instance_norm = nn.InstanceNorm1d(in_channels, track_running_stats=False)
@@ -228,8 +228,10 @@ class AttModuleDDL(nn.Module):
         self.alpha = alpha
         
     def forward(self, x, f, mask):
-
+        
         out = self.conv_fusion(torch.cat([self.feed_forward_1(x), self.feed_forward_2(x)], 1))
+        out = F.relu(out)
+
         out = self.alpha * self.att_layer(self.instance_norm(out), f, mask) + out
         out = self.conv_1x1(out)
         out = self.dropout(out)
