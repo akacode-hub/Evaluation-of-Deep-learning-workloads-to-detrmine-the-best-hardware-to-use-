@@ -210,6 +210,31 @@ class FCFeedForward(nn.Module):
     def forward(self, x):
         return self.layer(x)
     
+class AttModuleDDL(nn.Module):
+    def __init__(self, layer_lvl, num_layers, in_channels, out_channels, r1, r2, att_type, stage, alpha):
+        super(AttModuleDDL, self).__init__()
+
+        dilation1, dilation2 = 2 ** layer_lvl, 2 ** (num_layers - 1 - layer_lvl)
+        print('lvl: ', layer_lvl, ' d1: ', dilation1, ' d2: ', dilation2, flush=True)
+
+        self.feed_forward_1 = ConvFeedForward(dilation1, in_channels, out_channels)
+        self.feed_forward_2 = ConvFeedForward(dilation2, in_channels, out_channels)
+        self.conv_fusion = nn.Conv1d(2 * out_channels, out_channels, 1)
+
+        self.instance_norm = nn.InstanceNorm1d(in_channels, track_running_stats=False)
+        self.att_layer = AttLayer(in_channels, in_channels, out_channels, r1, r1, r2, dilation1, att_type=att_type, stage=stage) # dilation
+        self.conv_1x1 = nn.Conv1d(out_channels, out_channels, 1)
+        self.dropout = nn.Dropout()
+        self.alpha = alpha
+        
+    def forward(self, x, f, mask):
+
+        out = self.conv_fusion(torch.cat([self.feed_forward_1(x), self.feed_forward_2(x)], 1))
+        out = self.alpha * self.att_layer(self.instance_norm(out), f, mask) + out
+        out = self.conv_1x1(out)
+        out = self.dropout(out)
+
+        return (x + out) * mask[:, 0:1, :]
 
 class AttModule(nn.Module):
     def __init__(self, dilation, in_channels, out_channels, r1, r2, att_type, stage, alpha):
@@ -227,7 +252,6 @@ class AttModule(nn.Module):
         out = self.conv_1x1(out)
         out = self.dropout(out)
         return (x + out) * mask[:, 0:1, :]
-
 
 class PositionalEncoding(nn.Module):
     "Implement the PE function."
@@ -249,13 +273,21 @@ class PositionalEncoding(nn.Module):
         return x + self.pe[:, :, 0:x.shape[2]]
 
 class Encoder(nn.Module):
-    def __init__(self, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, att_type, alpha):
+    def __init__(self, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, att_type, alpha, arch_type):
         super(Encoder, self).__init__()
         self.conv_1x1 = nn.Conv1d(input_dim, num_f_maps, 1) # fc layer
-        self.layers = nn.ModuleList(
-            [AttModule(2 ** i, num_f_maps, num_f_maps, r1, r2, att_type, 'encoder', alpha) for i in # 2**i
+
+        if arch_type == 'ddl':
+            print('Encoder arch: ', arch_type, flush=True)
+            self.layers = nn.ModuleList(
+            [AttModuleDDL(i, num_layers, num_f_maps, num_f_maps, r1, r2, att_type, 'encoder', alpha) for i in
              range(num_layers)])
-        
+        else:
+            print('Encoder arch: default', flush=True)
+            self.layers = nn.ModuleList(
+                [AttModule(2 ** i, num_f_maps, num_f_maps, r1, r2, att_type, 'encoder', alpha) for i in # 2**i
+                range(num_layers)])
+
         self.conv_out = nn.Conv1d(num_f_maps, num_classes, 1)
         self.dropout = nn.Dropout2d(p=channel_masking_rate)
         self.channel_masking_rate = channel_masking_rate
@@ -280,14 +312,21 @@ class Encoder(nn.Module):
 
         return out, feature
 
-
 class Decoder(nn.Module):
-    def __init__(self, num_layers, r1, r2, num_f_maps, input_dim, num_classes, att_type, alpha):
+    def __init__(self, num_layers, r1, r2, num_f_maps, input_dim, num_classes, att_type, alpha, arch_type):
         super(Decoder, self).__init__()#         self.position_en = PositionalEncoding(d_model=num_f_maps)
+
         self.conv_1x1 = nn.Conv1d(input_dim, num_f_maps, 1)
-        self.layers = nn.ModuleList(
-            [AttModule(2 ** i, num_f_maps, num_f_maps, r1, r2, att_type, 'decoder', alpha) for i in # 2 ** i
-             range(num_layers)])
+
+        if arch_type == 'ddl':
+            self.layers = nn.ModuleList(
+                [AttModuleDDL(i, num_layers, num_f_maps, num_f_maps, r1, r2, att_type, 'decoder', alpha) for i in
+                range(num_layers)])
+        else:
+            self.layers = nn.ModuleList(
+                [AttModule(2 ** i, num_f_maps, num_f_maps, r1, r2, att_type, 'decoder', alpha) for i in # 2 ** i
+                range(num_layers)])
+
         self.conv_out = nn.Conv1d(num_f_maps, num_classes, 1)
 
     def forward(self, x, fencoder, mask):
@@ -301,24 +340,24 @@ class Decoder(nn.Module):
         return out, feature
     
 class MyTransformer(nn.Module):
-    def __init__(self, num_decoders, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate):
+    def __init__(self, num_decoders, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, arch_type):
         super(MyTransformer, self).__init__()
-        self.encoder = Encoder(num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, att_type='sliding_att', alpha=1)
-        self.decoders = nn.ModuleList([copy.deepcopy(Decoder(num_layers, r1, r2, num_f_maps, num_classes, num_classes, att_type='sliding_att', alpha=exponential_descrease(s))) for s in range(num_decoders)]) # num_decoders
+        self.encoder = Encoder(num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, att_type='sliding_att', alpha=1, arch_type=arch_type)
+        self.decoders = nn.ModuleList([copy.deepcopy(Decoder(num_layers, r1, r2, num_f_maps, num_classes, num_classes, att_type='sliding_att', arch_type=arch_type, alpha=exponential_descrease(s))) for s in range(num_decoders)]) # num_decoders
         
     def forward(self, x, mask):
         out, feature = self.encoder(x, mask)
         outputs = out.unsqueeze(0)
         
         for decoder in self.decoders:
-            out, feature = decoder(F.softmax(out, dim=1) * mask[:, 0:1, :], feature* mask[:, 0:1, :], mask)
+            out, feature = decoder(F.softmax(out, dim=1) * mask[:, 0:1, :], feature * mask[:, 0:1, :], mask)
             outputs = torch.cat((outputs, out.unsqueeze(0)), dim=0)
  
         return outputs
 
 class Trainer:
-    def __init__(self, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate):
-        self.model = MyTransformer(3, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate)
+    def __init__(self, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, arch_type):
+        self.model = MyTransformer(3, num_layers, r1, r2, num_f_maps, input_dim, num_classes, channel_masking_rate, arch_type)
         self.ce = nn.CrossEntropyLoss(ignore_index=-100)
 
         print('Model Size: ', sum(p.numel() for p in self.model.parameters()), flush=True)
@@ -342,7 +381,7 @@ class Trainer:
                 batch_input, batch_target, mask, vids = batch_gen.next_batch(batch_size, False)
                 batch_input, batch_target, mask = batch_input.to(device), batch_target.to(device), mask.to(device)
                 optimizer.zero_grad()
-                ps = self.model(batch_input, mask)
+                ps = self.model(batch_input, mask) #(4, 12, 48, 832)
 
                 loss = 0
                 for p in ps:
@@ -358,12 +397,11 @@ class Trainer:
                 _, predicted = torch.max(ps.data[-1], 1)
                 correct += ((predicted == batch_target).float() * mask[:, 0, :].squeeze(1)).sum().item()
                 total += torch.sum(mask[:, 0, :]).item()
-            
-            
+                        
             scheduler.step(epoch_loss)
             batch_gen.reset()
 
-            end_time = time.time()	
+            end_time = time.time()
             time_elapsed = (end_time - start_time) / 60 #mins
 
             print("Epoch: {}, Time: {:.4f}, Train loss: {:.4f}, Train acc: {:.4f}".format(

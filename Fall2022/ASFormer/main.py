@@ -22,6 +22,7 @@ parser.add_argument('--action', default='train')
 parser.add_argument('--dataset', default="50salads")
 parser.add_argument('--split', default='1')
 parser.add_argument('--model_dir', default='models')
+parser.add_argument('--arch', default='org')
 parser.add_argument('--version', default='exp2')
 parser.add_argument('--result_dir', default='results')
 
@@ -36,7 +37,7 @@ features_dim = 2048
 bz = 12
 
 channel_mask_rate = 0.3
-
+arch_type = args.arch
 
 # use the full temporal resolution @ 15fps
 sample_rate = 4
@@ -81,7 +82,7 @@ for k,v in actions_dict.items():
 num_classes = len(actions_dict)
 
 
-trainer = Trainer(num_layers, 2, 2, num_f_maps, features_dim, num_classes, channel_mask_rate)
+trainer = Trainer(num_layers, 2, 2, num_f_maps, features_dim, num_classes, channel_mask_rate, arch_type)
 if args.action == "train":
     batch_gen = BatchGenerator(num_classes, actions_dict, gt_path, features_path, sample_rate)
     batch_gen.read_data(vid_list_file)
