@@ -192,7 +192,7 @@ def eval_seg_dur(dataset, recog_path, file_list, durations):
 
                 for i in range(len(gt_content_dur)):
                     total += 1
-                    if gt_content_dur[i] == gt_content_dur[i]:
+                    if gt_content_dur[i] == recog_content_dur[i]:
                         correct += 1
 
             corrects[di] += correct
@@ -301,7 +301,7 @@ def main():
         corrects, totals = eval_seg_dur(args.dataset, recog_path, file_list, durations)
         
         for dur, correct, total in zip(durations, corrects, totals):
-            print('duration: ', dur, ' acc: ', correct/total, ' total: ', total)
+            print('duration: ', dur, ' acc: ', round(correct/total, 3), ' total: ', total)
 
     # print("Acc: %.4f  Edit: %4f  F1@10,25,50 " % (acc_all, edit_all), f1s_all)
 
