@@ -10,7 +10,16 @@ def read_file(path):
         f.close()
     return content
  
- 
+
+def filter_act_dur(ground_truth, bg_class=["SIL"], num_frame_thresh=100):
+
+    y_label, y_start, y_end = get_labels_start_end_time(ground_truth, bg_class)
+    idx = []
+    print('y_label, y_start, y_end ', y_label, y_start, y_end)
+
+    return idx
+    
+
 def get_labels_start_end_time(frame_wise_labels, bg_class=["background"]):
     labels = []
     starts = []
@@ -49,12 +58,12 @@ def levenstein(p, y, norm=False):
                 D[i, j] = min(D[i-1, j] + 1,
                               D[i, j-1] + 1,
                               D[i-1, j-1] + 1)
-     
+    
     if norm:
         score = (1 - D[-1, -1]/max(m_row, n_col)) * 100
     else:
         score = D[-1, -1]
- 
+
     return score
  
  
@@ -67,7 +76,15 @@ def edit_score(recognized, ground_truth, norm=True, bg_class=["background"]):
 def f_score(recognized, ground_truth, overlap, bg_class=["background"]):
     p_label, p_start, p_end = get_labels_start_end_time(recognized, bg_class)
     y_label, y_start, y_end = get_labels_start_end_time(ground_truth, bg_class)
- 
+    
+    # print('p_label ', p_label)
+    # print('p_start ', p_start)
+    # print('p_end ', p_end)
+
+    # print('y_label ', y_label)
+    # print('y_start ', y_start)
+    # print('y_end ', y_end)
+
     tp = 0
     fp = 0
  
@@ -159,21 +176,23 @@ def func_eval(dataset, recog_path, file_list):
     total = 0
     edit = 0
 
- 
-    for vid in list_of_videos:
- 
-         
+    for vid in list_of_videos[:1]:
+          
         gt_file = ground_truth_path + vid
         gt_content = read_file(gt_file).split('\n')[0:-1]
  
         recog_file = recog_path + vid.split('.')[0]
         recog_content = read_file(recog_file).split('\n')[1].split()
  
+        idxs = filter_act_dur(gt_content, bg_class=["SIL"], num_frame_thresh=100)
 
         for i in range(len(gt_content)):
             total += 1
             if gt_content[i] == recog_content[i]:
                 correct += 1
+
+        print('gt_content ', [[i, gt] for i, gt in enumerate(gt_content)], len(gt_content))
+        print('recog_content ', recog_content, len(recog_content))
 
         edit += edit_score(recog_content, gt_content)
  

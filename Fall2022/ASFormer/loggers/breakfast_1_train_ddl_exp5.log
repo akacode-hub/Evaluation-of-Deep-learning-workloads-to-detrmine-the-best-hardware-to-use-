@@ -181,3 +181,11 @@ Epoch: 112, Time: 7.3937, Train loss: 0.0802, Train acc: 0.9768
 Epoch   113: reducing learning rate of group 0 to 3.0518e-08.
 Epoch: 113, Time: 7.3542, Train loss: 0.0811, Train acc: 0.9772
 Epoch: 114, Time: 7.4979, Train loss: 0.0793, Train acc: 0.9769
+Epoch: 115, Time: 7.4017, Train loss: 0.0806, Train acc: 0.9769
+Epoch: 116, Time: 7.3943, Train loss: 0.0800, Train acc: 0.9771
+Epoch   117: reducing learning rate of group 0 to 1.5259e-08.
+Epoch: 117, Time: 7.3497, Train loss: 0.0811, Train acc: 0.9768
+Epoch: 118, Time: 7.2179, Train loss: 0.0818, Train acc: 0.9764
+Epoch: 119, Time: 7.3572, Train loss: 0.0811, Train acc: 0.9768
+Epoch: 120, Time: 7.3071, Train loss: 0.0812, Train acc: 0.9768
+---[epoch 120]---: tst acc = 0.738263

@@ -23,7 +23,7 @@ parser.add_argument('--dataset', default="50salads")
 parser.add_argument('--split', default='1')
 parser.add_argument('--model_dir', default='models')
 parser.add_argument('--arch', default='org')
-parser.add_argument('--version', default='exp2')
+parser.add_argument('--version', default='')
 parser.add_argument('--result_dir', default='results')
 
 args = parser.parse_args()
@@ -34,7 +34,7 @@ lr = 0.0005
 num_layers = 10
 num_f_maps = 64
 features_dim = 2048
-bz = 12
+bz = 1
 
 channel_mask_rate = 0.3
 arch_type = args.arch
@@ -51,7 +51,7 @@ if args.dataset == "gtea":
     channel_mask_rate = 0.5
     
 if args.dataset == 'breakfast':
-    lr = 0.001
+    lr = 0.0001
 
 
 vid_list_file = "./data/"+args.dataset+"/splits/train.split"+args.split+".bundle"

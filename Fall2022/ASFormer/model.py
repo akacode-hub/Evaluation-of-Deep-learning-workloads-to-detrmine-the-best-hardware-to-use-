@@ -388,7 +388,7 @@ class Trainer:
                     loss += self.ce(p.transpose(2, 1).contiguous().view(-1, self.num_classes), batch_target.view(-1))
                     loss += 0.15 * torch.mean(torch.clamp(
                         self.mse(F.log_softmax(p[:, :, 1:], dim=1), F.log_softmax(p.detach()[:, :, :-1], dim=1)), min=0,
-                        max=16) * mask[:, :, 1:])
+                        max=192) * mask[:, :, 1:])
 
                 epoch_loss += loss.item()
                 loss.backward()
