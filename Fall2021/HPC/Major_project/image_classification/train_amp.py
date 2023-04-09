@@ -264,7 +264,7 @@ if __name__ == "__main__":
     #train
     os.environ['MASTER_ADDR'] = '10.90.33.206'
     os.environ['MASTER_PORT'] = '8888'
-    #mp.spawn(train, nprocs=gpus)
+    mp.spawn(train, nprocs=gpus)
 
     model_path = os.path.join(model_save_dir, '40.pth')    
     test(model_path)
