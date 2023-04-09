@@ -74,7 +74,7 @@ if __name__ == "__main__":
     test_rows = 50000
     num_boost_round = 1000
 
-    fpath = '../dataset/HIGGS.csv'
+    fpath = '../data/HIGGS.csv'
     num_gpus = 4
 
     # `LocalCUDACluster` is used for assigning GPU to XGBoost processes.  Here

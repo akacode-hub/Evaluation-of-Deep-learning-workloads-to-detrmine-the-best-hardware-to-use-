@@ -303,7 +303,7 @@ def test(model_path, num_dim):
 
 if __name__ == "__main__":
 
-    fpath = '../dataset/HIGGS.csv'
+    fpath = '../data/HIGGS.csv'
     model_save_dir = 'models/exp2/'
 
     if not os.path.exists(model_save_dir):

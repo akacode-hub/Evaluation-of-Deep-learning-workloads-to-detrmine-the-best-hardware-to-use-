@@ -116,7 +116,7 @@ def calc_mae(output, label):
 
 def train(gpu):
 
-    fpath = '../dataset/YearPredictionMSD.txt'
+    fpath = '../data/YearPredictionMSD.txt'
     model_save_dir = 'models/exp4/'
     
     num_train = 463715

@@ -63,7 +63,7 @@ def train_CPU():
     param['objective'] = 'binary:logitraw'
     param['eval_metric'] = 'error'
     param['tree_method'] = 'hist'
-    param['silent'] = 1
+    # param['silent'] = 1
 
     print("Loading data ...")
     dtrain, dtest, train_label, test_label = get_data(fpath)
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     test_rows = 50000
     num_round = 1000        
 
-    fpath = '../dataset/HIGGS.csv'
+    fpath = '../data/HIGGS.csv'
 
     # train_GPU()
 

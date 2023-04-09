@@ -100,7 +100,7 @@ class MLP(nn.Module):
 
 def train(gpu):
 
-    fpath = '../dataset/HIGGS.csv'
+    fpath = '../data/HIGGS.csv'
     model_save_dir = 'models/exp4/'
     
     num_train = 1050000 #10500000
