@@ -1,0 +1,27 @@
+num_train:  463715
+batch_size:  512
+num_epochs:  102
+num_dim:  90
+pred_dim:  1
+use_pca:  0
+num_workers:  0
+lr:  0.005
+lr_steps:  [50]
+lr_drop:  0.1
+Using GPU for training
+model:  MLP(
+  (network): Sequential(
+    (0): Linear(in_features=90, out_features=180, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=180, out_features=180, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=180, out_features=90, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=90, out_features=1, bias=True)
+  )
+)
+/home/yuexi/pyenv_1.6/lib/python3.6/site-packages/torch/nn/modules/loss.py:528: UserWarning: Using a target size (torch.Size([512])) that is different to the input size (torch.Size([512, 1])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+  return F.mse_loss(input, target, reduction=self.reduction)
+/home/yuexi/pyenv_1.6/lib/python3.6/site-packages/torch/nn/modules/loss.py:528: UserWarning: Using a target size (torch.Size([355])) that is different to the input size (torch.Size([355, 1])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+  return F.mse_loss(input, target, reduction=self.reduction)
+Epoch [1/102], time: 0.0528 mins, lr: 0.005, mse: 111.7357,  mae: 8.0328

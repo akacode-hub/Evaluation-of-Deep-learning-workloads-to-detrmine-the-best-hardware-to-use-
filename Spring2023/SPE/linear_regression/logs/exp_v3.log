@@ -1,0 +1,36 @@
+num_train:  463715
+batch_size:  512
+num_epochs:  102
+num_dim:  90
+pred_dim:  1
+use_pca:  0
+lr:  0.005
+lr_steps:  [50]
+lr_drop:  0.1
+nodes:  1
+num_gpus:  2
+world_size:  2
+num_train:  463715
+batch_size:  512
+num_epochs:  102
+num_dim:  90
+pred_dim:  1
+use_pca:  0
+lr:  0.005
+lr_steps:  [50]
+lr_drop:  0.1
+nodes:  1
+num_gpus:  2
+world_size:  2
+model:  MLP(
+  (network): Sequential(
+    (0): Linear(in_features=90, out_features=180, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=180, out_features=180, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=180, out_features=90, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=90, out_features=1, bias=True)
+  )
+)
+Epoch [1/102], time: 0.0509 mins, lr: 0.005, mse: 112.4060,  mae: 7.8467
