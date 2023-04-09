@@ -2,7 +2,7 @@ import numpy as np
 import argparse
 import matplotlib.pyplot as plt
 import seaborn as sns
- 
+import sys
 
 def read_file(path):
     with open(path, 'r') as f:
@@ -10,7 +10,17 @@ def read_file(path):
         f.close()
     return content
  
- 
+
+def get_idxs(gt_start, gt_end, dur_range, bg_class=["SIL"]):
+    
+    min_dur, max_dur = dur_range[0], dur_range[1]
+    gt_start, gt_end = np.array(gt_start), np.array(gt_end)
+    diff = gt_end - gt_start
+    idxs = np.where((diff >= min_dur) & (diff < max_dur), True, False)
+     
+    return gt_start[idxs], gt_end[idxs]
+    
+
 def get_labels_start_end_time(frame_wise_labels, bg_class=["background"]):
     labels = []
     starts = []
@@ -49,12 +59,12 @@ def levenstein(p, y, norm=False):
                 D[i, j] = min(D[i-1, j] + 1,
                               D[i, j-1] + 1,
                               D[i-1, j-1] + 1)
-     
+    
     if norm:
         score = (1 - D[-1, -1]/max(m_row, n_col)) * 100
     else:
         score = D[-1, -1]
- 
+
     return score
  
  
@@ -67,7 +77,7 @@ def edit_score(recognized, ground_truth, norm=True, bg_class=["background"]):
 def f_score(recognized, ground_truth, overlap, bg_class=["background"]):
     p_label, p_start, p_end = get_labels_start_end_time(recognized, bg_class)
     y_label, y_start, y_end = get_labels_start_end_time(ground_truth, bg_class)
- 
+
     tp = 0
     fp = 0
  
@@ -139,7 +149,57 @@ def segment_bars_with_confidence(save_path, confidence, *labels):
  
     plt.close()
  
+def eval_seg_dur(dataset, recog_path, file_list, durations):
+
+    ground_truth_path = "./data/" + dataset + "/groundTruth/"
+    mapping_file = "./data/" + dataset + "/mapping.txt"
+    list_of_videos = read_file(file_list).split('\n')[:-1]
  
+    file_ptr = open(mapping_file, 'r')
+    actions = file_ptr.read().split('\n')[:-1]
+    file_ptr.close()
+
+    corrects, totals = [0.] * len(durations), [0.] * len(durations)
+
+    for vid in list_of_videos:
+          
+        gt_file = ground_truth_path + vid
+        gt_content = read_file(gt_file).split('\n')[0:-1]
+ 
+        recog_file = recog_path + vid.split('.')[0]
+        recog_content = read_file(recog_file).split('\n')[1].split()
+
+        y_label, y_start, y_end = get_labels_start_end_time(gt_content, bg_class=["SIL"])
+
+        for di in range(len(durations)):
+            
+            if di == len(durations) - 1:
+                dur_range = [durations[di], sys.maxsize]
+            else:
+                dur_range = [durations[di], durations[di+1]]
+
+            correct = 0
+            total = 0
+
+            print(y_start, y_end)
+            gt_start_idxs, gt_end_idxs = get_idxs(y_start, y_end, dur_range)
+            print(gt_start_idxs, gt_end_idxs)
+
+            for gt_start_idx, gt_end_idx in zip(gt_start_idxs, gt_end_idxs):
+
+                gt_content_dur = gt_content[gt_start_idx: gt_end_idx]
+                recog_content_dur = recog_content[gt_start_idx: gt_end_idx]
+
+                for i in range(len(gt_content_dur)):
+                    total += 1
+                    if gt_content_dur[i] == recog_content_dur[i]:
+                        correct += 1
+
+            corrects[di] += correct
+            totals[di] += total
+
+    return corrects, totals
+
 def func_eval(dataset, recog_path, file_list):
     ground_truth_path = "./data/" + dataset + "/groundTruth/"
     mapping_file = "./data/" + dataset + "/mapping.txt"
@@ -159,16 +219,13 @@ def func_eval(dataset, recog_path, file_list):
     total = 0
     edit = 0
 
- 
     for vid in list_of_videos:
- 
-         
+          
         gt_file = ground_truth_path + vid
         gt_content = read_file(gt_file).split('\n')[0:-1]
  
         recog_file = recog_path + vid.split('.')[0]
         recog_content = read_file(recog_file).split('\n')[1].split()
- 
 
         for i in range(len(gt_content)):
             total += 1
@@ -238,9 +295,15 @@ def main():
         split = args.split
         recog_path = "./{}/".format(args.result_dir)+args.dataset+"/split_{}".format(split)+"/"
         file_list = "./data/"+args.dataset+"/splits/test.split{}".format(split)+".bundle"
-        acc_all, edit_all, f1s_all = func_eval(args.dataset, recog_path, file_list)
-    
-    print("Acc: %.4f  Edit: %4f  F1@10,25,50 " % (acc_all, edit_all), f1s_all)
+        # acc_all, edit_all, f1s_all = func_eval(args.dataset, recog_path, file_list)
+
+        durations = [0, 300, 600, 900]
+        corrects, totals = eval_seg_dur(args.dataset, recog_path, file_list, durations)
+        
+        for dur, correct, total in zip(durations, corrects, totals):
+            print('duration: ', dur, ' acc: ', round(correct/total, 3), ' total: ', total)
+
+    # print("Acc: %.4f  Edit: %4f  F1@10,25,50 " % (acc_all, edit_all), f1s_all)
 
 
 if __name__ == '__main__':
